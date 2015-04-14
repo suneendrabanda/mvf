@@ -191,7 +191,7 @@ Ext.define('MVF.view.labs', {
                                                    xtype:'label',
                                                     html:' Notes',
                                                     style:{
-                                                          'margin-top': '14%',
+                                                          'margin-top': '6%',
                                                            'margin-left': '25px',
                                                            /* font-family: -webkit-pictograph; */
                                                            'font-weight': '900',
@@ -204,7 +204,7 @@ Ext.define('MVF.view.labs', {
                                                 html:'VIEWING:',
                                                 style:{
                                                    'margin-left': '25px',
-                                                    'margin-top': '20%',
+                                                    'margin-top': '10%',
                                                     'font-weight': '600',
                                                     'font-size': 'initial',
                                                 }
@@ -212,11 +212,69 @@ Ext.define('MVF.view.labs', {
                                             {
                                                 xtype:'panel',
                                                 html:'MCHC',
+                                                itemid:'viewingitem',
+                                                style:{
+                                                    'margin-left':'40px',
+                                                      'margin-top': '12px',
+                                                        'font-size': 'initial',
+                                                        'font-weight': '500'
+                                                }
+                                            },
+                                            {
+                                                xtype:'panel',
+                                                html:'Alerts:',
+                                                style:{
+                                                     'margin-left': '25px',
+                                                    'margin-top': '10%',
+                                                    'font-weight': '600',
+                                                    'font-size': 'initial'
+                                                }
+                                            },
+                                            {
+                                                xtype:'panel',
+                                                html:'01/06/2015',
+                                                itemid:'alertItems',
+                                                style:{
+                                                    'margin-left':'40px',
+                                                      'margin-top': '12px',
+                                                        'font-size': 'initial',
+                                                        'font-weight': '500'
+                                                }
+                                            },
+                                            {
+                                                html:'Hign MCV Count',
                                                 style:{
                                                     'margin-left':'40px',
                                                       'margin-top': '12px',
                                                         'font-size': 'initial',
                                                         'font-weight': '500',
+                                                        'color':'red'
+                                                }
+                                            },
+                                            {
+                                                xtype:'panel',
+                                                width:'300px',
+                                                html:'Notes',
+                                                style:{
+                                                   'margin-left': '25px',
+                                                    'margin-top': '8%',
+                                                    'font-weight': '600',
+                                                    'font-size': 'initial'
+                                                   
+                                                }
+                                            },
+                                            {
+                                                xtype:'panel',
+                                                width:'280px',
+                                                height:'100px',
+                                                html:'<p>The mean corpuscular volume, or MCV, is a measure of the average red blood cell volume (i.e. size)\n\
+                                                         that is reported as part of a standard complete blood count.\n\
+                                                            It can be calculated (in litres) by dividing the hematocrit by the red blood cell count (number of red blood cells per litre). The result is typically reported in femtolitres.</p>',
+                                                style:{
+                                                    'margin-left':'40px',
+                                                    'margin-top':'4%',
+                                                    'font-weight':'normal',
+                                                    'font-size':'smaller'
                                                 }
                                             }
                                         ]
@@ -239,7 +297,7 @@ Ext.define('MVF.view.labs', {
                                                             'borderTopColor': '#AC9C65',
                                                             'borderTopWidth': '4px',
                                                             'margin': 'auto',
-                                                            'margin-left': '44%',
+                                                            'margin-left': '5%',
                                                             'margin-top': '',
                                                             'background-color': '#FFFFFF'
 
@@ -261,11 +319,14 @@ Ext.define('MVF.view.labs', {
                                                             'borderTopColor': '#AC9C65',
                                                             'borderTopWidth': '4px',
                                                             'margin': 'auto',
-                                                            'margin-left': '44%',
+                                                            'margin-left': '5%',
                                                             'margin-top': '17px',
                                                             'background-color': '#FFFFFF'
 
                                                         },
+                                                    items:[
+                                                        //items in box2
+                                                    ]    
                                              }
                                          ]
                                      }
