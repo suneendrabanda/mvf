@@ -88,12 +88,13 @@ Ext.define('MVF.view.Main', {
                                 {
                                     xtype:'label',
                                     html:'Vital Signs / Input & Output',
+                                    //styleHtmlContent:true,
                                     style:{
                                         'margin-top': '2%',
                                         'margin-left': '4%',
                                         'color': 'rgb(120, 96, 132)',
                                         'font-size': '30px',
-                                        'fontFamily':'openSans'
+                                        'fontFamily':'OpenSans'
                                     }
                                 },
 
@@ -176,6 +177,13 @@ Ext.define('MVF.view.Main', {
                                         }   
                                      },
                                      {
+                                         xtype:'label',
+                                         html:' start:',
+                                         style:{
+                                             'margin-top':'10px'
+                                         }
+                                     },
+                                     {
                                             xtype: 'datepickerfield',
                                             label: '',
                                            // dateFormat: 'd/M',
@@ -190,6 +198,13 @@ Ext.define('MVF.view.Main', {
                                             value: new Date()
                                      },
                                      {
+                                         xtype:'label',
+                                         html:' end:',
+                                         style:{
+                                             'margin-top':'10px'
+                                         }
+                                     },
+                                     {
                                           xtype: 'datepickerfield',
                                             label: '',
                                             itemid:'enddate',
@@ -199,14 +214,7 @@ Ext.define('MVF.view.Main', {
                                             name: 'birthday',
                                             value: new Date()
                                      },
-                                     {
-                                         xtype:'panel',
-                                                html:'<img src="app/view/zoom.png" height="20px", width="20px">',
-                                                style:{
-                                                    'margin-top':'6px',
-                                                    'margin-left':'75px'
-                                                }
-                                     }
+                                     
                                      
                                  ]
                                         
@@ -272,7 +280,7 @@ Ext.define('MVF.view.Main', {
                                         },
                                         {
                                              xtype:'panel',
-                                                html:'<img src="app/view/zoom.png" height="20px", width="20px">',
+                                                html:'<img src="resources/custom_images/icons/buttons9.png" height="20px", width="20px">',
                                                 style:{
                                                     'margin-top':'6px',
                                                     'margin-left':'115px'
@@ -327,7 +335,7 @@ Ext.define('MVF.view.Main', {
                                        },
                                        {
                                             xtype:'panel',
-                                            html:'<img src="app/view/zoom.png" height="20px", width="20px">',
+                                            html:'<img src="resources/custom_images/icons/buttons9.png" height="20px", width="20px">',
                                             style:{
                                                 'margin-top':'6px',
                                                 'margin-left':'105px'
@@ -452,7 +460,7 @@ Ext.define('MVF.view.Main', {
                                                                                        
                                         {
                                             xtype:'panel',
-                                            html:'<img src="app/view/zoom.png" height="20px", width="20px">',
+                                            html:'<img src="resources/custom_images/icons/buttons9.png" height="20px", width="20px">',
                                             style:{
                                                 'margin-left':'20px',
                                                 'margin-top':'10px'
@@ -536,6 +544,7 @@ Ext.define('MVF.view.Main', {
 			 {
 			  xtype: 'button',
 			  cls:'helpButtonToolbar'
+                          
 			 }
 		    ]
 		}

@@ -63,7 +63,7 @@ html,body{
 }
 
 .fileButtonToolbar{
-    background-image: url("/resources/custom_images/icons/04.png") !important;
+    background-image: url("../../resources/custom_images/icons/04.png") !important;
     background-size:50%;
     background-repeat: no-repeat;
     background-position: center;
@@ -87,7 +87,7 @@ html,body{
 }
 
 .printButtonToolbar{
-    background-image: url("/resources/custom_images/icons/07.png") !important;
+    background-image: url("/resources/custom_images/icons/7.png") !important;
     background-size:60%;
     background-repeat: no-repeat;
     background-position: center;
@@ -95,7 +95,7 @@ html,body{
 }
 
 .searchButtonToolbar{
-    background-image: url("resources/custom_images/icons/08.png") !important;
+    background-image: url("../../resources/custom_images/icons/8.png") !important;
     background-size:45%;
     background-repeat: no-repeat;
     background-position: center;
@@ -103,7 +103,7 @@ html,body{
 }
 
 .helpButtonToolbar{
-    background-image: url("\resources\custom_images\icons\09.png") !important;
+    background-image: url("\resources\custom_images\icons\9.png") !important;
     background-size:40%;
     background-repeat: no-repeat;
     background-position: center;
