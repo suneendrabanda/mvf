@@ -39,72 +39,160 @@ html,body{
 }
 
 .taskButtonToolbar {
-    background-image: url("../../resources/custom_images/MVP-toolbar-icons-03.png") !important;
-    background-size:100%;
+    background-image: url("/resources/custom_images/icons/01.png") !important;
+    background-size:50%;
     background-repeat: no-repeat;
     background-position: center;
     width: 50px;
 }
+
 .noteButtonToolbar{
-    background-image: url("../../resources/custom_images/MVP-toolbar-icons-04.png") !important;
-    background-size:100%;
+    background-image: url("/resources/custom_images/icons/02.png") !important;
+    background-size:50%;
     background-repeat: no-repeat;
     background-position: center;
     width: 50px;
 }
+
 .calcButtonToolbar{
-    background-image: url("../../resources/custom_images/MVP-toolbar-icons-05.png") !important;
-    background-size:100%;
+    background-image: url("/resources/custom_images/icons/03.png") !important;
+    background-size:50%;
     background-repeat: no-repeat;
     background-position: center;
     width: 50px;
 }
+
 .fileButtonToolbar{
-    background-image: url("../../resources/custom_images/MVP-toolbar-icons-06.png") !important;
-    background-size:100%;
+    background-image: url("/resources/custom_images/icons/04.png") !important;
+    background-size:50%;
     background-repeat: no-repeat;
     background-position: center;
     width: 50px;
 }
+
 .bookButtonToolbar{
-    background-image: url("../../resources/custom_images/MVP-toolbar-icons-07.png") !important;
-    background-size:100%;
+    background-image: url("/resources/custom_images/icons/05.png") !important;
+    background-size:60%;
     background-repeat: no-repeat;
     background-position: center;
     width: 50px;
 }
+
 .cameraButtonToolbar{
-    background-image: url("../../resources/custom_images/MVP-toolbar-icons-10.png") !important;
-    background-size:100%;
+    background-image: url("/resources/custom_images/icons/06.png") !important;
+    background-size:60%;
     background-repeat: no-repeat;
     background-position: center;
     width: 50px;
 }
+
 .printButtonToolbar{
-    background-image: url("../../resources/custom_images/MVP-toolbar-icons-08.png") !important;
-    background-size:100%;
+    background-image: url("/resources/custom_images/icons/07.png") !important;
+    background-size:60%;
     background-repeat: no-repeat;
     background-position: center;
     width: 50px;
 }
+
 .searchButtonToolbar{
-    background-image: url("../../resources/custom_images/MVP-toolbar-icons-09.png") !important;
-    background-size:100%;
+    background-image: url("resources/custom_images/icons/08.png") !important;
+    background-size:45%;
     background-repeat: no-repeat;
     background-position: center;
     width: 50px;
 }
 
-/* Patient Summary CSS rules */
-.fontFourteen{
-    font-size: 14px;
+.helpButtonToolbar{
+    background-image: url("\resources\custom_images\icons\09.png") !important;
+    background-size:40%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+}
+.widgetTitle{
+    font-family: openSansExtraBold;
+    color:#4D3462;
 }
 
-.fontFifteen{
-    font-size: 15px;
+.announcementCarousel{
+    
+}
+.leftPartAnnouncements{
+    margin-left:2%;
+    margin-top:2%;
+    width:50%;
+    float:left;
 }
 
-.btnPatientSummary{
-    font-size : 22px ; 
-    padding : 0 6px 0 6px;
+.announcementImage{
+    width:95%;
+    margin-top:5%;
+}
+
+.rightPartAnnouncements{
+    width:48%;
+    float:left;
+}
+
+.widgetText{
+    font-size:15px;
+}
+
+.patientListPicture-female{
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    width:45px;
+    height:45px;
+}
+
+.patientListPicture-male{
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    width:45px;
+    height:45px;
+}
+
+.patientListPicture-transgender{
+    float: left;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    position: relative;
+    overflow: hidden;
+    width:40px;
+    height:40px;
+}
+
+.patientListImage-female{
+    width:100%;
+    height:100%;
+    
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+}
+
+.patientListImage-male{
+    width:100%;
+    height:100%;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px; 
+}
+
+.patientListImage-transgender{
+    height:55px;
+    width:55px;
+    margin-left:-10px;
+    margin-top: -9px;
+    
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
 }
