@@ -74,7 +74,7 @@ Ext.define('MVF.view.labs', {
 			    		}]
 
 	    			},
-                                {
+                {
                       xtype:'container',
                       layout:'hbox',
                       
