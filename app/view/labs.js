@@ -124,7 +124,157 @@ Ext.define('MVF.view.labs', {
 
                             }
                       ]
-            },
+                   },
+                   // content panel
+                    {
+                        xtype:'container',
+                        width: '950px',
+                        height: '900px',
+                        layout:'vbox',
+                        scrollable: {
+                                                            direction: 'vertical',
+                                                            directionLock: true
+                                                        },
+                        style: {
+                                'border': '1px #9E9D8B solid',
+                                'borderRightColor':'#9E9D8B',
+                                'borderTopColor': '#AC9C65',
+                                'borderTopWidth': '4px',
+                                'margin': 'auto',
+                                'margin-left': '4%',
+                                'margin-top': '',
+                                'background-color': '#FFFFFF'
+                                
+                            },
+                            
+                         items:[
+                             {
+                                 xtype:'container',
+                                 layout:'hbox',
+                                 
+                                 items:[
+                                     {
+                                         xtype:'label',
+                                         html:' Chemistry',
+                                         style:{
+                                               'margin-top': '4%',
+                                                'margin-left': '3%',
+                                                /* font-family: -webkit-pictograph; */
+                                                'font-weight': '900',
+                                                'color': 'rgb(145, 86, 145)',
+                                                'font-size': 'larger'
+                                              }
+                                      }
+                                      //add content here to display above horizontal line
+                                    
+                                  ]
+                             },
+                             {
+                                 html:'<hr>',
+                                    style:{
+                                        'margin-left':'10px',
+                                        'margin-right':'10px'
+                                    }
+                             },
+                             {
+                                 xtype:'container',
+                                 layout:'hbox',
+                                  
+                                 items:[
+                                     //text container
+                                     {
+                                        xtype:'container',
+                                        layout:'vbox',
+                                        items:[
+                                            //6 containers here
+                                            {
+                                                   xtype:'label',
+                                                    html:' Notes',
+                                                    style:{
+                                                          'margin-top': '14%',
+                                                           'margin-left': '25px',
+                                                           /* font-family: -webkit-pictograph; */
+                                                           'font-weight': '900',
+                                                           'color': 'rgb(145, 86, 145)',
+                                                           'font-size': 'larger'
+                                                         }
+                                            },
+                                            {
+                                                xtype:'label',
+                                                html:'VIEWING:',
+                                                style:{
+                                                   'margin-left': '25px',
+                                                    'margin-top': '20%',
+                                                    'font-weight': '600',
+                                                    'font-size': 'initial',
+                                                }
+                                            },
+                                            {
+                                                xtype:'panel',
+                                                html:'MCHC',
+                                                style:{
+                                                    'margin-left':'40px',
+                                                      'margin-top': '12px',
+                                                        'font-size': 'initial',
+                                                        'font-weight': '500',
+                                                }
+                                            }
+                                        ]
+                                        
+                                     },
+                                     {
+                                         //charts and box container
+                                         xtype:'container',
+                                         layout:'vbox',
+                                         items:[
+                                             {
+                                                 //chart contaianer
+                                                 xtype:'container',
+                                                 width: '580px',
+                                                 height: '300px',
+                                                 layout:'vbox',
+                                                 style: {
+                                                            'border': '1px #9E9D8B solid',
+                                                            'borderRightColor':'#9E9D8B',
+                                                            'borderTopColor': '#AC9C65',
+                                                            'borderTopWidth': '4px',
+                                                            'margin': 'auto',
+                                                            'margin-left': '44%',
+                                                            'margin-top': '',
+                                                            'background-color': '#FFFFFF'
+
+                                                        },
+                                                 items:[
+                                                     //items for box1 here
+                                                 ]       
+                                                 
+                                             },
+                                             {
+                                                 //table container
+                                                  xtype:'container',
+                                                 width: '580px',
+                                                 height: '300px',
+                                                 layout:'vbox',
+                                                 style: {
+                                                            'border': '1px #9E9D8B solid',
+                                                            'borderRightColor':'#9E9D8B',
+                                                            'borderTopColor': '#AC9C65',
+                                                            'borderTopWidth': '4px',
+                                                            'margin': 'auto',
+                                                            'margin-left': '44%',
+                                                            'margin-top': '17px',
+                                                            'background-color': '#FFFFFF'
+
+                                                        },
+                                             }
+                                         ]
+                                     }
+                                 ]
+                             }
+                             
+                         ]   
+                    }
+            
                 ]
            }
        ]
