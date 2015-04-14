@@ -1,0 +1,110 @@
+@font-face {
+    font-family: openSansRegular;
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+@font-face {
+    font-family: openSansBold;
+    src: url(../fonts/OpenSans-Bold.ttf);
+}
+@font-face {
+    font-family: openSansExtraBold;
+    src: url(../fonts/OpenSans-ExtraBold.ttf);
+}
+@font-face {
+    font-family: openSansLight;
+    src: url(../fonts/OpenSans-Light.ttf);
+}
+@font-face {
+    font-family: openSansSemiBold;
+    src: url(../fonts/OpenSans-Semibold.ttf);
+}
+
+html,body{
+    font-family: openSansRegular;
+}
+
+.goldTitle{
+    font-family: openSansRegular;
+}
+
+#ext-toolbar-1{
+    background-color:#4D3462;
+    background-image: none !important;
+}
+
+/*--- buttons ---*/
+#ext-toolbar-1 .x-button-normal{
+    background-color:#4D3462;
+    border:0px;
+}
+
+.taskButtonToolbar {
+    background-image: url("../../resources/custom_images/MVP-toolbar-icons-03.png") !important;
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+}
+.noteButtonToolbar{
+    background-image: url("../../resources/custom_images/MVP-toolbar-icons-04.png") !important;
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+}
+.calcButtonToolbar{
+    background-image: url("../../resources/custom_images/MVP-toolbar-icons-05.png") !important;
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+}
+.fileButtonToolbar{
+    background-image: url("../../resources/custom_images/MVP-toolbar-icons-06.png") !important;
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+}
+.bookButtonToolbar{
+    background-image: url("../../resources/custom_images/MVP-toolbar-icons-07.png") !important;
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+}
+.cameraButtonToolbar{
+    background-image: url("../../resources/custom_images/MVP-toolbar-icons-10.png") !important;
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+}
+.printButtonToolbar{
+    background-image: url("../../resources/custom_images/MVP-toolbar-icons-08.png") !important;
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+}
+.searchButtonToolbar{
+    background-image: url("../../resources/custom_images/MVP-toolbar-icons-09.png") !important;
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+}
+
+/* Patient Summary CSS rules */
+.fontFourteen{
+    font-size: 14px;
+}
+
+.fontFifteen{
+    font-size: 15px;
+}
+
+.btnPatientSummary{
+    font-size : 22px ; 
+    padding : 0 6px 0 6px;
+}
