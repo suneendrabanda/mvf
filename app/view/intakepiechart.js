@@ -19,12 +19,15 @@ Ext.define("MVF.view.intakepiechart", {
         
         innerpadding:'0',
         colors: ["#F0523F","#FFD779","#BBAF82","#72DAF1","#87B675","#FF5472"],
-//        legend:{
-//            position:'bottom'
-//        },
+        legend:{
+            position:'right',
+            style:{
+                'margin-left':'10px'
+            }
+        },
       // animate: true,
 
-        insetPadding:65,
+        insetPadding:5,
        
         highlight: {
                   segment: {
@@ -48,20 +51,20 @@ Ext.define("MVF.view.intakepiechart", {
 //                                    strokeStyle: ['black', 'black', 'black', 'black', 'black'],
 //                                    lineWidth: [1,1,1,1,1]
 //                                }
-                         tips: {
-                                    trackMouse: true,
-                                    width: 140,
-                                    height: 28,
-                                    renderer: function(sprite, config, rendererData, index) {
-                                      //calculate percentage.
-                                      var total = 0;
-                                      var store=Ext.StoreMgr.get('intakepiechartstore');
-                                      store.each(function(rec) {
-                                          total += rec.get('result');
-                                      });
-                                      this.setTitle(storeItem.get('intakename') + ': ' + storeItem.get('result'));
-                                    }
-                                  }
+//                         tips: {
+//                                    trackMouse: true,
+//                                    width: 140,
+//                                    height: 28,
+//                                    renderer: function(sprite, config, rendererData, index) {
+//                                      //calculate percentage.
+//                                      var total = 0;
+//                                      var store=Ext.StoreMgr.get('intakepiechartstore');
+//                                      store.each(function(rec) {
+//                                          total += rec.get('result');
+//                                      });
+//                                      this.setTitle(storeItem.get('intakename') + ': ' + storeItem.get('result'));
+//                                    }
+//                                  }
                       
                      }
                       

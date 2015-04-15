@@ -12,7 +12,7 @@ $arr=array();
            // do nothing
        }
        else{
-        array_push($arr, array('intakename'=> $output, 'result'=> $outputresult));
+        array_push($arr, array('intakename'=> $output . " ".$outputresult , 'result'=> $outputresult));
        }
 
     }
