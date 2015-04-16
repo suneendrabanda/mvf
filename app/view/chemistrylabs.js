@@ -1,6 +1,6 @@
-Ext.define('MVF.view.labs', {
+Ext.define('MVF.view.chemistrylabs', {
     extend: 'Ext.navigation.View',
-    xtype: 'labs',
+    xtype: 'chemistrylabs',
     
     config:{
         navigationBar:{
@@ -243,7 +243,7 @@ Ext.define('MVF.view.labs', {
                                            
                                      },
                                           
-                                      //add content here to display above horizontal line
+                                      //end of content here to display above horizontal line
                                     
                                   ]
                              },
@@ -436,6 +436,12 @@ Ext.define('MVF.view.labs', {
                                                            'margin-top':'-1%'
                                                        }
                                                 },
+                                                {
+                                                    xtype:'chemistrylinechart',
+                                                    style:{
+                                                        'margin-top':'2%'
+                                                    }
+                                                }
                                                 // chart item
                                                  ]       
                                                  

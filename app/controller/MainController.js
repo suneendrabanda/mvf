@@ -194,8 +194,8 @@ Ext.define("MVF.controller.MainController", {
     gotopatientsummary:function(){
         console.log(this);
         this.getMain().push({
-          xtype:'labs',
-          title:'Labs'
+          xtype:'chemistrylabs',
+          title:'chemistryLabs'
       });
     },
     returntovspage:function(button, e, eOpts){

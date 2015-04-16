@@ -24,7 +24,8 @@ Ext.application({
     "outputpiechart",
     "intakepiechart",
     "bplinechart",
-    "labs"
+    "chemistrylabs",
+    "chemistrylinechart"
     
     //"PieDemo"
 ],
