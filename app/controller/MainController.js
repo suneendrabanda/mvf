@@ -13,7 +13,8 @@ Ext.define("MVF.controller.MainController", {
             vitaltablepanel:'[itemid=vitaltablepanel]',
             patientsummarybutton:'[itemid=patientsummarybutton]',
             returntovspage:'[itemid=cancelbutton]',
-            backtovsiopage:'[itemid=back]'
+            backtovsiopage:'[itemid=back]',
+            OnTableVitalChange:'[itemid=tablevitalname]'
         },
         control: {
 
@@ -38,6 +39,7 @@ Ext.define("MVF.controller.MainController", {
             backtovsiopage:{
                 tap:'returntovsiopage'
             }
+            
 //            startdayselect:{
 //                    select:'OnVitalnameSelect'
 //                },
@@ -118,6 +120,7 @@ Ext.define("MVF.controller.MainController", {
         var vitalvalue=Ext.ComponentQuery.query('#tablevitalname')[0].getValue();
         var tablestartdate=Ext.ComponentQuery.query('#tablestartdate')[0].getFormattedValue();
         var tableenddate=Ext.ComponentQuery.query('#tableenddate')[0].getFormattedValue();
+        
         //Ext.Msg.alert(vitalvalue);
         // Ext.Msg.alert(selecteddate);
         var vitaltablepanel= this.getVitaltablepanel();
@@ -132,6 +135,7 @@ Ext.define("MVF.controller.MainController", {
              callback:function(records,operation,success){
                  no_of_records=store.getCount();
                  var vitaltable='<table>';
+                 if(vitalvalue==='all'){
                  for(var i=0;i<no_of_records;i++){
                      if(i===0){
                          vitaltable += '<tr style="border-bottom:1px solid #a5a399">'+
@@ -156,6 +160,23 @@ Ext.define("MVF.controller.MainController", {
                                        '<td style=" padding:0 30px 0 18px">'+records[i].data.t6+'</td>'+'</tr>';
                      }
                  }
+             }
+             else{
+                  for(var i=0;i<no_of_records;i++){
+                      if(i===0){
+                              vitaltable += '<tr style="border-bottom:1px solid #a5a399">'+
+                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.date+'</td>'+
+                                       '<td style=" padding:0 30px 0 18px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
+                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t1+'</td>'+'</tr>';
+                      }
+                      else{
+                          vitaltable += '<tr>'+
+                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.date+'</td>'+
+                                       '<td style=" padding:0 30px 0 18px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
+                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t1+'</td>'+'</tr>';
+                      }
+                  }
+             }
                   vitaltablepanel.setHtml(vitaltable);
              }
              });

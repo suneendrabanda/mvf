@@ -295,9 +295,22 @@ Ext.define('MVF.view.Main', {
                                         'margin-right':'10px'
                                     }
                                 },
+                                //container for intake pie chart 
                                 {
-                                    xtype:'intakepiechart'
+                                    xtype:'container',
+                                    width:'222px',
+                                    height:'242px',
+                                    layout:'fit',
+                                    items:[
+                                         {
+                                           xtype:'intakepiechart'
+                                         }
+                                    ]
                                 }
+                                //end of container for intake pie chart
+//                                {
+//                                    xtype:'intakepiechart'
+//                                }
                             ]
                         },
                         {

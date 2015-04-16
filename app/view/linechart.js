@@ -67,7 +67,7 @@ Ext.define("MVF.view.linechart", {
                    // text: "vital"   Y axis 
                 },
                 style:{
-                    stroke:"#98918f"
+                    stroke:"#655c59"
                 },
                 grid: true
             },

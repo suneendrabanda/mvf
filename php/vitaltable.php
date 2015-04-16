@@ -1,9 +1,9 @@
 <?php
    ini_set('memory_limit','1024M');
 include('connect.php');
-//$vitalselected = $_GET['vitalvalue'];  //'sao2';  
-$startdate=   $_GET['startdate'];  //'2013-01-07'; 
-$enddate=    $_GET['enddate']; //'2013-01-13';
+$vitalselected =     $_GET['vitalvalue']; //'all';
+$startdate=      $_GET['startdate'];  //'2013-01-12'; 
+$enddate=        $_GET['enddate']; //'2013-01-12'; 
 $arr = array();
 $final=array();
 //ini_set('memory_limit', '-1');
@@ -17,8 +17,12 @@ $value= array();
 $time=array();
 $datearray=array();
 $shift= array('08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00');
-
+if($vitalselected=='all'){
 $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00') and X.date between '$formatted_start_date' and '$formatted_end_date' order by X.date,X.time,X.Name");
+}
+else{
+    $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00') and X.date between '$formatted_start_date' and '$formatted_end_date' and X.Name='$vitalselected' order by X.date,X.time,X.Name");
+}
  //array_push($arr, array('vitalname'=>'Time','t1'=>'08:00','t2'=>'09:00','t3'=>'10:00','t4'=>'11:00','t5'=>'12;00','t6'=>'13:00','t7'=>'14:00','t8'=>'15:00'));
  while($row = mysqli_fetch_array($result)) {
         $vitalname=$row['Name'];
@@ -37,7 +41,12 @@ $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select 
  $diff=  floor((strtotime($formatted_end_date)-  strtotime($formatted_start_date))/(60*60*24))+1;
 
  $loop=0;
- array_push($arr,array('date'=>'Date','time'=>'Time','t1'=>$vital[0],'t2'=>$vital[1],'t3'=>$vital[2],'t4'=>$vital[3],'t5'=>$vital[4],'t6'=>$vital[5]));
+ if($vitalselected=='all'){
+    array_push($arr,array('date'=>'Date','time'=>'Time','t1'=>  ucfirst($vital[0]),'t2'=>  ucfirst($vital[1]),'t3'=>  ucfirst($vital[2]),'t4'=>  ucfirst($vital[3]),'t5'=>  ucfirst($vital[4]),'t6'=>  ucfirst($vital[5])));
+ }
+ else{
+     array_push($arr,array('date'=>'Date','time'=>'Time','t1'=>  ucfirst($vitalselected),'t2'=>$vital[1],'t3'=>$vital[2],'t4'=>$vital[3],'t5'=>$vital[4],'t6'=>$vital[5]));
+ }
  while($loop<$diff){
      $daytime=0;
     // echo $startdate.' and '.$datearray[0].'<br>';

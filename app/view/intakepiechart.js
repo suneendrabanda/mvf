@@ -17,17 +17,16 @@ Ext.define("MVF.view.intakepiechart", {
         store:'intakepiechartstore',
         animate:'true',
         
-        innerpadding:'0',
+        innerpadding:'10',
         colors: ["#F0523F","#FFD779","#BBAF82","#72DAF1","#87B675","#FF5472"],
         legend:{
             position:'right',
-            style:{
-                'margin-left':'10px'
-            }
+            width:'10px'
+           
         },
       // animate: true,
 
-        insetPadding:5,
+        insetPadding:50,
        
         highlight: {
                   segment: {
@@ -36,9 +35,7 @@ Ext.define("MVF.view.intakepiechart", {
                 },
                  label: {
                     field: 'intakename'
-                    //display: 'rotate',
-                    //contrast: true
-                    //font: '0px Arial'
+                   
                 },
         series: [
                      {
@@ -47,6 +44,7 @@ Ext.define("MVF.view.intakepiechart", {
                         xField: 'result',
                         donut: 50,
                         height:25,
+                        width:'100px',
 //                        subStyle: {
 //                                    strokeStyle: ['black', 'black', 'black', 'black', 'black'],
 //                                    lineWidth: [1,1,1,1,1]
