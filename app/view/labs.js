@@ -157,14 +157,92 @@ Ext.define('MVF.view.labs', {
                                          xtype:'label',
                                          html:' Chemistry',
                                          style:{
-                                               'margin-top': '4%',
+                                               'margin-top': '2.6%',
                                                 'margin-left': '3%',
                                                 /* font-family: -webkit-pictograph; */
                                                 'font-weight': '900',
                                                 'color': 'rgb(145, 86, 145)',
                                                 'font-size': 'larger'
                                               }
-                                      }
+                                      },
+                                      {
+                                          xtype: 'selectfield',
+                                          width:'100px',
+                                          itemid:'chemisrtydropdownvalueid',
+                                           name:'chemisrtydropdownvalueid',
+                                           options: [
+                                                   {text: 'MCHC',  value: 'mchc'},
+                                                   
+                                               ],
+                                        style:{
+                                            'margin-top': '2.2%',
+                                            'margin-left':'20px'
+                                        }   
+                                      },
+                                      {
+                                          xtype:'label',
+                                          html:' start:',
+                                         style:{
+                                             'margin-top':'3%',
+                                             'margin-left':'14%'
+                                         }
+                                      },
+                                      {
+                                          xtype: 'datepickerfield',
+                                            label: '',
+                                            itemid:'chemistrystartdate',
+                                            width:'130px',
+                                            value: new Date(),
+                                            style:{
+                                                 'margin-top': '2%',
+                                            }
+                                      },
+                                      {
+                                         xtype:'label',
+                                         html:' end:',
+                                         style:{
+                                             'margin-top':'3%'
+                                         }
+                                     },
+                                     {
+                                          xtype: 'datepickerfield',
+                                            label: '',
+                                            itemid:'chemistryenddate',
+                                            width:'130px',
+                                            value: new Date(),
+                                             style:{
+                                                 'margin-top': '2%',
+                                            }
+                                            
+                                     },
+                                      {
+                                         xtype:'image',
+                                         itemid:'viewbuttonid',
+                                         src:'resources/custom_images/buttons/view.png',
+                                         height:'25px',
+                                         width:'150px',
+                                           // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                            style:{
+                                                'margin-left':'-5%',
+                                                'margin-top':'3%'
+                                            }
+                                           
+                                     },
+                                     {
+                                         xtype:'image',
+                                         itemid:'chemistryedittableicon',
+                                        
+                                         src:'resources/images/edit.png',
+                                         height:'20px',
+                                         width:'25px',
+                                           // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                            style:{
+                                                'margin-left':'1%',
+                                                'margin-top':'3%'
+                                            }
+                                           
+                                     },
+                                          
                                       //add content here to display above horizontal line
                                     
                                   ]
@@ -173,7 +251,8 @@ Ext.define('MVF.view.labs', {
                                  html:'<hr>',
                                     style:{
                                         'margin-left':'10px',
-                                        'margin-right':'10px'
+                                        'margin-right':'10px',
+                                        'margin-top':''
                                     }
                              },
                              {
@@ -304,6 +383,60 @@ Ext.define('MVF.view.labs', {
                                                         },
                                                  items:[
                                                      //items for box1 here
+                                                     {
+                                                         xtype:'container',
+                                                         layout:'hbox',
+                                                         items:[
+                                                             {
+                                                          xtype:'label',
+                                                          html:'Graph View - ',
+                                                            style:{
+                                                                  'margin-top': '3%',
+                                                                   'margin-left': '3%',
+                                                                   /* font-family: -webkit-pictograph; */
+                                                                   'font-weight': '800',
+                                                                   'color': 'rgb(145, 86, 145)',
+                                                                   'font-size': 'medium'
+                                                                 }
+                                                     },
+                                                     {
+                                                         xtype:'label',
+                                                         html:'MCHC',
+                                                         itemid:'chartviewingid',
+                                                         style:{
+                                                                  'margin-top': '3%',
+                                                                   'margin-left': '3%',
+                                                                   /* font-family: -webkit-pictograph; */
+                                                                   'font-weight': '800',
+                                                                   'color': 'rgb(145, 86, 145)',
+                                                                   'font-size': 'medium'
+                                                                 }
+                                                     },
+                                                     {
+                                                            xtype:'image',
+                                                            itemid:'chemistrychartedittableicon',
+
+                                                            src:'resources/images/edit.png',
+                                                            height:'20px',
+                                                            width:'25px',
+                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                                               style:{
+                                                                   'margin-left':'52%',
+                                                                   'margin-top':'3%'
+                                                               }
+
+                                                        }
+                                                         ]
+                                                     },//end of items above  hr in line chart
+                                                     {
+                                                    html:'<hr>',
+                                                       style:{
+                                                           'margin-left':'10px',
+                                                           'margin-right':'10px',
+                                                           'margin-top':'-1%'
+                                                       }
+                                                },
+                                                // chart item
                                                  ]       
                                                  
                                              },
@@ -326,6 +459,59 @@ Ext.define('MVF.view.labs', {
                                                         },
                                                     items:[
                                                         //items in box2
+                                                         {
+                                                         xtype:'container',
+                                                         layout:'hbox',
+                                                         items:[
+                                                             {
+                                                          xtype:'label',
+                                                          html:'Table View - ',
+                                                            style:{
+                                                                  'margin-top': '3%',
+                                                                   'margin-left': '3%',
+                                                                   /* font-family: -webkit-pictograph; */
+                                                                   'font-weight': '800',
+                                                                   'color': 'rgb(145, 86, 145)',
+                                                                   'font-size': 'medium'
+                                                                 }
+                                                     },
+                                                     {
+                                                         xtype:'label',
+                                                         html:'ALL',
+                                                         itemid:'tableviewingid',
+                                                         style:{
+                                                                  'margin-top': '3%',
+                                                                   'margin-left': '3%',
+                                                                   /* font-family: -webkit-pictograph; */
+                                                                   'font-weight': '800',
+                                                                   'color': 'rgb(145, 86, 145)',
+                                                                   'font-size': 'medium'
+                                                                 }
+                                                     },
+                                                     {
+                                                            xtype:'image',
+                                                            itemid:'chemistrytableedittableicon',
+
+                                                            src:'resources/images/edit.png',
+                                                            height:'20px',
+                                                            width:'25px',
+                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                                               style:{
+                                                                   'margin-left':'56%',
+                                                                   'margin-top':'3%'
+                                                               }
+
+                                                        }
+                                                         ]
+                                                     },//end of items above  hr in line chart
+                                                     {
+                                                    html:'<hr>',
+                                                       style:{
+                                                           'margin-left':'10px',
+                                                           'margin-right':'10px',
+                                                           'margin-top':'-1%'
+                                                       }
+                                                },
                                                     ]    
                                              }
                                          ]
