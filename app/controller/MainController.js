@@ -5,6 +5,7 @@ Ext.define("MVF.controller.MainController", {
         refs: {
             main:'main',
             vital:'[itemid=vitalname]',
+            onupdatevital:'[itemid=updatebutton]',
             shiftselect:'[itemid=shiftname]',
 //          startdayselect:'[itemid=startdate]',
 //          enddayselect:'[itemid=enddate]',
@@ -21,6 +22,9 @@ Ext.define("MVF.controller.MainController", {
             vital:{
                     change:'OnVitalnameSelect'
                 },
+            onupdatevital:{
+                tap:'editvitalvaluefunction'
+            },    
             shiftselect:{
                     change:'OnVitalnameSelect'
                 },
@@ -187,8 +191,10 @@ Ext.define("MVF.controller.MainController", {
       console.log(this.getMain());
       this.getMain().push({
           xtype:'EditTable',
-          title:'Edit Table'
-      });
+          title:'Edit Table',
+         
+      }); 
+        
        
     },
     gotopatientsummary:function(){
@@ -205,6 +211,17 @@ Ext.define("MVF.controller.MainController", {
    },
    returntovsiopage:function(button, e, eOpts){
        this.getMain().pop();
+   },
+   editvitalvaluefunction:function(button, e, eOpts){
+       var editvitalvalue=Ext.ComponentQuery.query('[itemid=editvitalnameid]')[0].getValue();
+       var editdatevalue=Ext.ComponentQuery.query('[itemid=editdatevalue]')[0].getFormattedValue();
+       var edittimevalue=Ext.ComponentQuery.query('[itemid=edittimevalue]')[0].getValue();
+       var editresultvalue=Ext.ComponentQuery.query('[itemid=vitalsignvalue]')[0].getValue();
+       console.log(editvitalvalue);
+       console.log(editdatevalue);
+       console.log(edittimevalue);
+       console.log(editresultvalue);
+       
    }
     
 });

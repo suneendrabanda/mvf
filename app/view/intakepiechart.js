@@ -19,14 +19,14 @@ Ext.define("MVF.view.intakepiechart", {
         
         innerpadding:'10',
         colors: ["#F0523F","#FFD779","#BBAF82","#72DAF1","#87B675","#FF5472"],
-        legend:{
-            position:'right',
-            width:'10px'
-           
-        },
+//        legend:{
+//            position:'right',
+//            width:'10px'
+//           
+//        },
       // animate: true,
 
-        insetPadding:50,
+        insetPadding:72,
        
         highlight: {
                   segment: {

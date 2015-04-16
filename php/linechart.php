@@ -5,7 +5,7 @@ include('connect.php');
 
 
 $vitalselected = $_GET['vitalvalue'];
-$shiftselected = $_GET['shiftvalue'];//filter_input(INPUT_POST, 'vitalvalue'); 
+$shiftselected = 'day';//$_GET['shiftvalue'];//filter_input(INPUT_POST, 'vitalvalue'); 
 $startdate=$_GET['startdate'];
 $enddate=$_GET['enddate'];
 $arr = array();
@@ -16,7 +16,7 @@ if($vitalselected!='bp'){
         $result=mysqli_query($con,"select X.Name, X.result,  X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID
                                     join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID 
                                     join patient p on p.patient_ID = pv.patient_ID 
-                                    join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00') and X.name='$vitalselected' and X.date between '$formatted_start_date' and '$formatted_end_date'");
+                                    join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.name='$vitalselected' and X.date between '$formatted_start_date' and '$formatted_end_date' order by X.time");
         
          while($row = mysqli_fetch_array($result)) {
         $vitalresult=(int)$row['result'];

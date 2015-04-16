@@ -3,13 +3,37 @@ Ext.define('MVF.view.EditTable', {
 
     xtype: 'EditTable',
     config:{
+//         left: 3,
+//         top: 1,
+//          modal: true,
+//          hideOnMaskTap: true,
+//          bodyBorder: true,
+//          defaults: {
+//            margin: '10 5 5 10',
+//            labelWidth: '40%'
+//        },
+//        layout: {
+//            type: 'vbox'
+//        },
+// 
+//        // Set the width and height of the panel
+//        width: 600,
+//        height: 400,
+        
         items:[
+//              {
+//                    docked: 'top',
+//                    xtype: 'toolbar',
+//                    title: 'Edit Vitals Value'
+//                },
             {
                 xtype:'panel',
                 width:'100%',
                 height:'100%',
                 style:{
-                    'background-color': '#FFFFFF'
+                    'background-color': '#FFFFFF',
+                    'border-color':'black',
+                    'border-width':'solid'
                 },
                 items:[
                     {
@@ -81,7 +105,7 @@ Ext.define('MVF.view.EditTable', {
                                         {
                                           xtype: 'selectfield',
                                           label:'Select Vital Sign',
-                                          itemid:'vitalname',
+                                          itemid:'editvitalnameid',
                                           //id:'vitalname',
                                           name:'vitalname',
                                            options: [

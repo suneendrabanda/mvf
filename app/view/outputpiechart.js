@@ -21,7 +21,7 @@ Ext.define("MVF.view.outputpiechart", {
 //        legend:{
 //            position:'bottom'
 //        },
-        insetPadding:65,
+        insetPadding:72,
         highlight: {
                   segment: {
                     margin: 20

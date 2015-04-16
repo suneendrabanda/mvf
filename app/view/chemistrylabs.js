@@ -176,7 +176,8 @@ Ext.define('MVF.view.chemistrylabs', {
                                                ],
                                         style:{
                                             'margin-top': '2.2%',
-                                            'margin-left':'20px'
+                                            'margin-left':'20px',
+                                             
                                         }   
                                       },
                                       {
