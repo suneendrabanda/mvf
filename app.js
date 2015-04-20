@@ -39,7 +39,7 @@ Ext.application({
 ],
     stores:[
 	'linechart',
-        
+       // 'updateVitalsStore',
         "bplinechartstore",
         "vitaltablestore",
         "outputpiechartstore",

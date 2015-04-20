@@ -129,7 +129,7 @@ Ext.define('MVF.view.chemistrylabs', {
                     {
                         xtype:'container',
                         width: '950px',
-                        height: '900px',
+                        height: '600px',
                         layout:'vbox',
                         scrollable: {
                                                             direction: 'vertical',

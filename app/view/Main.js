@@ -94,7 +94,7 @@ Ext.define('MVF.view.Main', {
                                         'margin-left': '4%',
                                         'color': 'rgb(120, 96, 132)',
                                         'font-size': '30px',
-                                        'fontFamily':'OpenSans'
+                                        'fontFamily':'openSansRegular'
                                     }
                                 },
 

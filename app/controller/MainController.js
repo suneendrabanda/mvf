@@ -221,7 +221,15 @@ Ext.define("MVF.controller.MainController", {
        console.log(editdatevalue);
        console.log(edittimevalue);
        console.log(editresultvalue);
-       
+       var store=Ext.getStore('updateVitalStore');
+        store.load({
+                   params:{ vitalvalue: editvitalvalue,
+                            datevalue: editdatevalue,
+                            timevalue: edittimevalue,
+                            vitalresult: editresultvalue},
+                   
+                  
+               });
    }
     
 });
