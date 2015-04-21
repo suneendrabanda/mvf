@@ -87,7 +87,7 @@ Ext.define('MVF.view.Main', {
                          
                                 {
                                     xtype:'label',
-                                    html:'Vital Signs / Input & Output',
+                                    html:'VS/I&O Summary',
                                     //styleHtmlContent:true,
                                     style:{
                                         'margin-top': '2%',
@@ -111,7 +111,34 @@ Ext.define('MVF.view.Main', {
                                         ],
 
                                         style:{
-                                            'margin-left':'19%',
+                                            'margin-left':'10%',
+                                            'margin-top':'2%'
+
+
+                                        }
+                                 },
+                                 {
+                                     xtype:'label',
+                                     html:'Page:',
+                                     style:{
+                                         'margin-left':'3%',
+                                         'margin-top':'3%'
+                                     }
+                                 },
+                                 
+                                  {
+                                        xtype: 'selectfield',
+                                        width:'120px',
+                                        border:'1 1 1 1',
+                                        itemid:'pageid',
+                                        
+                                        options: [
+                                            {text: 'MAIN',  value: 'main'},
+                                            
+                                        ],
+
+                                        style:{
+                                            'margin-left':'2%',
                                             'margin-top':'2%'
 
 
