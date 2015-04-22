@@ -3,101 +3,11 @@ Ext.define('MVF.view.EditTable', {
 
     xtype: 'EditTable',
     config:{
-//         left: 3,
-//         top: 1,
-//          modal: true,
-//          hideOnMaskTap: true,
-//          bodyBorder: true,
-//          defaults: {
-//            margin: '10 5 5 10',
-//            labelWidth: '40%'
-//        },
-//        layout: {
-//            type: 'vbox'
-//        },
-// 
-//        // Set the width and height of the panel
-//        width: 600,
-//        height: 400,
-        
-        items:[
-//              {
-//                    docked: 'top',
-//                    xtype: 'toolbar',
-//                    title: 'Edit Vitals Value'
-//                },
-            {
-                xtype:'panel',
-                width:'100%',
-                height:'100%',
-                style:{
-                    'background-color': '#FFFFFF',
-                    'border-color':'black',
-                    'border-width':'solid'
-                },
-                items:[
-                    {
-			    		xtype: 'panel',
-			    		itemId: 'infoBar',
-			    		width: '100%',
-			    		height: '70px',
-			    		style: {
-			    			'background-color': '#DFD9CF'
-			    		},
-			    		items: [{
-			    			xtype: 'panel',
-			    			width: '95%',
-			    			height: '65px',
-				    		layout: 'hbox',
-				    		margin: 'auto',
-				    		padding: '15px 0',
-			    			items:[
-			    				{
-					    			xtype: 'panel',
-					    			html: '<div style="overflow: hidden; height:45px;width:45px;border-radius:50%; background-color: gray; position:relative; float:left; margin-right:5px;"><img style="max-width:100%" src="resources/patient_images/Sandra.png" alt=""/></div><p style="font-size: 20px; margin-top: -5px;">MAVERICK, SANDRA</p> Allergies: No Known Allergies',
-					    			flex: 1.1,
-					    			style:{
-					    				'font-size': '14px'
-					    			}
-				    			},
-					    		{
-					    			xtype: 'panel',
-					    			html: '<b>MRN: 0011200</b> <br/> Inpatient FIN: 3019558',
-					    			flex: 0.65,
-					    			padding: '0 0 0 10px',
-					    			style: {
-					    				'border-left' : '1px solid',
-					    				'font-size': '14px',
-					    				'padding': '20px'
-					    			}
-					    		},
-					    		{
-					    			xtype: 'panel',
-					    			html: 'Admit Dt: 07/30/2014 5:00 <br/>Discharge Dt: <No - Discharge Date>',
-					    			flex: 1,
-					    			padding: '0 0 0 10px',
-					    			style: {
-					    				'border-left' : '1px solid',
-										'font-size': '14px'
-					    			}
-					    		},
-					    		{
-					    			xtype: 'panel',
-					    			html: 'Location: EULH Neur/Ped B; 415 <br/>PCP: CASPER, RANDALL J',
-					    			padding: '0 0 0 10px',
-					    			flex: 1,
-					    			style: {
-					    				'border-left' : '1px solid',
-					    				'font-size': '14px'
-					    			}
-					    		}
-			    			]
-			    		}]
-
-	    			},
+             items:[
+                    
                                 {
                                     xtype:'fieldset',
-//                                    layout:'vbox',
+
                                     style:{
                                         'margin-top':'100px'
                                     },
@@ -201,7 +111,7 @@ Ext.define('MVF.view.EditTable', {
                                     ]
                                 }
                 ]
-            }
-        ]
+        
+       
     }
 });

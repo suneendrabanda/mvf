@@ -134,6 +134,7 @@ Ext.define('MVF.view.Main', {
                                         
                                         options: [
                                             {text: 'MAIN',  value: 'main'},
+                                            {text: 'LABS',  value: 'chemistrylabs'}
                                             
                                         ],
 
@@ -306,11 +307,25 @@ Ext.define('MVF.view.Main', {
                                             }
                                         },
                                         {
+                                         xtype:'image',
+                                         itemid:'editintakeicon',
+                                         id:'editintakeicon',
+                                         src:'resources/images/edit.png',
+                                         height:'20px',
+                                         width:'25px',
+                                           // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                            style:{
+                                                'margin-left':'75px',
+                                                'margin-top':'8px'
+                                            }
+                                           
+                                     },
+                                        {
                                              xtype:'panel',
                                                 html:'<img src="resources/custom_images/icons/buttons9.png" height="20px", width="20px">',
                                                 style:{
                                                     'margin-top':'6px',
-                                                    'margin-left':'115px'
+                                                    'margin-left':'11px'
                                                 }
                                         }
                                     ]
@@ -374,11 +389,25 @@ Ext.define('MVF.view.Main', {
                                              }     
                                        },
                                        {
+                                         xtype:'image',
+                                         itemid:'editoutputicon',
+                                         id:'editoutputicon',
+                                         src:'resources/images/edit.png',
+                                         height:'20px',
+                                         width:'25px',
+                                           // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                            style:{
+                                                'margin-left':'75px',
+                                                'margin-top':'8px'
+                                            }
+                                           
+                                     },
+                                       {
                                             xtype:'panel',
                                             html:'<img src="resources/custom_images/icons/buttons9.png" height="20px", width="20px">',
                                             style:{
                                                 'margin-top':'6px',
-                                                'margin-left':'105px'
+                                                'margin-left':'10px'
                                             }
                                             
                                        }

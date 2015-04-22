@@ -25,13 +25,15 @@ Ext.application({
     "intakepiechart",
     "bplinechart",
     "chemistrylabs",
-    "chemistrylinechart"
+    "chemistrylinechart",
+    "editintakedata",
+    "outputupdate"
     
     //"PieDemo"
 ],
    models:[
 	"linechart",
-       
+       "vitalsignsupdatemodel",
         "bplinechartmodel",
        "vitaltablemodel",
        "outputpiechartmodel",
@@ -40,6 +42,7 @@ Ext.application({
     stores:[
 	'linechart',
        // 'updateVitalsStore',
+       'vitalsignupdatestore',
         "bplinechartstore",
         "vitaltablestore",
         "outputpiechartstore",

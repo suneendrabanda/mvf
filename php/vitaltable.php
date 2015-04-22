@@ -2,6 +2,8 @@
    ini_set('memory_limit','1024M');
 include('connect.php');
 $vitalselected =     $_GET['vitalvalue']; //'all';
+
+$shiftselected = $_GET['shiftvalue'];
 $startdate=      $_GET['startdate'];  //'2013-01-12'; 
 $enddate=        $_GET['enddate']; //'2013-01-12'; 
 $arr = array();
@@ -16,13 +18,40 @@ $vital=array('BP','Pain','Pulse','Respiration','SaO2','Temperature');
 $value= array();
 $time=array();
 $datearray=array();
-$shift= array('0800','0900','1000','1100','1200','1300','1400','1500');
-if($vitalselected=='all'){
-$result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('0800','0900','1000','1100','1200','1300','1400','1500') and X.date between '$formatted_start_date' and '$formatted_end_date' order by X.date,X.time,X.Name");
-}
-else{
-    $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('0800','0900','1000','1100','1200','1300','1400','1500') and X.date between '$formatted_start_date' and '$formatted_end_date' and X.Name='$vitalselected' order by X.date,X.time,X.Name");
-}
+        if($shiftselected=='day'){
+            $shift= array('0700','0800','0900','1000','1100','1200','1300','1400');
+        }
+        elseif($shiftselected=='evening'){
+            $shift= array('1500','1600','1700','1800','1900','2000','2100','2200');
+        }
+        else{
+            $shift= array('2300','2400','0100','0200','0300','0400','0500','0600');
+        }
+        if($shiftselected=='day'){
+                if($vitalselected=='all'){
+                     $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('0700','0800','0900','1000','1100','1200','1300','1400') and X.date between '$formatted_start_date' and '$formatted_end_date' order by X.date,X.time,X.Name");
+                }
+                else{
+                    $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('0700','0800','0900','1000','1100','1200','1300','1400') and X.date between '$formatted_start_date' and '$formatted_end_date' and X.Name='$vitalselected' order by X.date,X.time,X.Name");
+                }
+        }
+        elseif($shiftselected=='evening'){
+            if($vitalselected=='all'){
+                     $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('1500','1600','1700','1800','1900','2000','2100','2200') and X.date between '$formatted_start_date' and '$formatted_end_date' order by X.date,X.time,X.Name");
+                }
+                else{
+                    $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('1500','1600','1700','1800','1900','2000','2100','2200') and X.date between '$formatted_start_date' and '$formatted_end_date' and X.Name='$vitalselected' order by X.date,X.time,X.Name");
+                }
+        }
+        else{
+            if($vitalselected=='all'){
+                     $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('2300','2400','0100','0200','0300','0400','0500','0600') and X.date between '$formatted_start_date' and '$formatted_end_date' order by X.date,X.time,X.Name");
+                }
+                else{
+                    $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('2300','2400','0100','0200','0300','0400','0500','0600') and X.date between '$formatted_start_date' and '$formatted_end_date' and X.Name='$vitalselected' order by X.date,X.time,X.Name");
+                }
+        }
+
  //array_push($arr, array('vitalname'=>'Time','t1'=>'08:00','t2'=>'09:00','t3'=>'10:00','t4'=>'11:00','t5'=>'12;00','t6'=>'13:00','t7'=>'14:00','t8'=>'15:00'));
  while($row = mysqli_fetch_array($result)) {
         $vitalname=$row['Name'];

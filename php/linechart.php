@@ -28,7 +28,7 @@ if($vitalselected!='bp'){
         $result=mysqli_query($con,"select X.Name, X.result,  X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID
                                     join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID 
                                     join patient p on p.patient_ID = pv.patient_ID 
-//                                    join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('1500','1600','1700','1800','1900','2000','2100','2200') and X.name='$vitalselected' and X.date between '$formatted_start_date' and '$formatted_end_date'");
+                                   join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('1500','1600','1700','1800','1900','2000','2100','2200') and X.name='$vitalselected' and X.date between '$formatted_start_date' and '$formatted_end_date'");
         
          while($row = mysqli_fetch_array($result)) {
         $vitalresult=(int)$row['result'];
