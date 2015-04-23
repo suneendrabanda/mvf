@@ -10,8 +10,8 @@ Ext.define("MVF.model.vitaltablemodel", {
             { name: "t3", type: "string" },
             { name: "t4", type: "string" },
             { name: "t5", type: "string" },
-            { name: "t6", type: "string" }
-           
+            { name: "t6", type: "string" },
+            { name: "t7", type: "string" }
             
             
         ]

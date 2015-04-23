@@ -13,12 +13,30 @@ $formatted_start_date=  date("Y-m-d",strtotime($startdate));
 $formatted_end_date=  date("Y-m-d",strtotime($enddate));
 
 $i=0;
-
-$vital=array('BP','Pain','Pulse','Respiration','SaO2','Temperature');
+$w=0;
+$vital=array('BP','Pain','Pulse','Respiration','SaO2','Temperature','Weight');
 $value= array();
 $time=array();
 $datearray=array();
-        if($shiftselected=='day'){
+$weightresult=array();
+$weightdate=array();
+
+$weightresultsql=mysqli_query($con,"select pr.Person_ID, p.Patient_ID, pinf.weight,pinf.date from Patient_Visit pv join Patient p on p.Patient_ID = pv.Patient_ID
+                                    join Person pr on p.Person_ID = pr.Person_ID
+                                    join Patient_Info pinf on pv.Visit_ID = pinf.Visit_ID
+                                    where p.Patient_ID = 'P1013' and pinf.date between '$formatted_start_date' and '$formatted_end_date'");
+     while($row = mysqli_fetch_array($weightresultsql)) {
+       
+        $weightresult[$w]=$row['weight'];
+        $weightdate[$w]=$row['date'];
+       // echo $weightresult[$w];
+        //echo $value[$i].'     --------------';
+//        $time[$i]=$timesql;
+//        $datearray[$i]=$row['date'];
+        //echo $time[$i].'<br>';
+        $w++;
+ } 
+   if($shiftselected=='day'){
             $shift= array('0700','0800','0900','1000','1100','1200','1300','1400');
         }
         elseif($shiftselected=='evening'){
@@ -30,6 +48,9 @@ $datearray=array();
         if($shiftselected=='day'){
                 if($vitalselected=='all'){
                      $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('0700','0800','0900','1000','1100','1200','1300','1400') and X.date between '$formatted_start_date' and '$formatted_end_date' order by X.date,X.time,X.Name");
+                }
+                elseif($vitalselected=='weight'){
+                    //query to select weight
                 }
                 else{
                     $result=mysqli_query($con,"select X.Name, X.result, X.date, X.time from (select pr.fname, pr.lname, vs.Name, ve.date, ve.time, ve.result from vital_signs vs join VS_Exam ve on vs.VS_ID = ve.VS_ID join Patient_Visit pv on pv.Visit_ID = ve.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('0700','0800','0900','1000','1100','1200','1300','1400') and X.date between '$formatted_start_date' and '$formatted_end_date' and X.Name='$vitalselected' order by X.date,X.time,X.Name");
@@ -70,8 +91,9 @@ $datearray=array();
  $diff=  floor((strtotime($formatted_end_date)-  strtotime($formatted_start_date))/(60*60*24))+1;
 
  $loop=0;
+ $loopweight=0;
  if($vitalselected=='all'){
-    array_push($arr,array('date'=>'Date','time'=>'Time','t1'=>  ucfirst($vital[0]),'t2'=>  ucfirst($vital[1]),'t3'=>  ucfirst($vital[2]),'t4'=>  ucfirst($vital[3]),'t5'=>  ucfirst($vital[4]),'t6'=>  ucfirst($vital[5])));
+    array_push($arr,array('date'=>'Date','time'=>'Time','t1'=>  ucfirst($vital[0]),'t2'=>  ucfirst($vital[1]),'t3'=>  ucfirst($vital[2]),'t4'=>  ucfirst($vital[3]),'t5'=>  ucfirst($vital[4]),'t6'=>  ucfirst($vital[5]),'t7'=>'Weight'));
  }
  else{
      array_push($arr,array('date'=>'Date','time'=>'Time','t1'=>  ucfirst($vitalselected),'t2'=>$vital[1],'t3'=>$vital[2],'t4'=>$vital[3],'t5'=>$vital[4],'t6'=>$vital[5]));
@@ -100,7 +122,15 @@ $datearray=array();
                     }
                 }
              }
-             array_push($arr,array('date'=>$final[0],'time'=>$final[1],'t1'=>$final[2],'t2'=>$final[3],'t3'=>$final[4],'t4'=>$final[5],'t5'=>$final[6],'t6'=>$final[7]));
+        if($loopweight<  sizeof($weightdate) && $formatted_start_date==$weightdate[$loopweight]){
+                 $weight=$weightresult[$loopweight];
+                 $loopweight++;
+             }
+             else{
+                 $weight='-';
+                 $loopweight;
+             }
+             array_push($arr,array('date'=>$final[0],'time'=>$final[1],'t1'=>$final[2],'t2'=>$final[3],'t3'=>$final[4],'t4'=>$final[5],'t5'=>$final[6],'t6'=>$final[7],'t7'=>$weight));
              $daytime++;
          }
          

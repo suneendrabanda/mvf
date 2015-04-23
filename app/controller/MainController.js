@@ -29,12 +29,12 @@ Ext.define("MVF.controller.MainController", {
                 onoutputupdatebuttonclick:{
                     tap:'outputupdatebuttontap'
                 },
-                editintake:{
-                    tap:'editintakefunction'
-                },
-                editoutput:{
-                    tap:'editoutputfunction'
-                },
+//                editintake:{
+//                    tap:'editintakefunction'
+//                },
+//                editoutput:{
+//                    tap:'editoutputfunction'
+//                },
                 gotopage:{
                     change:'gotopagefunction'
                 },
@@ -48,9 +48,9 @@ Ext.define("MVF.controller.MainController", {
             vitaltable:{
                     change:'loadtabledata'
             },
-            edittable:{
-                tap:'edittable'
-            },
+            //edittable:{
+              //  tap:'edittable'
+            //},
             patientsummarybutton:{
                 tap:'gotopatientsummary'
             },
@@ -70,6 +70,11 @@ Ext.define("MVF.controller.MainController", {
             
             
         }
+    },
+    init: function(){
+        this.edittable();
+        this.editintakefunction();
+        this.editoutputfunction();
     },
     OnVitalnameSelect: function(){
             var store=Ext.getStore('LineChart');
@@ -135,9 +140,7 @@ Ext.define("MVF.controller.MainController", {
             //Ext.ComponentQuery.query('#linechartid')[0].show();
             //Ext.Msg.alert('vitalval');
     },
-   
     
-   
     loadtabledata:function(){
         var vitalvalue=Ext.ComponentQuery.query('#tablevitalname')[0].getValue();
         var tablestartdate=Ext.ComponentQuery.query('#tablestartdate')[0].getFormattedValue();
@@ -163,25 +166,27 @@ Ext.define("MVF.controller.MainController", {
                  for(var i=0;i<no_of_records;i++){
                      if(i===0){
                          vitaltable += '<tr style="border-bottom:1px solid #a5a399">'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.date+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t1+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t6+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t3+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t4+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t5+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t2+'</td>'+'</tr>';
+                                       '<td style=" padding:0 0px 0 0px">'+records[i].data.date+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t1+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t6+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t3+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t4+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t5+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t2+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t7+'</td>'+'</tr>';
                      }
                      else{
                          vitaltable += '<tr>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.date+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t1+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t6+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t3+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t4+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t5+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t2+'</td>'+'</tr>';
+                                       '<td style=" padding:0 0px 0 0px">'+records[i].data.date+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t1+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t6+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t3+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t4+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t5+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t2+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t7+'</td>'+'</tr>';
                      }
                  }
              }
@@ -221,17 +226,18 @@ Ext.define("MVF.controller.MainController", {
             modal: true,
             hideOnMaskTap: true,
 	    centered: true,          
-	    width:  Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
-	    height: Ext.os.deviceType =='Phone' ? 400 : 400,
+	    width:   Ext.os.deviceType =='Phone' ? 560 : 400,
+	    height: Ext.os.deviceType =='Phone' ? 540 : 400,
 	    styleHtmlContent: true,
 	    // Make it hidden by default
             hidden: true,
 	    
 	    items: [
-                {
+                           {
 				    xtype: 'EditTable',
 				    width: '100%',
-				    height: '100%'
+				    height: '100%',
+                                    
 			    },
 			   
 	    ],
@@ -243,9 +249,11 @@ Ext.define("MVF.controller.MainController", {
             tap: function(button) {
                 // When you tap on the button, we want to show the overlay by the button we just tapped.
                 overlay.showBy(button);
-		//console.log('yes button');
-            }
+		
+                 }
         });
+        
+        
 
         
        
@@ -262,7 +270,7 @@ Ext.define("MVF.controller.MainController", {
 	this.getMain().pop();
     
    },
-   returntovsiopage:function(button, e, eOpts){
+    returntovsiopage:function(button, e, eOpts){
        this.getMain().pop();
    },
    editvitalvaluefunction:function(button, e, eOpts){
@@ -300,17 +308,7 @@ Ext.define("MVF.controller.MainController", {
             // Make it modal so you can click the mask to hide the overlay
             modal: true,
             hideOnMaskTap: true,
-	    centered: true,
-//            showAnimation:{
-//                type:'popIn',
-//                duration:200,
-//                easing:'ease-out'
-//            },
-//             hideAnimation:{
-//                type:'popOut',
-//                duration:200,
-//                easing:'ease-out'
-//            },
+	    centered: true,           
 	    width:  Ext.os.deviceType =='Phone' ? 360 : 400,//'500px',
 	    height: Ext.os.deviceType =='Phone' ? 300 : 400,
 	    styleHtmlContent: true,
@@ -321,7 +319,9 @@ Ext.define("MVF.controller.MainController", {
                 {
 				    xtype: 'editintakedata',
 				    width: '100%',
-				    height: '100%'
+				    height: '100%',
+                                    
+                                    
 			    },
 			   
 	    ],

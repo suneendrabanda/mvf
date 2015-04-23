@@ -3,18 +3,13 @@ Ext.define('MVF.view.EditTable', {
 
     xtype: 'EditTable',
     config:{
-             items:[
-                    
-                                {
-                                    xtype:'fieldset',
-
-                                    style:{
-                                        'margin-top':'100px'
-                                    },
-                                    items:[
-                                        {
+              items:[
+                  {
+                      xtype:'container',
+                      items:[
+                            {
                                           xtype: 'selectfield',
-                                          label:'Select Vital Sign',
+                                         // label:'Select Vital Sign',
                                           itemid:'editvitalnameid',
                                           //id:'vitalname',
                                           name:'vitalname',
@@ -31,7 +26,7 @@ Ext.define('MVF.view.EditTable', {
                                      },
                                      {
                                           xtype: 'datepickerfield',
-                                            label: 'Select Date',
+                                           // label: 'Select Date',
                                             itemid:'editdatevalue',
                                            // dateFormat: 'd/M',
                                             //id:'editdatevalue',
@@ -41,7 +36,7 @@ Ext.define('MVF.view.EditTable', {
                                      },
                                      {
                                          xtype:'selectfield',
-                                         label:'Select Time',
+                                        // label:'Select Time',
                                          itemid:'edittimevalue',
                                          //id:'edittimevalue',
                                          options: [
@@ -74,43 +69,25 @@ Ext.define('MVF.view.EditTable', {
                                         },
                                       {
                                           xtype:'textfield',
-                                          label:'Enter value',
+                                          //label:'Enter value',
                                           itemid:'vitalsignvalue',
                                           //id:'vitalsignvalue'
                                                   
                                       },
-                                      {
-                                          xtype:'container',
-                                          layout:'hbox',
-                                          items:[
-                                                        {
+                                           {
                                                     xtype:'button',
                                                     width:'100px',
                                                     itemid:'updatebutton',
                                                     ui:'action',
                                                     text:'update',
-                                                    style:{
-                                                        'margin-left':'40%'
-                                                    }
+                                                    
                                                 },
-                                                {
-                                                    xtype:'button',
-                                                    width:'100px',
-                                                    itemid:'cancelbutton',
-                                                    ui:'action',
-                                                    text:'cancel',
-                                                    style:{
-                                                        'margin-left':'10px'
-                                                    }
-                                                }
-                                          ]
-                                      }
+                      ]
+                  }
                                             
                                             
                                         
                                     ]
-                                }
-                ]
         
        
     }

@@ -88,13 +88,14 @@ Ext.define('MVF.view.Main', {
                                 {
                                     xtype:'label',
                                     html:'VS/I&O Summary',
+                                    //cls:'vstitle',
                                     //styleHtmlContent:true,
                                     style:{
                                         'margin-top': '2%',
                                         'margin-left': '4%',
                                         'color': 'rgb(120, 96, 132)',
                                         'font-size': '30px',
-                                        'fontFamily':'openSansRegular'
+                                        'fontFamily':'openSansLight'
                                     }
                                 },
 
@@ -153,7 +154,7 @@ Ext.define('MVF.view.Main', {
                                     width:'170px',
                                     height:'30px',
                                     style:{
-                                       'margin-left':'46px',
+                                       'margin-left':'28px',
                                        'margin-top':'2%',
                                        'font-size':'12px'
                                     }
@@ -472,10 +473,13 @@ Ext.define('MVF.view.Main', {
                                                    {text: 'Resp',  value: 'resp'},
                                                    {text: 'Temp',  value: 'temp'},
                                                    {text: 'SaO2',  value: 'sao2'},
-                                                   {text: 'Pain',  value: 'pain'}
+                                                   {text: 'Pain',  value: 'pain'},
+                                                   {text: 'Weight',  value: 'weight'}
                                                ],
                                         style:{
-                                            'margin-left':'20px'
+                                            'margin-left':'20px',
+                                            'border-color':'black',
+                                            'border-width':'thin'
                                         }   
                                      },
                                      {
