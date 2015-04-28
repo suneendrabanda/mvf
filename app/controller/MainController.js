@@ -22,7 +22,8 @@ Ext.define("MVF.controller.MainController", {
             onoutputupdatebuttonclick:'[itemid=outputupdatebutton]',
             onintakeupdatebuttonclick:'[itemid=intakeupdatebutton]',
             chemistrydropdownselect:'[itemid=chemisrtydropdownvalueid]',
-            viewingpanel:'[itemid=viewingitem]'
+            viewingpanel:'[itemid=viewingitem]',
+            chemistrychartviewpanel:'[itemid=chartviewingid]'
         },
         control: {
 
@@ -528,8 +529,10 @@ Ext.define("MVF.controller.MainController", {
    chemistryselectfunction:function(){
        var chemistryvalue=Ext.ComponentQuery.query('[itemid=chemisrtydropdownvalueid]')[0].getValue();
        var viewingitem=this.getViewingpanel();
+       var chartviewingpanel=this.getChemistrychartviewpanel();
        console.log(chemistryvalue);
        viewingitem.setHtml(chemistryvalue);
+       chartviewingpanel.setHtml(chemistryvalue);
    }
     
 });

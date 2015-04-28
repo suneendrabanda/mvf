@@ -170,7 +170,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                       },
                                       {
                                           xtype: 'selectfield',
-                                          width:'100px',
+                                          width:'140px',
                                           store: 'chemistrydropdownstore',
                                           itemid:'chemisrtydropdownvalueid',
                                            name:'chemisrtydropdownvalueid',
@@ -178,7 +178,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                            displayField:'text',
                                         style:{
                                             'margin-top': '2.2%',
-                                            'margin-left':'20px',
+                                            'margin-left':'24px',
                                              'fontFamily':'openSansRegular',
                                             'font-size':'small'
                                         }   
@@ -414,7 +414,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                      },
                                                      {
                                                          xtype:'label',
-                                                         html:'MCHC',
+                                                         html:'aPTT',
                                                          itemid:'chartviewingid',
                                                          style:{
                                                                   'margin-top': '3%',
@@ -434,7 +434,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                             width:'25px',
                                                               // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
                                                                style:{
-                                                                   'margin-left':'52%',
+                                                                   'margin-left':'300px',
                                                                    'margin-top':'3%'
                                                                }
 
@@ -463,7 +463,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                  //table container
                                                   xtype:'container',
                                                  width: '580px',
-                                                 height: '300px',
+                                                 height: '900px',
                                                  layout:'vbox',
                                                  style: {
                                                             'border': '1px #9E9D8B solid',
@@ -516,7 +516,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                             width:'25px',
                                                               // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
                                                                style:{
-                                                                   'margin-left':'56%',
+                                                                   'margin-left':'66%',
                                                                    'margin-top':'3%'
                                                                }
 
@@ -531,6 +531,20 @@ Ext.define('MVF.view.chemistrylabs', {
                                                            'margin-top':'-1%'
                                                        }
                                                 },
+                                                //table container
+                                                {
+                                                    xtype:'container',
+                                                    width:'580px',
+                                                    height:'300px',
+                                                    layout:'hbox',
+                                                    scrollable: {
+                                                                direction: 'horizontal',
+                                                                directionLock: true
+                                                            },
+                                                            items:[
+                                                                //table goes here
+                                                            ]
+                                                }
                                                     ]    
                                              }
                                          ]

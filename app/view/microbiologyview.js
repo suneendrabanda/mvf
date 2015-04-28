@@ -160,7 +160,8 @@ Ext.define('MVF.view.microbiologyview', {
                                                'margin-top': '2.6%',
                                                 'margin-left': '3%',
                                                 /* font-family: -webkit-pictograph; */
-                                                'font-weight': '900',
+                                                //'font-weight': '900',
+                                                'font-family':'openSansSemiBold',
                                                 'color': 'rgb(145, 86, 145)',
                                                 'font-size': 'larger'
                                               }
@@ -177,7 +178,8 @@ Ext.define('MVF.view.microbiologyview', {
                                         style:{
                                             'margin-top': '2.2%',
                                             'margin-left':'20px',
-                                             
+                                             'fontFamily':'openSansRegular',
+                                            'font-size':'small'
                                         }   
                                       },
                                       {
@@ -185,7 +187,9 @@ Ext.define('MVF.view.microbiologyview', {
                                           html:' start:',
                                          style:{
                                              'margin-top':'3%',
-                                             'margin-left':'14%'
+                                             'margin-left':'14%',
+                                             'fontFamily':'openSansRegular',
+                                             'font-size':'small'
                                          }
                                       },
                                       {
@@ -196,13 +200,17 @@ Ext.define('MVF.view.microbiologyview', {
                                             value: new Date(),
                                             style:{
                                                  'margin-top': '2%',
+                                                 'fontFamily':'openSansRegular',
+                                                 'font-size':'small'
                                             }
                                       },
                                       {
                                          xtype:'label',
                                          html:' end:',
                                          style:{
-                                             'margin-top':'3%'
+                                             'margin-top':'3%',
+                                             'fontFamily':'openSansRegular',
+                                             'font-size':'small'
                                          }
                                      },
                                      {
@@ -213,6 +221,8 @@ Ext.define('MVF.view.microbiologyview', {
                                             value: new Date(),
                                              style:{
                                                  'margin-top': '2%',
+                                                 'fontFamily':'openSansRegular',
+                                                 'font-size':'small'
                                             }
                                             
                                      },
