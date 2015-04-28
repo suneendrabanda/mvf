@@ -101,7 +101,7 @@ Ext.define('MVF.view.Main', {
 
                                  {
                                         xtype: 'selectfield',
-                                        width:'200px',
+                                        width:'150px',
                                         border:'1 1 1 1',
                                         itemid:'shiftname',
                                         id:'shiftname',
@@ -112,9 +112,10 @@ Ext.define('MVF.view.Main', {
                                         ],
 
                                         style:{
-                                            'margin-left':'10%',
-                                            'margin-top':'2%'
-
+                                            'margin-left':'16%',
+                                            'margin-top':'2%',
+                                             'fontFamily':'openSansRegular',
+                                            'font-size':'small'
 
                                         }
                                  },
@@ -123,7 +124,7 @@ Ext.define('MVF.view.Main', {
                                      html:'Page:',
                                      style:{
                                          'margin-left':'3%',
-                                         'margin-top':'3%'
+                                         'margin-top':'2.6%'
                                      }
                                  },
                                  
@@ -132,17 +133,18 @@ Ext.define('MVF.view.Main', {
                                         width:'120px',
                                         border:'1 1 1 1',
                                         itemid:'pageid',
-                                        
+                                        cls:'pageselect',
                                         options: [
                                             {text: 'MAIN',  value: 'main'},
-                                            {text: 'LABS',  value: 'chemistrylabs'}
+                                            {text: 'Chemistry',  value: 'chemistrylabs'},
+                                            {text: 'Microbiology',  value: 'microbiologyview'}
                                             
                                         ],
-
                                         style:{
                                             'margin-left':'2%',
-                                            'margin-top':'2%'
-
+                                            'margin-top':'2%',
+                                            'fontFamily':'openSansRegular',
+                                            'font-size':'small'
 
                                         }
                                  },
@@ -202,46 +204,56 @@ Ext.define('MVF.view.Main', {
                                                    {text: 'Pain',  value: 'pain'}
                                                ],
                                         style:{
-                                            'margin-left':'10px'
+                                            'margin-left':'10px',
+                                            'fontFamily':'openSansRegular',
+                                            'font-size':'small',
+                                            'margin-top':'1%',
                                         }   
                                      },
                                      {
                                          xtype:'label',
                                          html:' start:',
                                          style:{
-                                             'margin-top':'10px'
+                                             'margin-top':'10px',
+                                             'font-size':'small',
+                                             'margin-left':'16%'
                                          }
                                      },
                                      {
                                             xtype: 'datepickerfield',
                                             label: '',
-                                           // dateFormat: 'd/M',
+                                            cls:'datepick',
                                             itemid:'startdate',
                                             id:'startdate',
-                                            width:'130px',
+                                            width:'100px',
                                             name:'startdate',
-                                            //height:'px',
-                                            
-                                           // border:2,
-                                            //style: 'border-color: black; border-style: solid;',
-                                            value: new Date()
+                                            value: new Date(),
+                                            style:{
+                                                'font-size':'small',
+                                                
+                                            }
                                      },
                                      {
                                          xtype:'label',
                                          html:' end:',
                                          style:{
-                                             'margin-top':'10px'
+                                             'margin-top':'10px',
+                                             'font-size':'small'
                                          }
                                      },
                                      {
                                           xtype: 'datepickerfield',
                                             label: '',
                                             itemid:'enddate',
-                                           // dateFormat: 'd/M',
+                                           cls:'datepick',
                                             id:'enddate',
-                                            width:'130px',
+                                            width:'100px',
                                             name: 'birthday',
-                                            value: new Date()
+                                            value: new Date(),
+                                            style:{
+                                                'font-size':'small',
+                                                'margin-left':'1%'
+                                            }
                                      },
                                      
                                      
@@ -479,14 +491,20 @@ Ext.define('MVF.view.Main', {
                                         style:{
                                             'margin-left':'20px',
                                             'border-color':'black',
-                                            'border-width':'thin'
+                                            'border-width':'thin',
+                                            'fontFamily':'openSansRegular',
+                                            'font-size':'small',
+                                            'margin-top':'1%'
                                         }   
                                      },
                                      {
                                          xtype:'label',
                                          html:' start:',
                                          style:{
-                                             'margin-top':'10px'
+                                             'margin-top':'10px',
+                                             'margin-left':'2%',
+                                             'fontFamily':'openSansRegular',
+                                                'font-size':'small',
                                          }
                                      },
                                      {
@@ -495,15 +513,23 @@ Ext.define('MVF.view.Main', {
                                             itemid:'tablestartdate',
                                           //  dateFormat: 'd/M',
                                             id:'tablestartdate',
-                                            width:'130px',
-                                            value: new Date()
+                                            width:'100px',
+                                            value: new Date(),
+                                            style:{
+                                                'fontFamily':'openSansRegular',
+                                                'font-size':'small',
+                                                'margin-top':'1%',
+                                            }
                                             
                                      },
                                      {
                                          xtype:'label',
                                          html:' end:',
                                          style:{
-                                             'margin-top':'10px'
+                                             'margin-top':'10px',
+                                             'margin-left':'1%',
+                                             'fontFamily':'openSansRegular',
+                                                'font-size':'small',
                                          }
                                      },
                                      {
@@ -512,8 +538,13 @@ Ext.define('MVF.view.Main', {
                                             itemid:'tableenddate',
                                           //  dateFormat: 'd/M',
                                             id:'tableenddate',
-                                            width:'130px',
-                                            value: new Date()
+                                            width:'100px',
+                                            value: new Date(),
+                                            style:{
+                                                'fontFamily':'openSansRegular',
+                                                'font-size':'small',
+                                                'margin-top':'1%',
+                                            }
                                             
                                      },
                                      {
@@ -556,12 +587,21 @@ Ext.define('MVF.view.Main', {
                                                 itemid:'vitaltablepanel',
                                                 id:'vitaltablepanel',
                                                 name:'vitaltablepanel',
-
+                                                html:'<table>'+'<tr style="border-bottom:1px solid #a5a399">'+
+                                       '<td style=" padding:0 0px 0 0px">'+'Date'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+'Time'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'BP'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'Temperature'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'Pulse'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'Resperation'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'SaO2'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'Pain'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'Weight'+'</td>'+'</tr>',
                                                  style:{
                                                         'margin-left':'28px',
                                                         'margin-top':'20px',
-                                                        'font-family':'sarif'
-
+                                                        'fontFamily':'openSansRegular',
+                                                         'font-size':'medium'
 
                                                     }
                                             }

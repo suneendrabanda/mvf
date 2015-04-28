@@ -19,15 +19,24 @@ Ext.define("MVF.controller.MainController", {
             gotopage:'[itemid=pageid]',
             editintake:'[itemid=editintakeicon]',
             editoutput:'[itemid=editoutputicon]',
-            onoutputupdatebuttonclick:'[itemid=outputupdatebutton]'
+            onoutputupdatebuttonclick:'[itemid=outputupdatebutton]',
+            onintakeupdatebuttonclick:'[itemid=intakeupdatebutton]',
+            chemistrydropdownselect:'[itemid=chemisrtydropdownvalueid]',
+            viewingpanel:'[itemid=viewingitem]'
         },
         control: {
 
             vital:{
                     change:'OnVitalnameSelect'
                 },
+                chemistrydropdownselect:{
+                    change:'chemistryselectfunction'
+                },
                 onoutputupdatebuttonclick:{
                     tap:'outputupdatebuttontap'
+                },
+                onintakeupdatebuttonclick:{
+                    tap:'intakeupdatebuttontap'
                 },
 //                editintake:{
 //                    tap:'editintakefunction'
@@ -221,22 +230,27 @@ Ext.define("MVF.controller.MainController", {
 //      }); 
      var overlay = Ext.Viewport.add({
             xtype: 'panel',
-	    itemid: 'Editvitalsigntable',
+	    //id: 'EditPersonalInfoOverlay',
             // Make it modal so you can click the mask to hide the overlay
             modal: true,
             hideOnMaskTap: true,
-	    centered: true,          
-	    width:   Ext.os.deviceType =='Phone' ? 560 : 400,
-	    height: Ext.os.deviceType =='Phone' ? 540 : 400,
+	    centered: true,           
+	    width:  Ext.os.deviceType =='Phone' ? 360 : 400,//'500px',
+	    height: Ext.os.deviceType =='Phone' ? 300 : 400,
 	    styleHtmlContent: true,
 	    // Make it hidden by default
             hidden: true,
-	    
+	    style:{
+                'z-index':'10'
+            },
 	    items: [
-                           {
-				    xtype: 'EditTable',
+                {
+				    xtype: 'editintakedata',
 				    width: '100%',
 				    height: '100%',
+                                    style:{
+                                        'z-index':'10'
+                                    }
                                     
 			    },
 			   
@@ -249,10 +263,9 @@ Ext.define("MVF.controller.MainController", {
             tap: function(button) {
                 // When you tap on the button, we want to show the overlay by the button we just tapped.
                 overlay.showBy(button);
-		
-                 }
+		//console.log('yes button');
+            }
         });
-        
         
 
         
@@ -297,34 +310,84 @@ Ext.define("MVF.controller.MainController", {
         console.log(pagename);
          this.getMain().push({
           xtype:pagename,
-          title:'chemistryLabs'
+          
       });
    },
    editintakefunction:function(){
       // console.log('in function');
-       var overlay = Ext.Viewport.add({
+      var overlay = Ext.Viewport.add({
             xtype: 'panel',
-	    //id: 'EditPersonalInfoOverlay',
+	    itemid: 'EditoutputvaluesOverlay',
             // Make it modal so you can click the mask to hide the overlay
             modal: true,
             hideOnMaskTap: true,
-	    centered: true,           
-	    width:  Ext.os.deviceType =='Phone' ? 360 : 400,//'500px',
-	    height: Ext.os.deviceType =='Phone' ? 300 : 400,
+	    centered: true,          
+	    width:  '460px',//Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
+	    height: '400px',//Ext.os.deviceType =='Phone' ? 400 : 400,
 	    styleHtmlContent: true,
 	    // Make it hidden by default
             hidden: true,
 	    
 	    items: [
-                {
-				    xtype: 'editintakedata',
-				    width: '100%',
-				    height: '100%',
-                                    
-                                    
-			    },
+                            {
+                                          xtype: 'selectfield',
+                                          width:'100%',
+                                          height:'40px',
+                                          itemid:'intakenameedit',
+                                           name:'intakenameedit',
+                                           
+                                           options: [
+                                                   {text: 'PO',  value: 'PO'},
+                                                   {text: 'IV',  value: 'IV'},
+                                                   {text: 'Blood', value: 'Blood'},
+                                                   {text: 'IVPB',  value: 'IVPB'},
+                                                   {text: 'Tube Fdg',  value: 'Tube Fdg'},
+                                                   {text: 'TPN',  value: 'TPN'},
+                                                   {text: 'Lipids',  value: 'Lipids'},
+                                                   {text: 'Breast Feed',  value: 'Breast Feed'},
+                                                   {text: 'Total In',  value: 'Total In'},
+                                                   {text: 'Others',  value: 'Others'}
+                                               ],
+                                               style:{
+                                                   'border-width':'2px',
+                                                   'border-color':'black'
+                                               }
+                                           
+                                     },
+                                     {
+                                         xtype:'datepickerfield',
+                                         itemid:'intakedateedit',
+                                          width:'100%',
+                                            name:'intakedate',
+                                            //height:'px',
+                                            
+                                           // border:2,
+                                            //style: 'border-color: black; border-style: solid;',
+                                            value: new Date()
+                                     },
+                                     {
+                                         xtype:'textfield',
+                                         name:'intaketimeedit',
+                                         itemid:'intaketimeedit',
+                                         placeHolder:'Enter Time like "1000" for 10:00 AM'
+                                     },
+                                     {
+                                         xtype:'textfield',
+                                         name:'intakeresultedit',
+                                         itemid:'intakeresultedit',
+                                         placeHolder:'Enter Result'
+                                     },
+                                      {
+				    xtype: 'button',
+				    //id: 'SaveButton',
+                                    itemid:'intakeupdatebutton',
+				    ui: 'action',
+				    //margin: 1,
+				    text: 'Update'
+			    }
+                           
 			   
-	    ],
+	    ]
 	    
         });
 	
@@ -436,6 +499,37 @@ Ext.define("MVF.controller.MainController", {
         console.log(outputdate);
         console.log(outputtime);
         console.log(outputresult);
+   },
+   intakeupdatebuttontap:function(){
+        var intakename=Ext.ComponentQuery.query('[itemid=intakenameedit]')[0].getValue();
+        var intakedate=Ext.ComponentQuery.query('[itemid=intakedateedit]')[0].getFormattedValue();
+        var intaketime=Ext.ComponentQuery.query('[itemid=intaketimeedit]')[0].getValue();
+        var intakeresult=Ext.ComponentQuery.query('[itemid=intakeresultedit]')[0].getValue();
+        console.log(intakename);
+        console.log(intakedate);
+        console.log(intaketime);
+        console.log(intakeresult);
+        var intakestore = Ext.StoreMgr.get('intakedataupdatestore');
+        Ext.getStore('intakedataupdatestore').load({
+            params:{ intakenm: intakename,
+                     itkdate: intakedate,
+                     itktime:intaketime,
+                     itkresult:intakeresult
+                      },
+                       scope:this,
+             
+             callback:function(records,operation,success){
+                 if(success){
+                     Ext.getStore('intakepiechartstore').load({});
+                 }
+             }
+                  });
+   },
+   chemistryselectfunction:function(){
+       var chemistryvalue=Ext.ComponentQuery.query('[itemid=chemisrtydropdownvalueid]')[0].getValue();
+       var viewingitem=this.getViewingpanel();
+       console.log(chemistryvalue);
+       viewingitem.setHtml(chemistryvalue);
    }
     
 });

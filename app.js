@@ -27,7 +27,9 @@ Ext.application({
     "chemistrylabs",
     "chemistrylinechart",
     "editintakedata",
-    "outputupdate"
+    "outputupdate",
+    "microbiologyview",
+    "pageselect"
     
     //"PieDemo"
 ],
@@ -37,17 +39,20 @@ Ext.application({
         "bplinechartmodel",
        "vitaltablemodel",
        "outputpiechartmodel",
-       "intakepiechartmodel"
+       "intakepiechartmodel",
+       "intakedataupdatemodel",
+       "chemistrydropdownmodel"
 ],
     stores:[
 	'linechart',
-       // 'updateVitalsStore',
-       'vitalsignupdatestore',
+        'vitalsignupdatestore',
         "bplinechartstore",
         "vitaltablestore",
         "outputpiechartstore",
-        "intakepiechartstore"
-      //'PieDemo'
+        "intakepiechartstore",
+        "intakedataupdatestore",
+        "chemistrydropdownstore"
+     
 ],
 controllers: [
 	'MainController'

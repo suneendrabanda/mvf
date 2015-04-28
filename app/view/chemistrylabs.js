@@ -88,25 +88,28 @@ Ext.define('MVF.view.chemistrylabs', {
                                         'margin-left': '4%',
                                         'color': 'rgb(120, 96, 132)',
                                         'font-size': '30px',
-                                        'fontFamily':'openSans'
+                                        'fontFamily':'openSansLight'
                                     }
                                 },
 
                                  {
                                         xtype: 'selectfield',
-                                        width:'200px',
+                                        width:'120px',
                                         border:'1 1 1 1',
-                                        itemid:'shiftname',
+                                        itemid:'pageid',
                                         
                                         options: [
-                                            {text: 'CHEMISTRY',  value: 'day'},
+                                            {text: 'MAIN',  value: 'main'},
+                                            {text: 'Chemistry',  value: 'chemistrylabs'},
+                                            {text: 'Microbiology',  value: 'microbiologyview'}
                                             
                                         ],
 
                                         style:{
                                             'margin-left':'50%',
-                                            'margin-top':'2%'
-
+                                            'margin-top':'2%',
+                                            'fontFamily':'openSansRegular',
+                                            'font-size':'small'
 
                                         }
                                  },
@@ -168,16 +171,16 @@ Ext.define('MVF.view.chemistrylabs', {
                                       {
                                           xtype: 'selectfield',
                                           width:'100px',
+                                          store: 'chemistrydropdownstore',
                                           itemid:'chemisrtydropdownvalueid',
                                            name:'chemisrtydropdownvalueid',
-                                           options: [
-                                                   {text: 'MCHC',  value: 'mchc'},
-                                                   
-                                               ],
+                                           valueField:'value',
+                                           displayField:'text',
                                         style:{
                                             'margin-top': '2.2%',
                                             'margin-left':'20px',
-                                             
+                                             'fontFamily':'openSansRegular',
+                                            'font-size':'small'
                                         }   
                                       },
                                       {
@@ -185,34 +188,43 @@ Ext.define('MVF.view.chemistrylabs', {
                                           html:' start:',
                                          style:{
                                              'margin-top':'3%',
-                                             'margin-left':'14%'
+                                             'margin-left':'14%',
+                                             'fontFamily':'openSansRegular',
+                                            'font-size':'small'
                                          }
                                       },
                                       {
                                           xtype: 'datepickerfield',
                                             label: '',
                                             itemid:'chemistrystartdate',
-                                            width:'130px',
+                                            width:'100px',
                                             value: new Date(),
                                             style:{
                                                  'margin-top': '2%',
+                                                 'fontFamily':'openSansRegular',
+                                                'font-size':'small'
                                             }
                                       },
                                       {
                                          xtype:'label',
                                          html:' end:',
                                          style:{
-                                             'margin-top':'3%'
+                                             'margin-top':'3%',
+                                             'fontFamily':'openSansRegular',
+                                            'font-size':'small',
+                                            'margin-left':'2%',
                                          }
                                      },
                                      {
                                           xtype: 'datepickerfield',
                                             label: '',
                                             itemid:'chemistryenddate',
-                                            width:'130px',
+                                            width:'100px',
                                             value: new Date(),
                                              style:{
                                                  'margin-top': '2%',
+                                                 'fontFamily':'openSansRegular',
+                                                 'font-size':'small'
                                             }
                                             
                                      },
@@ -291,7 +303,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                             },
                                             {
                                                 xtype:'panel',
-                                                html:'MCHC',
+                                                html:'aPTT',
                                                 itemid:'viewingitem',
                                                 style:{
                                                     'margin-left':'40px',

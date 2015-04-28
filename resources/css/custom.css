@@ -384,3 +384,20 @@ html,body{
     height: 2.2em;
     bottom: 30%;
 }
+
+.x-layout-fit-item{
+    z-index: 0;
+}
+
+.x-spinner .x-input-el, .x-field-select .x-input-el {
+  -webkit-text-fill-color: #000;
+  -webkit-opacity: 1;
+  border-width: thin;
+  border-color: rgb(47, 32, 60);
+  overflow: hidden;
+  /* border-style: solid; */
+}
+
+.datepick{
+    margin-top: 1%;
+}

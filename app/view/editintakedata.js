@@ -11,8 +11,8 @@ Ext.define('MVF.view.editintakedata', {
                                           xtype: 'selectfield',
                                           width:'100%',
                                           height:'40px',
-                                          itemid:'intakename',
-                                           name:'intakename',
+                                          itemid:'editintakename',
+                                           name:'editintakename',
                                            
                                            options: [
                                                    {text: 'PO',  value: 'PO'},
@@ -34,7 +34,7 @@ Ext.define('MVF.view.editintakedata', {
                                      },
                                      {
                                          xtype:'datepickerfield',
-                                         itemid:'intakedate',
+                                         itemid:'editintakedate',
                                           width:'100%',
                                             name:'intakedate',
                                             //height:'px',
@@ -45,14 +45,14 @@ Ext.define('MVF.view.editintakedata', {
                                      },
                                      {
                                          xtype:'textfield',
-                                         name:'intaketime',
-                                         itemid:'intaketime',
+                                         name:'editintaketime',
+                                         itemid:'editintaketime',
                                          placeHolder:'Enter Time like "1000" for 10:00 AM'
                                      },
                                      {
                                          xtype:'textfield',
-                                         name:'intakeresult',
-                                         itemid:'intakeresult',
+                                         name:'editintakeresult',
+                                         itemid:'editintakeresult',
                                          placeHolder:'Enter Result'
                                      },
                                       {
@@ -60,9 +60,10 @@ Ext.define('MVF.view.editintakedata', {
 				    //id: 'SaveButton',
                                     itemid:'intakeupdatebutton',
 				    ui: 'action',
-				    margin: 1,
+				    //margin: 1,
 				    text: 'Update'
 			    }	
+                           
         ]
             }
         ]
