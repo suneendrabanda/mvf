@@ -13,12 +13,12 @@ Ext.define('MVF.view.EditTable', {
                                           name:'vitalname',
                                            options: [
                                                    
-                                                   {text: 'Pulse',  value: 'pulse'},
-                                                   {text: 'BP', value: 'bp'},
-                                                   {text: 'Resp',  value: 'resp'},
-                                                   {text: 'Temp',  value: 'temp'},
-                                                   {text: 'SaO2',  value: 'sao2'},
-                                                   {text: 'Pain',  value: 'pain'}
+                                                   {text: 'Pulse',  value: 'Pulse'},
+                                                   {text: 'BP', value: 'BP'},
+                                                   {text: 'Resp',  value: 'Resp'},
+                                                   {text: 'Temp',  value: 'Temp'},
+                                                   {text: 'SaO2',  value: 'SaO2'},
+                                                   {text: 'Pain',  value: 'Pain'}
                                                ]
                                           
                                      },

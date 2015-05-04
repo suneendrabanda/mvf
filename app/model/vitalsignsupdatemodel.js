@@ -6,7 +6,8 @@ Ext.define("MVF.model.vitalsignsupdatemodel", {
             { name: "vitalsign", type: "string" },
             { name: "date", type: "string" },
             { name: "time", type: "string" },
-            { name: "result", type: "string" }
+            { name: "result", type: "string" },
+            { name: "information", type:"string"}
         ]
     }
 });

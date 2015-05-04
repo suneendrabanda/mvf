@@ -302,9 +302,28 @@ Ext.define("MVF.controller.MainController", {
                             datevalue: editdatevalue,
                             timevalue: edittimevalue,
                             vitalresult: editresultvalue},
-                   
+                   scope:this,
+                   callback:function(records,operation,success){
+                       //console.log('records[0].data.information');
+                       if(Ext.isEmpty(records[0].data.information)){
+                           console.log('result updated');
+                       }
+                       else{
+                          Ext.Msg.show({
+                                width: 400,
+                                height: 200,
+                                cls: "myBox",
+                                buttons: [
+                                    { text : "Ok", ui : "confirm" }
+                                ],
+                                title: "Status",
+                                message: records[0].data.information
+                            });
+                       }
+                   }
                    });
-                   
+               
+                  
    },
    gotopagefunction:function(){
         var pagename=Ext.ComponentQuery.query('[itemid=pageid]')[0].getValue();
