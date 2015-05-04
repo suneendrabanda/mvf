@@ -9,9 +9,7 @@ Ext.define('MVF.view.EditTable', {
                       items:[
                             {
                                           xtype: 'selectfield',
-                                         // label:'Select Vital Sign',
                                           itemid:'editvitalnameid',
-                                          //id:'vitalname',
                                           name:'vitalname',
                                            options: [
                                                    
@@ -26,13 +24,8 @@ Ext.define('MVF.view.EditTable', {
                                      },
                                      {
                                           xtype: 'datepickerfield',
-                                           // label: 'Select Date',
-                                            itemid:'editdatevalue',
-                                           // dateFormat: 'd/M',
-                                            //id:'editdatevalue',
-                                            
-                                            
-                                            value: new Date()
+                                          itemid:'editdatevalue',
+                                          value: new Date()
                                      },
                                      {
                                          xtype:'selectfield',
@@ -69,8 +62,8 @@ Ext.define('MVF.view.EditTable', {
                                         },
                                       {
                                           xtype:'textfield',
-                                          //label:'Enter value',
                                           itemid:'vitalsignvalue',
+                                          placeHolder:'Enter result here'
                                           //id:'vitalsignvalue'
                                                   
                                       },

@@ -489,7 +489,7 @@ Ext.define('MVF.view.Main', {
                                                    {text: 'Weight',  value: 'weight'}
                                                ],
                                         style:{
-                                            'margin-left':'20px',
+                                            'margin-left':'40px',
                                             'border-color':'black',
                                             'border-width':'thin',
                                             'fontFamily':'openSansRegular',
@@ -556,7 +556,7 @@ Ext.define('MVF.view.Main', {
                                          width:'25px',
                                            // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
                                             style:{
-                                                'margin-left':'300px',
+                                                'margin-left':'330px',
                                                 'margin-top':'10px'
                                             }
                                            

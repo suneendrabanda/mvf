@@ -25,12 +25,11 @@ Ext.application({
     "intakepiechart",
     "bplinechart",
     "chemistrylabs",
-    "chemistrylinechart",
     "editintakedata",
     "outputupdate",
     "microbiologyview",
-    "pageselect"
-    
+    "pageselect",
+    "chemistrychartview"
     //"PieDemo"
 ],
    models:[
@@ -41,7 +40,9 @@ Ext.application({
        "outputpiechartmodel",
        "intakepiechartmodel",
        "intakedataupdatemodel",
-       "chemistrydropdownmodel"
+       "chemistrydropdownmodel",
+       "microbiologydropdownmodel",
+       "chemistrychartmodel"
 ],
     stores:[
 	'linechart',
@@ -51,7 +52,9 @@ Ext.application({
         "outputpiechartstore",
         "intakepiechartstore",
         "intakedataupdatestore",
-        "chemistrydropdownstore"
+        "chemistrydropdownstore",
+        "microbiologydropdownstore",
+        "chemistrychartstore"
      
 ],
 controllers: [

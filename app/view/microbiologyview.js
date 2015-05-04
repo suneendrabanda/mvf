@@ -2,7 +2,7 @@ Ext.define('MVF.view.microbiologyview', {
     extend: 'Ext.navigation.View',
     xtype: 'microbiologyview',
     
-    config:{
+     config:{
         navigationBar:{
            hidden: true
        },
@@ -95,13 +95,16 @@ Ext.define('MVF.view.microbiologyview', {
                                  {
                                         xtype: 'selectfield',
                                         width:'120px',
+                                        border:'1 1 1 1',
                                         itemid:'pageid',
+                                        
                                         options: [
                                             {text: 'MAIN',  value: 'main'},
                                             {text: 'Chemistry',  value: 'chemistrylabs'},
                                             {text: 'Microbiology',  value: 'microbiologyview'}
                                             
                                         ],
+
                                         style:{
                                             'margin-left':'50%',
                                             'margin-top':'2%',
@@ -117,7 +120,7 @@ Ext.define('MVF.view.microbiologyview', {
                                     width:'170px',
                                     height:'30px',
                                     style:{
-                                       'margin-left':'1%',
+                                       'margin-left':'8%',
                                        'margin-top':'2%',
                                        'font-size':'12px'
                                     }
@@ -160,24 +163,22 @@ Ext.define('MVF.view.microbiologyview', {
                                                'margin-top': '2.6%',
                                                 'margin-left': '3%',
                                                 /* font-family: -webkit-pictograph; */
-                                                //'font-weight': '900',
-                                                'font-family':'openSansSemiBold',
+                                                'font-weight': '900',
                                                 'color': 'rgb(145, 86, 145)',
                                                 'font-size': 'larger'
                                               }
                                       },
                                       {
                                           xtype: 'selectfield',
-                                          width:'100px',
-                                          itemid:'chemisrtydropdownvalueid',
-                                           name:'chemisrtydropdownvalueid',
-                                           options: [
-                                                   {text: 'MCHC',  value: 'mchc'},
-                                                   
-                                               ],
+                                          width:'140px',
+                                          store: 'microbiologydropdownstore',
+                                          itemid:'mbdropdownvalueid',
+                                           name:'mbdropdownvalueid',
+                                           valueField:'value',
+                                           displayField:'text',
                                         style:{
                                             'margin-top': '2.2%',
-                                            'margin-left':'20px',
+                                            'margin-left':'24px',
                                              'fontFamily':'openSansRegular',
                                             'font-size':'small'
                                         }   
@@ -189,19 +190,19 @@ Ext.define('MVF.view.microbiologyview', {
                                              'margin-top':'3%',
                                              'margin-left':'14%',
                                              'fontFamily':'openSansRegular',
-                                             'font-size':'small'
+                                            'font-size':'small'
                                          }
                                       },
                                       {
                                           xtype: 'datepickerfield',
                                             label: '',
                                             itemid:'chemistrystartdate',
-                                            width:'130px',
+                                            width:'100px',
                                             value: new Date(),
                                             style:{
                                                  'margin-top': '2%',
                                                  'fontFamily':'openSansRegular',
-                                                 'font-size':'small'
+                                                'font-size':'small'
                                             }
                                       },
                                       {
@@ -210,14 +211,15 @@ Ext.define('MVF.view.microbiologyview', {
                                          style:{
                                              'margin-top':'3%',
                                              'fontFamily':'openSansRegular',
-                                             'font-size':'small'
+                                            'font-size':'small',
+                                            'margin-left':'2%',
                                          }
                                      },
                                      {
                                           xtype: 'datepickerfield',
                                             label: '',
                                             itemid:'chemistryenddate',
-                                            width:'130px',
+                                            width:'100px',
                                             value: new Date(),
                                              style:{
                                                  'margin-top': '2%',
@@ -230,12 +232,12 @@ Ext.define('MVF.view.microbiologyview', {
                                          xtype:'image',
                                          itemid:'viewbuttonid',
                                          src:'resources/custom_images/buttons/view.png',
-                                         height:'25px',
+                                         height:'35px',
                                          width:'150px',
                                            // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
                                             style:{
-                                                'margin-left':'-5%',
-                                                'margin-top':'3%'
+                                                'margin-left':'-3%',
+                                                'margin-top':'2%'
                                             }
                                            
                                      },
@@ -301,8 +303,8 @@ Ext.define('MVF.view.microbiologyview', {
                                             },
                                             {
                                                 xtype:'panel',
-                                                html:'MCHC',
-                                                itemid:'viewingitem',
+                                                html:'SENSITIVE',
+                                                itemid:'mbviewingitem',
                                                 style:{
                                                     'margin-left':'40px',
                                                       'margin-top': '12px',
@@ -412,8 +414,8 @@ Ext.define('MVF.view.microbiologyview', {
                                                      },
                                                      {
                                                          xtype:'label',
-                                                         html:'MCHC',
-                                                         itemid:'chartviewingid',
+                                                         html:'SENSITIVE',
+                                                         itemid:'mbchartviewingid',
                                                          style:{
                                                                   'margin-top': '3%',
                                                                    'margin-left': '3%',
@@ -432,7 +434,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                             width:'25px',
                                                               // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
                                                                style:{
-                                                                   'margin-left':'52%',
+                                                                   'margin-left':'300px',
                                                                    'margin-top':'3%'
                                                                }
 
@@ -448,7 +450,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                        }
                                                 },
                                                 {
-                                                    xtype:'chemistrylinechart',
+                                                    xtype:'chemistrychartview',
                                                     style:{
                                                         'margin-top':'2%'
                                                     }
@@ -461,7 +463,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                  //table container
                                                   xtype:'container',
                                                  width: '580px',
-                                                 height: '300px',
+                                                 height: '400px',
                                                  layout:'vbox',
                                                  style: {
                                                             'border': '1px #9E9D8B solid',
@@ -514,7 +516,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                             width:'25px',
                                                               // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
                                                                style:{
-                                                                   'margin-left':'56%',
+                                                                   'margin-left':'66%',
                                                                    'margin-top':'3%'
                                                                }
 
@@ -529,6 +531,20 @@ Ext.define('MVF.view.microbiologyview', {
                                                            'margin-top':'-1%'
                                                        }
                                                 },
+                                                //table container
+                                                {
+                                                    xtype:'container',
+                                                    width:'580px',
+                                                    height:'300px',
+                                                    layout:'hbox',
+                                                    scrollable: {
+                                                                direction: 'horizontal',
+                                                                directionLock: true
+                                                            },
+                                                            items:[
+                                                                //table goes here
+                                                            ]
+                                                }
                                                     ]    
                                              }
                                          ]

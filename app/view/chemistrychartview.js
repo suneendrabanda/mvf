@@ -1,4 +1,10 @@
-Ext.define("MVF.view.chemistrylinechart", {
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+Ext.define("MVF.view.chemistrychartview", {
     extend: "Ext.chart.CartesianChart",
     requires: [
         "Ext.TitleBar",
@@ -8,11 +14,11 @@ Ext.define("MVF.view.chemistrylinechart", {
         "Ext.chart.axis.Category",
         "Ext.draw.sprite.Circle"
     ],
-    alias: "widget.chemistrylinechart",
+    alias: "widget.chemistrychartview",
     config: {
         flex: 1,
         xtype: "chart",
-        store: "LineChart",
+        store: "chemistrychartstore",
         cls: "chart",
         innerPadding: 14,
         
@@ -21,8 +27,8 @@ Ext.define("MVF.view.chemistrylinechart", {
             {
                 type: "line",
                 xField: "time",
-                yField: "vital",
-                title: "Vital chart",
+                yField: "chemistryname",
+                title: "lab chart",
                 tips:{
                     trackmouse:true,
                     width:40,

@@ -120,7 +120,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                     width:'170px',
                                     height:'30px',
                                     style:{
-                                       'margin-left':'1%',
+                                       'margin-left':'8%',
                                        'margin-top':'2%',
                                        'font-size':'12px'
                                     }
@@ -232,12 +232,12 @@ Ext.define('MVF.view.chemistrylabs', {
                                          xtype:'image',
                                          itemid:'viewbuttonid',
                                          src:'resources/custom_images/buttons/view.png',
-                                         height:'25px',
+                                         height:'35px',
                                          width:'150px',
                                            // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
                                             style:{
-                                                'margin-left':'-5%',
-                                                'margin-top':'3%'
+                                                'margin-left':'-3%',
+                                                'margin-top':'2%'
                                             }
                                            
                                      },
@@ -303,7 +303,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                             },
                                             {
                                                 xtype:'panel',
-                                                html:'aPTT',
+                                                html:'ALBUMIN',
                                                 itemid:'viewingitem',
                                                 style:{
                                                     'margin-left':'40px',
@@ -324,8 +324,8 @@ Ext.define('MVF.view.chemistrylabs', {
                                             },
                                             {
                                                 xtype:'panel',
-                                                html:'01/06/2015',
-                                                itemid:'alertItems',
+                                                html:'',
+                                                itemid:'chealertdate',
                                                 style:{
                                                     'margin-left':'40px',
                                                       'margin-top': '12px',
@@ -334,7 +334,9 @@ Ext.define('MVF.view.chemistrylabs', {
                                                 }
                                             },
                                             {
-                                                html:'Hign MCV Count',
+                                                xtype:'panel',
+                                                itemid:'chealertinfo',
+                                                html:'',
                                                 style:{
                                                     'margin-left':'40px',
                                                       'margin-top': '12px',
@@ -414,7 +416,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                      },
                                                      {
                                                          xtype:'label',
-                                                         html:'aPTT',
+                                                         html:'AlBUMIN',
                                                          itemid:'chartviewingid',
                                                          style:{
                                                                   'margin-top': '3%',
@@ -450,7 +452,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                        }
                                                 },
                                                 {
-                                                    xtype:'chemistrylinechart',
+                                                    xtype:'chemistrychartview',
                                                     style:{
                                                         'margin-top':'2%'
                                                     }
@@ -463,7 +465,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                  //table container
                                                   xtype:'container',
                                                  width: '580px',
-                                                 height: '900px',
+                                                 height: '400px',
                                                  layout:'vbox',
                                                  style: {
                                                             'border': '1px #9E9D8B solid',
@@ -553,7 +555,57 @@ Ext.define('MVF.view.chemistrylabs', {
                              }
                              
                          ]   
-                    }
+                    },
+                    //
+                     {
+		    xtype: 'toolbar',
+		    docked:'bottom',
+		    height: '50px',
+		    layout: {
+			pack: 'center',
+			type: 'hbox',
+		       },
+		    items: [
+			 
+			 {
+			  xtype: 'button',
+			  cls:'taskButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'noteButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'calcButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'fileButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'bookButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'cameraButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'printButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'searchButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'helpButtonToolbar'
+                          
+			 }
+		    ]
+		}
             
                 ]
            }
