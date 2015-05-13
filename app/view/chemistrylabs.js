@@ -265,7 +265,8 @@ Ext.define('MVF.view.chemistrylabs', {
                                     style:{
                                         'margin-left':'10px',
                                         'margin-right':'10px',
-                                        'margin-top':''
+                                        'margin-top':'0.5%',
+                                        'margin-bottom':'0.5%'
                                     }
                              },
                              {
@@ -448,7 +449,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                        style:{
                                                            'margin-left':'10px',
                                                            'margin-right':'10px',
-                                                           'margin-top':'-1%'
+                                                           'margin-top':''
                                                        }
                                                 },
                                                 {
@@ -530,7 +531,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                        style:{
                                                            'margin-left':'10px',
                                                            'margin-right':'10px',
-                                                           'margin-top':'-1%'
+                                                           'margin-top':''
                                                        }
                                                 },
                                                 //table container

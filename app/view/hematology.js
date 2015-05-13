@@ -1,13 +1,13 @@
-Ext.define('MVF.view.microbiologyview', {
+Ext.define('MVF.view.hematology', {
     extend: 'Ext.navigation.View',
-    xtype: 'microbiologyview',
+    xtype: 'hematology',
     
-     config:{
+    config:{
         navigationBar:{
            hidden: true
        },
-       items:[
-           {
+        items:[
+            {
                 xtype:'panel',
                 width:'100%',
                 height:'100%',
@@ -15,8 +15,8 @@ Ext.define('MVF.view.microbiologyview', {
                     'background-color': '#FFFFFF'
                 },
                 items:[
-                    {
-			    		xtype: 'panel',
+                         { //top patient info bar
+                                        xtype: 'panel',
 			    		itemId: 'infoBar',
 			    		width: '100%',
 			    		height: '70px',
@@ -72,17 +72,16 @@ Ext.define('MVF.view.microbiologyview', {
 					    		}
 			    			]
 			    		}]
-
-	    			},
-                {
-                      xtype:'container',
-                      layout:'hbox',
+                    },// end of patient info bar
+                    {
+                        xtype:'container',
+                        layout:'hbox',
                       
-                      items:[
+                         items:[
                          
                                 {
                                     xtype:'label',
-                                    html:'Labs',
+                                    html:'Labs- Main',
                                     style:{
                                         'margin-top': '2%',
                                         'margin-left': '4%',
@@ -101,12 +100,13 @@ Ext.define('MVF.view.microbiologyview', {
                                         options: [
                                             {text: 'MAIN',  value: 'main'},
                                             {text: 'Chemistry',  value: 'chemistrylabs'},
-                                            {text: 'Microbiology',  value: 'microbiologyview'}
+                                            {text: 'Microbiology',  value: 'microbiologyview'},
+                                            {text: 'hematology',  value: 'hematology'}
                                             
                                         ],
 
                                         style:{
-                                            'margin-left':'50%',
+                                            'margin-left':'48%',
                                             'margin-top':'2%',
                                             'fontFamily':'openSansRegular',
                                             'font-size':'small'
@@ -120,24 +120,23 @@ Ext.define('MVF.view.microbiologyview', {
                                     width:'170px',
                                     height:'30px',
                                     style:{
-                                       'margin-left':'8%',
+                                       'margin-left':'2%',
                                        'margin-top':'2%',
                                        'font-size':'12px'
                                     }
 
                             }
                       ]
-                   },
-                   // content panel
-                    {
-                        xtype:'container',
+                    },// end of header
+                    {  //content container
+                         xtype:'container',
                         width: '950px',
                         height: '600px',
                         layout:'vbox',
                         scrollable: {
-                                                            direction: 'vertical',
-                                                            directionLock: true
-                                                        },
+                                        direction: 'vertical',
+                                        directionLock: true
+                                    },
                         style: {
                                 'border': '1px #9E9D8B solid',
                                 'borderRightColor':'#9E9D8B',
@@ -149,20 +148,18 @@ Ext.define('MVF.view.microbiologyview', {
                                 'background-color': '#FFFFFF'
                                 
                             },
-                            
-                         items:[
-                             {
-                                 xtype:'container',
-                                 layout:'hbox',
+                        items:[
+                            {
+                                xtype:'container',
+                                layout:'hbox',
                                  
                                  items:[
                                      {
                                          xtype:'label',
-                                         html:' Microbiology',
+                                         html:' Hematology',
                                          style:{
                                                'margin-top': '2.6%',
                                                 'margin-left': '3%',
-                                                /* font-family: -webkit-pictograph; */
                                                 'font-weight': '900',
                                                 'color': 'rgb(145, 86, 145)',
                                                 'font-size': 'larger'
@@ -171,9 +168,9 @@ Ext.define('MVF.view.microbiologyview', {
                                       {
                                           xtype: 'selectfield',
                                           width:'140px',
-                                          store: 'microbiologydropdownstore',
-                                          itemid:'mbdropdownvalueid',
-                                           name:'mbdropdownvalueid',
+                                          //store: 'hematologydropdownstore',
+                                          itemid:'hematologydropdownvalueid',
+                                           name:'hematologydropdownvalueid',
                                            valueField:'value',
                                            displayField:'text',
                                         style:{
@@ -196,7 +193,7 @@ Ext.define('MVF.view.microbiologyview', {
                                       {
                                           xtype: 'datepickerfield',
                                             label: '',
-                                            itemid:'chemistrystartdate',
+                                            itemid:'hematologystartdate',
                                             width:'100px',
                                             value: new Date(),
                                             style:{
@@ -212,13 +209,13 @@ Ext.define('MVF.view.microbiologyview', {
                                              'margin-top':'3%',
                                              'fontFamily':'openSansRegular',
                                             'font-size':'small',
-                                            'margin-left':'2%',
+                                            'margin-left':'2%'
                                          }
                                      },
                                      {
                                           xtype: 'datepickerfield',
                                             label: '',
-                                            itemid:'chemistryenddate',
+                                            itemid:'hematologyenddate',
                                             width:'100px',
                                             value: new Date(),
                                              style:{
@@ -230,7 +227,7 @@ Ext.define('MVF.view.microbiologyview', {
                                      },
                                       {
                                          xtype:'image',
-                                         itemid:'viewbuttonid',
+                                         itemid:'hematologyviewbuttonid',
                                          src:'resources/custom_images/buttons/view.png',
                                          height:'35px',
                                          width:'150px',
@@ -243,7 +240,7 @@ Ext.define('MVF.view.microbiologyview', {
                                      },
                                      {
                                          xtype:'image',
-                                         itemid:'chemistryedittableicon',
+                                         itemid:'hematologyedittableicon',
                                         
                                          src:'resources/images/edit.png',
                                          height:'20px',
@@ -254,23 +251,23 @@ Ext.define('MVF.view.microbiologyview', {
                                                 'margin-top':'3%'
                                             }
                                            
-                                     },
+                                     }
                                           
                                       //end of content here to display above horizontal line
                                     
                                   ]
-                             },
-                             {
-                                 html:'<hr>',
+                            },
+                            {
+                                html:'<hr>',
                                     style:{
                                         'margin-left':'10px',
                                         'margin-right':'10px',
                                         'margin-top':'0.5%',
                                         'margin-bottom':'0.5%'
                                     }
-                             },
-                             {
-                                 xtype:'container',
+                            },
+                            {
+                                xtype:'container',
                                  layout:'hbox',
                                   
                                  items:[
@@ -304,8 +301,8 @@ Ext.define('MVF.view.microbiologyview', {
                                             },
                                             {
                                                 xtype:'panel',
-                                                html:'SENSITIVE',
-                                                itemid:'mbviewingitem',
+                                                html:'ALBUMIN',
+                                                itemid:'hematologyviewingitem',
                                                 style:{
                                                     'margin-left':'40px',
                                                       'margin-top': '12px',
@@ -325,8 +322,8 @@ Ext.define('MVF.view.microbiologyview', {
                                             },
                                             {
                                                 xtype:'panel',
-                                                html:'01/06/2015',
-                                                itemid:'alertItems',
+                                                html:'',
+                                                itemid:'hematologyalertdate',
                                                 style:{
                                                     'margin-left':'40px',
                                                       'margin-top': '12px',
@@ -335,13 +332,15 @@ Ext.define('MVF.view.microbiologyview', {
                                                 }
                                             },
                                             {
-                                                html:'Hign MCV Count',
+                                                xtype:'panel',
+                                                itemid:'hematologyalertinfo',
+                                                html:'',
                                                 style:{
                                                     'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500',
-                                                        'color':'red'
+                                                    'margin-top': '12px',
+                                                    'font-size': 'initial',
+                                                    'font-weight': '500',
+                                                    'color':'red'
                                                 }
                                             },
                                             {
@@ -415,8 +414,8 @@ Ext.define('MVF.view.microbiologyview', {
                                                      },
                                                      {
                                                          xtype:'label',
-                                                         html:'SENSITIVE',
-                                                         itemid:'mbchartviewingid',
+                                                         html:'AlBUMIN',
+                                                         itemid:'hematologychartviewingid',
                                                          style:{
                                                                   'margin-top': '3%',
                                                                    'margin-left': '3%',
@@ -428,7 +427,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                      },
                                                      {
                                                             xtype:'image',
-                                                            itemid:'chemistrychartedittableicon',
+                                                            itemid:'hematologychartedittableicon',
 
                                                             src:'resources/images/edit.png',
                                                             height:'20px',
@@ -498,7 +497,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                      {
                                                          xtype:'label',
                                                          html:'ALL',
-                                                         itemid:'tableviewingid',
+                                                         itemid:'hematologytableviewingid',
                                                          style:{
                                                                   'margin-top': '3%',
                                                                    'margin-left': '3%',
@@ -510,7 +509,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                      },
                                                      {
                                                             xtype:'image',
-                                                            itemid:'chemistrytableedittableicon',
+                                                            itemid:'hematologytableedittableicon',
 
                                                             src:'resources/images/edit.png',
                                                             height:'20px',
@@ -551,13 +550,11 @@ Ext.define('MVF.view.microbiologyview', {
                                          ]
                                      }
                                  ]
-                             }
-                             
-                         ]   
-                    }
-            
+                            }
+                        ]    
+                    }// end of content container
                 ]
-           }
-       ]
+            }
+        ]
     }
 });

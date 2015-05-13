@@ -1,29 +1,29 @@
-Ext.define('MVF.view.microbiologyview', {
+Ext.define('MVF.view.absview', {
     extend: 'Ext.navigation.View',
-    xtype: 'microbiologyview',
+    xtype: 'absview',
     
-     config:{
+    config:{
         navigationBar:{
            hidden: true
        },
        items:[
-           {
-                xtype:'panel',
-                width:'100%',
-                height:'100%',
-                style:{
+           { 
+              xtype:'panel',
+              width:'100%',
+              height:'100%',
+              style:{
                     'background-color': '#FFFFFF'
-                },
+                }, 
                 items:[
-                    {
-			    		xtype: 'panel',
-			    		itemId: 'infoBar',
-			    		width: '100%',
-			    		height: '70px',
-			    		style: {
-			    			'background-color': '#DFD9CF'
-			    		},
-			    		items: [{
+                    {// patient info bar
+                        xtype: 'panel',
+			itemId: 'infoBar',
+			width: '100%',
+			height: '70px',
+			style: {
+			        	'background-color': '#DFD9CF'
+			    	},
+			          items: [{
 			    			xtype: 'panel',
 			    			width: '95%',
 			    			height: '65px',
@@ -72,17 +72,16 @@ Ext.define('MVF.view.microbiologyview', {
 					    		}
 			    			]
 			    		}]
-
-	    			},
-                {
-                      xtype:'container',
-                      layout:'hbox',
+                    },// end of patient info bar
+                    {
+                        xtype:'container',
+                        layout:'hbox',
                       
-                      items:[
+                        items:[
                          
                                 {
                                     xtype:'label',
-                                    html:'Labs',
+                                    html:'Labs - Arterial Blood Gas',
                                     style:{
                                         'margin-top': '2%',
                                         'margin-left': '4%',
@@ -106,7 +105,7 @@ Ext.define('MVF.view.microbiologyview', {
                                         ],
 
                                         style:{
-                                            'margin-left':'50%',
+                                            'margin-left':'30%',
                                             'margin-top':'2%',
                                             'fontFamily':'openSansRegular',
                                             'font-size':'small'
@@ -120,24 +119,23 @@ Ext.define('MVF.view.microbiologyview', {
                                     width:'170px',
                                     height:'30px',
                                     style:{
-                                       'margin-left':'8%',
+                                       'margin-left':'2%',
                                        'margin-top':'2%',
                                        'font-size':'12px'
                                     }
 
                             }
                       ]
-                   },
-                   // content panel
+                    },
                     {
-                        xtype:'container',
+                       xtype:'container',
                         width: '950px',
                         height: '600px',
                         layout:'vbox',
                         scrollable: {
-                                                            direction: 'vertical',
-                                                            directionLock: true
-                                                        },
+                                        direction: 'vertical',
+                                        directionLock: true
+                                    },
                         style: {
                                 'border': '1px #9E9D8B solid',
                                 'borderRightColor':'#9E9D8B',
@@ -148,20 +146,19 @@ Ext.define('MVF.view.microbiologyview', {
                                 'margin-top': '',
                                 'background-color': '#FFFFFF'
                                 
-                            },
-                            
-                         items:[
-                             {
-                                 xtype:'container',
+                            }, 
+                        items:[
+                            {
+                                  xtype:'container',
                                  layout:'hbox',
                                  
                                  items:[
                                      {
                                          xtype:'label',
-                                         html:' Microbiology',
+                                         html:'Arterial Blood Gas',
                                          style:{
                                                'margin-top': '2.6%',
-                                                'margin-left': '3%',
+                                                'margin-left': '1%',
                                                 /* font-family: -webkit-pictograph; */
                                                 'font-weight': '900',
                                                 'color': 'rgb(145, 86, 145)',
@@ -171,9 +168,9 @@ Ext.define('MVF.view.microbiologyview', {
                                       {
                                           xtype: 'selectfield',
                                           width:'140px',
-                                          store: 'microbiologydropdownstore',
-                                          itemid:'mbdropdownvalueid',
-                                           name:'mbdropdownvalueid',
+                                          //store: 'absdropdownstore',
+                                          itemid:'absdropdownvalueid',
+                                           name:'absdropdownvalueid',
                                            valueField:'value',
                                            displayField:'text',
                                         style:{
@@ -188,7 +185,7 @@ Ext.define('MVF.view.microbiologyview', {
                                           html:' start:',
                                          style:{
                                              'margin-top':'3%',
-                                             'margin-left':'14%',
+                                             'margin-left':'1.5%',
                                              'fontFamily':'openSansRegular',
                                             'font-size':'small'
                                          }
@@ -196,7 +193,7 @@ Ext.define('MVF.view.microbiologyview', {
                                       {
                                           xtype: 'datepickerfield',
                                             label: '',
-                                            itemid:'chemistrystartdate',
+                                            itemid:'absstartdate',
                                             width:'100px',
                                             value: new Date(),
                                             style:{
@@ -212,13 +209,13 @@ Ext.define('MVF.view.microbiologyview', {
                                              'margin-top':'3%',
                                              'fontFamily':'openSansRegular',
                                             'font-size':'small',
-                                            'margin-left':'2%',
+                                            'margin-left':'1.5%',
                                          }
                                      },
                                      {
                                           xtype: 'datepickerfield',
                                             label: '',
-                                            itemid:'chemistryenddate',
+                                            itemid:'absenddate',
                                             width:'100px',
                                             value: new Date(),
                                              style:{
@@ -229,8 +226,39 @@ Ext.define('MVF.view.microbiologyview', {
                                             
                                      },
                                       {
+                                         xtype:'label',
+                                         html:' shift:',
+                                         style:{
+                                             'margin-top':'3%',
+                                             'fontFamily':'openSansRegular',
+                                            'font-size':'small',
+                                            'margin-left':'1.5%',
+                                         }
+                                     },
+                                     {
+                                         xtype: 'selectfield',
+                                        width:'120px',
+                                        border:'1 1 1 1',
+                                        itemid:'absshift',
+                                        
+                                        options: [
+                                            {text: 'day',  value: 'day'},
+                                            {text: 'evening',  value: 'evening'},
+                                            {text: 'night',  value: 'night'}
+                                            
+                                        ],
+
+                                        style:{
+                                            'margin-left':'',
+                                            'margin-top':'2%',
+                                            'fontFamily':'openSansRegular',
+                                            'font-size':'small'
+
+                                        }
+                                     },
+                                      {
                                          xtype:'image',
-                                         itemid:'viewbuttonid',
+                                         itemid:'absviewbuttonid',
                                          src:'resources/custom_images/buttons/view.png',
                                          height:'35px',
                                          width:'150px',
@@ -243,34 +271,35 @@ Ext.define('MVF.view.microbiologyview', {
                                      },
                                      {
                                          xtype:'image',
-                                         itemid:'chemistryedittableicon',
+                                         itemid:'absedittableicon',
                                         
                                          src:'resources/images/edit.png',
                                          height:'20px',
                                          width:'25px',
                                            // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
                                             style:{
-                                                'margin-left':'1%',
+                                                'margin-left':'-2%',
                                                 'margin-top':'3%'
                                             }
                                            
-                                     },
+                                     }
                                           
-                                      //end of content here to display above horizontal line
+                                      
                                     
                                   ]
-                             },
-                             {
-                                 html:'<hr>',
-                                    style:{
+                            },// end of content above hr line
+                            {
+                                  html:'<hr>',
+                                  style:{
                                         'margin-left':'10px',
                                         'margin-right':'10px',
                                         'margin-top':'0.5%',
                                         'margin-bottom':'0.5%'
                                     }
-                             },
-                             {
-                                 xtype:'container',
+                            },
+                            // start of content with in the box
+                            {
+                                xtype:'container',
                                  layout:'hbox',
                                   
                                  items:[
@@ -278,98 +307,18 @@ Ext.define('MVF.view.microbiologyview', {
                                      {
                                         xtype:'container',
                                         layout:'vbox',
+                                        width:'320px',
+                                        height:'500px',
+                                        style:{
+                                            'border': '1px #9E9D8B solid',
+                                            'margin-left': '10px',
+                                            'borderRightColor':'#9E9D8B',
+                                            'borderTopColor': '#AC9C65',
+                                            'borderTopWidth': '4px'
+                                        },
                                         items:[
-                                            //6 containers here
-                                            {
-                                                   xtype:'label',
-                                                    html:' Notes',
-                                                    style:{
-                                                          'margin-top': '6%',
-                                                           'margin-left': '25px',
-                                                           /* font-family: -webkit-pictograph; */
-                                                           'font-weight': '900',
-                                                           'color': 'rgb(145, 86, 145)',
-                                                           'font-size': 'larger'
-                                                         }
-                                            },
-                                            {
-                                                xtype:'label',
-                                                html:'VIEWING:',
-                                                style:{
-                                                   'margin-left': '25px',
-                                                    'margin-top': '10%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial',
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'SENSITIVE',
-                                                itemid:'mbviewingitem',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500'
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'Alerts:',
-                                                style:{
-                                                     'margin-left': '25px',
-                                                    'margin-top': '10%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial'
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'01/06/2015',
-                                                itemid:'alertItems',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500'
-                                                }
-                                            },
-                                            {
-                                                html:'Hign MCV Count',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500',
-                                                        'color':'red'
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                width:'300px',
-                                                html:'Notes',
-                                                style:{
-                                                   'margin-left': '25px',
-                                                    'margin-top': '8%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial'
-                                                   
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                width:'280px',
-                                                height:'100px',
-                                                html:'<p>The mean corpuscular volume, or MCV, is a measure of the average red blood cell volume (i.e. size)\n\
-                                                         that is reported as part of a standard complete blood count.\n\
-                                                            It can be calculated (in litres) by dividing the hematocrit by the red blood cell count (number of red blood cells per litre). The result is typically reported in femtolitres.</p>',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                    'margin-top':'4%',
-                                                    'font-weight':'normal',
-                                                    'font-size':'smaller'
-                                                }
-                                            }
+                                            // content in the notes container here
+                                            
                                         ]
                                         
                                      },
@@ -390,7 +339,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                             'borderTopColor': '#AC9C65',
                                                             'borderTopWidth': '4px',
                                                             'margin': 'auto',
-                                                            'margin-left': '5%',
+                                                            'margin-left': '3%',
                                                             'margin-top': '',
                                                             'background-color': '#FFFFFF'
 
@@ -403,7 +352,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                          items:[
                                                              {
                                                           xtype:'label',
-                                                          html:'Graph View - ',
+                                                          html:'Graph View',
                                                             style:{
                                                                   'margin-top': '3%',
                                                                    'margin-left': '3%',
@@ -412,35 +361,9 @@ Ext.define('MVF.view.microbiologyview', {
                                                                    'color': 'rgb(145, 86, 145)',
                                                                    'font-size': 'medium'
                                                                  }
-                                                     },
-                                                     {
-                                                         xtype:'label',
-                                                         html:'SENSITIVE',
-                                                         itemid:'mbchartviewingid',
-                                                         style:{
-                                                                  'margin-top': '3%',
-                                                                   'margin-left': '3%',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '800',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'medium'
-                                                                 }
-                                                     },
-                                                     {
-                                                            xtype:'image',
-                                                            itemid:'chemistrychartedittableicon',
-
-                                                            src:'resources/images/edit.png',
-                                                            height:'20px',
-                                                            width:'25px',
-                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                               style:{
-                                                                   'margin-left':'300px',
-                                                                   'margin-top':'3%'
-                                                               }
-
-                                                        }
-                                                         ]
+                                                     }
+                                                     
+                                                    ]
                                                      },//end of items above  hr in line chart
                                                      {
                                                     html:'<hr>',
@@ -472,7 +395,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                             'borderTopColor': '#AC9C65',
                                                             'borderTopWidth': '4px',
                                                             'margin': 'auto',
-                                                            'margin-left': '5%',
+                                                            'margin-left': '3%',
                                                             'margin-top': '17px',
                                                             'background-color': '#FFFFFF'
 
@@ -485,7 +408,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                          items:[
                                                              {
                                                           xtype:'label',
-                                                          html:'Table View - ',
+                                                          html:'Table View',
                                                             style:{
                                                                   'margin-top': '3%',
                                                                    'margin-left': '3%',
@@ -495,33 +418,8 @@ Ext.define('MVF.view.microbiologyview', {
                                                                    'font-size': 'medium'
                                                                  }
                                                      },
-                                                     {
-                                                         xtype:'label',
-                                                         html:'ALL',
-                                                         itemid:'tableviewingid',
-                                                         style:{
-                                                                  'margin-top': '3%',
-                                                                   'margin-left': '3%',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '800',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'medium'
-                                                                 }
-                                                     },
-                                                     {
-                                                            xtype:'image',
-                                                            itemid:'chemistrytableedittableicon',
-
-                                                            src:'resources/images/edit.png',
-                                                            height:'20px',
-                                                            width:'25px',
-                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                               style:{
-                                                                   'margin-left':'66%',
-                                                                   'margin-top':'3%'
-                                                               }
-
-                                                        }
+                                                     
+                                                     
                                                          ]
                                                      },//end of items above  hr in line chart
                                                      {
@@ -551,13 +449,12 @@ Ext.define('MVF.view.microbiologyview', {
                                          ]
                                      }
                                  ]
-                             }
-                             
-                         ]   
+                            }
+                            
+                        ]    
                     }
-            
                 ]
            }
        ]
-    }
+   }
 });

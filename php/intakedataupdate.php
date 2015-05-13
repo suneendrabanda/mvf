@@ -9,6 +9,8 @@ $intakedate =$_GET['itkdate']; //'2014-02-01';//
 $intaketime=$_GET['itktime']; //'0800'; //
 $intakeresult=$_GET['itkresult']; //'100';
 $formatted_date=  date("Y-m-d",strtotime($intakedate));
+//echo $formatted_date.'  '.$intakeresult;
+
 $intakeids=array('PO'=>'IN101','IV'=>'IN102','Blood'=>'IN103','Other'=>'IN104','IVPB'=>'IN105','Tube Fdg'=>'IN106','TPN'=>'IN107','Lipids'=>'IN1008','Breast Feed'=>'IN109','Total In'=>'IN110');
 $result=mysqli_query($con,"select * from intake_exam");
 $flag=0;

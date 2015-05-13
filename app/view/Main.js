@@ -137,7 +137,9 @@ Ext.define('MVF.view.Main', {
                                         options: [
                                             {text: 'MAIN',  value: 'main'},
                                             {text: 'Chemistry',  value: 'chemistrylabs'},
-                                            {text: 'Microbiology',  value: 'microbiologyview'}
+                                            {text: 'Microbiology',  value: 'microbiologyview'},
+                                            {text: 'hematology',  value: 'hematology'},
+                                            {text: 'ABS',  value: 'absview'}
                                             
                                         ],
                                         style:{

@@ -296,30 +296,21 @@ Ext.define("MVF.controller.MainController", {
        console.log(editdatevalue);
        console.log(edittimevalue);
        console.log(editresultvalue);
-       var store=Ext.getStore('vitalsignupdatestore');
-        store.load({
+      
+         Ext.getStore('vitalsignupdatestore').load({
                    params:{ vitalvalue: editvitalvalue,
                             datevalue: editdatevalue,
                             timevalue: edittimevalue,
-                            vitalresult: editresultvalue},
+                            vitalresult: editresultvalue
+                        },
                    scope:this,
                    callback:function(records,operation,success){
-                       //console.log('records[0].data.information');
-                       if(Ext.isEmpty(records[0].data.information)){
-                           console.log('result updated');
-                       }
-                       else{
-                          Ext.Msg.show({
-                                width: 400,
-                                height: 200,
-                                cls: "myBox",
-                                buttons: [
-                                    { text : "Ok", ui : "confirm" }
-                                ],
-                                title: "Status",
-                                message: records[0].data.information
-                            });
-                       }
+//                       console.log(records[0].data.information);
+//                       console.log(records[0].data.vitalsign);
+//                       console.log(records[0].data.date);
+//                       console.log(records[0].data.time); console.log(records[0].data.result);
+                        Ext.Msg.alert(records[0].data.information);
+                       
                    }
                    });
                

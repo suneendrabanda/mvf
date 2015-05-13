@@ -18,7 +18,8 @@ Ext.define('MVF.view.EditTable', {
                                                    {text: 'Resp',  value: 'Resp'},
                                                    {text: 'Temp',  value: 'Temp'},
                                                    {text: 'SaO2',  value: 'SaO2'},
-                                                   {text: 'Pain',  value: 'Pain'}
+                                                   {text: 'Pain',  value: 'Pain'},
+                                                   {text: 'Weight',  value: 'Weight'}
                                                ]
                                           
                                      },

@@ -29,8 +29,10 @@ Ext.application({
     "outputupdate",
     "microbiologyview",
     "pageselect",
-    "chemistrychartview"
-    //"PieDemo"
+    "chemistrychartview",
+    "hematology",
+    "absview"
+  
 ],
    models:[
 	"linechart",
