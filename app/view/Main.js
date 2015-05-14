@@ -136,9 +136,10 @@ Ext.define('MVF.view.Main', {
                                         cls:'pageselect',
                                         options: [
                                             {text: 'MAIN',  value: 'main'},
+                                            {text: 'Intake & Output',  value: 'IntakeAndOutputView'},
                                             {text: 'Chemistry',  value: 'chemistrylabs'},
                                             {text: 'Microbiology',  value: 'microbiologyview'},
-                                            {text: 'hematology',  value: 'hematology'},
+                                            {text: 'Hematology',  value: 'hematology'},
                                             {text: 'ABS',  value: 'absview'}
                                             
                                         ],
@@ -336,8 +337,12 @@ Ext.define('MVF.view.Main', {
                                            
                                      },
                                         {
-                                             xtype:'panel',
-                                                html:'<img src="resources/custom_images/icons/buttons9.png" height="20px", width="20px">',
+                                             xtype:'image',
+                                             itemid:'intakeExpand',
+                                             src:'resources/custom_images/icons/buttons9.png',
+                                             height:'20px',
+                                             width:'20px',
+                                               
                                                 style:{
                                                     'margin-top':'6px',
                                                     'margin-left':'11px'
@@ -418,8 +423,12 @@ Ext.define('MVF.view.Main', {
                                            
                                      },
                                        {
-                                            xtype:'panel',
-                                            html:'<img src="resources/custom_images/icons/buttons9.png" height="20px", width="20px">',
+                                            xtype:'image',
+                                            itemid:'outputExpand',
+                                            src:'resources/custom_images/icons/buttons9.png',
+                                            height:'20px',
+                                            width:'20px',
+                                           
                                             style:{
                                                 'margin-top':'6px',
                                                 'margin-left':'10px'

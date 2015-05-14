@@ -554,7 +554,56 @@ Ext.define('MVF.view.microbiologyview', {
                              }
                              
                          ]   
-                    }
+                    },
+                    {
+		    xtype: 'toolbar',
+		    docked:'bottom',
+		    height: '50px',
+		    layout: {
+			pack: 'center',
+			type: 'hbox',
+		       },
+		    items: [
+			 
+			 {
+			  xtype: 'button',
+			  cls:'taskButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'noteButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'calcButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'fileButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'bookButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'cameraButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'printButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'searchButtonToolbar'
+			 },
+			 {
+			  xtype: 'button',
+			  cls:'helpButtonToolbar'
+                          
+			 }
+		    ]
+		}
             
                 ]
            }

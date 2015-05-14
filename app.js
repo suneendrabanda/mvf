@@ -31,7 +31,8 @@ Ext.application({
     "pageselect",
     "chemistrychartview",
     "hematology",
-    "absview"
+    "absview",
+    "IntakeAndOutputView"
   
 ],
    models:[

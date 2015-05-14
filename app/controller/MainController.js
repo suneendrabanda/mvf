@@ -28,12 +28,21 @@ Ext.define("MVF.controller.MainController", {
             microbilogyviewpanel:'[itemid=mbviewingitem]',
             microbiologychartview:'[itemid=mbchartviewingid]',
             chemistryalertdatepanel:'[itemid=chealertdate]',
-            chemistryalertinfo:'[itemid=chealertinfo]'
+            chemistryalertinfo:'[itemid=chealertinfo]',
+            gotoIntakeAndOutputpage:'[itemid=intakeExpand]',
+            gotoIntakeAndOutputpageOnOutput:'[itemid=outputExpand]'
+            
         },
         control: {
 
             vital:{
                     change:'OnVitalnameSelect'
+                },
+                gotoIntakeAndOutputpage:{
+                    tap:'gotoIntakeAndOutputpagefunction'
+                },
+                gotoIntakeAndOutputpageOnOutput:{
+                    tap:'gotoIntakeAndOutputpagefunction'
                 },
                 chemistrydropdownselect:{
                     change:'chemistryselectfunction'
@@ -85,6 +94,13 @@ Ext.define("MVF.controller.MainController", {
         this.edittable();
         this.editintakefunction();
         this.editoutputfunction();
+    },
+    gotoIntakeAndOutputpagefunction:function(){
+        console.log('in function');
+        this.getMain().push({
+          xtype:'IntakeAndOutputView'
+          
+      });
     },
     OnVitalnameSelect: function(){
             var store=Ext.getStore('LineChart');
