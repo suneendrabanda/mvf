@@ -230,7 +230,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                      },
                                       {
                                          xtype:'image',
-                                         itemid:'viewbuttonid',
+                                         itemid:'chemistryviewbuttonid',
                                          src:'resources/custom_images/buttons/view.png',
                                          height:'35px',
                                          width:'150px',

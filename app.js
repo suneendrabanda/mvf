@@ -60,7 +60,8 @@ Ext.application({
      
 ],
 controllers: [
-	'MainController'
+	'MainController',
+        'ChemistryLabsController'
 ],
 
     icon: {
