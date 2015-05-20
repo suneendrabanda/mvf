@@ -113,7 +113,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                 'font-size': 'small',
                                                  
                                                 }
-                                            },
+                                  },
 
                                  {
                                         xtype: 'selectfield',
