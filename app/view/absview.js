@@ -313,7 +313,7 @@ Ext.define('MVF.view.absview', {
                                      //text container
                                      {
                                         xtype:'container',
-                                        layout:'vbox',
+                                        //layout:'vbox',
                                         width:'320px',
                                         height:'500px',
                                         style:{
@@ -325,6 +325,128 @@ Ext.define('MVF.view.absview', {
                                         },
                                         items:[
                                             // content in the notes container here
+                                            {// start of notes label hbox
+                                                xtype:'container',
+                                                layout:'hbox',
+                                                items:[
+                                                    {
+                                                        xtype:'label',
+                                                        html:'Notes',
+                                                        style:{
+                                                            'margin-top': '4%',
+                                                            'margin-left': '10px',
+                                                             'font-weight': '900',
+                                                             'color': 'rgb(145, 86, 145)',
+                                                             'font-size': 'larger'
+                                                        }
+                                                    },
+                                                    {
+                                                        xtype:'image',
+                                                        itemid:'absalerticon2',
+                                                        src:'resources/images/alert-red.png',
+                                                        height:'20px',
+                                                        width:'20px',
+                                                        style:{
+                                                                  'margin-left':'30px',
+                                                                   'margin-top':'20px'
+                                                               }
+
+                                                    },
+                                                    {
+                                                            xtype:'panel',
+                                                            html:'0',
+                                                            itemid:'NoOfAlerts',
+                                                             style:{
+                                                                      'margin-left':'5px',
+                                                                      'margin-top': '20px',
+                                                                      'font-size': 'medium',
+
+                                                                      }
+                                                        },
+                                                    {
+                                                        xtype:'image',
+                                                        itemid:'abscautionicon',
+                                                        src:'resources/images/caution-gray.png',
+                                                        height:'20px',
+                                                        width:'20px',
+                                                        style:{
+                                                                  'margin-left':'10px',
+                                                                   'margin-top':'20px'
+                                                               }
+
+                                                    },
+                                                    {
+                                                            xtype:'panel',
+                                                            html:'0',
+                                                            itemid:'NoOfCautions',
+                                                             style:{
+                                                                      'margin-left':'5px',
+                                                                      'margin-top': '20px',
+                                                                      'font-size': 'medium',
+
+                                                                      }
+                                                        },
+                                                    {
+                                                        xtype:'image',
+                                                        itemid:'absnotificationicon',
+                                                        src:'resources/images/notification-gray.png',
+                                                        height:'20px',
+                                                        width:'20px',
+                                                        style:{
+                                                                  'margin-left':'10px',
+                                                                   'margin-top':'20px'
+                                                               }
+
+                                                    },
+                                                    {
+                                                            xtype:'panel',
+                                                            html:'0',
+                                                            itemid:'NoOfNotifications',
+                                                             style:{
+                                                                      'margin-left':'5px',
+                                                                      'margin-top': '20px',
+                                                                      'font-size': 'medium',
+
+                                                                      }
+                                                        },
+                                                ]
+                                            },// end of notes label hbox
+                                            {// start of filter and add new button container hbox
+                                                xtype:'container',
+                                                layout:'hbox',
+                                                items:[
+                                                    {
+                                                        xtype:'selectfield',
+                                                        width:'140px',
+                                                        itemid:'absfilternotesid',
+                                                         name:'absfilternotesid',
+                                                         options:[
+                                                             {text:'FILTER NOTES',value:'filternotes'}
+                                                         ],
+                                                         style:{
+                                                             'fontFamily':'openSansRegular',
+                                                             'font-size':'small',
+                                                             'margin-left':'10px',
+                                                             'margin-top':'2px'
+                                                         }
+                                                    },
+                                                    {
+                                                        xtype:'button',
+                                                        text:'NEW NOTES',
+                                                        itemid:'absAddNewNotes',
+                                                        width:'120px',
+                                                        height:'30px',
+                                                        style:{
+                                                            'font-size':'12px',
+                                                            'margin-left':'14px',
+                                                            'margin-top':'2px'
+                                                        }
+                                                    }
+                                                ]
+                                            },// start of filter and add new button container hbox
+                                            {
+                                                html:'<hr>'
+                                            }
                                             
                                         ]
                                         
