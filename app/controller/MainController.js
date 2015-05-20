@@ -25,9 +25,6 @@ Ext.define("MVF.controller.MainController", {
             //chemistrydropdownselect:'[itemid=chemisrtydropdownvalueid]',
             viewingpanel:'[itemid=viewingitem]',
             chemistrychartviewpanel:'[itemid=chartviewingid]',
-            microbiologydropdownchange:'[itemid=mbdropdownvalueid]',
-            microbilogyviewpanel:'[itemid=mbviewingitem]',
-            microbiologychartview:'[itemid=mbchartviewingid]',
             chemistryalertdatepanel:'[itemid=chealertdate]',
             chemistryalertinfo:'[itemid=chealertinfo]',
             gotoIntakeAndOutputpage:'[itemid=intakeExpand]',
@@ -44,13 +41,7 @@ Ext.define("MVF.controller.MainController", {
                 },
                 gotoIntakeAndOutputpageOnOutput:{
                     tap:'gotoIntakeAndOutputpagefunction'
-                },
-//                chemistrydropdownselect:{
-//                    change:'chemistryselectfunction'
-//                },
-                microbiologydropdownchange:{
-                    change:'microbiologydropdownchangefunction'
-                },
+                },               
                 onoutputupdatebuttonclick:{
                     tap:'outputupdatebuttontap'
                 },
@@ -565,15 +556,6 @@ Ext.define("MVF.controller.MainController", {
              }
                   });
    },
-   chemistryselectfunction:function(){
-       
-   },
-    microbiologydropdownchangefunction:function(){
-         var microbilogyvaluevalue=Ext.ComponentQuery.query('[itemid=mbdropdownvalueid]')[0].getValue();
-          var viewingitem=this.getMicrobilogyviewpanel();
-           var chartviewingpanel=this.getMicrobiologychartview();
-           viewingitem.setHtml(microbilogyvaluevalue);
-           chartviewingpanel.setHtml(microbilogyvaluevalue);
-           
-    }
+   
+   
 });

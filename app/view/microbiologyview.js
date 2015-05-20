@@ -196,7 +196,7 @@ Ext.define('MVF.view.microbiologyview', {
                                       {
                                           xtype: 'datepickerfield',
                                             label: '',
-                                            itemid:'chemistrystartdate',
+                                            itemid:'mbstartdate',
                                             width:'100px',
                                             value: new Date(),
                                             style:{
@@ -218,7 +218,7 @@ Ext.define('MVF.view.microbiologyview', {
                                      {
                                           xtype: 'datepickerfield',
                                             label: '',
-                                            itemid:'chemistryenddate',
+                                            itemid:'mbenddate',
                                             width:'100px',
                                             value: new Date(),
                                              style:{
@@ -230,7 +230,7 @@ Ext.define('MVF.view.microbiologyview', {
                                      },
                                       {
                                          xtype:'image',
-                                         itemid:'viewbuttonid',
+                                         itemid:'MicroBiologyviewbuttonid',
                                          src:'resources/custom_images/buttons/view.png',
                                          height:'35px',
                                          width:'150px',
@@ -451,7 +451,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                        }
                                                 },
                                                 {
-                                                    xtype:'chemistrychartview',
+                                                    xtype:'MicrobiologyChartView',
                                                     style:{
                                                         'margin-top':'2%'
                                                     }

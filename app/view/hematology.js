@@ -168,7 +168,7 @@ Ext.define('MVF.view.hematology', {
                                       {
                                           xtype: 'selectfield',
                                           width:'140px',
-                                          //store: 'hematologydropdownstore',
+                                          store: 'hematologyDropDownStore',
                                           itemid:'hematologydropdownvalueid',
                                            name:'hematologydropdownvalueid',
                                            valueField:'value',
@@ -251,6 +251,17 @@ Ext.define('MVF.view.hematology', {
                                                 'margin-top':'3%'
                                             }
                                            
+                                     },
+                                     {
+                                        xtype:'image',
+                                        itemid:'chemistrychartzoomouticon',
+                                        src:'resources/images/zoomout.png',
+                                        height:'20px',
+                                        width:'25px',
+                                         style:{
+                                                    'margin-left':'5px',
+                                                    'margin-top':'3%'
+                                               }
                                      }
                                           
                                       //end of content here to display above horizontal line
@@ -301,7 +312,7 @@ Ext.define('MVF.view.hematology', {
                                             },
                                             {
                                                 xtype:'panel',
-                                                html:'ALBUMIN',
+                                                html:'',
                                                 itemid:'hematologyviewingitem',
                                                 style:{
                                                     'margin-left':'40px',
@@ -401,41 +412,48 @@ Ext.define('MVF.view.hematology', {
                                                          layout:'hbox',
                                                          items:[
                                                              {
-                                                          xtype:'label',
-                                                          html:'Graph View - ',
+                                                                 xtype:'container',
+                                                                 layout:'hbox',
+                                                                 width:'400px',
+                                                                 height:'35px',
+                                                                 
+                                                                 items:[
+                                                                     {
+                                                                        xtype:'label',
+                                                                        html:'Graph View - ',
+                                                                          style:{
+                                                                                'margin-top': '3%',
+                                                                                 'margin-left': '3%',
+                                                                                 /* font-family: -webkit-pictograph; */
+                                                                                 'font-weight': '800',
+                                                                                 'color': 'rgb(145, 86, 145)',
+                                                                                 'font-size': 'medium'
+                                                                               }
+                                                                     },
+                                                                    {
+                                                                        xtype:'label',
+                                                                        html:'',
+                                                                        itemid:'hematologychartviewingid',
+                                                                        style:{
+                                                                                 'margin-top': '3%',
+                                                                                  'margin-left': '3%',
+                                                                                  /* font-family: -webkit-pictograph; */
+                                                                                  'font-weight': '800',
+                                                                                  'color': 'rgb(145, 86, 145)',
+                                                                                  'font-size': 'medium'
+                                                                                }
+                                                                    },
+                                                                 ]
+                                                             },
+                                                     {
+                                                            xtype:'panel',
+                                                            html:'alerts()',
+                                                            itemid:'hematologyChartAlertsCount',
                                                             style:{
-                                                                  'margin-top': '3%',
-                                                                   'margin-left': '3%',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '800',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'medium'
-                                                                 }
-                                                     },
-                                                     {
-                                                         xtype:'label',
-                                                         html:'AlBUMIN',
-                                                         itemid:'hematologychartviewingid',
-                                                         style:{
-                                                                  'margin-top': '3%',
-                                                                   'margin-left': '3%',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '800',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'medium'
-                                                                 }
-                                                     },
-                                                     {
-                                                            xtype:'image',
-                                                            itemid:'hematologychartedittableicon',
-
-                                                            src:'resources/images/edit.png',
-                                                            height:'20px',
-                                                            width:'25px',
-                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                               style:{
-                                                                   'margin-left':'300px',
-                                                                   'margin-top':'3%'
+                                                                   'margin-left':'100px',
+                                                                   'margin-top':'3%',
+                                                                   'color':'red',
+                                                                   'font-size':'small'
                                                                }
 
                                                         }
@@ -450,7 +468,7 @@ Ext.define('MVF.view.hematology', {
                                                        }
                                                 },
                                                 {
-                                                    xtype:'chemistrychartview',
+                                                    xtype:'HematologyChartView',
                                                     style:{
                                                         'margin-top':'2%'
                                                     }

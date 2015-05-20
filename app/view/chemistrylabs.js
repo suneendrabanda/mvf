@@ -119,11 +119,11 @@ Ext.define('MVF.view.chemistrylabs', {
                                         xtype: 'selectfield',
                                         width:'120px',
                                         border:'1 1 1 1',
-                                        itemid:'pageid',
+                                        itemid:'chemistrypageid',
                                         
                                         options: [
-                                            {text: 'MAIN',  value: 'main'},
                                             {text: 'Chemistry',  value: 'chemistrylabs'},
+                                            {text: 'Main',  value: 'main'},
                                             {text: 'Microbiology',  value: 'microbiologyview'}
                                             
                                         ],

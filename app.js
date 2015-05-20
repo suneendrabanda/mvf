@@ -33,8 +33,9 @@ Ext.application({
     "hematology",
     "absview",
     "IntakeAndOutputView",
-    "abschartview"
-  
+    "abschartview",
+    "HematologyChartView",
+    "MicrobiologyChartView"
 ],
    models:[
 	"linechart",
@@ -48,7 +49,10 @@ Ext.application({
        "microbiologydropdownmodel",
        "chemistrychartmodel",
        "outputUpdateModel",
-       "ABSChartModel"
+       "ABSChartModel",
+       "hematologyDropDownModel",
+       "HematologyChartModel",
+       "MicrobiologyChartModel"
 ],
     stores:[
 	'linechart',
@@ -62,13 +66,17 @@ Ext.application({
         "microbiologydropdownstore",
         "chemistrychartstore",
         "outputUpdateStore",
-        "ABSChartStore"
-     
+        "ABSChartStore",
+        "hematologyDropDownStore",
+        "HematologyChartStore",
+        "MicrobiologyChartStore"
 ],
 controllers: [
 	'MainController',
         'ChemistryLabsController',
-        'ABSLabController'
+        'ABSLabController',
+        'hematologyController',
+        'MicrobiologyPageController'
 ],
 
     icon: {

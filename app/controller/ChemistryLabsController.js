@@ -2,17 +2,29 @@ Ext.define("MVF.controller.ChemistryLabsController", {
     extend: "Ext.app.Controller",
     config: {
         refs:{
+            chemistrylabs:'chemistrylabs',
             OnViewClick:'[itemid=chemistryviewbuttonid]',
             chemistrychartviewpanel:'[itemid=chartviewingid]',
             viewingpanel:'[itemid=viewingitem]',
             chemistryalertdatepanel:'[itemid=chealertdate]',
             chemistryalertinfo:'[itemid=chealertinfo]',
+            chemistrylabsPageId:'[itemid=chemistrypageid]'
         },
         control:{
             OnViewClick:{
                 tap:'OnViewClickFunction'
+            },
+            chemistrylabsPageId:{
+                change:'OnPageIdSelect'
             }
         }
+    },
+    OnPageIdSelect:function(){
+        var pagename=Ext.ComponentQuery.query('[itemid=chemistrypageid]')[0].getValue();
+        console.log(pagename);
+         this.getChemistrylabs().push({
+          xtype:pagename
+      });
     },
     OnViewClickFunction:function(){
         //alert('controller working');
