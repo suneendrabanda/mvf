@@ -19,7 +19,7 @@ if($vitalselected!='bp'){
                                     join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('0700','0800','0900','1000','1100','1200','1300','1400') and X.name='$vitalselected' and X.date between '$formatted_start_date' and '$formatted_end_date' order by X.time");
         
          while($row = mysqli_fetch_array($result)) {
-        $vitalresult=(int)$row['result'];
+        $vitalresult=$row['result'];
         $time=$row['time'];
         array_push($arr, array('vital'=> $vitalresult, 'time' =>$time ));
     }
@@ -31,7 +31,7 @@ if($vitalselected!='bp'){
                                    join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('1500','1600','1700','1800','1900','2000','2100','2200') and X.name='$vitalselected' and X.date between '$formatted_start_date' and '$formatted_end_date'");
         
          while($row = mysqli_fetch_array($result)) {
-        $vitalresult=(int)$row['result'];
+        $vitalresult=$row['result'];
         $time=$row['time'];
         array_push($arr, array('vital'=> $vitalresult, 'time' =>$time ));
     }
@@ -43,7 +43,7 @@ if($vitalselected!='bp'){
                                     join person pr on pr.person_ID = p.person_ID) X where X.fname = 'Sandra' and X.time in ('2300','2400','0100','0200','0300','0400','0500','0600') and X.name='$vitalselected' and X.date between '$formatted_start_date' and '$formatted_end_date'");
         
          while($row = mysqli_fetch_array($result)) {
-        $vitalresult=(int)$row['result'];
+        $vitalresult=$row['result'];
         $time=$row['time'];
         array_push($arr, array('vital'=> $vitalresult, 'time' =>$time ));
     }

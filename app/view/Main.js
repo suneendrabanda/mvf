@@ -127,7 +127,16 @@ Ext.define('MVF.view.Main', {
                                          'margin-top':'2.6%'
                                      }
                                  },
-                                 
+//                                 {
+//                                     xtype:'container',
+//                                     layout:'curd',
+//                                     items:[
+//                                         {
+//                                             xtype:'pageselect'
+//                                         }
+//                                     ]
+//                                 },
+//                                 
                                   {
                                         xtype: 'selectfield',
                                         width:'120px',

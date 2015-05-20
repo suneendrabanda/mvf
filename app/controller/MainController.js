@@ -4,6 +4,7 @@ Ext.define("MVF.controller.MainController", {
     config: {
         refs: {
             main:'main',
+            chemistry:'chemistrylabs',
             vital:'[itemid=vitalname]',
             onupdatevital:'[itemid=updatebutton]',
             shiftselect:'[itemid=shiftname]',
@@ -21,7 +22,7 @@ Ext.define("MVF.controller.MainController", {
             editoutput:'[itemid=editoutputicon]',
             onoutputupdatebuttonclick:'[itemid=outputupdatebutton]',
             onintakeupdatebuttonclick:'[itemid=intakeupdatebutton]',
-            chemistrydropdownselect:'[itemid=chemisrtydropdownvalueid]',
+            //chemistrydropdownselect:'[itemid=chemisrtydropdownvalueid]',
             viewingpanel:'[itemid=viewingitem]',
             chemistrychartviewpanel:'[itemid=chartviewingid]',
             microbiologydropdownchange:'[itemid=mbdropdownvalueid]',
@@ -44,9 +45,9 @@ Ext.define("MVF.controller.MainController", {
                 gotoIntakeAndOutputpageOnOutput:{
                     tap:'gotoIntakeAndOutputpagefunction'
                 },
-                chemistrydropdownselect:{
-                    change:'chemistryselectfunction'
-                },
+//                chemistrydropdownselect:{
+//                    change:'chemistryselectfunction'
+//                },
                 microbiologydropdownchange:{
                     change:'microbiologydropdownchangefunction'
                 },
@@ -239,12 +240,7 @@ Ext.define("MVF.controller.MainController", {
         
     },
     edittable:function(){
-//      console.log(this.getMain());
-//      this.getMain().push({
-//          xtype:'EditTable',
-//          title:'Edit Table',
-//         
-//      }); 
+      
      var overlay = Ext.Viewport.add({
             xtype: 'panel',
 	    //id: 'EditPersonalInfoOverlay',
@@ -261,7 +257,7 @@ Ext.define("MVF.controller.MainController", {
                 'z-index':'10'
             },
 	    items: [
-                {
+                            {
 				    xtype: 'EditTable',
 				    width: '98%',
 				    height: '98%',
@@ -339,6 +335,7 @@ Ext.define("MVF.controller.MainController", {
           xtype:pagename,
           
       });
+      
    },
    editintakefunction:function(){
       // console.log('in function');
@@ -526,6 +523,22 @@ Ext.define("MVF.controller.MainController", {
         console.log(outputdate);
         console.log(outputtime);
         console.log(outputresult);
+        Ext.getStore('outputUpdateStore').load({
+            params:{ outputnm: outputname,
+                     outputdate: outputdate,
+                     outputtime:outputtime,
+                     outputresult:outputresult
+                      },
+                       scope:this,
+             
+             callback:function(records,operation,success){
+                 if(success){
+                     Ext.getStore('outputpiechartstore').load({});
+                     alert(records[0].data.information);
+                 }
+             }
+             
+                  });
    },
    intakeupdatebuttontap:function(){
         var intakename=Ext.ComponentQuery.query('[itemid=intakenameedit]')[0].getValue();
@@ -553,42 +566,7 @@ Ext.define("MVF.controller.MainController", {
                   });
    },
    chemistryselectfunction:function(){
-       var chemistryvalue=Ext.ComponentQuery.query('[itemid=chemisrtydropdownvalueid]')[0].getValue();
-       var viewingitem=this.getViewingpanel();
-       var chartviewingpanel=this.getChemistrychartviewpanel();
-       var chemistryalertdatepanel=this.getChemistryalertdatepanel();
-       var chemistryalertinfo=this.getChemistryalertinfo();
-       console.log(chemistryvalue);
-       viewingitem.setHtml(chemistryvalue);
-       chartviewingpanel.setHtml(chemistryvalue);
-       var store=Ext.getStore('chemistrychartstore');
-           var startdatevalue=Ext.ComponentQuery.query('[itemid=chemistrystartdate]')[0].getFormattedValue();
-            var enddatevalue=Ext.ComponentQuery.query('[itemid=chemistryenddate]')[0].getFormattedValue();
-             console.log(startdatevalue);
-            console.log(enddatevalue);
-            
-            store.load({
-                params:{ chemistryvalue: chemistryvalue,
-                         startdate: startdatevalue,
-                         enddate: enddatevalue},
-                       scope:this,
-                callback:function(records){
-                    var values=records;
-                    var result=values[0].data.chemistryname;
-                    var time=values[0].data.time;
-                    var min=values[0].data.minimunvalue;
-                    var max=values[0].data.maximumvalue;
-                    var date=values[0].data.date;
-                    console.log(result);
-                    console.log(time);
-                    console.log(min); console.log(max);console.log(date);
-                    if(result>max){
-                        chemistryalertinfo.setHtml('High '+chemistryvalue+' count');
-                        chemistryalertdatepanel.setHtml(date);
-                    }
-                    //Ext.Msg.alert(vitalvalues);
-                }
-                   });
+       
    },
     microbiologydropdownchangefunction:function(){
          var microbilogyvaluevalue=Ext.ComponentQuery.query('[itemid=mbdropdownvalueid]')[0].getValue();

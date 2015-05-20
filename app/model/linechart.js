@@ -9,7 +9,7 @@ Ext.define("MVF.model.linechart", {
     extend: "Ext.data.Model",
     config: {
         fields: [
-            { name: "vital", type: "int" },
+            { name: "vital", type: "string" },
            // { name: "deno", type: "int" },
             { name: "time", type: "string" }
         ]

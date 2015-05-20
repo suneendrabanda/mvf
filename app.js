@@ -45,7 +45,8 @@ Ext.application({
        "intakedataupdatemodel",
        "chemistrydropdownmodel",
        "microbiologydropdownmodel",
-       "chemistrychartmodel"
+       "chemistrychartmodel",
+       "outputUpdateModel"
 ],
     stores:[
 	'linechart',
@@ -57,7 +58,8 @@ Ext.application({
         "intakedataupdatestore",
         "chemistrydropdownstore",
         "microbiologydropdownstore",
-        "chemistrychartstore"
+        "chemistrychartstore",
+        "outputUpdateStore"
      
 ],
 controllers: [
