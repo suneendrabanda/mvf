@@ -503,7 +503,7 @@ Ext.define('MVF.view.absview', {
                                                        }
                                                 },
                                                 {
-                                                    xtype:'chemistrychartview',
+                                                    xtype:'abschartview',
                                                     style:{
                                                         'margin-top':'2%'
                                                     }

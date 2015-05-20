@@ -32,7 +32,8 @@ Ext.application({
     "chemistrychartview",
     "hematology",
     "absview",
-    "IntakeAndOutputView"
+    "IntakeAndOutputView",
+    "abschartview"
   
 ],
    models:[
@@ -46,7 +47,8 @@ Ext.application({
        "chemistrydropdownmodel",
        "microbiologydropdownmodel",
        "chemistrychartmodel",
-       "outputUpdateModel"
+       "outputUpdateModel",
+       "ABSChartModel"
 ],
     stores:[
 	'linechart',
@@ -59,12 +61,14 @@ Ext.application({
         "chemistrydropdownstore",
         "microbiologydropdownstore",
         "chemistrychartstore",
-        "outputUpdateStore"
+        "outputUpdateStore",
+        "ABSChartStore"
      
 ],
 controllers: [
 	'MainController',
-        'ChemistryLabsController'
+        'ChemistryLabsController',
+        'ABSLabController'
 ],
 
     icon: {
