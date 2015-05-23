@@ -126,7 +126,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                     {//  start of main container
                         xtype:'container',
                         width: '950px',
-                        height: '600px',
+                        height: '900px',
                         layout:'vbox',
                         scrollable: {
                                         direction: 'vertical',
@@ -174,7 +174,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                             xtype: 'selectfield',
                                             width:'120px',
                                             border:'1 1 1 1',
-                                            itemid:'absshift',
+                                            itemid:'IOshift',
 
                                             options: [
                                                 {text: 'day',  value: 'day'},
@@ -204,7 +204,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                          {
                                              xtype: 'datepickerfield',
                                                label: '',
-                                               itemid:'absstartdate',
+                                               itemid:'IOstartdate',
                                                width:'100px',
                                                value: new Date(),
                                                style:{
@@ -227,7 +227,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                             {
                                                  xtype: 'datepickerfield',
                                                    label: '',
-                                                   itemid:'absenddate',
+                                                   itemid:'IOenddate',
                                                    width:'100px',
                                                    value: new Date(),
                                                     style:{
@@ -240,11 +240,10 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                             },
                                             {
                                                 xtype:'image',
-                                                itemid:'absviewbuttonid',
+                                                itemid:'IOviewbuttonid',
                                                 src:'resources/custom_images/buttons/view.png',
                                                 height:'35px',
                                                 width:'150px',
-                                                  // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
                                                    style:{
                                                        'margin-left':'-3%',
                                                        'margin-top':'2%'
@@ -253,7 +252,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                             },
                                             {
                                                 xtype:'image',
-                                                itemid:'absedittableicon',
+                                                itemid:'IOedittableicon',
 
                                                 src:'resources/images/edit.png',
                                                 height:'20px',
@@ -319,6 +318,72 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                                   'background-color': '#FFFFFF'
 
                                                                               },
+                                                                              items:[
+                                                                                  {//start of container for Intake label and selectfield
+                                                                                      xtype:'container',
+                                                                                      layout:'hbox',
+                                                                                      items:[
+                                                                                          {
+                                                                                              xtype:'label',
+                                                                                              html:'Intake',
+                                                                                              style:{
+                                                                                                  'margin-left':'10px',
+                                                                                                  'margin-top':'5px',
+                                                                                                  'font-weight': '900',
+                                                                                                  'color': 'rgb(145, 86, 145)',
+                                                                                              }
+                                                                                          },
+                                                                                          {
+                                                                                              xtype:'selectfield',
+                                                                                              width:'120px',
+                                                                                              border:'1 1 1 1',
+                                                                                              itemid:'IntakeSelectID',
+                                                                                              name:'IntakeSelectID',
+                                                                                              options:[
+                                                                                                  {text: 'All',  value: 'all'},
+                                                                                                  {text: 'PO',  value: 'IN101'},
+                                                                                                  {text: 'IV',  value: 'IN102'},
+                                                                                                  {text: 'Blood',  value: 'IN103'},
+                                                                                                  {text: 'IVPB',  value: 'IN105'},
+                                                                                                  {text: 'Tube Fdg',  value: 'IN106'},
+                                                                                                  {text: 'TPN',  value: 'IN107'},
+                                                                                                  {text: 'Lipids',  value: 'IN108'},
+                                                                                                  {text: 'Breast Feed',  value: 'IN109'},
+                                                                                                  {text: 'Other',  value: 'IN104'},
+                                                                                                  {text: 'Total In',  value: 'IN110'},
+                                                                                              ],
+                                                                                              style:{
+                                                                                                             'margin-left':'30%',
+                                                                                                             'margin-top':'2%',
+                                                                                                             'fontFamily':'openSansRegular',
+                                                                                                             'font-size':'small'
+
+                                                                                                         }
+                                                                                          }
+                                                                                      ]
+                                                                                  },//end of container for Intake label and selectfield
+                                                                                  {
+                                                                                      html:'<hr>',
+                                                                                      style:{
+                                                                                                 'margin-left':'10px',
+                                                                                                 'margin-right':'10px'
+                                                                                      }
+                                                                                  },
+                                                                                  {
+                                                                                      xtype:'container',
+                                                                                      layout:'fit',
+                                                                                      width:'222px',
+                                                                                      height:'242px',
+                                                                                      style:{
+                                                                                          'margin-left':'10px'
+                                                                                      },
+                                                                                      items:[
+                                                                                          {
+                                                                                              xtype:'IOPageIntakeChartView'
+                                                                                          }
+                                                                                      ]
+                                                                                  }
+                                                                              ]
                                                                 },// END OF INTAKE CHARTT CONTAINER
                                                                 {// OUTPUT CHART CONTAINER
                                                                        xtype:'container',
@@ -334,6 +399,78 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                                   'background-color': '#FFFFFF'
 
                                                                               },
+                                                                              items:[
+                                                                                  {//START container of label and selectfiels
+                                                                                      xtype:'container',
+                                                                                      layout:'hbox',
+                                                                                      items:[
+                                                                                          {
+                                                                                              xtype:'label',
+                                                                                              html:'Output',
+                                                                                              style:{
+                                                                                                  'margin-left':'10px',
+                                                                                                  'margin-top':'5px',
+                                                                                                  'font-weight': '900',
+                                                                                                  'color': 'rgb(145, 86, 145)',
+                                                                                              }
+                                                                                          },
+                                                                                          {
+                                                                                              xtype:'selectfield',
+                                                                                              width:'120px',
+                                                                                              border:'1 1 1 1',
+                                                                                              itemid:'OutputSelectID',
+                                                                                              name:'OutputSelectID',
+                                                                                                 options: [
+                                                                                                             {text: 'All',  value: 'all'},
+                                                                                                             {text: 'Urine',  value: 'OUT101'},
+                                                                                                             {text: 'Emesis',  value: 'OUT102'},
+                                                                                                             {text: 'Drains',  value: 'OUT103'},
+                                                                                                             {text: 'Stool',  value: 'OUT105'},
+                                                                                                             {text: 'Ostomy',  value: 'OUT106'},
+                                                                                                             {text: 'Unmeasured',  value: 'OUT107'},
+                                                                                                             {text: 'Incontinent',  value: 'OUT108'},
+                                                                                                             {text: 'Blood',  value: 'OUT109'},
+                                                                                                             {text: 'CRRT',  value: 'OUT110'},
+                                                                                                             {text: 'Other',  value: 'OUT104'},
+                                                                                                             {text: 'Total Out',  value: 'OUT111'},
+                                                                                                         ],
+
+                                                                                                  style:{
+                                                                                                             'margin-left':'30%',
+                                                                                                             'margin-top':'2%',
+                                                                                                             'fontFamily':'openSansRegular',
+                                                                                                             'font-size':'small'
+
+                                                                                                         }
+                                                                                              
+                                                                                          }
+                                                                                      ]
+                                                                                  },//END container of label and selectfiels
+                                                                                  {
+                                                                                      html:'<hr>',
+                                                                                      style:{
+                                                                                          'margin-left':'10px',
+                                                                                          'margin-right':'10px'
+                                                                                      }
+                                                                                  },
+                                                                                  {
+                                                                                      xtype:'container',
+                                                                                      layout:'fit',
+                                                                                      width:'222px',
+                                                                                      height:'242px',
+                                                                                      cls:'IOPageOutputChart',
+                                                                                      style:{
+                                                                                          'margin-left':'10px'
+                                                                                      },
+                                                                                      items:[
+                                                                                          //Output pie chart
+                                                                                          {
+                                                                                              xtype:'IOPageOutputChartView',
+                                                                                              
+                                                                                          }
+                                                                                      ]
+                                                                                  }
+                                                                              ]
                                                                 }// END OF OUTPUT CHART CONTIANER
                                                      ]
                                                  },// end of chart container

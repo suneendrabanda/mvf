@@ -35,7 +35,9 @@ Ext.application({
     "IntakeAndOutputView",
     "abschartview",
     "HematologyChartView",
-    "MicrobiologyChartView"
+    "MicrobiologyChartView",
+    "IOPageOutputChartView",
+    "IOPageIntakeChartView"
 ],
    models:[
 	"linechart",
@@ -69,14 +71,17 @@ Ext.application({
         "ABSChartStore",
         "hematologyDropDownStore",
         "HematologyChartStore",
-        "MicrobiologyChartStore"
+        "MicrobiologyChartStore",
+        "IOPageOutputChartStore",
+        "IOPageIntakeChartStore"
 ],
 controllers: [
 	'MainController',
         'ChemistryLabsController',
         'ABSLabController',
         'hematologyController',
-        'MicrobiologyPageController'
+        'MicrobiologyPageController',
+        'IOPageController'
 ],
 
     icon: {

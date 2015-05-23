@@ -553,6 +553,7 @@ Ext.define("MVF.controller.MainController", {
                  if(success){
                      Ext.getStore('intakepiechartstore').load({});
                  }
+                 alert('Record for '+intakename+' was Updated');
              }
                   });
    },

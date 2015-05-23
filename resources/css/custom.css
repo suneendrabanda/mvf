@@ -401,3 +401,6 @@ html,body{
 .datepick{
     margin-top: 1%;
 }
+.IOPageOutputChart{
+    //visibility: hidden;
+}
