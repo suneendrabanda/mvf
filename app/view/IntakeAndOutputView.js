@@ -465,7 +465,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                                       items:[
                                                                                           //Output pie chart
                                                                                           {
-                                                                                              xtype:'IOPageOutputChartView',
+                                                                                              xtype:'IOPageOutputChartView'
                                                                                               
                                                                                           }
                                                                                       ]

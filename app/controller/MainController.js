@@ -372,13 +372,9 @@ Ext.define("MVF.controller.MainController", {
                                      {
                                          xtype:'datepickerfield',
                                          itemid:'intakedateedit',
-                                          width:'100%',
-                                            name:'intakedate',
-                                            //height:'px',
-                                            
-                                           // border:2,
-                                            //style: 'border-color: black; border-style: solid;',
-                                            value: new Date()
+                                         width:'100%',
+                                         name:'intakedate',
+                                         value: new Date()
                                      },
                                      {
                                          xtype:'textfield',

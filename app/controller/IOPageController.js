@@ -17,19 +17,19 @@ Ext.define("MVF.controller.IOPageController", {
     },
     init:function(){
         console.log(' In IO init function');
-         var store=Ext.getStore('IOPageOutputChartStore');
-         var v1='load';
-         var v2='2013-01-12';
-        store.load({
-                params:{ shiftvalue: v1,
-                         startdate: v2,
-                         enddate: v2,
-                         OutputValue:v1},
-                         
-                     });
+//         var store=Ext.getStore('IOPageOutputChartStore');
+//         var v1='load';
+//         var v2='2013-01-12';
+//        store.load({
+//                params:{ shiftvalue: v1,
+//                         startdate: v2,
+//                         enddate: v2,
+//                         OutputValue:v1},
+//                         
+//                     });
     },
     OnViewClickFunction:function(){
-        //alert('IO contrller working');
+        alert('IO contrller working');
         var shiftvalue=Ext.ComponentQuery.query('[itemid=IOshift]')[0].getValue();
         var StartDate=Ext.ComponentQuery.query('[itemid=IOstartdate]')[0].getFormattedValue();
         var EndDate=Ext.ComponentQuery.query('[itemid=IOenddate]')[0].getFormattedValue();
@@ -42,16 +42,21 @@ Ext.define("MVF.controller.IOPageController", {
                          startdate: StartDate,
                          enddate: EndDate,
                          OutputValue:OutputSelectValue},
-                         scope:this
+                         scope:this,
+                         callback:function(records){
+                             var values=records;
+                             console.log(values[0].data.outputname);
+                             console.log(values[0].data.result);
+                         }
                      });
-        var IntakeStore=Ext.getStore('IOPageIntakeChartStore');
-        IntakeStore.load({
-                params:{ shiftvalue: shiftvalue,
-                         startdate: StartDate,
-                         enddate: EndDate,
-                         IntakeValue:IntakeSelectValue},
-                         scope:this
-                     });             
+//        var IntakeStore=Ext.getStore('IOPageIntakeChartStore');
+//        IntakeStore.load({
+//                params:{ shiftvalue: shiftvalue,
+//                         startdate: StartDate,
+//                         enddate: EndDate,
+//                         IntakeValue:IntakeSelectValue},
+//                         scope:this
+//                     });             
     }
     
     });

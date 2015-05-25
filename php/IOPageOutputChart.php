@@ -1,10 +1,10 @@
 <?php
 include('connect.php');
-$shift = $_GET['shiftvalue']; //'day';//
-
-$startdate=$_GET['startdate']; //'2013-01-10';//
-$enddate=$_GET['enddate'];  //'2013-01-13';//
-$OutputValue=$_GET['OutputValue']; //'OUT101';//
+$shift = $_POST['shiftvalue']; //'day';//
+echo $shift.'in';
+$startdate=$_POST['startdate']; //'2013-01-10';//
+$enddate=$_POST['enddate'];  //'2013-01-13';//
+$OutputValue=$_POST['OutputValue']; //'OUT101';//
 $arr=array();
 $formatted_start_date=  date("Y-m-d",strtotime($startdate));
 $formatted_end_date=  date("Y-m-d",strtotime($enddate));

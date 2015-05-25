@@ -54,7 +54,8 @@ Ext.application({
        "ABSChartModel",
        "hematologyDropDownModel",
        "HematologyChartModel",
-       "MicrobiologyChartModel"
+       "MicrobiologyChartModel",
+       "ResultUpdateModel"
 ],
     stores:[
 	'linechart',
@@ -73,7 +74,8 @@ Ext.application({
         "HematologyChartStore",
         "MicrobiologyChartStore",
         "IOPageOutputChartStore",
-        "IOPageIntakeChartStore"
+        "IOPageIntakeChartStore",
+        "HematologyResultUpdateStore"
 ],
 controllers: [
 	'MainController',

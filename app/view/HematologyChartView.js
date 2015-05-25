@@ -26,7 +26,7 @@ Ext.define("MVF.view.HematologyChartView", {
         series: [
             {
                 type: "line",
-                xField: "time",
+                xField: "date",
                 yField: "hematologyname",
                 title: "lab chart",
                 tips:{

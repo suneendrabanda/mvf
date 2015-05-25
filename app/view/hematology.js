@@ -241,7 +241,7 @@ Ext.define('MVF.view.hematology', {
                                      {
                                          xtype:'image',
                                          itemid:'hematologyedittableicon',
-                                        
+                                         id:'hematologyedittableicon',
                                          src:'resources/images/edit.png',
                                          height:'20px',
                                          width:'25px',
@@ -459,14 +459,7 @@ Ext.define('MVF.view.hematology', {
                                                         }
                                                          ]
                                                      },//end of items above  hr in line chart
-                                                     {
-                                                    html:'<hr>',
-                                                       style:{
-                                                           'margin-left':'10px',
-                                                           'margin-right':'10px',
-                                                           'margin-top':''
-                                                       }
-                                                },
+                                                     
                                                 {
                                                     xtype:'HematologyChartView',
                                                     style:{
@@ -499,18 +492,21 @@ Ext.define('MVF.view.hematology', {
                                                          {
                                                          xtype:'container',
                                                          layout:'hbox',
+                                                         style:{
+                                                             'margin-bottom':'15px'
+                                                         },
                                                          items:[
                                                              {
-                                                          xtype:'label',
-                                                          html:'Table View - ',
-                                                            style:{
-                                                                  'margin-top': '3%',
-                                                                   'margin-left': '3%',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '800',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'medium'
-                                                                 }
+                                                                xtype:'label',
+                                                                html:'Table View - ',
+                                                                  style:{
+                                                                        'margin-top': '3%',
+                                                                         'margin-left': '3%',
+                                                                         /* font-family: -webkit-pictograph; */
+                                                                         'font-weight': '800',
+                                                                         'color': 'rgb(145, 86, 145)',
+                                                                         'font-size': 'medium'
+                                                                       }
                                                      },
                                                      {
                                                          xtype:'label',
@@ -526,41 +522,42 @@ Ext.define('MVF.view.hematology', {
                                                                  }
                                                      },
                                                      {
-                                                            xtype:'image',
-                                                            itemid:'hematologytableedittableicon',
-
-                                                            src:'resources/images/edit.png',
-                                                            height:'20px',
-                                                            width:'25px',
-                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                               style:{
-                                                                   'margin-left':'66%',
-                                                                   'margin-top':'3%'
-                                                               }
-
-                                                        }
-                                                         ]
+                                                         xtype:'panel',
+                                                         html:'Alert()',
+                                                         itemid:'TablealertPanel',
+                                                         style:{
+                                                             'margin-left':'60%',
+                                                              'margin-top':'3%',
+                                                              'color':'red',
+                                                              'font-size':'small'
+                                                         }
+                                                     }
+                                                     
+                                            ]
                                                      },//end of items above  hr in line chart
-                                                     {
-                                                    html:'<hr>',
-                                                       style:{
-                                                           'margin-left':'10px',
-                                                           'margin-right':'10px',
-                                                           'margin-top':''
-                                                       }
-                                                },
+                                                     
                                                 //table container
                                                 {
                                                     xtype:'container',
                                                     width:'580px',
                                                     height:'300px',
                                                     layout:'hbox',
+                                                    
                                                     scrollable: {
-                                                                direction: 'horizontal',
+                                                                direction: 'both',
                                                                 directionLock: true
                                                             },
                                                             items:[
                                                                 //table goes here
+                                                                {
+                                                                    xtype:'panel',
+                                                                    itemid:'HematologyResultsTable',
+                                                                    style:{
+                                                                        'fontFamily':'openSansRegular',
+                                                                        'font-size':'small',
+                                                                        'margin-left':'20px'
+                                                                    }
+                                                                }
                                                             ]
                                                 }
                                                     ]    

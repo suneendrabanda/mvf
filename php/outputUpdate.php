@@ -21,7 +21,7 @@ while($patient_visit_row = mysqli_fetch_array($patient_visit_result) ){
 //    echo $discharge_date. ' in  loop ';
 //    echo $visit_id.'<br>'.$room_id;
 }
-// check is patient is discharged or not, if discharged execute else loop if not execute if loop
+// check if patient is discharged or not, if discharged execute else loop if not execute if loop
 
 if(!$discharge_date){
     $output_result=mysqli_query($con,"select * from output_exam");
