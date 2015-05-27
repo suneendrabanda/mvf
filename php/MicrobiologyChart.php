@@ -1,8 +1,8 @@
 <?php
 include('connect.php');
-$MBvalueselected = 'SPUTUM';//$_GET['MBvalue']; // 
-$startdate='2013-01-11';//$_GET['startdate']; //
-$enddate='2013-01-13';//$_GET['enddate'];  //
+$MBvalueselected = $_GET['MBvalue']; // 'pH';//
+$startdate=$_GET['startdate']; //'2013-01-11';//
+$enddate=$_GET['enddate'];  //'2014-01-13';//
 $arr = array();
 $formatted_start_date=  date("Y-m-d",strtotime($startdate));
 $formatted_end_date=  date("Y-m-d",strtotime($enddate));
@@ -18,7 +18,15 @@ $result=mysqli_query($con,"select distinct pr.Person_ID, p.Patient_ID,  tc.Test_
         $time=$row['time'];
         $min=$row['Min_Range'];
         $max=$row['Max_Range'];
-        array_push($arr, array('microbiologyname'=> $MBlabresult, 'time' =>$time, 'minimunvalue'=>$min, 'maximumvalue'=>$max ,'date'=>$row['date']));
+        $exact=$row['Exact_Range'];
+        if(is_numeric($MBlabresult)){
+            //echo 'result numeric';
+            array_push($arr, array('microbiologyname'=> $MBlabresult, 'time' =>$time, 'minimunvalue'=>$min, 'maximumvalue'=>$max ,'date'=>$row['date']));
+        }
+        else{
+            $MBlabresult='0';
+            array_push($arr, array('microbiologyname'=> $MBlabresult, 'time' =>$time, 'minimunvalue'=>$min, 'maximumvalue'=>$max ,'date'=>$row['date']));
+        }
     }
    
     echo json_encode($arr);

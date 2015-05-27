@@ -243,8 +243,8 @@ Ext.define('MVF.view.microbiologyview', {
                                      },
                                      {
                                          xtype:'image',
-                                         itemid:'chemistryedittableicon',
-                                        
+                                         itemid:'MBEditValuesicon',
+                                         id:'MBEditValuesicon',
                                          src:'resources/images/edit.png',
                                          height:'20px',
                                          width:'25px',
@@ -426,34 +426,34 @@ Ext.define('MVF.view.microbiologyview', {
                                                                    'font-size': 'medium'
                                                                  }
                                                      },
-                                                     {
-                                                            xtype:'image',
-                                                            itemid:'chemistrychartedittableicon',
-
-                                                            src:'resources/images/edit.png',
-                                                            height:'20px',
-                                                            width:'25px',
-                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                               style:{
-                                                                   'margin-left':'300px',
-                                                                   'margin-top':'3%'
-                                                               }
-
-                                                        }
+//                                                     {
+//                                                            xtype:'image',
+//                                                            itemid:'chemistrychartedittableicon',
+//
+//                                                            src:'resources/images/edit.png',
+//                                                            height:'20px',
+//                                                            width:'25px',
+//                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+//                                                               style:{
+//                                                                   'margin-left':'300px',
+//                                                                   'margin-top':'3%'
+//                                                               }
+//
+//                                                        }
                                                          ]
                                                      },//end of items above  hr in line chart
-                                                     {
-                                                    html:'<hr>',
-                                                       style:{
-                                                           'margin-left':'10px',
-                                                           'margin-right':'10px',
-                                                           'margin-top':''
-                                                       }
-                                                },
+//                                                     {
+//                                                    html:'<hr>',
+//                                                       style:{
+//                                                           'margin-left':'10px',
+//                                                           'margin-right':'10px',
+//                                                           'margin-top':''
+//                                                       }
+//                                                },
                                                 {
                                                     xtype:'MicrobiologyChartView',
                                                     style:{
-                                                        'margin-top':'2%'
+                                                        'margin-top':'1%'
                                                     }
                                                 }
                                                 // chart item

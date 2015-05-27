@@ -6,8 +6,8 @@ Ext.define("MVF.model.ABSChartModel", {
             { name: "time", type: "string" },
             { name: "minimunvalue", type: "string" },
             { name: "maximumvalue", type: "string" },
-            { name: "date", type: "srting" },
-            { name: "shift", type: "srting" },
+            { name: "date", type: "string" },
+            { name: "shift", type: "string" },
         ]
     }
 });

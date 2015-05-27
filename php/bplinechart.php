@@ -20,6 +20,7 @@ $arr = array();
         $time=$row['time'];
         $deno=(int)$row['deno'];
         array_push($arr, array('vitalnum'=> $vitalresult, 'vitaldeno'=> $deno,'time' =>$time ));
+        //array_push($arr, array('vitalnum'=> $vitalresult,'vitaldeno'=> 'null','time' =>$time ));
 
     }
     }

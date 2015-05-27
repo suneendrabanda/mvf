@@ -90,6 +90,29 @@ Ext.define('MVF.view.hematology', {
                                         'fontFamily':'openSansLight'
                                     }
                                 },
+                                {
+                                    xtype:'image',
+                                    itemid:'chemistryalerticon',
+                                    src:'resources/images/alert.png',
+                                    height:'10px',
+                                    width:'10px',
+                                    style:{
+                                              'margin-left':'10px',
+                                               'margin-top':'40px'
+                                           }
+
+                                },
+                                {
+                                      xtype:'panel',
+                                      html:'(0)',
+                                      itemid:'HematologyAlertsCount',
+                                       style:{
+                                                'margin-left':'5px',
+                                                'margin-top': '35px',
+                                                'font-size': 'small',
+                                                'color':'red'
+                                                }
+                                  },
 
                                  {
                                         xtype: 'selectfield',
@@ -106,7 +129,7 @@ Ext.define('MVF.view.hematology', {
                                         ],
 
                                         style:{
-                                            'margin-left':'48%',
+                                            'margin-left':'44%',
                                             'margin-top':'2%',
                                             'fontFamily':'openSansRegular',
                                             'font-size':'small'
@@ -447,7 +470,7 @@ Ext.define('MVF.view.hematology', {
                                                              },
                                                      {
                                                             xtype:'panel',
-                                                            html:'alerts()',
+                                                            html:'Alerts()',
                                                             itemid:'hematologyChartAlertsCount',
                                                             style:{
                                                                    'margin-left':'100px',

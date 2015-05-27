@@ -4,7 +4,10 @@ Ext.define("MVF.controller.hematologyController", {
         refs:{
             OnViewClick:'[itemid=hematologyviewbuttonid]',
             HematologyTable:'[itemid=HematologyResultsTable]',
-            HematologyUpdateButton:'[itemid=HematologyUpdateButton]'
+            HematologyUpdateButton:'[itemid=HematologyUpdateButton]',
+            HematologyChartViewingPanel:'[itemid=hematologychartviewingid]',
+            HematologyAlertPanel:'[itemid=HematologyAlertsCount]',
+            hematologyviewingitem:'[itemid=hematologyviewingitem]'
         },
         control:{
             OnViewClick:{
@@ -17,12 +20,18 @@ Ext.define("MVF.controller.hematologyController", {
     },
     init:function(){
         this.editHematologyValuesfunction();
+        //this.CountNO_OFAlerts();
     },
     OnViewClickFunction:function(){
             var hematologyvalue=Ext.ComponentQuery.query('[itemid=hematologydropdownvalueid]')[0].getValue();
             var StartDate=Ext.ComponentQuery.query('[itemid=hematologystartdate]')[0].getFormattedValue();
             var EndDate=Ext.ComponentQuery.query('[itemid=hematologyenddate]')[0].getFormattedValue();
             var store=Ext.getStore('HematologyChartStore');
+            var HematologyChartViewingPanel=this.getHematologyChartViewingPanel();
+            HematologyChartViewingPanel.setHtml(hematologyvalue);
+            var hematologyviewingitem=this.getHematologyviewingitem();
+            hematologyviewingitem.setHtml(hematologyvalue);
+            this.CountNO_OFAlerts();
            console.log(hematologyvalue);console.log(StartDate);
            //var nextdate=Ext.Date.format(Ext.Date.add(new Date(StartDate),Ext.Date.DAY,1),'n/j/Y');
            //console.log(nextdate);
@@ -163,5 +172,19 @@ Ext.define("MVF.controller.hematologyController", {
                 
             }
         });
+    },
+    CountNO_OFAlerts:function(){
+        console.log(' IN Hematology alert count function');
+        var AlertStore=Ext.getStore('HematologyAlertStore');
+        var AlertPanel=this.getHematologyAlertPanel();
+         AlertStore.load({
+            callback:function(){
+                No_OF_Alerts=AlertStore.getCount();
+               console.log('no of alert '+No_OF_Alerts);
+               AlertPanel.setHtml(No_OF_Alerts);
+            }
+        });
+        
+        
     }
     });

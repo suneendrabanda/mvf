@@ -27,22 +27,45 @@ Ext.define("MVF.view.HematologyChartView", {
             {
                 type: "line",
                 xField: "date",
-                yField: "hematologyname",
+                yField: "InRange",
                 title: "lab chart",
-                tips:{
-                    trackmouse:true,
-                    width:40,
-                    height:30,
-                    renderer: function(storeItem,item){
-                        this.setTitle(storeItem.get('time')+'<br>'+storeItem.get('vital'));
-                    }
-                },
-                style: {
+                 style: {
                     stroke: "#DFD9CF",
                     lineWidth: 1.5
                 },
-               
-                marker: {
+               marker: {
+                    type: "circle",
+                    stroke: "#AC9C65",
+                    radius: 3,
+                    lineWidth: 2
+                }
+            },
+            {
+                type: "line",
+                xField: "date",
+                yField: "AboveRange",
+                title: "lab chart",
+                 style: {
+                    stroke: "#FF0000",
+                    lineWidth: 1.5
+                },
+               marker: {
+                    type: "circle",
+                    stroke: "#AC9C65",
+                    radius: 3,
+                    lineWidth: 2
+                }
+            },
+            {
+                type: "line",
+                xField: "date",
+                yField: "BelowRange",
+                title: "lab chart",
+                 style: {
+                    stroke: "#DFD9CF",
+                    lineWidth: 1.5
+                },
+               marker: {
                     type: "circle",
                     stroke: "#AC9C65",
                     radius: 3,
