@@ -27,7 +27,7 @@ Ext.define("MVF.view.HematologyChartView", {
             {
                 type: "line",
                 xField: "date",
-                yField: "InRange",
+                yField: "result",
                 title: "lab chart",
                  style: {
                     stroke: "#DFD9CF",
@@ -43,14 +43,14 @@ Ext.define("MVF.view.HematologyChartView", {
             {
                 type: "line",
                 xField: "date",
-                yField: "AboveRange",
+                yField: "min",
                 title: "lab chart",
                  style: {
-                    stroke: "#FF0000",
+                    stroke: "#ff0000",
                     lineWidth: 1.5
                 },
                marker: {
-                    type: "circle",
+                    type: "",
                     stroke: "#AC9C65",
                     radius: 3,
                     lineWidth: 2
@@ -59,27 +59,38 @@ Ext.define("MVF.view.HematologyChartView", {
             {
                 type: "line",
                 xField: "date",
-                yField: "BelowRange",
+                yField: "max",
                 title: "lab chart",
                  style: {
-                    stroke: "#DFD9CF",
+                    stroke: "#ff0000",
                     lineWidth: 1.5
                 },
                marker: {
-                    type: "circle",
+                    type: "",
                     stroke: "#AC9C65",
                     radius: 3,
                     lineWidth: 2
                 }
-            }
+            },
+            {
+                type: "line",
+                xField: "date",
+                yField: "exact",
+                title: "lab chart",
+                 style: {
+                    stroke: "#ff0000",
+                    lineWidth: 1.5
+                },
+               marker: {
+                    type: "",
+                    stroke: "#AC9C65",
+                    radius: 3,
+                    lineWidth: 2
+                }
+            },
             
-            
-            
-        ], 
-        interaction:[{
-                type:'panzoom',
-                zoomOnPanGesture:true
-        }],
+          ], 
+        
         axes: [
             {
                 type: "numeric",

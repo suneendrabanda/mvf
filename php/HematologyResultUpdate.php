@@ -7,6 +7,11 @@ $result=$_GET['result'];
 $formatted_date=  date("Y-m-d",strtotime($date));
 $flag=0; // to check if records already exist in the table or not
 $arr=array();
+//Get Hematology desc from Item_test_Cat table
+$Item_desc_name=mysqli_query($con,"select * from test_item_cat where item_name='$testname'");
+while($Item_desc_row = mysqli_fetch_array($Item_desc_name)){
+    $testname=$Item_desc_row['Item_desc'];
+}
 $patient_visit_result=mysqli_query($con,"select * from patient_visit where patient_id='P1013'");
 while($patient_visit_row = mysqli_fetch_array($patient_visit_result) ){
     $visit_id= $patient_visit_row['Visit_ID'];

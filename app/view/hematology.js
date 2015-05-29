@@ -93,12 +93,12 @@ Ext.define('MVF.view.hematology', {
                                 {
                                     xtype:'image',
                                     itemid:'chemistryalerticon',
-                                    src:'resources/images/alert.png',
-                                    height:'10px',
-                                    width:'10px',
+                                    src:'resources/images/buttons.png',
+                                    height:'20px',
+                                    width:'15px',
                                     style:{
                                               'margin-left':'10px',
-                                               'margin-top':'40px'
+                                               'margin-top':'33px'
                                            }
 
                                 },
