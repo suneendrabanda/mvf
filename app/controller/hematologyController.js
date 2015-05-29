@@ -7,7 +7,10 @@ Ext.define("MVF.controller.hematologyController", {
             HematologyUpdateButton:'[itemid=HematologyUpdateButton]',
             HematologyChartViewingPanel:'[itemid=hematologychartviewingid]',
             HematologyAlertPanel:'[itemid=HematologyAlertsCount]',
-            hematologyviewingitem:'[itemid=hematologyviewingitem]'
+            hematologyviewingitem:'[itemid=hematologyviewingitem]',
+            HematologyTableAlerts:'[itemid=TablealertPanel]',
+            HematologyChartAlertCount:'[itemid=hematologyChartAlertsCount]',
+            HematologyAlertDates:'[itemid=hematologyalertdate]'
         },
         control:{
             OnViewClick:{
@@ -32,22 +35,60 @@ Ext.define("MVF.controller.hematologyController", {
             var hematologyviewingitem=this.getHematologyviewingitem();
             hematologyviewingitem.setHtml(hematologyvalue);
             this.CountNO_OFAlerts();
+            var HematologyChartAlertCount=this.getHematologyChartAlertCount();
+            var HematologyAlertDates=this.getHematologyAlertDates();
+            
            console.log(hematologyvalue);console.log(StartDate);
            //var nextdate=Ext.Date.format(Ext.Date.add(new Date(StartDate),Ext.Date.DAY,1),'n/j/Y');
            //console.log(nextdate);
-           var diff=Ext.Date.getElapsed(new Date(StartDate),new Date(EndDate));
-           var days=diff/(1000*60*60*24);
-           console.log(days);
+//           var diff=Ext.Date.getElapsed(new Date(StartDate),new Date(EndDate));
+//           var days=diff/(1000*60*60*24);
+          // console.log(days);
             store.load({
                 params:{ hematologyvalue: hematologyvalue,
                          startdate: StartDate,
                          enddate: EndDate},
-                         scope:this,
+                     scope:this,
+                     callback:function(records,success){
+                         var ChartAlertCount=0;
+                         var AlertText='';
+                         var No_Of_ResultsFetch=store.getCount();
+                         console.log('no od results fetch'+No_Of_ResultsFetch);
+                         console.log(records[0].data.result+'working');
+                         if(success){
+                             for(var p=0;p<No_Of_ResultsFetch;p++){
+                                 console.log('in for loop '+p);
+                             if(records[p].data.result >= records[p].data.max || records[p].data.result<=records[p].data.min){
+                                 console.log('in if loop');
+                                 ChartAlertCount++;
+                                 if(records[p].data.result >= records[p].data.max){
+                                    AlertText+=records[p].data.date+'<br>'+'<p style="color:#ff0000">High '+hematologyvalue+' Count</p> <br>';
+                                }
+                                else{
+                                    AlertText+=records[p].data.date+'<br>'+'<p style="color:#ff0000">Low '+hematologyvalue+' Count</p> <br>';
+                                }
+                             }
+                         }
+                          console.log(ChartAlertCount);
+                        console.log(AlertText);
+                       HematologyChartAlertCount.setHtml('Alerts ('+ChartAlertCount+')'); 
+                       HematologyAlertDates.setHtml(AlertText);
+                         } 
+                     }
+                         
+                     });
+                     
+             var TableStore=  Ext.getStore('HematologyTableStore');
+             TableStore.load({
+                 params:{ hematologyvalue: hematologyvalue,
+                         startdate: StartDate,
+                         enddate: EndDate},
+                        scope:this,
                          callback:function(records){
                              var values=records;
                              this.DisplayHematologyResults(values,StartDate,EndDate);
                          }
-                     });
+             });
     },
     editHematologyValuesfunction:function(){
       console.log('in editHematologyValuesfunction function');
@@ -129,26 +170,79 @@ Ext.define("MVF.controller.hematologyController", {
             }
         });
    },
-    DisplayHematologyResults:function(records,startdate,enddate){
+    DisplayHematologyResults:function(values,startdate,enddate){
+        var ItemStore=Ext.getStore('hematologyDropDownStore');
+        var TableStore=Ext.getStore('HematologyTableStore');
+        var No_of_Results_Fetch=TableStore.getCount();
+        console.log('No_of_Results_Fetch = '+No_of_Results_Fetch);
+        var No_of_HematologyItems=ItemStore.getCount();
+        console.log(No_of_HematologyItems);       
         var TableValues='<table>';
         var tablepanel=this.getHematologyTable();
-        console.log('IN DisplayHematologyResults function ');
-        console.log('start date '+startdate);
-        console.log('end date '+enddate);
         var diff=Ext.Date.getElapsed(new Date(startdate),new Date(enddate));
         var days=diff/(1000*60*60*24)+1;
+        var date_passed=startdate;
+        var for_date=startdate;
         console.log('difference between start date and end date '+days);
         TableValues+='<tr style="border-bottom:1px solid #a5a399">'+
-                      '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">CBC</td>'+
+                      '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Name</td>'+
                       '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Average</td>';
               for(var i=0;i<days;i++){
                   nextdate=startdate;
                   TableValues+='<td style=" padding:0 30px 0 15px">'+nextdate+'</td>';
-                  var startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'n/j/Y');
+                  var startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/j/Y');
                   
               }
               TableValues+='<td style=" padding:0 30px 0 15px;border-left:1px solid #a5a399">Range</td>'+'</tr>';
+        var value=0;
+        var Alert_count_between_dates=0;
+        var HematologyTableAlerts=this.getHematologyTableAlerts();
+        console.log(' for_date ='+ for_date);
+        console.log(' result date ='+values[value].data.date);
+            for(var j=0;j<No_of_HematologyItems;j++){
+                  TableValues+='<tr>'+
+                                '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+ItemStore.getAt(j).get('text')+'</td>'+
+                                '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+ItemStore.getAt(j).get('range')+'</td>';
+                   for(var k=0;k<days;k++){
+                       //console.log(values[value].data.date+'IN for loop');
+                     if(value<No_of_Results_Fetch && values[value].data.Name ===ItemStore.getAt(j).get('text')){// check if the Hematology name equal or not
+                          // console.log(values[value].data.date+' name are equal IN for loop');
+                           
+                           if(for_date===values[value].data.date){// check for date equal or not
+                               console.log('In date if loop'+for_date);
+                               if(ItemStore.getAt(j).get('exact')==='null'){
+                                    if(values[value].data.result<=ItemStore.getAt(j).get('max') && values[value].data.result>=ItemStore.getAt(j).get('min')){
+                                        TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
+                                    }
+                                    else{
+                                        TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;color:#ff0000">'+values[value].data.result+'</td>';
+                                        Alert_count_between_dates++;
+                                    }
+                                }
+                                else{
+                                    TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
+                                }
+                               
+                               console.log(values[value].data.Name+'result entered for '+ values[value].data.date );
+                               console.log(value);
+                               value++;
+                            }
+                            else{
+                                    TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
+                            }
+                       }
+                       else{
+                               TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
+                      }
+                       
+                       for_date=Ext.Date.format(Ext.Date.add(new Date(for_date),Ext.Date.DAY,1),'m/j/Y');
+                       console.log('incremented for date '+for_date);
+                   }
+                   TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;border-left:1px solid #a5a399">'+ItemStore.getAt(j).get('range')+'</td>'+'</tr>';
+                   for_date=date_passed;
+              }
               tablepanel.setHtml(TableValues);
+              HematologyTableAlerts.setHtml('Alerts ('+Alert_count_between_dates+')');
     },
     OnHematologyUpdateButtonTap:function(){
         var hematologyEditValue=Ext.ComponentQuery.query('[itemid=hematologyEditdropdownvalueid]')[0].getValue();
@@ -181,7 +275,7 @@ Ext.define("MVF.controller.hematologyController", {
             callback:function(){
                 No_OF_Alerts=AlertStore.getCount();
                console.log('no of alert '+No_OF_Alerts);
-               AlertPanel.setHtml(No_OF_Alerts);
+               AlertPanel.setHtml('('+No_OF_Alerts+')');
             }
         });
         
