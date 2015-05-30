@@ -35,7 +35,7 @@ while($row = mysqli_fetch_array($result)){
             array_push($arr, array('text'=>$row['item_name'],'value'=>$row['item_name'],'range'=>$min. ' - '.$max,'min'=>$min,'max'=>$max,'exact'=>'null' ));
         }
         else{
-            array_push($arr, array('text'=>$row['item_name'],'value'=>$row['item_name'],'range'=>'Exact '.$exact,'min'=>$min,'max'=>$max,'exact'=>$exact ) );
+            array_push($arr, array('text'=>$row['item_name'],'value'=>$row['item_name'],'range'=>$exact,'min'=>$min,'max'=>$max,'exact'=>$exact ) );
         }
     }
     

@@ -539,11 +539,20 @@ Ext.define('MVF.view.microbiologyview', {
                                                     height:'300px',
                                                     layout:'hbox',
                                                     scrollable: {
-                                                                direction: 'horizontal',
+                                                                direction: 'both',
                                                                 directionLock: true
                                                             },
                                                             items:[
                                                                 //table goes here
+                                                                {
+                                                                    xtype:'panel',
+                                                                    itemid:'MBResultsTable',
+                                                                    style:{
+                                                                        'fontFamily':'openSansRegular',
+                                                                        'font-size':'small',
+                                                                        'margin-left':'20px'
+                                                                    }
+                                                                }
                                                             ]
                                                 }
                                                     ]    
