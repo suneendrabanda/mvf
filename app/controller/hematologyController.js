@@ -190,7 +190,7 @@ Ext.define("MVF.controller.hematologyController", {
               for(var i=0;i<days;i++){
                   nextdate=startdate;
                   TableValues+='<td style=" padding:0 30px 0 15px">'+nextdate+'</td>';
-                  var startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/j/Y');
+                  var startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
                   
               }
               TableValues+='<td style=" padding:0 30px 0 15px;border-left:1px solid #a5a399">Range</td>'+'</tr>';
@@ -211,16 +211,20 @@ Ext.define("MVF.controller.hematologyController", {
                            if(for_date===values[value].data.date){// check for date equal or not
                                console.log('In date if loop'+for_date);
                                if(ItemStore.getAt(j).get('exact')==='null'){
+                                   console.log('excat = null if loop');
                                     if(values[value].data.result<=ItemStore.getAt(j).get('max') && values[value].data.result>=ItemStore.getAt(j).get('min')){
                                         TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
+                                        console.log('result entered for normal range');
                                     }
                                     else{
                                         TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;color:#ff0000">'+values[value].data.result+'</td>';
                                         Alert_count_between_dates++;
+                                        console.log('result entered for outof range');
                                     }
                                 }
                                 else{
                                     TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
+                                    console.log('result for if range exact not equal to null');
                                 }
                                
                                console.log(values[value].data.Name+'result entered for '+ values[value].data.date );
@@ -229,13 +233,15 @@ Ext.define("MVF.controller.hematologyController", {
                             }
                             else{
                                     TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
+                                    console.log('didnt find the result for date entered - in if');
                             }
                        }
                        else{
                                TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
+                               console.log('didnt find the result for date entered - ');
                       }
                        
-                       for_date=Ext.Date.format(Ext.Date.add(new Date(for_date),Ext.Date.DAY,1),'m/j/Y');
+                       for_date=Ext.Date.format(Ext.Date.add(new Date(for_date),Ext.Date.DAY,1),'m/d/Y');
                        console.log('incremented for date '+for_date);
                    }
                    TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;border-left:1px solid #a5a399">'+ItemStore.getAt(j).get('range')+'</td>'+'</tr>';

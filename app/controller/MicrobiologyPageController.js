@@ -174,7 +174,7 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
               for(var i=0;i<days;i++){
                   nextdate=startdate;
                   TableValues+='<td style=" padding:0 30px 0 15px">'+nextdate+'</td>';
-                  var startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/j/Y');
+                  var startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
                 }
                 TableValues+='<td style=" padding:0 30px 0 15px;border-left:1px solid #a5a399">Range</td>'+'</tr>';
         var value=0;
@@ -202,7 +202,7 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
                                TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
                       }
                        
-                       for_date=Ext.Date.format(Ext.Date.add(new Date(for_date),Ext.Date.DAY,1),'m/j/Y');
+                       for_date=Ext.Date.format(Ext.Date.add(new Date(for_date),Ext.Date.DAY,1),'m/d/Y');
                        console.log('incremented for date '+for_date);
                    }
                    TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;border-left:1px solid #a5a399">'+ItemStore.getAt(j).get('range')+'</td>'+'</tr>';

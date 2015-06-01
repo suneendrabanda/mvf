@@ -1,6 +1,6 @@
 <?php
 include('connect.php');
-$hematologyvalueselected =$_GET['hematologyvalue']; // 'BASOPHILS';// 
+$hematologyvalueselected = $_GET['hematologyvalue']; //'BASOPHILS';// 
 $startdate=$_GET['startdate']; //'2013-01-11';//
 $enddate=$_GET['enddate'];  //'2013-01-20';//
 $arr = array();
@@ -34,6 +34,8 @@ $result=mysqli_query($con,"select distinct pr.Person_ID, p.Patient_ID,  tc.Test_
             array_push($arr, array('result'=>$hematologylabresult,'exact'=>$exact,'min'=>$min,'null'=>$max,'null'=>$Resultdate));
         }
     }
+    array_push($arr, array('result'=>$hematologylabresult,'exact'=>'null','min'=>$min,'max'=>$max,'date'=>$Resultdate));
+    array_push($arr, array('result'=>$hematologylabresult,'exact'=>'null','min'=>$min,'max'=>$max,'date'=>$Resultdate));
 //    if(!$exact){
 //            array_push($arr, array('result'=>$hematologylabresult,'exact'=>'null','min'=>$min,'max'=>$max,'date'=>$Resultdate));
 //        }
