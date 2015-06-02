@@ -304,7 +304,7 @@ Ext.define('MVF.view.microbiologyview', {
                                             },
                                             {
                                                 xtype:'panel',
-                                                html:'SENSITIVE',
+                                                html:'',
                                                 itemid:'mbviewingitem',
                                                 style:{
                                                     'margin-left':'40px',
@@ -325,8 +325,8 @@ Ext.define('MVF.view.microbiologyview', {
                                             },
                                             {
                                                 xtype:'panel',
-                                                html:'01/06/2015',
-                                                itemid:'alertItems',
+                                                html:'',
+                                                itemid:'MBalertItems',
                                                 style:{
                                                     'margin-left':'40px',
                                                       'margin-top': '12px',
@@ -334,16 +334,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                         'font-weight': '500'
                                                 }
                                             },
-                                            {
-                                                html:'Hign MCV Count',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500',
-                                                        'color':'red'
-                                                }
-                                            },
+                                            
                                             {
                                                 xtype:'panel',
                                                 width:'300px',
@@ -415,7 +406,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                      },
                                                      {
                                                          xtype:'label',
-                                                         html:'SENSITIVE',
+                                                         html:'',
                                                          itemid:'mbchartviewingid',
                                                          style:{
                                                                   'margin-top': '3%',

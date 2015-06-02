@@ -54,17 +54,19 @@ Ext.define("MVF.controller.hematologyController", {
                          var AlertText='';
                          var No_Of_ResultsFetch=store.getCount();
                          console.log('no od results fetch'+No_Of_ResultsFetch);
-                         console.log(records[0].data.result+'working');
+                         //console.log(records[0].data.result+'working');
                          if(success){
                              for(var p=0;p<No_Of_ResultsFetch;p++){
                                  console.log('in for loop '+p);
-                             if(records[p].data.result >= records[p].data.max || records[p].data.result<=records[p].data.min){
+                             if(records[p].data.result > records[p].data.max || records[p].data.result<records[p].data.min){
                                  console.log('in if loop');
                                  ChartAlertCount++;
-                                 if(records[p].data.result >= records[p].data.max){
+                                if(records[p].data.result > records[p].data.max){
+                                     console.log('in high if loop '+records[p].data.result+' '+records[p].data.max);
                                     AlertText+=records[p].data.date+'<br>'+'<p style="color:#ff0000">High '+hematologyvalue+' Count</p> <br>';
                                 }
                                 else{
+                                    console.log('in low if loop'+records[p].data.result);
                                     AlertText+=records[p].data.date+'<br>'+'<p style="color:#ff0000">Low '+hematologyvalue+' Count</p> <br>';
                                 }
                              }
@@ -174,16 +176,16 @@ Ext.define("MVF.controller.hematologyController", {
         var ItemStore=Ext.getStore('hematologyDropDownStore');
         var TableStore=Ext.getStore('HematologyTableStore');
         var No_of_Results_Fetch=TableStore.getCount();
-        console.log('No_of_Results_Fetch = '+No_of_Results_Fetch);
+        //console.log('No_of_Results_Fetch = '+No_of_Results_Fetch);
         var No_of_HematologyItems=ItemStore.getCount();
-        console.log(No_of_HematologyItems);       
+        //console.log(No_of_HematologyItems);       
         var TableValues='<table>';
         var tablepanel=this.getHematologyTable();
         var diff=Ext.Date.getElapsed(new Date(startdate),new Date(enddate));
         var days=diff/(1000*60*60*24)+1;
         var date_passed=startdate;
         var for_date=startdate;
-        console.log('difference between start date and end date '+days);
+        //console.log('difference between start date and end date '+days);
         TableValues+='<tr style="border-bottom:1px solid #a5a399">'+
                       '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Name</td>'+
                       '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Average</td>';
@@ -197,8 +199,8 @@ Ext.define("MVF.controller.hematologyController", {
         var value=0;
         var Alert_count_between_dates=0;
         var HematologyTableAlerts=this.getHematologyTableAlerts();
-        console.log(' for_date ='+ for_date);
-        console.log(' result date ='+values[value].data.date);
+       // console.log(' for_date ='+ for_date);
+        //console.log(' result date ='+values[value].data.date);
             for(var j=0;j<No_of_HematologyItems;j++){
                   TableValues+='<tr>'+
                                 '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+ItemStore.getAt(j).get('text')+'</td>'+
@@ -209,40 +211,40 @@ Ext.define("MVF.controller.hematologyController", {
                           // console.log(values[value].data.date+' name are equal IN for loop');
                            
                            if(for_date===values[value].data.date){// check for date equal or not
-                               console.log('In date if loop'+for_date);
+                               //console.log('In date if loop'+for_date);
                                if(ItemStore.getAt(j).get('exact')==='null'){
-                                   console.log('excat = null if loop');
+                                   //console.log('excat = null if loop');
                                     if(values[value].data.result<=ItemStore.getAt(j).get('max') && values[value].data.result>=ItemStore.getAt(j).get('min')){
                                         TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
-                                        console.log('result entered for normal range');
+                                        //console.log('result entered for normal range');
                                     }
                                     else{
                                         TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;color:#ff0000">'+values[value].data.result+'</td>';
                                         Alert_count_between_dates++;
-                                        console.log('result entered for outof range');
+                                        //console.log('result entered for outof range');
                                     }
                                 }
                                 else{
                                     TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
-                                    console.log('result for if range exact not equal to null');
+                                    //console.log('result for if range exact not equal to null');
                                 }
                                
-                               console.log(values[value].data.Name+'result entered for '+ values[value].data.date );
-                               console.log(value);
+                               //console.log(values[value].data.Name+'result entered for '+ values[value].data.date );
+                               //console.log(value);
                                value++;
                             }
                             else{
                                     TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
-                                    console.log('didnt find the result for date entered - in if');
+                                    //console.log('didnt find the result for date entered - in if');
                             }
                        }
                        else{
                                TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
-                               console.log('didnt find the result for date entered - ');
+                              // console.log('didnt find the result for date entered - ');
                       }
                        
                        for_date=Ext.Date.format(Ext.Date.add(new Date(for_date),Ext.Date.DAY,1),'m/d/Y');
-                       console.log('incremented for date '+for_date);
+                       //console.log('incremented for date '+for_date);
                    }
                    TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;border-left:1px solid #a5a399">'+ItemStore.getAt(j).get('range')+'</td>'+'</tr>';
                    for_date=date_passed;

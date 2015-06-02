@@ -360,9 +360,9 @@ Ext.define('MVF.view.hematology', {
                                                 itemid:'hematologyalertdate',
                                                 style:{
                                                     'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500'
+                                                    'margin-top': '12px',
+                                                    'font-size': '12px',
+                                                    'font-weight': '500'
                                                 }
                                             },
                                             {
