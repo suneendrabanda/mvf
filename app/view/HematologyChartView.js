@@ -46,7 +46,7 @@ Ext.define("MVF.view.HematologyChartView", {
                 yField: "min",
                 title: "lab chart",
                  style: {
-                    stroke: "#ff0000",
+                    stroke: "#59A3DB",
                     lineWidth: 1.5
                 },
                marker: {
@@ -62,7 +62,7 @@ Ext.define("MVF.view.HematologyChartView", {
                 yField: "max",
                 title: "lab chart",
                  style: {
-                    stroke: "#ff0000",
+                    stroke: "#59A3DB",
                     lineWidth: 1.5
                 },
                marker: {
@@ -78,7 +78,7 @@ Ext.define("MVF.view.HematologyChartView", {
                 yField: "exact",
                 title: "lab chart",
                  style: {
-                    stroke: "#ff0000",
+                    stroke: "#59A3DB",
                     lineWidth: 1.5
                 },
                marker: {

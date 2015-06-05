@@ -172,12 +172,12 @@ Ext.define('MVF.view.absview', {
                                           itemid:'absdropdownvalueid',
                                            name:'absdropdownvalueid',
                                            options: [
-                                                {text: 'pH',  value: 'pH'},
-                                                {text: 'PaCO2',  value: 'PaCO2 '},
-                                                {text: 'Pao2',  value: 'Pao2'},
-                                                {text: 'HCO3',  value: 'HCO3'},
-                                                {text: 'BE',  value: 'BE'},
-                                                {text: 'Oxygen Saturation',  value: 'Oxygen Saturation'}
+                                                {text: 'pH',  value: 'ABGs1'},
+                                                {text: 'PaCO2',  value: 'ABGs2'},
+                                                {text: 'Pao2',  value: 'ABGs3'},
+                                                {text: 'HCO3',  value: 'ABGs4'},
+                                                {text: 'BE',  value: 'ABGs5'},
+                                                {text: 'Oxygen Saturation',  value: 'ABGs6'}
                                            ],
 
                                         style:{
@@ -279,7 +279,7 @@ Ext.define('MVF.view.absview', {
                                      {
                                          xtype:'image',
                                          itemid:'absedittableicon',
-                                        
+                                         id:'absedittableicon',
                                          src:'resources/images/edit.png',
                                          height:'20px',
                                          width:'25px',

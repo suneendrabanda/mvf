@@ -91,10 +91,33 @@ Ext.define('MVF.view.microbiologyview', {
                                         'fontFamily':'openSansLight'
                                     }
                                 },
+                                {
+                                    xtype:'image',
+                                    itemid:'MBalerticon',
+                                    src:'resources/images/buttons.png',
+                                    height:'20px',
+                                    width:'15px',
+                                    style:{
+                                              'margin-left':'10px',
+                                               'margin-top':'33px'
+                                           }
+
+                                },
+                                {
+                                      xtype:'panel',
+                                      html:'(0)',
+                                      itemid:'MBAlertsCount',
+                                       style:{
+                                                'margin-left':'5px',
+                                                'margin-top': '35px',
+                                                'font-size': 'small',
+                                                'color':'red'
+                                                }
+                                  },
 
                                  {
                                         xtype: 'selectfield',
-                                        width:'120px',
+                                        width:'200px',
                                         border:'1 1 1 1',
                                         itemid:'pageid',
                                         
@@ -106,7 +129,7 @@ Ext.define('MVF.view.microbiologyview', {
                                         ],
 
                                         style:{
-                                            'margin-left':'50%',
+                                            'margin-left':'44%',
                                             'margin-top':'2%',
                                             'fontFamily':'openSansRegular',
                                             'font-size':'small'
@@ -120,7 +143,7 @@ Ext.define('MVF.view.microbiologyview', {
                                     width:'170px',
                                     height:'30px',
                                     style:{
-                                       'margin-left':'8%',
+                                       'margin-left':'2%',
                                        'margin-top':'2%',
                                        'font-size':'12px'
                                     }

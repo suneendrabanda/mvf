@@ -1,6 +1,6 @@
 <?php
 include('connect.php');
-$MBvalueselected = $_GET['MBvalue']; // 'pH';//
+$MBvalueselected =  $_GET['MBvalue']; //'pH';//
 $startdate=$_GET['startdate']; //'2013-01-11';//
 $enddate=$_GET['enddate'];  //'2014-01-13';//
 $arr = array();
@@ -13,20 +13,54 @@ $result=mysqli_query($con,"select distinct pr.Person_ID, p.Patient_ID,  tc.Test_
                             join Patient p on pv.Patient_ID = p.Patient_ID
                             join Person pr on p.Person_ID = pr.Person_ID
                             where p.Patient_ID = 'P1013' and tc.Tst_Cat_ID = 'TCAT103' and pe.date BETWEEN  '$formatted_start_date' and '$formatted_end_date' and tic.item_name='$MBvalueselected'");
- while($row = mysqli_fetch_array($result)) {
+$NO_OF_ROWS_FETCH=mysqli_num_rows($result);
+if($NO_OF_ROWS_FETCH>0){
+    while($row = mysqli_fetch_array($result)) {
         $MBlabresult=$row['result'];
         $time=$row['time'];
         $min=$row['Min_Range'];
         $max=$row['Max_Range'];
         $exact=$row['Exact_Range'];
+        $Resultdate=date("m/d",strtotime($row['date']));
         if(is_numeric($MBlabresult)){
-            //echo 'result numeric';
-            array_push($arr, array('microbiologyname'=> $MBlabresult, 'time' =>$time, 'minimunvalue'=>$min, 'maximumvalue'=>$max ,'date'=>$row['date']));
+            if(!$exact){
+                array_push($arr, array('result'=>$MBlabresult,'exact'=>'null','min'=>$min,'max'=>$max,'date'=>$Resultdate,'time'=>$time));
+            }
+            else{
+                array_push($arr, array('result'=>$MBlabresult,'exact'=>$exact,'min'=>'null','max'=>'null','date'=>$Resultdate,'time'=>$time));
+            }
         }
         else{
             $MBlabresult='0';
-            array_push($arr, array('microbiologyname'=> $MBlabresult, 'time' =>$time, 'minimunvalue'=>$min, 'maximumvalue'=>$max ,'date'=>$row['date']));
+            array_push($arr, array('result'=> $MBlabresult, 'exact'=>$exact,'min'=>$min, 'max'=>$max ,'date'=>$Resultdate,'time'=>$time));
         }
     }
+    // to display min and max range in chart
+    if($formatted_start_date==$formatted_end_date){
+        $start_date=date("m/d",strtotime($formatted_start_date));
+        $end_date=date("m/d",strtotime($formatted_start_date+7));
+        if(!$exact){
+            array_push($arr, array('result'=>'null','exact'=>'null','min'=>$min,'max'=>$max,'date'=>$start_date,'time'=>$time));
+            array_push($arr, array('result'=>'null','exact'=>'null','min'=>$min,'max'=>$max,'date'=>$end_date,'time'=>$time));
+        }
+        else{
+            array_push($arr, array('result'=>'null','exact'=>$exact,'min'=>'null','max'=>'null','date'=>$start_date,'time'=>$time));
+            array_push($arr, array('result'=>'null','exact'=>$exact,'min'=>'null','max'=>'null','date'=>$end_date,'time'=>$time));
+        }
+    }
+    else{
+        $start_date=date("m/d",strtotime($formatted_start_date));
+        $end_date=date("m/d",strtotime($formatted_end_date));
+        if(!$exact){
+            array_push($arr, array('result'=>'null','exact'=>'null','min'=>$min,'max'=>$max,'date'=>$start_date,'time'=>$time));
+            array_push($arr, array('result'=>'null','exact'=>'null','min'=>$min,'max'=>$max,'date'=>$end_date,'time'=>$time));
+        }
+        else{
+            array_push($arr, array('result'=>'null','exact'=>$exact,'min'=>'null','max'=>'null','date'=>$start_date,'time'=>$time));
+            array_push($arr, array('result'=>'null','exact'=>$exact,'min'=>'null','max'=>'null','date'=>$end_date,'time'=>$time));
+        }
+    }
+}
+ 
    
     echo json_encode($arr);

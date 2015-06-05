@@ -26,17 +26,9 @@ Ext.define("MVF.view.MicrobiologyChartView", {
         series: [
             {
                 type: "line",
-                xField: "time",
-                yField: "microbiologyname",
+                xField: "date",
+                yField: "result",
                 title: "lab chart",
-                tips:{
-                    trackmouse:true,
-                    width:40,
-                    height:30,
-                    renderer: function(storeItem,item){
-                        this.setTitle(storeItem.get('time')+'<br>'+storeItem.get('vital'));
-                    }
-                },
                 style: {
                     stroke: "#DFD9CF",
                     lineWidth: 1.5
@@ -48,6 +40,39 @@ Ext.define("MVF.view.MicrobiologyChartView", {
                     radius: 3,
                     lineWidth: 2
                 }
+            },
+            {
+                type: "line",
+                xField: "date",
+                yField: "min",
+                title: "lab chart",
+                 style: {
+                    stroke: "#59A3DB",
+                    lineWidth: 1.5
+                }
+             
+            },
+            {
+                type: "line",
+                xField: "date",
+                yField: "max",
+                title: "lab chart",
+                 style: {
+                    stroke: "#59A3DB",
+                    lineWidth: 1.5
+                }
+               
+            },
+            {
+                type: "line",
+                xField: "date",
+                yField: "exact",
+                title: "lab chart",
+                 style: {
+                    stroke: "#59A3DB",
+                    lineWidth: 1.5
+                }
+               
             }
             
             
@@ -60,11 +85,9 @@ Ext.define("MVF.view.MicrobiologyChartView", {
         axes: [
             {
                 type: "numeric",
-                //mininum:'40',
                 position: "left",
                 title: {
                     fontSize: 15
-                   // text: "vital"   Y axis 
                 },
                 style:{
                     stroke:"#655c59"

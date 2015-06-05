@@ -323,11 +323,13 @@ Ext.define("MVF.controller.MainController", {
         var pagename=Ext.ComponentQuery.query('[itemid=pageid]')[0].getValue();
         console.log(pagename);
          this.getMain().push({
-          xtype:pagename,
+          xtype:pagename
+          });
+          if(pagename==='hematology'){
+              this.getApplication().getController('hematologyController').CountNO_OFAlerts();
+          }
           
-      });
-      
-   },
+    },
    editintakefunction:function(){
       // console.log('in function');
       var overlay = Ext.Viewport.add({

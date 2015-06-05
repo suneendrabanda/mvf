@@ -55,27 +55,33 @@ Ext.define("MVF.controller.hematologyController", {
                          var No_Of_ResultsFetch=store.getCount();
                          console.log('no od results fetch'+No_Of_ResultsFetch);
                          //console.log(records[0].data.result+'working');
-                         if(success){
-                             for(var p=0;p<No_Of_ResultsFetch;p++){
-                                 console.log('in for loop '+p);
-                             if(records[p].data.result > records[p].data.max || records[p].data.result<records[p].data.min){
+                         if(No_Of_ResultsFetch>0){
+                             console.log('In Success if condition');
+                             for(var p=0;p<No_Of_ResultsFetch;p++){ 
+                                 //console.log('in for loop '+p);
+                             if(records[p].data.result!=='null' ){
                                  console.log('in if loop');
                                  ChartAlertCount++;
                                 if(records[p].data.result > records[p].data.max){
                                      console.log('in high if loop '+records[p].data.result+' '+records[p].data.max);
                                     AlertText+=records[p].data.date+'<br>'+'<p style="color:#ff0000">High '+hematologyvalue+' Count</p> <br>';
                                 }
-                                else{
+                                else if(records[p].data.result < records[p].data.min){
                                     console.log('in low if loop'+records[p].data.result);
                                     AlertText+=records[p].data.date+'<br>'+'<p style="color:#ff0000">Low '+hematologyvalue+' Count</p> <br>';
                                 }
                              }
                          }
-                          console.log(ChartAlertCount);
-                        console.log(AlertText);
-                       HematologyChartAlertCount.setHtml('Alerts ('+ChartAlertCount+')'); 
-                       HematologyAlertDates.setHtml(AlertText);
-                         } 
+                            console.log(ChartAlertCount);
+                            //console.log(AlertText);
+                            HematologyChartAlertCount.setHtml('Alerts ('+ChartAlertCount+')'); 
+                            HematologyAlertDates.setHtml(AlertText);
+                        } 
+                         else{
+                             alert('There are no records between these days');
+                             HematologyChartAlertCount.setHtml('Alerts ('+ChartAlertCount+')'); 
+                             HematologyAlertDates.setHtml(AlertText);
+                         }
                      }
                          
                      });
@@ -168,7 +174,7 @@ Ext.define("MVF.controller.hematologyController", {
                 // When you tap on the button, we want to show the overlay by the button we just tapped.
                 overlay.showBy(button);
                 
-		console.log('yes button editHematologyValuesfunction');
+		//console.log('yes button editHematologyValuesfunction');
             }
         });
    },

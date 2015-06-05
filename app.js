@@ -82,7 +82,8 @@ Ext.application({
         "HematologyAlertStore",
         "MicrobiologyResultUpdateStore",
         "HematologyTableStore",
-        "MicrobiologyTableStore"
+        "MicrobiologyTableStore",
+        "ABSResultUpdateStore"
 ],
 controllers: [
 	'MainController',

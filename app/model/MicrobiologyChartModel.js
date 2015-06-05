@@ -2,11 +2,12 @@ Ext.define("MVF.model.MicrobiologyChartModel", {
     extend: "Ext.data.Model",
     config: {
         fields: [
-            { name: "microbiologyname", type: "string" },
-            { name: "time", type: "string" },
-            { name: "minimunvalue", type: "string" },
-            { name: "maximumvalue", type: "string" },
-            { name: "date", type: "srting" }
-        ]
+            { name: "result", type: "string" },
+            { name: "exact", type: "string" },
+            { name: "min", type: "string" },
+            { name: "max", type: "string" },
+            { name: "date", type: "srting" },
+            { name: "time", type: "string" }
+         ]
     }
 });

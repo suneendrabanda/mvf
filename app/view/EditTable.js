@@ -30,11 +30,8 @@ Ext.define('MVF.view.EditTable', {
                                      },
                                      {
                                          xtype:'selectfield',
-                                        // label:'Select Time',
                                          itemid:'edittimevalue',
-                                         //id:'edittimevalue',
-                                         options: [
-                                                   
+                                          options: [
                                                    {text: '0100',  value: '0100'},
                                                    {text: '0200',  value: '0200'},
                                                    {text: '0300',  value: '0300'},

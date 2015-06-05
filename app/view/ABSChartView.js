@@ -27,16 +27,8 @@ Ext.define("MVF.view.abschartview", {
             {
                 type: "line",
                 xField: "time",
-                yField: "absvalue",
+                yField: "result",
                 title: "lab chart",
-                tips:{
-                    trackmouse:true,
-                    width:40,
-                    height:30,
-                    renderer: function(storeItem,item){
-                        this.setTitle(storeItem.get('time')+'<br>'+storeItem.get('vital'));
-                    }
-                },
                 style: {
                     stroke: "#DFD9CF",
                     lineWidth: 1.5
@@ -48,7 +40,55 @@ Ext.define("MVF.view.abschartview", {
                     radius: 3,
                     lineWidth: 2
                 }
-            }
+            },
+            {
+                type: "line",
+                xField: "time",
+                yField: "minimunvalue",
+                title: "lab chart",
+                 style: {
+                    stroke: "#59A3DB",
+                    lineWidth: 1.5
+                },
+               marker: {
+                    type: "",
+                    stroke: "#AC9C65",
+                    radius: 3,
+                    lineWidth: 2
+                }
+            },
+            {
+                type: "line",
+                xField: "time",
+                yField: "maximumvalue",
+                title: "lab chart",
+                 style: {
+                    stroke: "#59A3DB",
+                    lineWidth: 1.5
+                },
+               marker: {
+                    type: "",
+                    stroke: "#AC9C65",
+                    radius: 3,
+                    lineWidth: 2
+                }
+            },
+            {
+                type: "line",
+                xField: "time",
+                yField: "exact",
+                title: "lab chart",
+                 style: {
+                    stroke: "#59A3DB",
+                    lineWidth: 1.5
+                },
+               marker: {
+                    type: "",
+                    stroke: "#AC9C65",
+                    radius: 3,
+                    lineWidth: 2
+                }
+            },
             
             
             
