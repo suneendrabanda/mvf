@@ -1,9 +1,9 @@
 <?php
 include('connect.php');
-$testname=$_GET['MBEditValue'];
-$date=$_GET['date'];
-$time=$_GET['time'];
-$result=$_GET['result'];
+$testname=$_GET['MBEditValue'];//'pH';//
+$date=$_GET['date'];//'2014-04-03';//
+$time=$_GET['time'];//'0100';//
+$result=$_GET['result'];//'6.0';//
 $formatted_date=  date("Y-m-d",strtotime($date));
 $flag=0; // to check if records already exist in the table or not
 $arr=array();
@@ -15,9 +15,10 @@ while($patient_visit_row = mysqli_fetch_array($patient_visit_result) ){
     $visit_date=$patient_visit_row['Date'];
 }
 //Get Item_desc from test_item_cat table
-$Item_desc_results=mysqli_query($con,"select * from test_item_cat where item_name='$testname' ");
+$Item_desc_results=mysqli_query($con,"select * from test_item_cat where item_name='$testname' and Tst_Cat_ID='TCAT103' ");
 while($Item_desc_row=  mysqli_fetch_array($Item_desc_results)){
     $testname=$Item_desc_row['Item_desc'];
+    //echo $testname;
 }
 // check if patient is discharged or not, if discharged execute else loop if not execute if loop
 if(!$discharge_date){
@@ -32,15 +33,17 @@ if(!$discharge_date){
       if($flag==1){
         $query="update patient_exam set result='$result' where Item_desc='$testname' and visit_id='$visit_id' and date='$formatted_date' and time='$time'";
         $updateresult=  mysqli_query($con, $query);
+        $info="result Updated in update";
         //echo 'update query executed';
     }
     else{
          $query="insert into patient_exam (visit_id,Tst_Cat_ID,Item_desc,date,time,result) "
                                 . "values('$visit_id','TCAT103','$testname','$formatted_date','$time','$result')";
          $updateresult=  mysqli_query($con, $query);
-         //echo 'insert query executed';
+        // echo 'insert query executed';
+         $info="result Updated";
     }
-   $info="result Updated";
+   
    array_push($arr, array('information'=>$info)); 
 }
 else{

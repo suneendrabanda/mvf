@@ -608,15 +608,15 @@ Ext.define('MVF.view.Main', {
                                                 id:'vitaltablepanel',
                                                 name:'vitaltablepanel',
                                                 html:'<table>'+'<tr style="border-bottom:1px solid #a5a399">'+
-                                       '<td style=" padding:0 0px 0 0px">'+'Date'+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+'Time'+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+'BP'+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+'Temperature'+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+'Pulse'+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+'Resperation'+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+'SaO2'+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+'Pain'+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+'Weight'+'</td>'+'</tr>',
+                                                        '<td style=" padding:0 0px 0 0px">'+'Date'+'</td>'+
+                                                        '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+'Time'+'</td>'+
+                                                        '<td style=" padding:0 30px 0 15px">'+'BP'+'</td>'+
+                                                        '<td style=" padding:0 30px 0 15px">'+'Temperature'+'</td>'+
+                                                        '<td style=" padding:0 30px 0 15px">'+'Pulse'+'</td>'+
+                                                        '<td style=" padding:0 30px 0 15px">'+'Resperation'+'</td>'+
+                                                        '<td style=" padding:0 30px 0 15px">'+'SaO2'+'</td>'+
+                                                        '<td style=" padding:0 30px 0 15px">'+'Pain'+'</td>'+
+                                                        '<td style=" padding:0 30px 0 15px">'+'Weight'+'</td>'+'</tr>',
                                                  style:{
                                                         'margin-left':'28px',
                                                         'margin-top':'20px',

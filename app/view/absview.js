@@ -564,13 +564,22 @@ Ext.define('MVF.view.absview', {
                                                     xtype:'container',
                                                     width:'580px',
                                                     height:'300px',
-                                                    layout:'hbox',
+                                                    layout:'vbox',
                                                     scrollable: {
-                                                                direction: 'horizontal',
+                                                                direction: 'both',
                                                                 directionLock: true
                                                             },
                                                             items:[
                                                                 //table goes here
+                                                                {
+                                                                    xtype:'panel',
+                                                                    itemid:'ABSTablePanel',
+                                                                    style:{
+                                                                        'fontFamily':'openSansRegular',
+                                                                        'font-size':'small',
+                                                                        'margin-left':'20px'
+                                                                    }
+                                                                }
                                                             ]
                                                 }
                                                     ]    

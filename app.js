@@ -58,7 +58,8 @@ Ext.application({
        "ResultUpdateModel",
        "HematologyAlertModel",
        "HematologyTableModel",
-       "MicrobiologyTableModel"
+       "MicrobiologyTableModel",
+       "ABSTableModel"
 ],
     stores:[
 	'linechart',
@@ -83,7 +84,8 @@ Ext.application({
         "MicrobiologyResultUpdateStore",
         "HematologyTableStore",
         "MicrobiologyTableStore",
-        "ABSResultUpdateStore"
+        "ABSResultUpdateStore",
+        "ABSTableStore"
 ],
 controllers: [
 	'MainController',

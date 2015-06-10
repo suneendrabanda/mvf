@@ -1,11 +1,15 @@
 <?php
-   ini_set('memory_limit','1024M');
+ini_set('memory_limit','1024M');
 include('connect.php');
-$shiftselected='night';
-$startdate='2013-01-12';
-$enddate='2013-01-14';
+$shiftselected=$_GET['shift'];//'night';
+$startdate=date('Y-m-d',strtotime($_GET['startdate']));//'2013-01-12';
+$enddate=date('Y-m-d',strtotime($_GET['enddate']));//'2013-01-14';
+
+//echo $shiftselected.'<br>';
+//echo $startdate.'<br>';
+//echo $enddate.'<br>';
 $date_diff= floor((strtotime($enddate)-  strtotime($startdate))/(60*60*24))+1;
-echo 'date difference '.$date_diff.'<br>';
+//echo 'date difference '.$date_diff.'<br>';
 $arr=array();$value=array();$time=array();$date=array();$item_name=array();$final=array();
 $lab_name=array('BE','HCO3','Oxygen Saturation','PaCO2','Pao2','pH');
 if($shiftselected=='day'){
@@ -26,19 +30,19 @@ if($shiftselected=='day'){
                             where p.Patient_ID = 'P1013' and tc.Tst_Cat_ID = 'TCAT104' and pe.date BETWEEN  '$startdate' and '$enddate'  order by pe.date,pe.time,tic.item_name");
   $i=0;
   while($row = mysqli_fetch_array($result)) {
-  $item_name[$i]=$row['item_name'];
+      $item_name[$i]=$row['item_name'];
       $value[$i]=$row['result'];
       $time[$i]=$row['time'];
       $date[$i]=$row['date'];
-      echo $item_name[$i].'  '.$value[$i].'  '.$time[$i].'  '.$date[$i].'<br>';
+      //echo $item_name[$i].'  '.$value[$i].'  '.$time[$i].'  '.$date[$i].'<br>';
       $i++;
   }
-  echo sizeof($date).'<br>';
+  //echo sizeof($date).'<br>';
   $r=0;//for result array's
   $v=0;// variable for final array to increament
   $timevalue=0;// variable for time 
   for($i=0;$i<$date_diff;$i++){//loop tp repeat dates
-      echo $startdate.'<br>';
+      //echo $startdate.'<br>';
       while($timevalue<8){
           for($v=0;$v<9;$v++){//loop to repeat time based on shift 
             if($v==0){
@@ -46,25 +50,25 @@ if($shiftselected=='day'){
             }
             elseif ($v==1) {
                 $final[$v]=$shift[$timevalue];
-                echo 'time entered '.$shift[$timevalue].'<br>';
+                //echo 'time entered '.$shift[$timevalue].'<br>';
              }
             else{
                 if($r<sizeof($date) && $date[$r]==$startdate && $time[$r]==$shift[$timevalue]){
-                    echo ' r value in if == '.$r.'<br>';
+                    //echo ' r value in if == '.$r.'<br>';
                     if($item_name[$r]==$lab_name[$v-2]){
                         $final[$v]=$value[$r];
-                        echo 'value entered <br>';
+                        //echo 'value entered <br>';
                         $r++;
                     }
                     else{
                          $final[$v]='-';
-                         echo 'entered - in if loop';
+                         //echo 'entered - in if loop';
                     }
                     
                 }
                 else{
                     $final[$v]='-';
-                    echo ' - entered <br>';
+                    //echo ' - entered <br>';
                 }
             }
           }

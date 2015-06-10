@@ -3,7 +3,8 @@ Ext.define("MVF.controller.ABSLabController", {
     config: {
         refs:{
             OnViewClick:'[itemid=absviewbuttonid]',
-            ABSUpdateButton:'[itemid=AbsUpdateButton]'
+            ABSUpdateButton:'[itemid=AbsUpdateButton]',
+            ABSTablePanel:'[itemid=ABSTablePanel]'
         },
         control:{
             OnViewClick:{
@@ -45,7 +46,22 @@ Ext.define("MVF.controller.ABSLabController", {
                     console.log(result);
                     console.log(time);
                     console.log(min); console.log(max);console.log(date);
-                    
+                    }
+                   
+            }
+        });
+        var tableStore=Ext.getStore('ABSTableStore');
+        tableStore.load({
+            
+            params:{
+                startdate:AbsStartDate,
+                enddate:AbsEndDate,
+                shift:ShiftValue
+            },
+            scope:this,
+            callback:function(records,success){
+                if(success){
+                     this.DisplayTable(records,AbsStartDate,AbsEndDate);
                 }
             }
         });
@@ -178,5 +194,37 @@ Ext.define("MVF.controller.ABSLabController", {
                 
             }
         });
+    },
+    DisplayTable:function(records,AbsStartDate,AbsEndDate){
+        console.log('in aBS TABLE FUNTION');
+        Store=Ext.getStore('ABSTableStore');
+        var TablePanel=this.getABSTablePanel();
+        var Tablevalues='';
+        console.log(records[0].data.hco3);
+        Tablevalues+='<table>'+'<tr style="border-bottom:1px solid #a5a399">'+
+                        '<td style=" padding:0 0px 0 0px"> Date</td>'+
+                        '<td style=" padding:0 30px 0 40px;border-right:1px solid #a5a399"> Time</td>'+
+                        '<td style=" padding:0 30px 0 15px">'+ 'BE'+'</td>'+
+                        '<td style=" padding:0 30px 0 15px">'+'HCO3'+'</td>'+
+                        '<td style=" padding:0 30px 0 15px">'+'OS'+'</td>'+
+                        '<td style=" padding:0 30px 0 15px">'+'PaCO3'+'</td>'+
+                        '<td style=" padding:0 30px 0 15px">'+'PaO2'+'</td>'+
+                        '<td style=" padding:0 30px 0 15px">'+'pH'+'</td>'+'</tr>';
+       var No_Of_records=Store.getCount();
+       console.log(No_Of_records+' no of records');
+       for(var i=0;i<No_Of_records;i++){
+           Tablevalues+='<tr>'+
+                        '<td style=" padding:0 0px 0 0px">'+records[i].data.date+'</td>'+
+                        '<td style=" padding:0 30px 0 34px;border-right:1px solid #a5a399"> '+records[i].data.time+'</td>'+
+                        '<td style=" padding:0 30px 0 34px">'+ records[i].data.be+'</td>'+
+                        '<td style=" padding:0 30px 0 34px">'+records[i].data.hco3+'</td>'+
+                        '<td style=" padding:0 30px 0 34px">'+records[i].data.OS+'</td>'+
+                        '<td style=" padding:0 30px 0 34px">'+records[i].data.paco3+'</td>'+
+                        '<td style=" padding:0 30px 0 34px">'+records[i].data.pao2+'</td>'+
+                        '<td style=" padding:0 30px 0 34px">'+records[i].data.ph+'</td>'+'</tr>';
+       }
+       TablePanel.setHtml(Tablevalues);
+                
+                
     }
 });
