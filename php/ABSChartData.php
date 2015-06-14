@@ -1,6 +1,6 @@
 <?php
 include('connect.php');
-$absvalueselected = $_GET['absSelectedValue']; // 'ABGs4';//
+$absvalueselected = $_GET['absSelectedValue']; //'BE';//
 $startdate=$_GET['StartDate']; //'2013-01-11';//
 $enddate=$_GET['EndDate'];  //'2013-01-13';//
 $shift=$_GET['shiftvalue'];//'night';//
@@ -9,7 +9,12 @@ $arr = array();
 
 $formatted_start_date=  date("Y-m-d",strtotime($startdate));
 $formatted_end_date=  date("Y-m-d",strtotime($enddate));
-
+//Get Item_desc from test_item_cat table
+$item_desc=  mysqli_query($con, "select Item_desc from test_item_cat where Tst_Cat_ID='TCAT104' and item_name='$absvalueselected'");
+while($Item_desc_row = mysqli_fetch_array($item_desc)){
+    $absvalueselected = $Item_desc_row['Item_desc'];
+}
+//echo $absvalueselected;
 $result=mysqli_query($con,"select distinct pr.Person_ID, p.Patient_ID,  tc.Test_Category, tic.item_name, pe.result,pe.date,pe.time, tac.Min_Range, tac.Max_Range, tac.Exact_Range, tac.units from Patient_Exam pe join Patient_Visit pv on pe.Visit_ID = pv.Visit_ID
                             join Test_Cat tc on tc.Tst_Cat_ID = pe.Tst_Cat_ID
                             join Test_Item_Cat tic on pe.Item_desc = tic.Item_desc

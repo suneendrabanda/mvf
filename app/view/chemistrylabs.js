@@ -143,7 +143,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                     width:'170px',
                                     height:'30px',
                                     style:{
-                                       'margin-left':'8%',
+                                       'margin-left':'4%',
                                        'margin-top':'2%',
                                        'font-size':'12px'
                                     }
@@ -211,7 +211,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                           html:' start:',
                                          style:{
                                              'margin-top':'3%',
-                                             'margin-left':'14%',
+                                             'margin-left':'18%',
                                              'fontFamily':'openSansRegular',
                                             'font-size':'small'
                                          }
@@ -268,7 +268,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                      {
                                          xtype:'image',
                                          itemid:'chemistryedittableicon',
-                                        
+                                         id:'chemistryedittableicon',
                                          src:'resources/images/edit.png',
                                          height:'20px',
                                          width:'25px',
@@ -278,23 +278,9 @@ Ext.define('MVF.view.chemistrylabs', {
                                                 'margin-top':'3%'
                                             }
                                            
-                                     },
-                                     {
-                                         xtype:'image',
-                                         itemid:'chemistrychartzoomouticon',
-                                         src:'resources/images/zoomout.png',
-                                         height:'20px',
-                                         width:'25px',
-                                         style:{
-                                                    'margin-left':'5px',
-                                                    'margin-top':'3%'
-                                                }
-
-                                     },
-                                          
-                                      //end of content here to display above horizontal line
-                                    
-                                  ]
+                                     }
+                                        //end of content here to display above horizontal line
+                                    ]
                              },
                              {
                                  html:'<hr>',
@@ -340,7 +326,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                             },
                                             {
                                                 xtype:'panel',
-                                                html:'ALBUMIN',
+                                                html:'',
                                                 itemid:'viewingitem',
                                                 style:{
                                                     'margin-left':'40px',
@@ -460,7 +446,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                                     },
                                                                     {
                                                                         xtype:'label',
-                                                                        html:'AlBUMIN',
+                                                                        html:'',
                                                                         itemid:'chartviewingid',
                                                                         style:{
                                                                                  'margin-top': '3%',
@@ -470,23 +456,10 @@ Ext.define('MVF.view.chemistrylabs', {
                                                                                   'color': 'rgb(145, 86, 145)',
                                                                                   'font-size': 'medium'
                                                                                 }
-                                                                    },
+                                                                    }
                                                                  ]
                                                              },
-                                                        {
-                                                            xtype:'image',
-                                                            itemid:'chemistrychartedittableicon',
-
-                                                            src:'resources/images/edit.png',
-                                                            height:'20px',
-                                                            width:'25px',
-                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                               style:{
-                                                                   'margin-left':'100px',
-                                                                   'margin-top':'3%'
-                                                               }
-
-                                                        },
+                                                        
                                                         {
                                                             xtype:'image',
                                                             itemid:'chemistrychartzoomouticon',
@@ -495,7 +468,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                             width:'25px',
                                                               // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
                                                                style:{
-                                                                   'margin-left':'5px',
+                                                                   'margin-left':'130px',
                                                                    'margin-top':'3%'
                                                                }
 
@@ -576,57 +549,43 @@ Ext.define('MVF.view.chemistrylabs', {
                                                                 },
                                                                  ]
                                                              },
-                                                             
-                                                         {
-                                                            xtype:'image',
-                                                            itemid:'chemistrytableedittableicon',
-                                                            src:'resources/images/edit.png',
-                                                            height:'20px',
-                                                            width:'25px',
-                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                               style:{
-                                                                   'margin-left':'100px',
-                                                                   'margin-top':'3%'
-                                                               }
+                                                             {
+                                                                xtype:'image',
+                                                                itemid:'chemistrychartzoomouticon',
+                                                                src:'resources/images/zoomout.png',
+                                                                height:'20px',
+                                                                width:'25px',
+                                                                  // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                                                   style:{
+                                                                       'margin-left':'130px',
+                                                                       'margin-top':'3%'
+                                                                   }
 
-                                                        },
-                                                        {
-                                                            xtype:'image',
-                                                            itemid:'chemistrychartzoomouticon',
-                                                            src:'resources/images/zoomout.png',
-                                                            height:'20px',
-                                                            width:'25px',
-                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                               style:{
-                                                                   'margin-left':'5px',
-                                                                   'margin-top':'3%'
-                                                               }
-
-                                                        }
+                                                            }
                                                          ]
                                                      },//end of items above  hr in line chart
-                                                     {
-                                                    html:'<hr>',
-                                                       style:{
-                                                           'margin-left':'10px',
-                                                           'margin-right':'10px',
-                                                           'margin-top':''
+                                                            {
+                                                           html:'<hr>',
+                                                              style:{
+                                                                  'margin-left':'10px',
+                                                                  'margin-right':'10px',
+                                                                  'margin-top':''
+                                                              }
+                                                       },
+                                                       //table container
+                                                       {
+                                                           xtype:'container',
+                                                           width:'580px',
+                                                           height:'300px',
+                                                           layout:'hbox',
+                                                           scrollable: {
+                                                                       direction: 'both',
+                                                                       directionLock: true
+                                                                   },
+                                                                   items:[
+                                                                       //table goes here
+                                                                   ]
                                                        }
-                                                },
-                                                //table container
-                                                {
-                                                    xtype:'container',
-                                                    width:'580px',
-                                                    height:'300px',
-                                                    layout:'hbox',
-                                                    scrollable: {
-                                                                direction: 'both',
-                                                                directionLock: true
-                                                            },
-                                                            items:[
-                                                                //table goes here
-                                                            ]
-                                                }
                                                     ]    
                                              }
                                          ]

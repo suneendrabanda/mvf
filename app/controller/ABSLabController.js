@@ -196,13 +196,18 @@ Ext.define("MVF.controller.ABSLabController", {
         });
     },
     DisplayTable:function(records,AbsStartDate,AbsEndDate){
+        var AbsRangeStore = Ext.getStore('ABSDropDownStore');
+        var NO_of_AbsCount = AbsRangeStore.getCount();
+        console.log(NO_of_AbsCount);
         console.log('in aBS TABLE FUNTION');
         Store=Ext.getStore('ABSTableStore');
         var TablePanel=this.getABSTablePanel();
         var Tablevalues='';
         console.log(records[0].data.hco3);
+        //console.log(AbsRangeStore.getAt(0).get('text'));
+        //console.log(AbsRangeStore.getAt(0).get('min')+'  '+AbsRangeStore.getAt(0).get('max'));
         Tablevalues+='<table>'+'<tr style="border-bottom:1px solid #a5a399">'+
-                        '<td style=" padding:0 0px 0 0px"> Date</td>'+
+                        '<td style=" padding:0 0px 0 40px"> Date</td>'+
                         '<td style=" padding:0 30px 0 40px;border-right:1px solid #a5a399"> Time</td>'+
                         '<td style=" padding:0 30px 0 15px">'+ 'BE'+'</td>'+
                         '<td style=" padding:0 30px 0 15px">'+'HCO3'+'</td>'+
@@ -213,15 +218,46 @@ Ext.define("MVF.controller.ABSLabController", {
        var No_Of_records=Store.getCount();
        console.log(No_Of_records+' no of records');
        for(var i=0;i<No_Of_records;i++){
-           Tablevalues+='<tr>'+
-                        '<td style=" padding:0 0px 0 0px">'+records[i].data.date+'</td>'+
-                        '<td style=" padding:0 30px 0 34px;border-right:1px solid #a5a399"> '+records[i].data.time+'</td>'+
-                        '<td style=" padding:0 30px 0 34px">'+ records[i].data.be+'</td>'+
-                        '<td style=" padding:0 30px 0 34px">'+records[i].data.hco3+'</td>'+
-                        '<td style=" padding:0 30px 0 34px">'+records[i].data.OS+'</td>'+
-                        '<td style=" padding:0 30px 0 34px">'+records[i].data.paco3+'</td>'+
-                        '<td style=" padding:0 30px 0 34px">'+records[i].data.pao2+'</td>'+
-                        '<td style=" padding:0 30px 0 34px">'+records[i].data.ph+'</td>'+'</tr>';
+          Tablevalues+='<tr>'+
+                        '<td style=" padding:0 0px 5px 0px">'+records[i].data.date+'</td>'+
+                        '<td style=" padding:0 30px 0 34px;border-right:1px solid #a5a399"> '+records[i].data.time+'</td>';
+                if(records[i].data.be!=='-' && (records[i].data.be > AbsRangeStore.getAt(0).get('max') || records[i].data.be < AbsRangeStore.getAt(0).get('min')) ){
+                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.be+'</td>';
+                }
+                else{
+                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.be+'</td>';
+                }
+                if(records[i].data.hco3!=='-' && (records[i].data.hco3 > AbsRangeStore.getAt(1).get('max') || records[i].data.hco3 < AbsRangeStore.getAt(1).get('min')) ){
+                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.hco3+'</td>';
+                }
+                else{
+                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.hco3+'</td>';
+                }
+                if(records[i].data.OS!=='-' && (records[i].data.OS > AbsRangeStore.getAt(2).get('max') || records[i].data.OS < AbsRangeStore.getAt(2).get('min')) ){
+                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.OS+'</td>';
+                }
+                else{
+                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.OS+'</td>';
+                }
+                if(records[i].data.paco3!=='-' && (records[i].data.paco3 > AbsRangeStore.getAt(3).get('max') || records[i].data.paco3 < AbsRangeStore.getAt(3).get('min')) ){
+                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.paco3+'</td>';
+                }
+                else{
+                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.paco3+'</td>';
+                }
+                if(records[i].data.pao2!=='-' && (records[i].data.pao2 > AbsRangeStore.getAt(4).get('max') || records[i].data.pao2 < AbsRangeStore.getAt(4).get('min')) ){
+                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.pao2+'</td>';
+                }
+                else{
+                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.pao2+'</td>';
+                }
+                if(records[i].data.ph!=='-' && (records[i].data.ph > AbsRangeStore.getAt(5).get('max') || records[i].data.ph < AbsRangeStore.getAt(5).get('min')) ){
+                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.ph+'</td>'+'</tr>';
+                }
+                else{
+                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.ph+'</td>'+'</tr>';
+                }
+                        
        }
        TablePanel.setHtml(Tablevalues);
                 

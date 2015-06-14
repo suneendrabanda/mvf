@@ -2,10 +2,10 @@ Ext.define("MVF.model.chemistrychartmodel", {
     extend: "Ext.data.Model",
     config: {
         fields: [
-            { name: "chemistryname", type: "string" },
-            { name: "time", type: "string" },
-            { name: "minimunvalue", type: "string" },
-            { name: "maximumvalue", type: "string" },
+            { name: "result", type: "string" },
+            { name: "exact", type: "string" },
+            { name: "min", type: "string" },
+            { name: "max", type: "string" },
             { name: "date", type: "srting" }
         ]
     }

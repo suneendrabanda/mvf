@@ -59,7 +59,8 @@ Ext.application({
        "HematologyAlertModel",
        "HematologyTableModel",
        "MicrobiologyTableModel",
-       "ABSTableModel"
+       "ABSTableModel",
+       "ABSDropDownModel"
 ],
     stores:[
 	'linechart',
@@ -85,7 +86,9 @@ Ext.application({
         "HematologyTableStore",
         "MicrobiologyTableStore",
         "ABSResultUpdateStore",
-        "ABSTableStore"
+        "ABSTableStore",
+        "ABSDropDownStore",
+        "ChemistryResultsUpdateStore"
 ],
 controllers: [
 	'MainController',
@@ -119,7 +122,7 @@ controllers: [
         Ext.fly('appLoadingIndicator').destroy();
 
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('MVF.view.Main'));
+        Ext.Viewport.add(Ext.create('MVF.view.chemistrylabs'));
     },
 
     onUpdated: function() {

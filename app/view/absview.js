@@ -168,17 +168,11 @@ Ext.define('MVF.view.absview', {
                                       {
                                           xtype: 'selectfield',
                                           width:'140px',
-                                          //store: 'absdropdownstore',
+                                          store: 'ABSDropDownStore',
                                           itemid:'absdropdownvalueid',
                                            name:'absdropdownvalueid',
-                                           options: [
-                                                {text: 'pH',  value: 'ABGs1'},
-                                                {text: 'PaCO2',  value: 'ABGs2'},
-                                                {text: 'Pao2',  value: 'ABGs3'},
-                                                {text: 'HCO3',  value: 'ABGs4'},
-                                                {text: 'BE',  value: 'ABGs5'},
-                                                {text: 'Oxygen Saturation',  value: 'ABGs6'}
-                                           ],
+                                           valueField:'value',
+                                           displayField:'text',
 
                                         style:{
                                             'margin-top': '2.2%',
