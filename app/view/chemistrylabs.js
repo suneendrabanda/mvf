@@ -584,6 +584,15 @@ Ext.define('MVF.view.chemistrylabs', {
                                                                    },
                                                                    items:[
                                                                        //table goes here
+                                                                       {
+                                                                            xtype:'panel',
+                                                                            itemid:'ChemistryResultsTable',
+                                                                            style:{
+                                                                                'fontFamily':'openSansRegular',
+                                                                                'font-size':'small',
+                                                                                'margin-left':'20px'
+                                                                            }
+                                                                        }
                                                                    ]
                                                        }
                                                     ]    

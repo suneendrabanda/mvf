@@ -9,7 +9,8 @@ Ext.define("MVF.controller.ChemistryLabsController", {
             chemistryalertdatepanel:'[itemid=chealertdate]',
             chemistryalertinfo:'[itemid=chealertinfo]',
             chemistrylabsPageId:'[itemid=chemistrypageid]',
-            ChemistryUpdateButton:'[itemid=ChemistryUpdateButton]'
+            ChemistryUpdateButton:'[itemid=ChemistryUpdateButton]',
+            ChemistryTable:'[itemid=ChemistryResultsTable]'
         },
         control:{
             OnViewClick:{
@@ -51,29 +52,40 @@ Ext.define("MVF.controller.ChemistryLabsController", {
             console.log(enddatevalue);
             
             store.load({
-                params:{ chemistryvalue: chemistryvalue,
-                         startdate: startdatevalue,
-                         enddate: enddatevalue},
-                         scope:this,
-                callback:function(records,success){
-                    if(success){
-                    var values=records;
-                    var result=values[0].data.chemistryname;
-                    var time=values[0].data.time;
-                    var min=values[0].data.minimunvalue;
-                    var max=values[0].data.maximumvalue;
-                    var date=values[0].data.date;
-                    console.log(result);
-                    console.log(time);
-                    console.log(min); console.log(max);console.log(date);
-                    if(result>max){
-                        chemistryalertinfo.setHtml('High '+chemistryvalue+' count');
-                        chemistryalertdatepanel.setHtml(date);
-                    }
-                    //Ext.Msg.alert(vitalvalues);
-                }
-                }
+                        params:{ chemistryvalue: chemistryvalue,
+                                 startdate: startdatevalue,
+                                 enddate: enddatevalue},
+                                 scope:this,
+                        callback:function(records,success){
+                            if(success){
+                            var values=records;
+                            var result=values[0].data.chemistryname;
+                            var time=values[0].data.time;
+                            var min=values[0].data.minimunvalue;
+                            var max=values[0].data.maximumvalue;
+                            var date=values[0].data.date;
+                            console.log(result);
+                            console.log(time);
+                            console.log(min); console.log(max);console.log(date);
+                            if(result>max){
+                                chemistryalertinfo.setHtml('High '+chemistryvalue+' count');
+                                chemistryalertdatepanel.setHtml(date);
+                            }
+                            //Ext.Msg.alert(vitalvalues);
+                        }
+                        }
                    });
+                   var TableStore=  Ext.getStore('ChemistryTableStore');
+                    TableStore.load({
+                        params:{ 
+                                startdate: startdatevalue,
+                                enddate: enddatevalue},
+                               scope:this,
+                                callback:function(records){
+                                    var values=records;
+                                    this.DisplayChemistryResults(values,startdatevalue,enddatevalue);
+                                }
+                    });
     },
     EditChemistryValuesPopUp:function(){
         console.log('in EditChemistryValuesPopUp function');
@@ -199,5 +211,86 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                 
             }
         });
+    },
+    DisplayChemistryResults:function(values,startdate,enddate){
+        console.log('In chemistry results display table');
+        var ItemStore=Ext.getStore('chemistrydropdownstore');
+        var TableStore=Ext.getStore('ChemistryTableStore');
+        var No_of_Results_Fetch=TableStore.getCount();
+        //console.log('No_of_Results_Fetch = '+No_of_Results_Fetch);
+        var No_of_ChemistryItems=ItemStore.getCount();
+        //console.log(No_of_ChemistryItems);       
+        var TableValues='<table>';
+        var tablepanel=this.getChemistryTable();
+        var diff=Ext.Date.getElapsed(new Date(startdate),new Date(enddate));
+        var days=diff/(1000*60*60*24)+1;
+        var date_passed=startdate;
+        var for_date=startdate;
+        //console.log('difference between start date and end date '+days);
+        TableValues+='<tr style="border-bottom:1px solid #a5a399">'+
+                      '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Name</td>'+
+                      '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Average</td>';
+              for(var i=0;i<days;i++){
+                  nextdate=startdate;
+                  TableValues+='<td style=" padding:0 30px 0 15px">'+nextdate+'</td>';
+                  var startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
+                  
+              }
+              TableValues+='<td style=" padding:0 70px 0 15px;border-left:1px solid #a5a399">Range</td>'+'</tr>';
+        var value=0;
+      //var Alert_count_between_dates=0;
+        //var HematologyTableAlerts=this.getHematologyTableAlerts();
+       // console.log(' for_date ='+ for_date);
+        //console.log(' result date ='+values[value].data.date);
+            for(var j=0;j<No_of_ChemistryItems;j++){
+                  TableValues+='<tr>'+
+                                '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+ItemStore.getAt(j).get('text')+'</td>'+
+                                '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+ItemStore.getAt(j).get('range')+'</td>';
+                   for(var k=0;k<days;k++){
+                       //console.log(values[value].data.date+'IN for loop');
+                     if(value<No_of_Results_Fetch && values[value].data.Name ===ItemStore.getAt(j).get('text')){// check if the Hematology name equal or not
+                          // console.log(values[value].data.date+' name are equal IN for loop');
+                           
+                           if(for_date===values[value].data.date){// check for date equal or not
+                               //console.log('In date if loop'+for_date);
+                               if(ItemStore.getAt(j).get('exact')==='null'){
+                                   //console.log('excat = null if loop');
+                                    if(values[value].data.result<=ItemStore.getAt(j).get('max') && values[value].data.result>=ItemStore.getAt(j).get('min')){
+                                        TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
+                                        //console.log('result entered for normal range');
+                                    }
+                                    else{
+                                        TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;color:#ff0000">'+values[value].data.result+'</td>';
+                                       // Alert_count_between_dates++;
+                                        //console.log('result entered for outof range');
+                                    }
+                                }
+                                else{
+                                    TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
+                                    //console.log('result for if range exact not equal to null');
+                                }
+                               
+                               //console.log(values[value].data.Name+'result entered for '+ values[value].data.date );
+                               //console.log(value);
+                               value++;
+                            }
+                            else{
+                                    TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
+                                    //console.log('didnt find the result for date entered - in if');
+                            }
+                       }
+                       else{
+                               TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
+                              // console.log('didnt find the result for date entered - ');
+                      }
+                       
+                       for_date=Ext.Date.format(Ext.Date.add(new Date(for_date),Ext.Date.DAY,1),'m/d/Y');
+                       //console.log('incremented for date '+for_date);
+                   }
+                   TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;border-left:1px solid #a5a399">'+ItemStore.getAt(j).get('range')+'</td>'+'</tr>';
+                   for_date=date_passed;
+              }
+              tablepanel.setHtml(TableValues);
+             // HematologyTableAlerts.setHtml('Alerts ('+Alert_count_between_dates+')');
     }
     });

@@ -88,7 +88,8 @@ Ext.application({
         "ABSResultUpdateStore",
         "ABSTableStore",
         "ABSDropDownStore",
-        "ChemistryResultsUpdateStore"
+        "ChemistryResultsUpdateStore",
+        "ChemistryTableStore"
 ],
 controllers: [
 	'MainController',
