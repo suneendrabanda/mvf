@@ -35,7 +35,15 @@ while($row = mysqli_fetch_array($result)){
             array_push($arr, array('text'=>$row['item_name'],'value'=>$row['item_name'],'range'=>$min. ' - '.$max,'min'=>$min,'max'=>$max,'exact'=>'null' ));
         }
         else{
-            array_push($arr, array('text'=>$row['item_name'],'value'=>$row['item_name'],'range'=>$exact,'min'=>$min,'max'=>$max,'exact'=>$exact ) );
+            $first_CharIn_Exact=  substr($exact, 1, 1);
+            $exactValue=substr($exact, 2);
+            if($first_CharIn_Exact=='<'){
+               array_push($arr, array('text'=>$row['item_name'],'value'=>$row['item_name'],'range'=>$exact,'min'=>'null','max'=>$exactValue,'exact'=>'$exact' ) );
+            }
+            else{
+                array_push($arr, array('text'=>$row['item_name'],'value'=>$row['item_name'],'range'=>$exact,'min'=>$exactValue,'max'=>'null','exact'=>'$exact' ) );
+            }
+            
         }
     }
 }

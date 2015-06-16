@@ -348,26 +348,16 @@ Ext.define('MVF.view.chemistrylabs', {
                                             {
                                                 xtype:'panel',
                                                 html:'',
-                                                itemid:'chealertdate',
+                                                itemid:'chemistryalertinfo',
                                                 style:{
                                                     'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500'
+                                                     'margin-top': '12px',
+                                                     'font-size': 'initial',
+                                                     'font-weight': '500',
+                                                     'color':'#ff0000'
                                                 }
                                             },
-                                            {
-                                                xtype:'panel',
-                                                itemid:'chealertinfo',
-                                                html:'',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500',
-                                                        'color':'red'
-                                                }
-                                            },
+                                            
                                             {
                                                 xtype:'panel',
                                                 width:'300px',

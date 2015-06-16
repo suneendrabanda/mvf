@@ -116,25 +116,15 @@ Ext.define('MVF.view.microbiologyview', {
                                   },
 
                                  {
-                                        xtype: 'selectfield',
-                                        width:'200px',
-                                        border:'1 1 1 1',
-                                        itemid:'pageid',
-                                        
-                                        options: [
-                                            {text: 'MAIN',  value: 'main'},
-                                            {text: 'Chemistry',  value: 'chemistrylabs'},
-                                            {text: 'Microbiology',  value: 'microbiologyview'}
-                                            
-                                        ],
-
+                                        xtype: 'pageselect',
+                                        layout:'card',
                                         style:{
-                                            'margin-left':'44%',
-                                            'margin-top':'2%',
-                                            'fontFamily':'openSansRegular',
-                                            'font-size':'small'
+                                                'margin-left':'44%',
+                                                'margin-top':'2%',
+                                                'fontFamily':'openSansRegular',
+                                                'font-size':'small'
 
-                                        }
+                                            }
                                  },
                                  {
                                     xtype:'button',

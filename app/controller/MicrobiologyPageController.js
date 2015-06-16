@@ -163,20 +163,20 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
         var TableStore=Ext.getStore('MicrobiologyTableStore');
         var No_of_Results_Fetch=TableStore.getCount();
         var No_of_MBItems=ItemStore.getCount();
-        var TableValues='<table>';
+        var TableValues='<table class="fixed_headers"></thead>';
         var tablepanel=this.getMicrobiologyTable();
         var diff=Ext.Date.getElapsed(new Date(startdate),new Date(enddate));
         var days=diff/(1000*60*60*24)+1;
         var date_passed=startdate;
         var for_date=startdate;
         TableValues+='<tr style="border-bottom:1px solid #a5a399">'+
-                      '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Name</td>';
+                      '<th style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Name</th>';
               for(var i=0;i<days;i++){
                   nextdate=startdate;
-                  TableValues+='<td style=" padding:0 30px 0 15px">'+nextdate+'</td>';
+                  TableValues+='<th style=" padding:0 30px 0 15px">'+nextdate+'</th>';
                   var startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
                 }
-                TableValues+='<td style=" padding:0 30px 0 15px;border-left:1px solid #a5a399">Range</td>'+'</tr>';
+                TableValues+='<th style=" padding:0 30px 0 15px;border-left:1px solid #a5a399">Range</th>'+'</tr></thead><tbody>';
         var value=0;
         for(var j=0;j<No_of_MBItems;j++){
                   TableValues+='<tr>'+
@@ -208,6 +208,7 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
                    TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;border-left:1px solid #a5a399">'+ItemStore.getAt(j).get('range')+'</td>'+'</tr>';
                    for_date=date_passed;
               }
+              TableValues+='</tbody></table>';
               tablepanel.setHtml(TableValues);
                       
     }

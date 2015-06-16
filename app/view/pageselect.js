@@ -13,14 +13,8 @@ Ext.define('MVF.view.pageselect', {
                                             {text: 'Chemistry',  value: 'chemistrylabs'},
                                             {text: 'Microbiology',  value: 'microbiologyview'}
                                             
-                                        ],
-                                        style:{
-                                            'margin-left':'50%',
-                                            'margin-top':'2%',
-                                            'fontFamily':'openSansRegular',
-                                            'font-size':'small'
-
-                                        }
+                                        ]
+                                        
                                  }
         ]
     }

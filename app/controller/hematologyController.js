@@ -62,11 +62,11 @@ Ext.define("MVF.controller.hematologyController", {
                              if(records[p].data.result!=='null' ){
                                  console.log('in if loop');
                                  ChartAlertCount++;
-                                if(records[p].data.result > records[p].data.max){
+                                if(records[p].data.result>records[p].data.max){
                                      console.log('in high if loop '+records[p].data.result+' '+records[p].data.max);
                                     AlertText+=records[p].data.date+'<br>'+'<p style="color:#ff0000">High '+hematologyvalue+' Count</p> <br>';
                                 }
-                                else if(records[p].data.result < records[p].data.min){
+                                else if(records[p].data.result<records[p].data.min){
                                     console.log('in low if loop'+records[p].data.result);
                                     AlertText+=records[p].data.date+'<br>'+'<p style="color:#ff0000">Low '+hematologyvalue+' Count</p> <br>';
                                 }

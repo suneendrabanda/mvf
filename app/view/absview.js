@@ -1,6 +1,9 @@
 Ext.define('MVF.view.absview', {
     extend: 'Ext.navigation.View',
     xtype: 'absview',
+    requires : [
+	'Ext.ux.AccordionList'
+    ],
     
     config:{
         navigationBar:{
@@ -408,6 +411,9 @@ Ext.define('MVF.view.absview', {
                                             {// start of filter and add new button container hbox
                                                 xtype:'container',
                                                 layout:'hbox',
+                                                style:{
+                                                    'margin-top':'15px'
+                                                },
                                                 items:[
                                                     {
                                                         xtype:'selectfield',
@@ -440,6 +446,18 @@ Ext.define('MVF.view.absview', {
                                             },// start of filter and add new button container hbox
                                             {
                                                 html:'<hr>'
+                                            },
+                                            {
+                                                xtype:'accordionlist',
+                                                store: Ext.create('MVF.store.ABGNotesStore'),
+                                                flex: 1,
+                                                indent: true,
+                                                listeners: {
+                                                        initialize: function() {
+                                                            this.load();
+                                                        }
+                                                    }
+                                                
                                             }
                                             
                                         ]
