@@ -2,7 +2,6 @@ Ext.define("MVF.model.ABGNotesModel", {
     extend: "Ext.data.Model",
     xtype:"ABGNotesModel",
     config: {
-        id_property: "id",
         fields: [
             { name: 'text', type: 'string' }
 //            { name: "title", type: "string" },

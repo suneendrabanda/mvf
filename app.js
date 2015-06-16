@@ -100,7 +100,8 @@ controllers: [
         'ABSLabController',
         'hematologyController',
         'MicrobiologyPageController',
-        'IOPageController'
+        'IOPageController',
+        'LabsMainController'
 ],
 
     icon: {
@@ -126,7 +127,7 @@ controllers: [
         Ext.fly('appLoadingIndicator').destroy();
 
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('MVF.view.absview'));
+        Ext.Viewport.add(Ext.create('MVF.view.LabsMainView'));
     },
 
     onUpdated: function() {

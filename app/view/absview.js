@@ -452,6 +452,9 @@ Ext.define('MVF.view.absview', {
                                                 store: Ext.create('MVF.store.ABGNotesStore'),
                                                 flex: 1,
                                                 indent: true,
+                                                singleMode: true,
+                                                animation: true,
+                                                animationDuration: 500,
                                                 listeners: {
                                                         initialize: function() {
                                                             this.load();
@@ -459,7 +462,7 @@ Ext.define('MVF.view.absview', {
                                                     }
                                                 
                                             }
-                                            
+//                                            
                                         ]
                                         
                                      },
