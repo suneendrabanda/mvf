@@ -62,7 +62,8 @@ Ext.application({
        "MicrobiologyTableModel",
        "ABSTableModel",
        "ABSDropDownModel",
-       "ABGNotesModel"
+       "ABGNotesModel",
+       "LabsMainLabResultsModel"
 ],
     stores:[
 	'linechart',
@@ -92,7 +93,11 @@ Ext.application({
         "ABSDropDownStore",
         "ChemistryResultsUpdateStore",
         "ChemistryTableStore",
-        "ABGNotesStore"
+        "ABGNotesStore",
+        "LabsMainChemistryResultsStore",
+        "LabsMainHematologyResultsStore",
+        "LabsMainMicrobiologyResultsStore",
+        "LabsMainABGResultsStore"
 ],
 controllers: [
 	'MainController',

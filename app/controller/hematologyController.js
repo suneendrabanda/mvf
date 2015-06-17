@@ -2,6 +2,7 @@ Ext.define("MVF.controller.hematologyController", {
     extend: "Ext.app.Controller",
     config: {
         refs:{
+            hematology:'hematology',
             OnViewClick:'[itemid=hematologyviewbuttonid]',
             HematologyTable:'[itemid=HematologyResultsTable]',
             HematologyUpdateButton:'[itemid=HematologyUpdateButton]',
@@ -10,7 +11,8 @@ Ext.define("MVF.controller.hematologyController", {
             hematologyviewingitem:'[itemid=hematologyviewingitem]',
             HematologyTableAlerts:'[itemid=TablealertPanel]',
             HematologyChartAlertCount:'[itemid=hematologyChartAlertsCount]',
-            HematologyAlertDates:'[itemid=hematologyalertdate]'
+            HematologyAlertDates:'[itemid=hematologyalertdate]',
+            HematologyGoToPageDropDownSelect:'[itemid=hematologypageid]'
         },
         control:{
             OnViewClick:{
@@ -18,12 +20,22 @@ Ext.define("MVF.controller.hematologyController", {
             },
             HematologyUpdateButton:{
                 tap:'OnHematologyUpdateButtonTap'
+            },
+            HematologyGoToPageDropDownSelect:{
+                change:'HematologyGoToPageDropDownSelect'
             }
         }
     },
     init:function(){
         this.editHematologyValuesfunction();
         //this.CountNO_OFAlerts();
+    },
+    HematologyGoToPageDropDownSelect:function(){
+        var pagename=Ext.ComponentQuery.query('[itemid=hematologypageid]')[0].getValue();
+        console.log(pagename);
+         this.getHematology().push({
+          xtype:pagename
+      });
     },
     OnViewClickFunction:function(){
             var hematologyvalue=Ext.ComponentQuery.query('[itemid=hematologydropdownvalueid]')[0].getValue();

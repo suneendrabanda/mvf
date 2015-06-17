@@ -2,11 +2,13 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
     extend: "Ext.app.Controller",
     config: {
         refs:{
+            microbiologyview:'microbiologyview',
             OnViewClick:'[itemid=MicroBiologyviewbuttonid]',
             microbilogyviewpanel:'[itemid=mbviewingitem]',
             microbiologychartview:'[itemid=mbchartviewingid]',
             MicrobiologyUpdateButton:'[itemid=MicrobiologyUpdateButton]',
-            MicrobiologyTable:'[itemid=MBResultsTable]'
+            MicrobiologyTable:'[itemid=MBResultsTable]',
+            GoToPageDropDownSelect:'[itemid=MBlabsPageId]'
         },
         control:{
             OnViewClick:{
@@ -14,11 +16,21 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
             },
             MicrobiologyUpdateButton:{
                 tap:'MicrobiologyUpdateButtonFunction'
+            },
+            GoToPageDropDownSelect:{
+                change:'GoToPageDropDownSelect'
             }
         }
     },
     init:function(){
         this.MicroBiologyEditFunction();
+    },
+    GoToPageDropDownSelect:function(){
+        var pagename=Ext.ComponentQuery.query('[itemid=MBlabsPageId]')[0].getValue();
+        console.log(pagename);
+         this.getMicrobiologyview().push({
+          xtype:pagename
+      });
     },
     OnViewClickFunction:function(){
         var MBvalue=Ext.ComponentQuery.query('[itemid=mbdropdownvalueid]')[0].getValue();

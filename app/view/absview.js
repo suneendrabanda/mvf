@@ -98,13 +98,14 @@ Ext.define('MVF.view.absview', {
                                         xtype: 'selectfield',
                                         width:'120px',
                                         border:'1 1 1 1',
-                                        itemid:'pageid',
+                                        itemid:'Abgpageid',
                                         
                                         options: [
-                                            {text: 'MAIN',  value: 'main'},
+                                            {text: 'Aterial Blood Gas',  value: 'absview'},
+                                            {text: 'Labs-Main',  value: 'LabsMainView'},
                                             {text: 'Chemistry',  value: 'chemistrylabs'},
-                                            {text: 'Microbiology',  value: 'microbiologyview'}
-                                            
+                                            {text: 'Hematology',  value: 'hematology'},
+                                            {text: 'Microbiology',  value: 'microbiologyview'},
                                         ],
 
                                         style:{

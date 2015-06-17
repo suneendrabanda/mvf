@@ -123,8 +123,10 @@ Ext.define('MVF.view.chemistrylabs', {
                                         
                                         options: [
                                             {text: 'Chemistry',  value: 'chemistrylabs'},
-                                            {text: 'Main',  value: 'main'},
-                                            {text: 'Microbiology',  value: 'microbiologyview'}
+                                            {text: 'Labs-Main',  value: 'LabsMainView'},
+                                            {text: 'Hematology',  value: 'hematology'},
+                                            {text: 'Microbiology',  value: 'microbiologyview'},
+                                            {text: 'Aterial Blood Gas',  value: 'absview'},
                                             
                                         ],
 
@@ -352,7 +354,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                 style:{
                                                     'margin-left':'40px',
                                                      'margin-top': '12px',
-                                                     'font-size': 'initial',
+                                                     'font-size': '12px',
                                                      'font-weight': '500',
                                                      'color':'#ff0000'
                                                 }

@@ -2,9 +2,11 @@ Ext.define("MVF.controller.ABSLabController", {
     extend: "Ext.app.Controller",
     config: {
         refs:{
+            absview:'absview',
             OnViewClick:'[itemid=absviewbuttonid]',
             ABSUpdateButton:'[itemid=AbsUpdateButton]',
-            ABSTablePanel:'[itemid=ABSTablePanel]'
+            ABSTablePanel:'[itemid=ABSTablePanel]',
+            ABGGoToPageSelect:'[itemid=Abgpageid]'
         },
         control:{
             OnViewClick:{
@@ -12,11 +14,22 @@ Ext.define("MVF.controller.ABSLabController", {
             },
             ABSUpdateButton:{
                 tap:'OnABSUpdateButton'
+            },
+            ABGGoToPageSelect:{
+                change:'ABGGoToPageSelect'
             }
         }
     },
     init:function(){
         this.EditABSValuesPopUp();
+    },
+    ABGGoToPageSelect:function(){
+        var pagename=Ext.ComponentQuery.query('[itemid=Abgpageid]')[0].getValue();
+        console.log(pagename);
+        Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);  
+         this.getabsview().push({
+          xtype:pagename
+      });
     },
     OnViewClickFunction:function(){
         //alert('abs viewl click working');

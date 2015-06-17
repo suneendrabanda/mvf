@@ -116,8 +116,18 @@ Ext.define('MVF.view.microbiologyview', {
                                   },
 
                                  {
-                                        xtype: 'pageselect',
-                                        layout:'card',
+                                        xtype: 'selectfield',
+                                        width:'150px',
+                                        border:'1 1 1 1',
+                                        itemid:'MBlabsPageId',
+                                        id:'MBlabsPageId',
+                                        options: [
+                                                    {text: 'Microbiology',  value: 'microbiologyview'},
+                                                    {text: 'Labs-Main',  value: 'LabsMainView'},
+                                                    {text: 'Chemistry',  value: 'chemistrylabs'},
+                                                    {text: 'Hematology',  value: 'hematology'},
+                                                    {text: 'Aterial Blood Gas',  value: 'absview'},
+                                                 ],
                                         style:{
                                                 'margin-left':'44%',
                                                 'margin-top':'2%',

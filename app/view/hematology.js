@@ -118,13 +118,14 @@ Ext.define('MVF.view.hematology', {
                                         xtype: 'selectfield',
                                         width:'120px',
                                         border:'1 1 1 1',
-                                        itemid:'pageid',
+                                        itemid:'hematologypageid',
                                         
                                         options: [
-                                            {text: 'MAIN',  value: 'main'},
+                                            {text: 'Hematology',  value: 'hematology'},
+                                            {text: 'Labs-Main',  value: 'LabsMainView'},
                                             {text: 'Chemistry',  value: 'chemistrylabs'},
                                             {text: 'Microbiology',  value: 'microbiologyview'},
-                                            {text: 'hematology',  value: 'hematology'}
+                                            {text: 'Aterial Blood Gas',  value: 'absview'},
                                             
                                         ],
 
