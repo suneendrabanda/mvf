@@ -1,16 +1,17 @@
 <?php
 include('connect.php');
-$hematologyvalueselected =  $_GET['hematologyvalue']; //'PT';//
+$hematologyvalueselected =$_GET['hematologyvalue']; //'BANDS';//  
 $startdate=$_GET['startdate']; //'2013-01-12';//
-$enddate=$_GET['enddate'];  //'2013-01-12';//
+$enddate=$_GET['enddate'];  //'2013-01-14';//
 $arr = array();
 $formatted_start_date=  date("Y-m-d",strtotime($startdate));
 $formatted_end_date=  date("Y-m-d",strtotime($enddate));
-//Get Hematology desc from Item_test_Cat table
-$Item_desc_name=mysqli_query($con,"select * from test_item_cat where item_name='$hematologyvalueselected' and Tst_Cat_ID='TCAT101'");
-while($Item_desc_row = mysqli_fetch_array($Item_desc_name)){
-    $hematologyvalueselected=$Item_desc_row['Item_desc'];
-}
+////Get Hematology desc from Item_test_Cat table
+//$Item_desc_name=mysqli_query($con,"select * from test_item_cat where item_name='$hematologyvalueselected' and Tst_Cat_ID='TCAT101'");
+//while($Item_desc_row = mysqli_fetch_array($Item_desc_name)){
+//    $hematologyvalueselected=$Item_desc_row['Item_desc'];
+//    echo $hematologyvalueselected;
+//}
 
 
 $result=mysqli_query($con,"select distinct pr.Person_ID, p.Patient_ID,  tc.Test_Category, tic.item_name, pe.result,pe.date,pe.time, tac.Min_Range, tac.Max_Range, tac.Exact_Range, tac.units from Patient_Exam pe join Patient_Visit pv on pe.Visit_ID = pv.Visit_ID

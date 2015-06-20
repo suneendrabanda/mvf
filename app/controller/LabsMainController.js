@@ -38,7 +38,10 @@ Ext.define("MVF.controller.LabsMainController", {
             }
         }
     },
-    
+    init:function(){
+        //MVF.app.LabPageCount++;
+        console.log(MVF.app.LabPageCount+' Lab Page Count working');
+    },
     GoToChemistryPage:function(){
         this.getLabsMain().push({
                  xtype:'chemistrylabs'
@@ -59,12 +62,14 @@ Ext.define("MVF.controller.LabsMainController", {
               xtype:'absview'
         });
     },
-    DisplaMostRecentValues:function(){
+    DisplayChemistryResultsFunction:function(date){
         var ChemistryStore=Ext.getStore('LabsMainChemistryResultsStore');
         var ChemistryResultsPanel=this.getDisplayChemistryResults();
-        var ChemistryResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 120px 0 0">Last</th><th style="padding: 0 120px 0 0">Normal Range</th></tr></thead><tbody>';
+        var ChemistryResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 110px 0 0">Result</th><th style="padding: 0 80px 0 0">Time</th><th style="padding: 0 10px 0 0">Normal Range</th></tr></thead><tbody>';
         ChemistryStore.load({
-            params:{},
+            params:{
+                date:date
+            },
             scope:this,
             callback:function(records,success){
                 var No_Of_ResultsFetch=ChemistryStore.getCount();
@@ -74,30 +79,30 @@ Ext.define("MVF.controller.LabsMainController", {
                     for(var i=0;i<No_Of_ResultsFetch;i++){
                         if(records[i].data.exact==='null'){
                             if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
-                               ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                               ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
                                 //red
-                                ChemistryResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                                ChemistryResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                         }
                         else{
                             if(records[i].data.min==='null'){
                                 if(records[i].data.result<=records[i].data.max){
-                                    ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                                    ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                                 else{
                                     //red
-                                    ChemistryResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                                    ChemistryResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                             }
                          else if(records[i].data.max==='null'){
                              if(records[i].data.result>=records[i].data.min){
-                                    ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                                    ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                                 else{
                                     //red
-                                    ChemistryResults+='<tr style="color:#ff0000;padding: 10px 0 0 0><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                                    ChemistryResults+='<tr style="color:#ff0000;padding: 10px 0 0 0><td>'+records[i].data.name+'</td><td>'+records[i].data.result+records[i].data.time+'</td><td>'+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                          }   
                         }
@@ -112,17 +117,20 @@ Ext.define("MVF.controller.LabsMainController", {
     GoTOPageDropDownSelect:function(){
         var pagename=Ext.ComponentQuery.query('[itemid=labsPageId]')[0].getValue();
         console.log(pagename);
+        //Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
         this.getLabsMain().push({
           xtype:pagename
           });
           //this.getLabsMain().destroy();
     },
-    DisplayHemaotologyResultsFunction:function(){
+    DisplayHemaotologyResultsFunction:function(date){
         var HematologyStore=Ext.getStore('LabsMainHematologyResultsStore');
         var HematologyesultsPanel=this.getDisplayHematologyResults();
-        var HematologyResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 120px 0 0">Last</th><th style="padding: 0 120px 0 0">Normal Range</th></tr></thead><tbody>';
+        var HematologyResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 105px 0 0">Result</th><th style="padding: 0 80px 0 0">Time</th><th style="padding: 0 10px 0 0">Normal Range</th></tr></thead><tbody>';
         HematologyStore.load({
-            params:{},
+            params:{
+                date:date
+            },
             scope:this,
             callback:function(records,success){
                 var No_Of_Results=HematologyStore.getCount();
@@ -132,29 +140,31 @@ Ext.define("MVF.controller.LabsMainController", {
                     for(i=0;i<No_Of_Results;i++){
                         if(records[i].data.exact==='null'){
                             if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
-                                HematologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                                HematologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
-                                HematologyResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                                HematologyResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                         }
                         else{
-                            HematologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                            HematologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                         }
                     }
                     HematologyResults+='</tbody></table>';
                     HematologyesultsPanel.setHtml(HematologyResults);
-                    console.log(HematologyResults);
+                    //console.log(HematologyResults);
                 }
             }
         });
     },
-    DisplayMicrobiologyResultsFunction:function(){
+    DisplayMicrobiologyResultsFunction:function(date){
          var MicrobiologyStore=Ext.getStore('LabsMainMicrobiologyResultsStore');
         var MicrobiologyresultsPanel=this.getDisplayMicrobiologyResults();
-        var MicrobiologyResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 120px 0 0">Last</th><th style="padding: 0 120px 0 0">Normal Range</th></tr></thead><tbody>';
+        var MicrobiologyResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 110px 0 0">Result</th><th style="padding: 0 80px 0 0">Time</th><th style="padding: 0 10px 0 0">Normal Range</th></tr></thead><tbody>';
         MicrobiologyStore.load({
-            params:{},
+            params:{
+                date:date
+            },
             scope:this,
             callback:function(records,success){
                 var No_Of_Results=MicrobiologyStore.getCount();
@@ -164,29 +174,31 @@ Ext.define("MVF.controller.LabsMainController", {
                     for(i=0;i<No_Of_Results;i++){
                         if(records[i].data.exact==='null'){
                             if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
-                                MicrobiologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                                MicrobiologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
-                                MicrobiologyResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                                MicrobiologyResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                         }
                         else{
-                            MicrobiologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                            MicrobiologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                         }
                     }
                     MicrobiologyResults+='</tbody></table>';
                     MicrobiologyresultsPanel.setHtml(MicrobiologyResults);
-                    console.log(MicrobiologyResults);
+                   // console.log(MicrobiologyResults);
                 }
             }
         });
     },
-    DisplayABGResultsFunction:function(){
-         var ABGStore=Ext.getStore('LabsMainMicrobiologyResultsStore');
+    DisplayABGResultsFunction:function(date){
+         var ABGStore=Ext.getStore('LabsMainABGResultsStore');
         var ABGresultsPanel=this.getDisplayABGResults();
-        var ABGResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 120px 0 0">Last</th><th style="padding: 0 120px 0 0">Normal Range</th></tr></thead><tbody>';
+        var ABGResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 110px 0 0">Result</th><th style="padding: 0 80px 0 0">Time</th><th style="padding: 0 10px 0 0">Normal Range</th></tr></thead><tbody>';
         ABGStore.load({
-            params:{},
+            params:{
+                date:date
+            },
             scope:this,
             callback:function(records,success){
                 var No_Of_Results=ABGStore.getCount();
@@ -196,14 +208,14 @@ Ext.define("MVF.controller.LabsMainController", {
                     for(i=0;i<No_Of_Results;i++){
                         if(records[i].data.exact==='null'){
                             if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
-                                ABGResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                                ABGResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
-                                ABGResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                                ABGResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                         }
                         else{
-                            ABGResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                            ABGResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                         }
                     }
                     ABGResults+='</tbody></table>';
@@ -214,10 +226,12 @@ Ext.define("MVF.controller.LabsMainController", {
         });
     },
     OnLabsMainViewButtonTap:function(){
-        this.DisplaMostRecentValues();
-        this.DisplayHemaotologyResultsFunction();
-        this.DisplayMicrobiologyResultsFunction();
-        this.DisplayABGResultsFunction();
+        var date=Ext.ComponentQuery.query('[itemid=LabsMainDate]')[0].getFormattedValue();
+        console.log(date);
+        this.DisplayChemistryResultsFunction(date);
+        this.DisplayHemaotologyResultsFunction(date);
+        this.DisplayMicrobiologyResultsFunction(date);
+        this.DisplayABGResultsFunction(date);
     }
     
 });

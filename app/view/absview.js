@@ -448,21 +448,23 @@ Ext.define('MVF.view.absview', {
                                             {
                                                 html:'<hr>'
                                             },
-                                            {
-                                                xtype:'accordionlist',
-                                                store: Ext.create('MVF.store.ABGNotesStore'),
-                                                flex: 1,
-                                                indent: true,
-                                                singleMode: true,
-                                                animation: true,
-                                                animationDuration: 500,
-                                                listeners: {
-                                                        initialize: function() {
-                                                            this.load();
-                                                        }
-                                                    }
-                                                
-                                            }
+//                                            {
+//                                                xtype:'accordionlist',
+//                                                store: Ext.create('MVF.store.ABGNotesStore'),
+//                                                flex: 1,
+//                                                height:'20px',
+//                                                width:'40px',
+//                                                indent: true,
+//                                                singleMode: true,
+//                                                animation: true,
+//                                                animationDuration: 500,
+//                                                listeners: {
+//                                                        initialize: function() {
+//                                                            this.load();
+//                                                        }
+//                                                    }
+//                                                
+//                                            }
 //                                            
                                         ]
                                         

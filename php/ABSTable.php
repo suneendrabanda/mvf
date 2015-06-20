@@ -44,7 +44,7 @@ if($shiftselected=='day'){
   for($i=0;$i<$date_diff;$i++){//loop tp repeat dates
       //echo $startdate.'<br>';
       while($timevalue<8){
-          for($v=0;$v<9;$v++){//loop to repeat time based on shift 
+          for($v=0;$v<9;$v++){//loop to repeat time based on shift  to enter row values
             if($v==0){
                 $final[$v]=$startdate;// enter date 
             }

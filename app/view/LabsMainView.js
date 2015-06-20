@@ -958,7 +958,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                 itemid:'labshematologyresult',
                                                 style:{
                                                     'margin-left':'50px',
-                                                    'font-size':'13.5px'
+                                                    'font-size':'small'
                                                 }
                                             },
                                             {
@@ -978,7 +978,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                 itemid:'labschemistryresult',
                                                 style:{
                                                     'margin-left':'50px',
-                                                    'font-size':'13.5px'
+                                                    'font-size':'small'
                                                 }
                                             },
                                             {
@@ -998,7 +998,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                 itemid:'labsmicrobiologyresult',
                                                 style:{
                                                     'margin-left':'50px',
-                                                    'font-size':'13.5px'
+                                                    'font-size':'small'
                                                 }
                                             },
                                             {
@@ -1018,7 +1018,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                 itemid:'labsserologyresult',
                                                 style:{
                                                     'margin-left':'50px',
-                                                    'font-size':'13.5px'
+                                                    'font-size':'small'
                                                 }
                                             },
                                             {
@@ -1038,7 +1038,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                 itemid:'labsabgresult',
                                                 style:{
                                                     'margin-left':'50px',
-                                                    'font-size':'13.5px'
+                                                    'font-size':'small'
                                                 }
                                             }// end of display results
                                         ]

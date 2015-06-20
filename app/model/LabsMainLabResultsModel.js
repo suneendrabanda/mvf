@@ -7,7 +7,8 @@ Ext.define("MVF.model.LabsMainLabResultsModel", {
             { name: "min", type: "string" },
             { name: "max", type: "string" },
             { name: "exact", type: "string" },
-            { name: "range", type: "string" }
+            { name: "range", type: "string" },
+            { name: "time", type: "string" }
         ]
     }
 });

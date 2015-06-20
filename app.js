@@ -130,11 +130,11 @@ controllers: [
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
-
+        
         // Initialize the main view
         Ext.Viewport.add(Ext.create('MVF.view.LabsMainView'));
     },
-
+     'LabPageCount':'0',
     onUpdated: function() {
         Ext.Msg.confirm(
             "Application Update",
