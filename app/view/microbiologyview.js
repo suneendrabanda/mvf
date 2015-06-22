@@ -119,7 +119,7 @@ Ext.define('MVF.view.microbiologyview', {
                                         xtype: 'selectfield',
                                         width:'150px',
                                         border:'1 1 1 1',
-                                        itemid:'MBlabsPageId',
+                                        itemid:'MBlabsPageId',//MBlabsPageId
                                         id:'MBlabsPageId',
                                         options: [
                                                     {text: 'Microbiology',  value: 'microbiologyview'},

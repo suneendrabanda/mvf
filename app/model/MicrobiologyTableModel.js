@@ -5,6 +5,7 @@ Ext.define("MVF.model.MicrobiologyTableModel", {
             { name: "Name", type: "string" },
             { name: "result", type: "string" },
             { name: "date", type: "srting" },
+            { name: "time", type: "srting" },
             { name: "range", type: "srting" },
         ]
     }

@@ -78,6 +78,18 @@
         {
             "path": "resources/css/custom.css",
 	    "update": "delta"
+        },
+        {
+            "path": "resources/css/defaultTheme.css",
+	    "update": "delta"
+        },
+        {
+            "path": "resources/css/960.css",
+	    "update": "delta"
+        },
+        {
+            "path": "resources/css/myTheme.css",
+	    "update": "delta"
         }
     ],
 

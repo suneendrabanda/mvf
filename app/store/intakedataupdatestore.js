@@ -8,7 +8,7 @@
 Ext.define("MVF.store.intakedataupdatestore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.intakedataupdatemodel',
+         model: 'MVF.model.IOUpdateModel',
 	    storeId : 'intakedataupdatestore',
         proxy: {
             type: 'ajax',

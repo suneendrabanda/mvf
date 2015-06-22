@@ -126,7 +126,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                     {//  start of main container
                         xtype:'container',
                         width: '950px',
-                        height: '900px',
+                        height: '100%',
                         layout:'vbox',
                         scrollable: {
                                         direction: 'vertical',
@@ -490,6 +490,65 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                },  
                                                         items:[
                                                            //items for intake table 
+                                                           {
+                                                               xtype:'container',
+                                                               layout:'hbox',
+                                                               items:[
+                                                                   {
+                                                                       xtype:'label',
+                                                                       html:'Intake',
+                                                                       style:{
+                                                                                'margin-top': '10px',
+                                                                                'margin-left': '20px',
+                                                                                'font-weight': '900',
+                                                                                'color': 'rgb(145, 86, 145)',
+                                                                                'font-size': 'large'
+                                                                              }
+                                                                   },
+                                                                   {
+                                                                        xtype:'image',
+                                                                        itemid:'IOPageIntakeEditID',
+                                                                        id:'IOPageIntakeEditID',
+                                                                        src:'resources/images/edit.png',
+                                                                        height:'25px',
+                                                                        width:'45px',
+                                                                          // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                                                           style:{
+                                                                               'margin-left':'78%',
+                                                                               'margin-top':'2%'
+                                                                           }
+
+                                                                    },
+                                                               ]
+                                                           },
+                                                           {
+                                                               html:'<hr>',
+                                                               style:{
+                                                                   padding:'10px',
+                                                                   'margin-top':'-10px'
+                                                               }
+                                                           },
+                                                           {
+                                                               xtype:'container',
+                                                               width:'580px',
+                                                               height:'300px',
+                                                                //layout:'hbox',
+                                                               scrollable: {
+                                                                            direction: 'both',
+                                                                            directionLock: true
+                                                                        },
+                                                                items:[
+                                                                    {
+                                                                        xtype:'panel',
+                                                                        itemid:'IntakeTablePanel',
+                                                                        style:{
+                                                                                    'fontFamily':'openSansRegular',
+                                                                                    'font-size':'small',
+                                                                                     'margin-left':'20px'
+                                                                               }
+                                                                    }
+                                                                ] 
+                                                            }
                                                         ]
                                                  },// end of intake table
                                                  {//start of output table
@@ -509,6 +568,65 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                   },  
                                                         items:[
                                                            //items for output table 
+                                                           {
+                                                               xtype:'container',
+                                                               layout:'hbox',
+                                                               items:[
+                                                                   {
+                                                                       xtype:'label',
+                                                                       html:'Output',
+                                                                       style:{
+                                                                                'margin-top': '10px',
+                                                                                'margin-left': '20px',
+                                                                                'font-weight': '900',
+                                                                                'color': 'rgb(145, 86, 145)',
+                                                                                'font-size': 'large'
+                                                                              }
+                                                                   },
+                                                                   {
+                                                                        xtype:'image',
+                                                                        itemid:'IOPageOutputEditID',
+                                                                        id:'IOPageOutputEditID',
+                                                                        src:'resources/images/edit.png',
+                                                                        height:'25px',
+                                                                        width:'45px',
+                                                                          // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                                                           style:{
+                                                                               'margin-left':'78%',
+                                                                               'margin-top':'2%'
+                                                                           }
+
+                                                                    },
+                                                               ]
+                                                           },
+                                                           {
+                                                               html:'<hr>',
+                                                               style:{
+                                                                   padding:'10px',
+                                                                   'margin-top':'-10px'
+                                                               }
+                                                           },
+                                                           {
+                                                               xtype:'container',
+                                                               width:'580px',
+                                                               height:'300px',
+                                                                //layout:'hbox',
+                                                               scrollable: {
+                                                                            direction: 'both',
+                                                                            directionLock: true
+                                                                        },
+                                                                items:[
+                                                                    {
+                                                                        xtype:'panel',
+                                                                        itemid:'OutputTablePanel',
+                                                                        style:{
+                                                                                    'fontFamily':'openSansRegular',
+                                                                                    'font-size':'small',
+                                                                                     'margin-left':'20px'
+                                                                               }
+                                                                    }
+                                                                ] 
+                                                            }
                                                         ]
                                                  }// end of output table
                                              ]

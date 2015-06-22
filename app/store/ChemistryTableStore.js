@@ -1,7 +1,7 @@
 Ext.define("MVF.store.ChemistryTableStore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.HematologyTableModel',
+         model: 'MVF.model.TableModel',
 	    storeId : 'ChemistryTableStore',
         proxy: {
             type: 'ajax',

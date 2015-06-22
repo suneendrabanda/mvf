@@ -47,23 +47,23 @@ Ext.application({
        "vitaltablemodel",
        "outputpiechartmodel",
        "intakepiechartmodel",
-       "intakedataupdatemodel",
        "chemistrydropdownmodel",
        "microbiologydropdownmodel",
        "chemistrychartmodel",
-       "outputUpdateModel",
+       "IOUpdateModel",
        "ABSChartModel",
        "hematologyDropDownModel",
        "HematologyChartModel",
        "MicrobiologyChartModel",
        "ResultUpdateModel",
        "HematologyAlertModel",
-       "HematologyTableModel",
+       "TableModel",
        "MicrobiologyTableModel",
        "ABSTableModel",
        "ABSDropDownModel",
        "ABGNotesModel",
-       "LabsMainLabResultsModel"
+       "LabsMainLabResultsModel",
+       "IOPageDropDownModel"
 ],
     stores:[
 	'linechart',
@@ -97,7 +97,10 @@ Ext.application({
         "LabsMainChemistryResultsStore",
         "LabsMainHematologyResultsStore",
         "LabsMainMicrobiologyResultsStore",
-        "LabsMainABGResultsStore"
+        "LabsMainABGResultsStore",
+        "IOPageIntakeStore",
+        "IOPageOutputStore",
+        "IntakeTableStore"
 ],
 controllers: [
 	'MainController',
@@ -132,7 +135,7 @@ controllers: [
         Ext.fly('appLoadingIndicator').destroy();
         
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('MVF.view.LabsMainView'));
+        Ext.Viewport.add(Ext.create('MVF.view.Main'));
     },
      'LabPageCount':'0',
     onUpdated: function() {

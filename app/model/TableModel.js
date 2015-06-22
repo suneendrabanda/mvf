@@ -1,4 +1,4 @@
-Ext.define("MVF.model.HematologyTableModel", {
+Ext.define("MVF.model.TableModel", {
     extend: "Ext.data.Model",
     config: {
         fields: [

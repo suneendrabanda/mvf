@@ -2,6 +2,7 @@ Ext.define("MVF.controller.hematologyController", {
     extend: "Ext.app.Controller",
     config: {
         refs:{
+            //LabsMain:'LabsMainView',
             hematology:'hematology',
             OnViewClick:'[itemid=hematologyviewbuttonid]',
             HematologyTable:'[itemid=HematologyResultsTable]',
@@ -33,9 +34,16 @@ Ext.define("MVF.controller.hematologyController", {
     HematologyGoToPageDropDownSelect:function(){
         var pagename=Ext.ComponentQuery.query('[itemid=hematologypageid]')[0].getValue();
         console.log(pagename);
-         this.getHematology().push({
-          xtype:pagename
-      });
+         //this.getHematology().pop(pagename);
+//        if(Ext.getCmp(pagename)){
+//              
+//               this.getApplication().getController('MainController').getLabsMain().pop();
+//            }
+         
+                    this.getHematology().push({
+                     xtype:pagename
+                 });
+         
     },
     OnViewClickFunction:function(){
             var hematologyvalue=Ext.ComponentQuery.query('[itemid=hematologydropdownvalueid]')[0].getValue();
@@ -74,11 +82,11 @@ Ext.define("MVF.controller.hematologyController", {
                              if(records[p].data.result!=='null' ){
                                  console.log('in if loop');
                                  ChartAlertCount++;
-                                if(records[p].data.result>records[p].data.max){
+                                if(records[p].data.max<=records[p].data.result){
                                      console.log('in high if loop '+records[p].data.result+' '+records[p].data.max);
                                     AlertText+=records[p].data.date+'<br>'+'<p style="color:#ff0000">High '+hematologyvalue+' Count</p> <br>';
                                 }
-                                else if(records[p].data.result<records[p].data.min){
+                                else if(records[p].data.min>=records[p].data.result){
                                     console.log('in low if loop'+records[p].data.result);
                                     AlertText+=records[p].data.date+'<br>'+'<p style="color:#ff0000">Low '+hematologyvalue+' Count</p> <br>';
                                 }
@@ -150,14 +158,38 @@ Ext.define("MVF.controller.hematologyController", {
                                          }
                                      },
                                      {
-                                         xtype:'textfield',
-                                         name:'Hematologytimeedit',
+                                         xtype:'selectfield',
                                          itemid:'Hematologytimeedit',
-                                         placeHolder:'Enter Time',
-                                         style:{
-                                             'margin-top':'10px'
-                                         }
-                                     },
+                                          options: [
+                                                   {text: '0100',  value: '0100'},
+                                                   {text: '0200',  value: '0200'},
+                                                   {text: '0300',  value: '0300'},
+                                                   {text: '0400',  value: '0400'},
+                                                   {text: '0500',  value: '0500'},
+                                                   {text: '0600',  value: '0600'},
+                                                   {text: '0700',  value: '0700'},
+                                                   {text: '0800',  value: '0800'},
+                                                   {text: '0900',  value: '0900'},
+                                                   {text: '1000',  value: '1000'},
+                                                   {text: '1100',  value: '1100'},
+                                                   {text: '1200',  value: '1200'},
+                                                   {text: '1300',  value: '1300'},
+                                                   {text: '1400',  value: '1400'},
+                                                   {text: '1500',  value: '1500'},
+                                                   {text: '1600',  value: '1600'},
+                                                   {text: '1700',  value: '1700'},
+                                                   {text: '1800',  value: '1800'},
+                                                   {text: '1900',  value: '1900'},
+                                                   {text: '2000',  value: '2000'},
+                                                   {text: '2100',  value: '2100'},
+                                                   {text: '2200',  value: '2200'},
+                                                   {text: '2300',  value: '2300'},
+                                                   {text: '2400',  value: '2400'}
+                                               ],
+                                               style:{
+                                                    'margin-top':'10px'
+                                                }
+                                        },
                                      {
                                          xtype:'textfield',
                                          name:'Hematologyresultedit',
@@ -227,18 +259,28 @@ Ext.define("MVF.controller.hematologyController", {
                           else{
                               if(r< No_of_Results_Fetch && values[r].data.date===startdate && values[r].data.time===time[timeindex]){
 					if(values[r].data.Name===ItemStore.getAt(k-2).get('text')){
-						TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
-						r++;
-                                                console.log('hematology value inserted');
+                                            if(ItemStore.getAt(k-2).get('exact')==='null'){
+                                                if(values[r].data.result>=ItemStore.getAt(k-2).get('max')||values[r].data.result<=ItemStore.getAt(k-2).get('min')){
+                                                    TableValues+='<td style="padding:0 10px 0 15px;color:#ff0000">'+values[r].data.result+'</td>';
+                                                }
+                                                else{
+                                                    TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
+                                                }
+                                            }
+                                            else{
+                                                TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
+                                            }
+					r++;
+                                                //console.log('hematology value inserted');
 					}
 					else{
 						TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
-                                                console.log(' - inserted time and date are equal');
+                                                //console.log(' - inserted time and date are equal');
 					}
 				}
 				else{
 					TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
-                                        console.log(' - inserted time and date not equal');
+                                        //console.log(' - inserted time and date not equal');
 				}
                           }
                       }

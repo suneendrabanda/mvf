@@ -404,7 +404,11 @@ html,body{
 .IOPageOutputChart{
     //visibility: hidden;
 }
-
+.x-field .x-input-el {
+  width: 100%;
+  border-color: black;
+  border-width: thin;
+}
 /*table.scroll tbody,
 table.scroll thead { display: block; }
 

@@ -13,7 +13,7 @@ $result=mysqli_query($con,"select distinct pr.Person_ID, p.Patient_ID,  tc.Test_
                             inner join Test_Range_Age_Category tac on tac.Item_desc = tic.Item_desc
                             join Patient p on pv.Patient_ID = p.Patient_ID
                             join Person pr on p.Person_ID = pr.Person_ID
-                            where p.Patient_ID = 'P1013' and tc.Tst_Cat_ID = 'TCAT102' and pe.date BETWEEN  '$formatted_start_date' and '$formatted_end_date' order by tic.item_name,pe.date");
+                            where p.Patient_ID = 'P1013' and tc.Tst_Cat_ID = 'TCAT102' and pe.date BETWEEN  '$formatted_start_date' and '$formatted_end_date' order by pe.date,pe.time,tic.item_name");
 while($row = mysqli_fetch_array($result)) {
         $labresult=$row['result'];
         $name=$row['item_name'];
@@ -22,6 +22,6 @@ while($row = mysqli_fetch_array($result)) {
         $max=$row['Max_Range'];
         $exact=$row['Exact_Range'];
         $Resultdate=date("m/d/Y", strtotime($row['date']));
-        array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'range'=>$min . " - " . $max));
+        array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'range'=>$min . " - " . $max));
 }
  echo json_encode($arr);

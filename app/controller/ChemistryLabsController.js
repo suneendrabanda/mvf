@@ -235,92 +235,69 @@ Ext.define("MVF.controller.ChemistryLabsController", {
         var No_of_Results_Fetch=TableStore.getCount();
         //console.log('No_of_Results_Fetch = '+No_of_Results_Fetch);
         var No_of_ChemistryItems=ItemStore.getCount();
+        var time= ['0100','0200','0300','0400','0500','0600','0700','0800','0900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400'];
         //console.log(No_of_ChemistryItems);       
-        var TableValues='<table class="scroll"><thead>';
+        var TableValues='<table><thead>';
         var tablepanel=this.getChemistryTable();
         var diff=Ext.Date.getElapsed(new Date(startdate),new Date(enddate));
         var days=diff/(1000*60*60*24)+1;
-        var date_passed=startdate;
-        var for_date=startdate;
-        //console.log('difference between start date and end date '+days);
+      //console.log('difference between start date and end date '+days);
         TableValues+='<tr style="border-bottom:1px solid #a5a399">'+
-                      '<th style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Name</th>'+
-                      '<th style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Average</th>';
-              for(var i=0;i<days;i++){
-                  nextdate=startdate;
-                  TableValues+='<th style=" padding:0 30px 0 15px">'+nextdate+'</th>';
-                  var startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
-                  
-              }
-              TableValues+='<th style=" padding:0 70px 0 15px;border-left:1px solid #a5a399">Range</th>'+'</tr></thead><tbody>';
-        var value=0;
+                      '<th style=" padding:0 30px 0 15px">Date</th>'+
+                      '<th style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Time</th>';
+              for(var i=0;i<No_of_ChemistryItems;i++){
+                  TableValues+='<th style=" padding:0 30px 0 15px">'+ItemStore.getAt(i).get('text')+'</th>';
+                }
+                TableValues+='</tr></thead><tbody>';
+        var r=0;// index for records fetch
+        var timeindex=0; //index to loop time array
       //var Alert_count_between_dates=0;
         //var HematologyTableAlerts=this.getHematologyTableAlerts();
        // console.log(' for_date ='+ for_date);
         //console.log(' result date ='+values[value].data.date);
-            for(var j=0;j<No_of_ChemistryItems;j++){
-                  TableValues+='<tr>'+
-                                '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+ItemStore.getAt(j).get('text')+'</td>'+
-                                '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+ItemStore.getAt(j).get('range')+'</td>';
-                   for(var k=0;k<days;k++){
-                       //console.log(values[value].data.date+'IN for loop');
-                     if(value<No_of_Results_Fetch && values[value].data.Name ===ItemStore.getAt(j).get('text')){// check if the Hematology name equal or not
-                          // console.log(values[value].data.date+' name are equal IN for loop');
-                           
-                           if(for_date===values[value].data.date){// check for date equal or not
-                               //console.log('In date if loop'+for_date);
-                               if(ItemStore.getAt(j).get('exact')==='null'){
-                                   //console.log('excat = null if loop');
-                                    if(values[value].data.result<=ItemStore.getAt(j).get('max') && values[value].data.result>=ItemStore.getAt(j).get('min')){
-                                        TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
-                                        //console.log('result entered for normal range');
-                                    }
-                                    else{
-                                        TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;color:#ff0000">'+values[value].data.result+'</td>';
-                                       // Alert_count_between_dates++;
-                                        //console.log('result entered for outof range');
-                                    }
-                                }
-                                else{
-                                    if(ItemStore.getAt(j).get('min')==='null'){
-                                        if(values[value].data.result <= ItemStore.getAt(j).get('max')){
-                                            TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
-                                        }
-                                        else{
-                                            TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;color:#ff0000">'+values[value].data.result+'</td>';
-                                        }
-                                    }
-                                    else if(ItemStore.getAt(j).get('max')==='null'){
-                                        if(values[value].data.result >= ItemStore.getAt(j).get('min')){
-                                            TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
-                                        }
-                                        else{
-                                            TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;color:#ff0000">'+values[value].data.result+'</td>';
-                                        }
-                                    }
-                                    
-                                    //console.log('result for if range exact not equal to null');
-                                }
-                               
-                               //console.log(values[value].data.Name+'result entered for '+ values[value].data.date );
-                               //console.log(value);
-                               value++;
-                            }
-                            else{
-                                    TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
-                                    //console.log('didnt find the result for date entered - in if');
-                            }
-                       }
-                       else{
-                               TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
-                              // console.log('didnt find the result for date entered - ');
+            for(var j=0;j<days;j++){// for loop to loop number of days select ie.. difference between start date and end date
+                  while(timeindex<24){// while loop to loop 24 hrs per day
+                      for(var k=0;k<No_of_ChemistryItems+2;k++){// for loop for each row in the table, +2 to add date and time  
+                          if(k===0){
+				TableValues+='<tr><td style="padding:0 10px 0 0">'+startdate+'</td>';
+                          }
+                          else if(k===1){
+				TableValues+='<td style="padding:0 10px 0 15px;border-right:1px solid #a5a399">'+time[timeindex]+'</td>';
+                          }
+                          else{
+                              if(r< No_of_Results_Fetch && values[r].data.date===startdate && values[r].data.time===time[timeindex]){
+					if(values[r].data.Name===ItemStore.getAt(k-2).get('text')){
+                                            if(ItemStore.getAt(k-2).get('exact')==='null'){
+                                                if(values[r].data.result>=ItemStore.getAt(k-2).get('max')||values[r].data.result<=ItemStore.getAt(k-2).get('min')){
+                                                    TableValues+='<td style="padding:0 10px 0 15px;color:#ff0000">'+values[r].data.result+'</td>';
+                                                }
+                                                else{
+                                                    TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
+                                                }
+                                            }
+                                            else{
+                                                TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
+                                            }
+					r++;
+                                                //console.log('hematology value inserted');
+					}
+					else{
+						TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
+                                                //console.log(' - inserted time and date are equal');
+					}
+				}
+				else{
+					TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
+                                        //console.log(' - inserted time and date not equal');
+				}
+                          }
                       }
-                       
-                       for_date=Ext.Date.format(Ext.Date.add(new Date(for_date),Ext.Date.DAY,1),'m/d/Y');
-                       //console.log('incremented for date '+for_date);
-                   }
-                   TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;border-left:1px solid #a5a399">'+ItemStore.getAt(j).get('range')+'</td>'+'</tr>';
-                   for_date=date_passed;
+                      TableValues+='</tr>';
+                      timeindex++;
+                  }
+                  startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
+                  timeindex=0;
+                  
               }
               TableValues+='</tbody></table>';
               tablepanel.setHtml(TableValues);

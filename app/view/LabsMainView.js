@@ -1,7 +1,7 @@
 Ext.define('MVF.view.LabsMainView', {
     extend: 'Ext.navigation.View',
     xtype: 'LabsMainView',
-    
+    id:'LabsMainView',
     config:{
         navigationBar:{
            hidden: true

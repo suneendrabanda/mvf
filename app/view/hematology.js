@@ -1,7 +1,7 @@
 Ext.define('MVF.view.hematology', {
     extend: 'Ext.navigation.View',
     xtype: 'hematology',
-    
+    id:'hematology',
     config:{
         navigationBar:{
            hidden: true
@@ -118,7 +118,7 @@ Ext.define('MVF.view.hematology', {
                                         xtype: 'selectfield',
                                         width:'120px',
                                         border:'1 1 1 1',
-                                        itemid:'hematologypageid',
+                                        itemid:'hematologypageid',//hematologypageid
                                         
                                         options: [
                                             {text: 'Hematology',  value: 'hematology'},

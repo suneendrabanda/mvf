@@ -1,13 +1,13 @@
-Ext.define("MVF.store.outputUpdateStore", {
+Ext.define("MVF.store.IOPageIntakeStore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.IOUpdateModel',
-	    storeId : 'outputUpdateStore',
+         model: 'MVF.model.IOPageDropDownModel',
+	    storeId : 'IOPageIntakeStore',
         proxy: {
             type: 'ajax',
             noCache: true, 
             method:'post',
-            url: 'php/outputUpdate.php',
+            url: 'php/IOPageIntakeDropDown.php',
             headers: { 'Content-Type': 'application/json' }, 
             reader: Ext.create('Ext.data.reader.Json', {
 	            type: 'json'

@@ -98,7 +98,7 @@ Ext.define('MVF.view.absview', {
                                         xtype: 'selectfield',
                                         width:'120px',
                                         border:'1 1 1 1',
-                                        itemid:'Abgpageid',
+                                        itemid:'Abgpageid',//Abgpageid
                                         
                                         options: [
                                             {text: 'Aterial Blood Gas',  value: 'absview'},

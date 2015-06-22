@@ -1,7 +1,7 @@
 Ext.define('MVF.view.chemistrylabs', {
     extend: 'Ext.navigation.View',
     xtype: 'chemistrylabs',
-    
+    id:'chemistrylabs',
     config:{
         navigationBar:{
            hidden: true
@@ -119,7 +119,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                         xtype: 'selectfield',
                                         width:'120px',
                                         border:'1 1 1 1',
-                                        itemid:'chemistrypageid',
+                                        itemid:'chemistrypageid',//chemistrypageid
                                         
                                         options: [
                                             {text: 'Chemistry',  value: 'chemistrylabs'},
@@ -569,7 +569,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                            xtype:'container',
                                                            width:'580px',
                                                            height:'300px',
-                                                           layout:'hbox',
+                                                           //layout:'hbox',
                                                            scrollable: {
                                                                        direction: 'both',
                                                                        directionLock: true
@@ -577,14 +577,15 @@ Ext.define('MVF.view.chemistrylabs', {
                                                                    items:[
                                                                        //table goes here
                                                                        {
-                                                                            xtype:'panel',
-                                                                            itemid:'ChemistryResultsTable',
-                                                                            style:{
-                                                                                'fontFamily':'openSansRegular',
-                                                                                'font-size':'small',
-                                                                                'margin-left':'20px'
-                                                                            }
-                                                                        }
+                                                                                    xtype:'panel',
+                                                                                    itemid:'ChemistryResultsTable',
+                                                                                    style:{
+                                                                                        'fontFamily':'openSansRegular',
+                                                                                        'font-size':'small',
+                                                                                        'margin-left':'20px'
+                                                                                    }
+                                                                                }
+                                                                       
                                                                    ]
                                                        }
                                                     ]    

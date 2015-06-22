@@ -118,9 +118,15 @@ Ext.define("MVF.controller.LabsMainController", {
         var pagename=Ext.ComponentQuery.query('[itemid=labsPageId]')[0].getValue();
         console.log(pagename);
         //Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
-        this.getLabsMain().push({
-          xtype:pagename
-          });
+        if(Ext.getCmp(pagename)){
+              console.log(pagename+' exist in stack');
+               this.getLabsMain().pop();
+            }
+        else{
+            this.getLabsMain().push({
+              xtype:pagename
+              });
+        }
           //this.getLabsMain().destroy();
     },
     DisplayHemaotologyResultsFunction:function(date){

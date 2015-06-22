@@ -44,15 +44,7 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
                          enddate: EndDate},
                          scope:this,
                          callback:function(records){
-                             var values= records;
-                               var result=values[0].data.microbiologyname;
-                                var time=values[0].data.time;
-                                var min=values[0].data.minimunvalue;
-                                var max=values[0].data.maximumvalue;
-                                var date=values[0].data.date;
-                                console.log(result);
-                                console.log(time);
-                                console.log(min); console.log(max);console.log(date);
+                             
                          }
                      });
         var microbilogyvaluevalue=Ext.ComponentQuery.query('[itemid=mbdropdownvalueid]')[0].getValue();
@@ -68,7 +60,7 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
                         scope:this,
                          callback:function(records){
                              var values=records;
-                             this.DisplayHematologyResults(values,StartDate,EndDate);
+                             this.DisplayMicrobiologyResults(values,StartDate,EndDate);
                          }
              });
     },
@@ -111,14 +103,38 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
                                          }
                                      },
                                      {
-                                         xtype:'textfield',
-                                         name:'MBtimeedit',
+                                         xtype:'selectfield',
                                          itemid:'MBtimeedit',
-                                         placeHolder:'Enter Time',
-                                         style:{
-                                             'margin-top':'10px'
-                                         }
-                                     },
+                                          options: [
+                                                   {text: '0100',  value: '0100'},
+                                                   {text: '0200',  value: '0200'},
+                                                   {text: '0300',  value: '0300'},
+                                                   {text: '0400',  value: '0400'},
+                                                   {text: '0500',  value: '0500'},
+                                                   {text: '0600',  value: '0600'},
+                                                   {text: '0700',  value: '0700'},
+                                                   {text: '0800',  value: '0800'},
+                                                   {text: '0900',  value: '0900'},
+                                                   {text: '1000',  value: '1000'},
+                                                   {text: '1100',  value: '1100'},
+                                                   {text: '1200',  value: '1200'},
+                                                   {text: '1300',  value: '1300'},
+                                                   {text: '1400',  value: '1400'},
+                                                   {text: '1500',  value: '1500'},
+                                                   {text: '1600',  value: '1600'},
+                                                   {text: '1700',  value: '1700'},
+                                                   {text: '1800',  value: '1800'},
+                                                   {text: '1900',  value: '1900'},
+                                                   {text: '2000',  value: '2000'},
+                                                   {text: '2100',  value: '2100'},
+                                                   {text: '2200',  value: '2200'},
+                                                   {text: '2300',  value: '2300'},
+                                                   {text: '2400',  value: '2400'}
+                                               ],
+                                               style:{
+                                                    'margin-top':'10px'
+                                                }
+                                        },
                                      {
                                          xtype:'textfield',
                                          name:'MBresultedit',
@@ -170,55 +186,67 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
             }
         });
     },
-    DisplayHematologyResults:function(values,startdate,enddate){
+    DisplayMicrobiologyResults:function(values,startdate,enddate){
         var ItemStore=Ext.getStore('microbiologydropdownstore');
         var TableStore=Ext.getStore('MicrobiologyTableStore');
         var No_of_Results_Fetch=TableStore.getCount();
         var No_of_MBItems=ItemStore.getCount();
-        var TableValues='<table class="fixed_headers"></thead>';
+        var time= ['0100','0200','0300','0400','0500','0600','0700','0800','0900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400'];
+        var TableValues='<table><thead>';
         var tablepanel=this.getMicrobiologyTable();
         var diff=Ext.Date.getElapsed(new Date(startdate),new Date(enddate));
         var days=diff/(1000*60*60*24)+1;
-        var date_passed=startdate;
-        var for_date=startdate;
         TableValues+='<tr style="border-bottom:1px solid #a5a399">'+
-                      '<th style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Name</th>';
-              for(var i=0;i<days;i++){
-                  nextdate=startdate;
-                  TableValues+='<th style=" padding:0 30px 0 15px">'+nextdate+'</th>';
-                  var startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
+                      '<th style=" padding:0 30px 0 15px">Date</th>'+
+                      '<th style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Time</th>';
+              for(var i=0;i<No_of_MBItems;i++){
+                  TableValues+='<th style=" padding:0 30px 0 15px">'+ItemStore.getAt(i).get('text')+'</th>';
                 }
-                TableValues+='<th style=" padding:0 30px 0 15px;border-left:1px solid #a5a399">Range</th>'+'</tr></thead><tbody>';
-        var value=0;
-        for(var j=0;j<No_of_MBItems;j++){
-                  TableValues+='<tr>'+
-                                '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+ItemStore.getAt(j).get('text')+'</td>';
-                                
-                   for(var k=0;k<days;k++){
-                       //console.log(values[value].data.date+'IN for loop');
-                     if(value<No_of_Results_Fetch && values[value].data.Name ===ItemStore.getAt(j).get('text')){// check if the Hematology name equal or not
-                          // console.log(values[value].data.date+' name are equal IN for loop');
-                           
-                           if(for_date===values[value].data.date){// check for date equal or not
-                               console.log('In date if loop'+for_date);
-                               TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em">'+values[value].data.result+'</td>';
-                               console.log(values[value].data.Name+'result entered for '+ values[value].data.date );
-                               console.log(value);
-                               value++;
-                            }
-                            else{
-                                    TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
-                            }
-                       }
-                       else{
-                               TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em ">-</td>'; 
+                TableValues+='</tr></thead><tbody>';
+        var r=0;// index for records fetch
+        var timeindex=0; //index to loop time array
+        for(var j=0;j<days;j++){// for loop to loop number of days select ie.. difference between start date and end date
+                  while(timeindex<24){// while loop to loop 24 hrs per day
+                      for(var k=0;k<No_of_MBItems+2;k++){// for loop for each row in the table, +2 to add date and time  
+                          if(k===0){
+				TableValues+='<tr><td style="padding:0 10px 0 0">'+startdate+'</td>';
+                          }
+                          else if(k===1){
+				TableValues+='<td style="padding:0 10px 0 15px;border-right:1px solid #a5a399">'+time[timeindex]+'</td>';
+                          }
+                          else{
+                              if(r< No_of_Results_Fetch && values[r].data.date===startdate && values[r].data.time===time[timeindex]){
+					if(values[r].data.Name===ItemStore.getAt(k-2).get('text')){
+                                            if(ItemStore.getAt(k-2).get('exact')==='null'){
+                                                if(values[r].data.result>=ItemStore.getAt(k-2).get('max')||values[r].data.result<=ItemStore.getAt(k-2).get('min')){
+                                                    TableValues+='<td style="padding:0 10px 0 15px;color:#ff0000">'+values[r].data.result+'</td>';
+                                                }
+                                                else{
+                                                    TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
+                                                }
+                                            }
+                                            else{
+                                                TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
+                                            }
+					r++;
+                                                //console.log('hematology value inserted');
+					}
+					else{
+						TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
+                                                //console.log(' - inserted time and date are equal');
+					}
+				}
+				else{
+					TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
+                                        //console.log(' - inserted time and date not equal');
+				}
+                          }
                       }
-                       
-                       for_date=Ext.Date.format(Ext.Date.add(new Date(for_date),Ext.Date.DAY,1),'m/d/Y');
-                       console.log('incremented for date '+for_date);
-                   }
-                   TableValues+='<td style="padding:0 30px 0 15px;padding-bottom: 1em;border-left:1px solid #a5a399">'+ItemStore.getAt(j).get('range')+'</td>'+'</tr>';
-                   for_date=date_passed;
+                      TableValues+='</tr>';
+                      timeindex++;
+                  }
+                  startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
+                  timeindex=0;
               }
               TableValues+='</tbody></table>';
               tablepanel.setHtml(TableValues);
