@@ -4,21 +4,23 @@ Ext.define("MVF.view.IOPageIntakeChartView", {
         "Ext.chart.PolarChart",
         "Ext.chart.AbstractChart",
         "Ext.chart.series.Pie"
-        
-        
-        
     ],
     alias:"widget.IOPageIntakeChartView",
     config:{
         layout:'fit',
           flex: 1,
         xtype:'polar',
-        store:'IOPageOutputChartStore',
+        store:'IOPageIntakeChartStore',
         animate:'true',
         
-        innerpadding:'10',
-        colors: ["#115fa6", "#94ae0a", "#a61120", "#ff8809", "#ffd13e"],
-        insetPadding:72,
+        innerpadding:'30',
+        colors: ["#F0523F","#FFD779","#BBAF82","#72DAF1","#87B675","#FF5472"],
+        legend:{
+            position:'right',
+            width:'120px'
+        },
+        //interactions: ['rotate', 'itemhighlight'],
+        insetPadding:42,
         series: [
                      {
                         type: 'pie',

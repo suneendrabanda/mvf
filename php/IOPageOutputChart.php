@@ -1,10 +1,10 @@
 <?php
 include('connect.php');
-$shift = $_POST['shiftvalue']; //'day';//
-echo $shift.'in';
-$startdate=$_POST['startdate']; //'2013-01-10';//
-$enddate=$_POST['enddate'];  //'2013-01-13';//
-$OutputValue=$_POST['OutputValue']; //'OUT101';//
+$shift = $_GET['shiftvalue']; //'day';//
+//echo $shift.'in';
+$startdate=$_GET['startdate']; //'2013-01-10';//
+$enddate=$_GET['enddate'];  //'2013-01-13';//
+$OutputValue=$_GET['OutputValue']; //'all';//
 $arr=array();
 $formatted_start_date=  date("Y-m-d",strtotime($startdate));
 $formatted_end_date=  date("Y-m-d",strtotime($enddate));
@@ -23,7 +23,7 @@ else{
           $result=mysqli_query($con,"select X.Name, sum(X.result) as total, X.date, X.time,x.Visit_ID from (select pr.fname, pr.lname, op.Name, oe.date, oe.time, oe.result,oe.Visit_ID from output op join output_Exam oe on op.output_ID = oe.output_ID join Patient_Visit pv on pv.Visit_ID = oe.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X  where  X.date between '$formatted_start_date' and '$formatted_end_date' and X.VisiT_ID = 'V141' group by X.Name");
       }
       else{
-          $result=mysqli_query($con,"select X.Name, sum(X.result) as total, X.date, X.time,x.Visit_ID, x.output_ID from (select pr.fname, pr.lname, op.Name, oe.date, oe.time, oe.result,oe.Visit_ID,oe.output_ID from output op join output_Exam oe on op.output_ID = oe.output_ID join Patient_Visit pv on pv.Visit_ID = oe.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X  where  X.date between '2013-01-10' and '2013-01-15' and X.output_ID='$OutputValue' and X.VisiT_ID = 'V141' group by X.Name");
+          $result=mysqli_query($con,"select X.Name, sum(X.result) as total, X.date, X.time,x.Visit_ID, x.output_ID from (select pr.fname, pr.lname, op.Name, oe.date, oe.time, oe.result,oe.Visit_ID,oe.output_ID from output op join output_Exam oe on op.output_ID = oe.output_ID join Patient_Visit pv on pv.Visit_ID = oe.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X  where  X.date between '$formatted_start_date' and '$formatted_end_date' and X.output_ID='$OutputValue' and X.VisiT_ID = 'V141' group by X.Name");
       }// end of check
       if($shift=='day'){
           while($row = mysqli_fetch_array($result)){

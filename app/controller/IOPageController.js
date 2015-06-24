@@ -6,7 +6,9 @@ Ext.define("MVF.controller.IOPageController", {
             OutputSelectChange:'[itemid=OutputSelectID]',
             OnIntakeUpdateButtonTap:'[itemid=IntakeUpdateButton]',
             OnOutputUpdateButtonTap:'[itemid=OutputUpdateButton]',
-            IntakeResultsPanel:'[itemid=IntakeTablePanel]'
+            IntakeResultsPanel:'[itemid=IntakeTablePanel]',
+            OutputResultsPanel:'[itemid=OutputTablePanel]',
+            IntakeSelectFieldChange:'[itemid=IntakeSelectID]'
         },
         control:{
             OnViewClick:{
@@ -20,6 +22,9 @@ Ext.define("MVF.controller.IOPageController", {
             },
             OnOutputUpdateButtonTap:{
                 tap:'OnOutputUpdateButtonTap'
+            },
+            IntakeSelectFieldChange:{
+                change:'OnViewClickFunction'
             }
             
         }
@@ -40,13 +45,14 @@ Ext.define("MVF.controller.IOPageController", {
 //                     });
     },
     OnViewClickFunction:function(){
-        alert('IO contrller working');
+        //alert('IO contrller working');
         var shiftvalue=Ext.ComponentQuery.query('[itemid=IOshift]')[0].getValue();
         var StartDate=Ext.ComponentQuery.query('[itemid=IOstartdate]')[0].getFormattedValue();
         var EndDate=Ext.ComponentQuery.query('[itemid=IOenddate]')[0].getFormattedValue();
         var OutputSelectValue=Ext.ComponentQuery.query('[itemid=OutputSelectID]')[0].getValue();
         var IntakeSelectValue=Ext.ComponentQuery.query('[itemid=IntakeSelectID]')[0].getValue();
         console.log(shiftvalue);console.log(StartDate);console.log(EndDate);console.log(OutputSelectValue);
+        //load output chart store
         var store=Ext.getStore('IOPageOutputChartStore');
         store.load({
                 params:{ shiftvalue: shiftvalue,
@@ -60,14 +66,42 @@ Ext.define("MVF.controller.IOPageController", {
                              console.log(values[0].data.result);
                          }
                      });
-//        var IntakeStore=Ext.getStore('IOPageIntakeChartStore');
-//        IntakeStore.load({
-//                params:{ shiftvalue: shiftvalue,
-//                         startdate: StartDate,
-//                         enddate: EndDate,
-//                         IntakeValue:IntakeSelectValue},
-//                         scope:this
-//                     });             
+        //load Intake chart store
+        var IntakeChartStore=Ext.getStore('IOPageIntakeChartStore');
+        IntakeChartStore.load({
+            params:{
+                        shiftvalue: shiftvalue,
+                        startdate: StartDate,
+                        enddate: EndDate,
+                        IntakeValue:IntakeSelectValue
+                     }
+        });
+        // load Intake table             
+        var IntakeTableStore=Ext.getStore('IntakeTableStore');
+        IntakeTableStore.load({
+            params:{
+                startdate:StartDate,
+                enddate:EndDate,
+                shift: shiftvalue,
+            },
+            scope:this,
+            callback:function(records){
+                this.DisplayIntakeResult(records,StartDate,EndDate,shiftvalue);
+            }
+        });
+        // load Output Table
+        var OutputTableStore=Ext.getStore('OutputTableStore');
+        OutputTableStore.load({
+            params:{
+                startdate:StartDate,
+                enddate:EndDate,
+                shift: shiftvalue,
+            },
+            scope:this,
+            callback:function(records){
+                this.DisplayOutputResult(records,StartDate,EndDate,shiftvalue);
+            }
+        });
     },
     IntakeEditOverlay:function(){
               console.log('in Intake edit overlay function');
@@ -331,15 +365,142 @@ Ext.define("MVF.controller.IOPageController", {
              
                   });
     },
-    DisplayIntakeResult:function(){
+    DisplayIntakeResult:function(values,startdate,enddate,shift){
         var ItemStore=Ext.getStore('IOPageIntakeStore');
-        var No_Of_Output_Items=ItemStore.getCount();
+        var No_Of_Intake_Items=ItemStore.getCount();
         var TableStore=Ext.getStore('IntakeTableStore');
         var No_of_Results_Fetch=TableStore.getCount();
-        var time= ['0100','0200','0300','0400','0500','0600','0700','0800','0900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400'];
+        //console.log('table Store = '+No_of_Results_Fetch+' intake count = '+No_Of_Intake_Items);
+        if(shift==='day'){
+            var time= ['0700','0800','0900','1000','1100','1200','1300','1400'];
+        }
+        else if(shift==='evening'){
+            var time= ['1500','1600','1700','1800','1900','2000','2100','2200'];
+        }
+        else{
+            var time= ['0100','0200','0300','0400','0500','0600','2300','2400'];
+        }
+        
         var TableValues='<table><thead>';
         var tablepanel=this.getIntakeResultsPanel();
+        var diff=Ext.Date.getElapsed(new Date(startdate),new Date(enddate));
+        var days=diff/(1000*60*60*24)+1;
+        TableValues+='<tr style="border-bottom:1px solid #a5a399">'+
+                      '<th style=" padding:0 30px 0 15px">Date</th>'+
+                      '<th style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Time</th>';
+              for(var i=0;i<No_Of_Intake_Items;i++){
+                  TableValues+='<th style=" padding:0 30px 0 15px">'+ItemStore.getAt(i).get('name')+'</th>';
+                }
+                TableValues+='</tr></thead><tbody>';
+        var r=0;// index for records fetch
+        var timeindex=0; //index to loop time array
         
+       // console.log(' for_date ='+ for_date);
+        //console.log(' result date ='+values[value].data.date);
+            for(var j=0;j<days;j++){// for loop to loop number of days select ie.. difference between start date and end date
+                  while(timeindex<8){// while loop to loop 24 hrs per day
+                      for(var k=0;k<No_Of_Intake_Items+2;k++){// for loop for each row in the table, +2 to add date and time  
+                          if(k===0){
+				TableValues+='<tr><td style="padding:0 10px 0 0">'+startdate+'</td>';
+                          }
+                          else if(k===1){
+				TableValues+='<td style="padding:0 10px 0 15px;border-right:1px solid #a5a399">'+time[timeindex]+'</td>';
+                          }
+                          else{
+                             // console.log('values[r].data.date = '+values[r].data.date+' start date = '+startdate +'values[r].data.time =  '+values[r].data.time+' time = '+time[timeindex]);
+                              if(r< No_of_Results_Fetch && values[r].data.date===startdate && values[r].data.time===time[timeindex]){
+					if(values[r].data.Name===ItemStore.getAt(k-2).get('name')){
+                                            TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
+					    r++;
+                                            // console.log('IO value inserted');
+                                        }      
+					else{
+						TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
+                                               // console.log(' - inserted time and date are equal');
+					}
+				}
+				else{
+					TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
+                                        //console.log(' - inserted time and date not equal');
+				}
+                          }
+                      }
+                      TableValues+='</tr>';
+                      timeindex++;
+                  }
+                  startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
+                  timeindex=0;
+              }
+              TableValues+='</tbody></table>';
+              tablepanel.setHtml(TableValues);
+    },
+    DisplayOutputResult:function(values,startdate,enddate,shift){
+        var ItemStore=Ext.getStore('IOPageOutputStore');
+        var No_Of_Intake_Items=ItemStore.getCount();
+        var TableStore=Ext.getStore('OutputTableStore');
+        var No_of_Results_Fetch=TableStore.getCount();
+        //console.log('table Store = '+No_of_Results_Fetch+' intake count = '+No_Of_Intake_Items);
+        if(shift==='day'){
+            var time= ['0700','0800','0900','1000','1100','1200','1300','1400'];
+        }
+        else if(shift==='evening'){
+            var time= ['1500','1600','1700','1800','1900','2000','2100','2200'];
+        }
+        else{
+            var time= ['0100','0200','0300','0400','0500','0600','2300','2400'];
+        }
+        
+        var TableValues='<table><thead>';
+        var tablepanel=this.getOutputResultsPanel();
+        var diff=Ext.Date.getElapsed(new Date(startdate),new Date(enddate));
+        var days=diff/(1000*60*60*24)+1;
+        TableValues+='<tr style="border-bottom:1px solid #a5a399">'+
+                      '<th style=" padding:0 30px 0 15px">Date</th>'+
+                      '<th style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Time</th>';
+              for(var i=0;i<No_Of_Intake_Items;i++){
+                  TableValues+='<th style=" padding:0 30px 0 15px">'+ItemStore.getAt(i).get('name')+'</th>';
+                }
+                TableValues+='</tr></thead><tbody>';
+        var r=0;// index for records fetch
+        var timeindex=0; //index to loop time array
+        
+       // console.log(' for_date ='+ for_date);
+        //console.log(' result date ='+values[value].data.date);
+            for(var j=0;j<days;j++){// for loop to loop number of days select ie.. difference between start date and end date
+                  while(timeindex<8){// while loop to loop 24 hrs per day
+                      for(var k=0;k<No_Of_Intake_Items+2;k++){// for loop for each row in the table, +2 to add date and time  
+                          if(k===0){
+				TableValues+='<tr><td style="padding:0 10px 0 0">'+startdate+'</td>';
+                          }
+                          else if(k===1){
+				TableValues+='<td style="padding:0 10px 0 15px;border-right:1px solid #a5a399">'+time[timeindex]+'</td>';
+                          }
+                          else{
+                             // console.log('values[r].data.date = '+values[r].data.date+' start date = '+startdate +'values[r].data.time =  '+values[r].data.time+' time = '+time[timeindex]);
+                              if(r< No_of_Results_Fetch && values[r].data.date===startdate && values[r].data.time===time[timeindex]){
+					if(values[r].data.Name===ItemStore.getAt(k-2).get('name')){
+                                            TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
+					    r++;
+                                            // console.log('IO value inserted');
+                                        }      
+					else{
+						TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
+                                                //console.log(' - inserted time and date are equal');
+					}
+				}
+				else{
+					TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
+                                       // console.log(' - inserted time and date not equal');
+				}
+                          }
+                      }
+                      TableValues+='</tr>';
+                      timeindex++;
+                  }
+                  startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
+                  timeindex=0;
+              }
+              TableValues+='</tbody></table>';
+              tablepanel.setHtml(TableValues);
     }
-    
     });

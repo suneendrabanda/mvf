@@ -162,9 +162,10 @@ Ext.define('MVF.view.Main', {
                                  },
                                  {
                                     xtype:'button',
-                                    text:'PATIENT SUMMARY',
+                                    ui: 'plain',
                                     itemid:'patientsummarybutton',
                                     id:'patientsummarybutton',
+                                    html: '<div style="text-align: center; border: 1px solid black; padding: 5px">Patient Summary</div>',
                                     width:'170px',
                                     height:'30px',
                                     style:{

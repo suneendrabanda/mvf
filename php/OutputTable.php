@@ -3,11 +3,11 @@ include('connect.php');
 //$hematologyvalueselected = $_GET['hematologyvalue']; //'BANDS';// 
 $startdate=$_GET['startdate']; //'2013-01-12';//
 $enddate=$_GET['enddate'];  //'2013-01-12';//
-$shift=$_GET['shift'];//'night';//  
+$shift=$_GET['shift'];// 'day';// 
 $arr = array();
 $formatted_start_date=  date("Y-m-d",strtotime($startdate));
 $formatted_end_date=  date("Y-m-d",strtotime($enddate));
-$result=mysqli_query($con,"select ip.Name,ie.date,ie.time,ie.result from intake_exam ie join Intake ip on ip.Intake_ID=ie.`Intake_ID` where ie.date between '$formatted_start_date' and '$formatted_end_date' and ie.`Visit_ID`='V141' order by ie.date,ie.time,ip.Name");
+$result=mysqli_query($con,"select ip.Name,ie.date,ie.time,ie.result from output_exam ie join output ip on ip.Output_ID=ie.`Output_ID` where ie.date between '$formatted_start_date' and '$formatted_end_date' and ie.`Visit_ID`='V141' order by ie.date,ie.time,ip.Name");
 if($shift=='day'){
     while($row=  mysqli_fetch_array($result)){
         $name=$row['Name'];

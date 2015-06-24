@@ -7,7 +7,7 @@ Ext.define("MVF.store.IOPageOutputChartStore", {
             type: 'ajax',
             noCache: true, 
             method:'post',
-            url: 'php/IOPageIntakeChart.php',
+            url: 'php/IOPageOutputChart.php',
             headers: { 'Content-Type': 'application/json' }, 
             reader: Ext.create('Ext.data.reader.Json', {
 	            type: 'json'

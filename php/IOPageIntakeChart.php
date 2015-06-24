@@ -3,7 +3,7 @@ include('connect.php');
 $shift = $_GET['shiftvalue']; //'day';//
 $startdate=$_GET['startdate']; //'2013-01-10';//
 $enddate=$_GET['enddate'];  //'2013-01-13';//
-$IntakeValue=$_GET['IntakeValue']; //'OUT101';//
+$IntakeValue=$_GET['IntakeValue']; //'IN101';//
 $arr=array();
 $formatted_start_date=  date("Y-m-d",strtotime($startdate));
 $formatted_end_date=  date("Y-m-d",strtotime($enddate));
@@ -18,11 +18,11 @@ if($shift=='null'){
 }
 else{
     // check for wheather to retrieve all the records for all output ID's
-    if($OutputValue=='all'){
-          $result=mysqli_query($con,"select X.Name, sum(X.result) as total, X.date, X.time,x.Visit_ID from (select pr.fname, pr.lname, op.Name, oe.date, oe.time, oe.result,oe.Visit_ID from output op join output_Exam oe on op.output_ID = oe.output_ID join Patient_Visit pv on pv.Visit_ID = oe.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X  where  X.date between '$formatted_start_date' and '$formatted_end_date' and X.VisiT_ID = 'V141' group by X.Name");
+    if($IntakeValue=='all'){
+          $result=mysqli_query($con,"select X.Name, sum(X.result) as total, X.date, X.time,x.Visit_ID from (select pr.fname, pr.lname, op.Name, oe.date, oe.time, oe.result,oe.Visit_ID from intake op join intake_Exam oe on op.intake_ID = oe.intake_ID join Patient_Visit pv on pv.Visit_ID = oe.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X  where  X.date between '$formatted_start_date' and '$formatted_end_date' and X.VisiT_ID = 'V141' group by X.Name");
       }
       else{
-          $result=mysqli_query($con,"select X.Name, sum(X.result) as total, X.date, X.time,x.Visit_ID, x.output_ID from (select pr.fname, pr.lname, op.Name, oe.date, oe.time, oe.result,oe.Visit_ID,oe.output_ID from output op join output_Exam oe on op.output_ID = oe.output_ID join Patient_Visit pv on pv.Visit_ID = oe.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X  where  X.date between '2013-01-10' and '2013-01-15' and X.output_ID='$OutputValue' and X.VisiT_ID = 'V141' group by X.Name");
+          $result=mysqli_query($con,"select X.Name, sum(X.result) as total, X.date, X.time,x.Visit_ID, x.intake_ID from (select pr.fname, pr.lname, op.Name, oe.date, oe.time, oe.result,oe.Visit_ID,oe.intake_ID from intake op join intake_Exam oe on op.intake_ID = oe.intake_ID join Patient_Visit pv on pv.Visit_ID = oe.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X  where  X.date between '$formatted_start_date' and '$formatted_end_date' and X.intake_ID='$IntakeValue' and X.VisiT_ID = 'V141' group by X.Name");
       }// end of check
       if($shift=='day'){
           while($row = mysqli_fetch_array($result)){

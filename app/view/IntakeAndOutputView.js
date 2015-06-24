@@ -167,7 +167,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                 'margin-top':'3%',
                                                 'fontFamily':'openSansRegular',
                                                'font-size':'small',
-                                               'margin-left':'18%',
+                                               'margin-left':'23%',
                                             }
                                         },
                                         {
@@ -250,20 +250,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                    }
 
                                             },
-                                            {
-                                                xtype:'image',
-                                                itemid:'IOedittableicon',
-
-                                                src:'resources/images/edit.png',
-                                                height:'20px',
-                                                width:'25px',
-                                                  // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                   style:{
-                                                       'margin-left':'-2%',
-                                                       'margin-top':'3%'
-                                                   }
-
-                                            }
+                                            
                                     ]
                                 },// end of header in main container
                                 {
@@ -282,7 +269,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                          {// notes container
                                                xtype:'container',
                                                 layout:'vbox',
-                                                width:'280px',
+                                                width:'295px',
                                                 height:'500px',
                                                 style:{
                                                     'border': '1px #9E9D8B solid',
@@ -299,6 +286,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                          {// charts and table contianer
                                              xtype:'container',
                                              layout:'vbox',
+                                             height:'1210px',
                                              items:[
                                                  {// start of chart container for hbox
                                                      xtype:'container',
@@ -372,14 +360,15 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                                   {
                                                                                       xtype:'container',
                                                                                       layout:'fit',
-                                                                                      width:'222px',
+                                                                                      width:'305px',
                                                                                       height:'242px',
                                                                                       style:{
-                                                                                          'margin-left':'10px'
+                                                                                          //'margin-left':'40px'
                                                                                       },
                                                                                       items:[
                                                                                           {
-                                                                                              xtype:'IOPageIntakeChartView'
+                                                                                              xtype:'IOPageIntakeChartView',
+                                                                                              
                                                                                           }
                                                                                       ]
                                                                                   }
@@ -456,17 +445,19 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                                   {
                                                                                       xtype:'container',
                                                                                       layout:'fit',
-                                                                                      width:'222px',
+                                                                                      width:'305px',
                                                                                       height:'242px',
                                                                                       cls:'IOPageOutputChart',
                                                                                       style:{
-                                                                                          'margin-left':'10px'
+                                                                                          //'margin-left':'10px'
                                                                                       },
                                                                                       items:[
                                                                                           //Output pie chart
                                                                                           {
-                                                                                              xtype:'IOPageOutputChartView'
-                                                                                              
+                                                                                              xtype:'IOPageOutputChartView',
+                                                                                              style:{
+                                                                                                  
+                                                                                              }
                                                                                           }
                                                                                       ]
                                                                                   }
@@ -531,7 +522,10 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                            {
                                                                xtype:'container',
                                                                width:'580px',
-                                                               height:'300px',
+                                                               height:'280px',
+                                                               style:{
+                                                                   'margin-left':'15px'
+                                                               },
                                                                 //layout:'hbox',
                                                                scrollable: {
                                                                             direction: 'both',
@@ -609,7 +603,10 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                            {
                                                                xtype:'container',
                                                                width:'580px',
-                                                               height:'300px',
+                                                               height:'280px',
+                                                               style:{
+                                                                   'margin-left':'15px'
+                                                               },
                                                                 //layout:'hbox',
                                                                scrollable: {
                                                                             direction: 'both',

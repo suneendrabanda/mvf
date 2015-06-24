@@ -38,7 +38,8 @@ Ext.application({
     "MicrobiologyChartView",
     "IOPageOutputChartView",
     "IOPageIntakeChartView",
-    "LabsMainView"
+    "LabsMainView",
+    
 ],
    models:[
 	"linechart",
@@ -100,7 +101,8 @@ Ext.application({
         "LabsMainABGResultsStore",
         "IOPageIntakeStore",
         "IOPageOutputStore",
-        "IntakeTableStore"
+        "IntakeTableStore",
+        "OutputTableStore"
 ],
 controllers: [
 	'MainController',

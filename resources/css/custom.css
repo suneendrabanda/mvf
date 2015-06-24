@@ -401,22 +401,24 @@ html,body{
 .datepick{
     margin-top: 1%;
 }
-.IOPageOutputChart{
-    //visibility: hidden;
-}
+
 .x-field .x-input-el {
   width: 100%;
   border-color: black;
   border-width: thin;
 }
-/*table.scroll tbody,
-table.scroll thead { display: block; }
 
-
-
-table.scroll tbody {
-    height: 100px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}*/
-
+/*pie chart call out hidden*/
+div#ext-element-1008{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  visibility: hidden;
+}
+/*intake chart callouts*/
+canvas#ext-element-453 {
+    visibility: hidden;
+}
+canvas#ext-element-483 {
+    visibility: hidden;
+}

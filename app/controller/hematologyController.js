@@ -257,6 +257,7 @@ Ext.define("MVF.controller.hematologyController", {
 				TableValues+='<td style="padding:0 10px 0 15px;border-right:1px solid #a5a399">'+time[timeindex]+'</td>';
                           }
                           else{
+                               //console.log('values[r].data.date = '+values[r].data.date+' start date = '+startdate +'values[r].data.time =  '+values[r].data.time+' time = '+time[timeindex]);
                               if(r< No_of_Results_Fetch && values[r].data.date===startdate && values[r].data.time===time[timeindex]){
 					if(values[r].data.Name===ItemStore.getAt(k-2).get('text')){
                                             if(ItemStore.getAt(k-2).get('exact')==='null'){

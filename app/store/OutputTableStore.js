@@ -1,13 +1,13 @@
-Ext.define("MVF.store.IOPageIntakeChartStore", {
+Ext.define("MVF.store.OutputTableStore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.intakepiechartmodel',
-	    storeId : 'IOPageIntakeChartStore',
+         model: 'MVF.model.TableModel',
+	    storeId : 'OutputTableStore',
         proxy: {
             type: 'ajax',
             noCache: true, 
             method:'post',
-            url: 'php/IOPageIntakeChart.php',
+            url: 'php/OutputTable.php',
             headers: { 'Content-Type': 'application/json' }, 
             reader: Ext.create('Ext.data.reader.Json', {
 	            type: 'json'

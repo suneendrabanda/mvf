@@ -16,12 +16,16 @@ Ext.define("MVF.view.IOPageOutputChartView", {
         store:'IOPageOutputChartStore',
         animate:'true',
         
-        innerpadding:'10',
+        innerpadding:'30',
         colors: ["#115fa6", "#94ae0a", "#a61120", "#ff8809", "#ffd13e"],
-//        legend:{
-//            position:'right'
-//        },
-        insetPadding:72,
+        legend:{
+            position:'right',
+            width:'130px',
+            style:{
+                'margin-left':'-4px'
+            }
+        },
+        insetPadding:42,
         highlight: {
                   segment: {
                     //margin: 20
