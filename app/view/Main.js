@@ -144,12 +144,10 @@ Ext.define('MVF.view.Main', {
                                         itemid:'pageid',
                                         cls:'pageselect',
                                         options: [
-                                            {text: 'MAIN',  value: 'main'},
-                                            {text: 'Intake & Output',  value: 'IntakeAndOutputView'},
-                                            {text: 'Chemistry',  value: 'chemistrylabs'},
-                                            {text: 'Microbiology',  value: 'microbiologyview'},
-                                            {text: 'Hematology',  value: 'hematology'},
-                                            {text: 'ABS',  value: 'absview'}
+                                            {text: 'Main',  value: 'LabsMainView'},
+                                            {text: 'Vitals',  value: 'VitalsView'},
+                                            {text: 'I&O',  value: 'IntakeAndOutputView'},
+                                            
                                             
                                         ],
                                         style:{

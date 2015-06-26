@@ -396,8 +396,9 @@ Ext.define("MVF.controller.IOPageController", {
         var timeindex=0; //index to loop time array
         
        // console.log(' for_date ='+ for_date);
-        //console.log(' result date ='+values[value].data.date);
+       // console.log(' result date ='+values[value].data.date);
             for(var j=0;j<days;j++){// for loop to loop number of days select ie.. difference between start date and end date
+                console.log('In days for loop');
                   while(timeindex<8){// while loop to loop 24 hrs per day
                       for(var k=0;k<No_Of_Intake_Items+2;k++){// for loop for each row in the table, +2 to add date and time  
                           if(k===0){
@@ -412,11 +413,11 @@ Ext.define("MVF.controller.IOPageController", {
 					if(values[r].data.Name===ItemStore.getAt(k-2).get('name')){
                                             TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
 					    r++;
-                                            // console.log('IO value inserted');
+                                             //console.log('IO value inserted');
                                         }      
 					else{
 						TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
-                                               // console.log(' - inserted time and date are equal');
+                                              //console.log(' - inserted time and date are equal');
 					}
 				}
 				else{

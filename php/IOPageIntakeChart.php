@@ -13,7 +13,7 @@ if($shift=='null'){
     while($row = mysqli_fetch_array($result)) {
         $Intake=$row['Name'];
         $Intakeresult=(int)$row['total'];
-         array_push($arr, array('intakename'=> $Intake. " ".$Intakeresult, 'result'=> $Intakeresult));
+         array_push($arr, array('intakename'=> $Intake, 'result'=> $Intakeresult));
     }
 }
 else{
@@ -30,7 +30,7 @@ else{
               $Intakeresult=(int)$row['total'];
               $time=(int)$row['time'];
               if($time>0700 && $time<1400){
-                  array_push($arr, array('intakename'=> $Intake. " ".$Intakeresult, 'result'=> $Intakeresult));
+                  array_push($arr, array('intakename'=> $Intake, 'result'=> $Intakeresult));
               }
          }
       }
@@ -40,7 +40,7 @@ else{
               $Intakeresult=(int)$row['total'];
               $time=(int)$row['time'];
               if($time>1400 && $time<2200){
-                  array_push($arr, array('intakename'=> $Intake. " ".$Intakeresult, 'result'=> $Intakeresult));
+                  array_push($arr, array('intakename'=> $Intake, 'result'=> $Intakeresult));
               }
          }
       }
@@ -50,7 +50,7 @@ else{
               $Intakeresult=(int)$row['total'];
               $time=(int)$row['time'];
               if($time>2200 || $time<0700){
-                  array_push($arr, array('intakename'=> $Intake. " ".$Intakeresult, 'result'=> $Intakeresult));
+                  array_push($arr, array('intakename'=> $Intake, 'result'=> $Intakeresult));
               }
          }
       }

@@ -135,8 +135,8 @@ Ext.define('MVF.view.LabsMainView', {
                             {
                                     xtype:'button',
                                     text:'PATIENT SUMMARY',
-                                    itemid:'patientsummarybutton',
-                                    id:'patientsummarybutton',
+                                    itemid:'patientsummarybuttonid',
+                                    id:'patientsummarybuttonid',
                                     width:'170px',
                                     height:'30px',
                                     style:{
@@ -159,7 +159,7 @@ Ext.define('MVF.view.LabsMainView', {
                             {
                                 xtype:'container',
                                 width:'330px',
-                                height:'600px',
+                                height:'580px',
                                 scrollable: {
                                         direction: 'vertical',
                                         directionLock: true
@@ -228,7 +228,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                        xtype:'label',
                                                        html:'alerts',
                                                        style:{
-                                                           'margin-left':'40px',
+                                                           'margin-left':'56px',
                                                            'font-size':'15px'
                                                        }
                                                    }
@@ -243,7 +243,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                 items:[
                                                     {
                                                         xtype:'panel',
-                                                        html:'06/15/2015',
+                                                        html:'',
                                                         itemid:'chemistrylastupdate',
                                                         style:{
                                                             'margin-left':'20px',
@@ -361,7 +361,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                        xtype:'label',
                                                        html:'alerts',
                                                        style:{
-                                                           'margin-left':'40px',
+                                                           'margin-left':'56px',
                                                            'font-size':'15px'
                                                        }
                                                    }
@@ -376,7 +376,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                 items:[
                                                     {
                                                         xtype:'panel',
-                                                        html:'06/15/2015',
+                                                        html:'',
                                                         itemid:'hematologylastupdate',
                                                         style:{
                                                             'margin-left':'20px',
@@ -494,7 +494,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                        xtype:'label',
                                                        html:'alerts',
                                                        style:{
-                                                           'margin-left':'40px',
+                                                           'margin-left':'56px',
                                                            'font-size':'15px'
                                                        }
                                                    }
@@ -509,7 +509,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                 items:[
                                                     {
                                                         xtype:'panel',
-                                                        html:'06/15/2015',
+                                                        html:'',
                                                         itemid:'microbiologylastupdate',
                                                         style:{
                                                             'margin-left':'20px',
@@ -626,7 +626,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                        xtype:'label',
                                                        html:'alerts',
                                                        style:{
-                                                           'margin-left':'40px',
+                                                           'margin-left':'56px',
                                                            'font-size':'15px'
                                                        }
                                                    }
@@ -641,7 +641,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                 items:[
                                                     {
                                                         xtype:'panel',
-                                                        html:'06/15/2015',
+                                                        html:'',
                                                         itemid:'serologylastupdate',
                                                         style:{
                                                             'margin-left':'20px',
@@ -759,7 +759,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                        xtype:'label',
                                                        html:'alerts',
                                                        style:{
-                                                           'margin-left':'40px',
+                                                           'margin-left':'56px',
                                                            'font-size':'15px'
                                                        }
                                                    }
@@ -774,7 +774,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                 items:[
                                                     {
                                                         xtype:'panel',
-                                                        html:'06/15/2015',
+                                                        html:'',
                                                         itemid:'abglastupdate',
                                                         style:{
                                                             'margin-left':'20px',
@@ -941,6 +941,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                 }
                                             },
                                             //display results
+                                            
                                             {
                                                 xtype:'label',
                                                 html:'Hematology',

@@ -3,6 +3,7 @@ include('connect.php');
 $arr=array();
 $date=$_GET['date'];//'01/20/2013';//
 $formatted_date=  date("Y-m-d",strtotime($date));
+date_default_timezone_set("America/Chicago");
 $Today_date=date('Y-m-d');
 //echo $Today_date.'today date';
 //echo $formatted_date.'formarted dtae';
@@ -24,16 +25,17 @@ if($formatted_date==$Today_date){
 
     while($row = mysqli_fetch_array($result)){
         $result1=$row['result'];
+        $date=$row['date'];
         $name=$row['item_name'];
         $min=$row['Min_Range'];
         $max=$row['Max_Range'];
         $exact=$row['Exact_Range'];
         $time=$row['time'];
         if(!$exact){
-            array_push($arr,array('name'=>$name,'result'=>$result1,'min'=>$min,'max'=>$max,'exact'=>'null','range'=>$min.' - '.$max,'time'=>$time));
+            array_push($arr,array('name'=>$name,'result'=>$result1,'min'=>$min,'max'=>$max,'exact'=>'null','range'=>$min.' - '.$max,'time'=>$time,'date'=>$date));
         }
         else{
-            array_push($arr,array('name'=>$name,'result'=>$result1,'min'=>'null','max'=>'null','exact'=>$exact,'range'=>$exact,'time'=>$time));
+            array_push($arr,array('name'=>$name,'result'=>$result1,'min'=>'null','max'=>'null','exact'=>$exact,'range'=>$exact,'time'=>$time,'date'=>$date));
         }
     }
     
@@ -53,11 +55,12 @@ else{
         $max=$row['Max_Range'];
         $exact=$row['Exact_Range'];
         $time=$row['time'];
+        $date=$row['date'];
         if(!$exact){
-            array_push($arr,array('name'=>$name,'result'=>$result1,'min'=>$min,'max'=>$max,'exact'=>'null','range'=>$min.' - '.$max,'time'=>$time));
+            array_push($arr,array('name'=>$name,'result'=>$result1,'min'=>$min,'max'=>$max,'exact'=>'null','range'=>$min.' - '.$max,'time'=>$time,'date'=>$date));
         }
         else{
-            array_push($arr,array('name'=>$name,'result'=>$result1,'min'=>'null','max'=>'null','exact'=>$exact,'range'=>$exact,'time'=>$time));
+            array_push($arr,array('name'=>$name,'result'=>$result1,'min'=>'null','max'=>'null','exact'=>$exact,'range'=>$exact,'time'=>$time,'date'=>$date));
         }
     }
 }

@@ -416,9 +416,26 @@ div#ext-element-1008{
   visibility: hidden;
 }
 /*intake chart callouts*/
-canvas#ext-element-453 {
+canvas#ext-element-731 {
     visibility: hidden;
 }
-canvas#ext-element-483 {
+canvas#ext-element-761 {
+    visibility: hidden;
+}
+canvas#ext-element-483{
+    visibility: hidden;
+}
+canvas#ext-element-453{
+    visibility: hidden;
+}
+//z index for output pie chart
+div#ext-outputpiechart-1-overlay-surface{
+      z-index: 0;
+}
+canvas#ext-element-327{
+    visibility: hidden;
+}
+
+canvas#ext-element-294{
     visibility: hidden;
 }

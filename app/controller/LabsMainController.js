@@ -14,8 +14,12 @@ Ext.define("MVF.controller.LabsMainController", {
             DisplayHematologyResults:'[itemid=labshematologyresult]',
             DisplayMicrobiologyResults:'[itemid=labsmicrobiologyresult]',
             DisplayABGResults:'[itemid=labsabgresult]',
-            OnLabsMainViewButtonTap:'[itemid=LabsMainviewbuttonid]'
-            
+            OnLabsMainViewButtonTap:'[itemid=LabsMainviewbuttonid]',
+            OnPatientSummaryButtonTap:'[itemid=patientsummarybuttonid]',
+            ChemistrylastupdatePanel:'[itemid=chemistrylastupdate]',
+            HematologylastUpdatepanel:'[itemid=hematologylastupdate]',
+            MicrobiologylastUpdatePanel:'[itemid=microbiologylastupdate]',
+            AbgLastUpdatePanel:'[itemid=abglastupdate]'
         },
         control:{
             GoToChemistryPage:{
@@ -35,13 +39,21 @@ Ext.define("MVF.controller.LabsMainController", {
             },
             OnLabsMainViewButtonTap:{
                 tap:'OnLabsMainViewButtonTap'
+            },
+            OnPatientSummaryButtonTap:{
+                tap:'OnPatientSummaryButtonTap'
             }
         }
     },
     init:function(){
-        //MVF.app.LabPageCount++;
-        console.log(MVF.app.LabPageCount+' Lab Page Count working');
+//        //MVF.app.LabPageCount++;
+//        MVF.app.LabsMainLastUpdatedDate=['a','b','c'];
+//        for(i=0;i<3;i++){
+//            console.log(MVF.app.LabsMainLastUpdatedDate[i]);
+//        }
+//        console.log(MVF.app.LabPageCount+' Lab Page Count working');
     },
+   
     GoToChemistryPage:function(){
         this.getLabsMain().push({
                  xtype:'chemistrylabs'
@@ -109,7 +121,7 @@ Ext.define("MVF.controller.LabsMainController", {
                     }
                     ChemistryResults+='</tbody></table>';
                     ChemistryResultsPanel.setHtml(ChemistryResults);
-                    console.log(ChemistryResults);
+                    //console.log(ChemistryResults);
                 }
             }
         });
@@ -226,10 +238,12 @@ Ext.define("MVF.controller.LabsMainController", {
                     }
                     ABGResults+='</tbody></table>';
                     ABGresultsPanel.setHtml(ABGResults);
-                    console.log(ABGResults);
+                    
+                    //console.log(ABGResults);
                 }
             }
         });
+       
     },
     OnLabsMainViewButtonTap:function(){
         var date=Ext.ComponentQuery.query('[itemid=LabsMainDate]')[0].getFormattedValue();
@@ -238,6 +252,87 @@ Ext.define("MVF.controller.LabsMainController", {
         this.DisplayHemaotologyResultsFunction(date);
         this.DisplayMicrobiologyResultsFunction(date);
         this.DisplayABGResultsFunction(date);
+        //console.log(this.DateFlag);
+    },
+    OnPatientSummaryButtonTap:function(){
+        var date=Ext.ComponentQuery.query('[itemid=LabsMainDate]')[0].getFormattedValue();
+        //set Chemistry last date
+        this.DisplayChemistryResultsFunction(date);
+        // set hematology last date
+        this.DisplayHemaotologyResultsFunction(date);
+        //set MIcrobiology last date
+        this.DisplayMicrobiologyResultsFunction(date);
+        //set Abg last date
+        var datew=this.DisplayABGResultsFunction(date);
+        console.log('abgd lst date'+datew);
+        var ChemistryStore=Ext.getStore('LabsMainChemistryResultsStore');
+        ChemistryStore.load({
+            params:{
+                date:date
+            },
+            scope:this,
+            callback:function(records,success){
+                var No_Of_ResultsFetch=ChemistryStore.getCount();
+                console.log('no of che fetch'+No_Of_ResultsFetch);
+                if(success){
+                    //insert last updated date in LabsMainLastUpdatedDate array
+                   var LastUpdatedDate=records[0].data.date;
+                   var ChemistrylastupdatePanel=this.getChemistrylastupdatePanel();
+                   ChemistrylastupdatePanel.setHtml(LastUpdatedDate);
+                }  
+            }
+        });
+        var HematologyStore=Ext.getStore('LabsMainHematologyResultsStore');
+        HematologyStore.load({
+            params:{
+                date:date
+            },
+            scope:this,
+            callback:function(records,success){
+                var No_Of_Results=HematologyStore.getCount();
+                //console.log('no of Hematology results fetch'+No_Of_Results);
+                if(success){
+                    var LastUpdatedDate=records[0].data.date;
+                    //console.log(LastUpdatedDate+' date in hematology');
+                    var HematologylastUpdatepanel=this.getHematologylastUpdatepanel();
+                    HematologylastUpdatepanel.setHtml(LastUpdatedDate);
+                }
+            }
+        });
+        var MicrobiologyStore=Ext.getStore('LabsMainMicrobiologyResultsStore');
+        MicrobiologyStore.load({
+            params:{
+                date:date
+            },
+            scope:this,
+            callback:function(records,success){
+                var No_Of_Results=MicrobiologyStore.getCount();
+                //console.log('no of Microbiology results fetch'+No_Of_Results);
+                if(success){
+                    var lastUpdated=records[0].data.date;
+                    //console.log(lastUpdated+' date in microbiology');
+                    var MicrobiologylastUpdatePanel=this.getMicrobiologylastUpdatePanel();
+                    MicrobiologylastUpdatePanel.setHtml(lastUpdated);
+                }
+            }
+        });
+        var ABGStore=Ext.getStore('LabsMainABGResultsStore');
+        ABGStore.load({
+            params:{
+                date:date
+            },
+            scope:this,
+            callback:function(records,success){
+                var No_Of_Results=ABGStore.getCount();
+                console.log('no of ABG results fetch'+No_Of_Results);
+                if(success){
+                   var LastUpdatedDate=records[0].data.date;
+                    //console.log(LastUpdatedDate+' date im ');
+                    var AbgLastUpdatePanel=this.getAbgLastUpdatePanel();
+                     AbgLastUpdatePanel.setHtml(LastUpdatedDate);
+                 }
+             }
+         });
     }
     
 });

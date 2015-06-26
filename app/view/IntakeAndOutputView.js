@@ -95,9 +95,10 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                itemid:'pageid',
                                         
                                 options: [
-                                            {text: 'MAIN',  value: 'main'},
-                                            {text: 'Chemistry',  value: 'chemistrylabs'},
-                                            {text: 'Microbiology',  value: 'microbiologyview'}
+                                            {text: 'I&O',  value: 'IntakeAndOutputView'},
+                                            {text: 'Main',  value: 'LabsMainView'},
+                                            {text: 'Vitals',  value: 'VitalsView'},
+                                            
                                             
                                         ],
 
@@ -111,12 +112,14 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                            },
                            {
                                xtype:'button',
-                               text:'BACK',
-                               itemid:'back',
+                               ui: 'plain',
+                               itemid:'patientsummarybutton',
+                               //id:'patientsummarybutton',
+                               html: '<div style="text-align: center; border: 1px solid black; padding: 5px">Patient Summary</div>',
                                width:'170px',
                                height:'30px',
                                style:{
-                                       'margin-left':'2%',
+                                       'margin-left':'4%',
                                        'margin-top':'2%',
                                        'font-size':'12px'
                                     }
