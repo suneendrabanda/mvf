@@ -845,10 +845,10 @@ Ext.define('MVF.view.LabsMainView', {
                                 xtype:'container',
                                 width:'600px',
                                 height:'600px',
-                                scrollable: {
-                                        direction: 'vertical',
-                                        directionLock: true
-                                    },
+//                                scrollable: {
+//                                        direction: 'vertical',
+//                                        directionLock: true
+//                                    },
                                 style: {
                                             'border': '1px #9E9D8B solid',
                                             'borderRightColor':'#9E9D8B',
@@ -941,107 +941,118 @@ Ext.define('MVF.view.LabsMainView', {
                                                 }
                                             },
                                             //display results
-                                            
                                             {
-                                                xtype:'label',
-                                                html:'Hematology',
-                                                style:{
-                                                         'margin-top': '12px',
-                                                         'margin-left': '20px',
-                                                         'font-weight': '900',
-                                                          'color': 'rgb(145, 86, 145)',
-                                                          'font-size': 'large'
-                                                        }
+                                                xtype:'container',
+                                                width:'600px',
+                                                height:'500px',
+                                                scrollable: {
+                                                        direction: 'vertical',
+                                                        directionLock: true
+                                                    },
+                                                    items:[
+                                                           {
+                                                                xtype:'label',
+                                                                html:'Hematology',
+                                                                style:{
+                                                                         'margin-top': '12px',
+                                                                         'margin-left': '20px',
+                                                                         'font-weight': '900',
+                                                                          'color': 'rgb(145, 86, 145)',
+                                                                          'font-size': 'large'
+                                                                        }
+                                                            },
+                                                            {
+                                                                xtype:'panel',
+                                                                html:'',
+                                                                itemid:'labshematologyresult',
+                                                                style:{
+                                                                    'margin-left':'50px',
+                                                                    'font-size':'small'
+                                                                }
+                                                            },
+                                                            {
+                                                                xtype:'label',
+                                                                html:'Chemistry',
+                                                                style:{
+                                                                         'margin-top': '12px',
+                                                                         'margin-left': '20px',
+                                                                         'font-weight': '900',
+                                                                          'color': 'rgb(145, 86, 145)',
+                                                                          'font-size': 'large'
+                                                                        }
+                                                            },
+                                                            {
+                                                                xtype:'panel',
+                                                                html:'',
+                                                                itemid:'labschemistryresult',
+                                                                style:{
+                                                                    'margin-left':'50px',
+                                                                    'font-size':'small'
+                                                                }
+                                                            },
+                                                            {
+                                                                xtype:'label',
+                                                                html:'Microbiology',
+                                                                style:{
+                                                                         'margin-top': '12px',
+                                                                         'margin-left': '20px',
+                                                                         'font-weight': '900',
+                                                                          'color': 'rgb(145, 86, 145)',
+                                                                          'font-size': 'large'
+                                                                        }
+                                                            },
+                                                            {
+                                                                xtype:'panel',
+                                                                html:'',
+                                                                itemid:'labsmicrobiologyresult',
+                                                                style:{
+                                                                    'margin-left':'50px',
+                                                                    'font-size':'small'
+                                                                }
+                                                            },
+                                                            {
+                                                                xtype:'label',
+                                                                html:'Serology',
+                                                                style:{
+                                                                         'margin-top': '12px',
+                                                                         'margin-left': '20px',
+                                                                         'font-weight': '900',
+                                                                          'color': 'rgb(145, 86, 145)',
+                                                                          'font-size': 'large'
+                                                                        }
+                                                            },
+                                                            {
+                                                                xtype:'panel',
+                                                                html:'',
+                                                                itemid:'labsserologyresult',
+                                                                style:{
+                                                                    'margin-left':'50px',
+                                                                    'font-size':'small'
+                                                                }
+                                                            },
+                                                            {
+                                                                xtype:'label',
+                                                                html:'Aterial Blood Gas',
+                                                                style:{
+                                                                         'margin-top': '12px',
+                                                                         'margin-left': '20px',
+                                                                         'font-weight': '900',
+                                                                          'color': 'rgb(145, 86, 145)',
+                                                                          'font-size': 'large'
+                                                                        }
+                                                            },
+                                                            {
+                                                                xtype:'panel',
+                                                                html:'',
+                                                                itemid:'labsabgresult',
+                                                                style:{
+                                                                    'margin-left':'50px',
+                                                                    'font-size':'small'
+                                                                }
+                                                            }
+                                                    ]
                                             },
-                                            {
-                                                xtype:'panel',
-                                                html:'',
-                                                itemid:'labshematologyresult',
-                                                style:{
-                                                    'margin-left':'50px',
-                                                    'font-size':'small'
-                                                }
-                                            },
-                                            {
-                                                xtype:'label',
-                                                html:'Chemistry',
-                                                style:{
-                                                         'margin-top': '12px',
-                                                         'margin-left': '20px',
-                                                         'font-weight': '900',
-                                                          'color': 'rgb(145, 86, 145)',
-                                                          'font-size': 'large'
-                                                        }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'',
-                                                itemid:'labschemistryresult',
-                                                style:{
-                                                    'margin-left':'50px',
-                                                    'font-size':'small'
-                                                }
-                                            },
-                                            {
-                                                xtype:'label',
-                                                html:'Microbiology',
-                                                style:{
-                                                         'margin-top': '12px',
-                                                         'margin-left': '20px',
-                                                         'font-weight': '900',
-                                                          'color': 'rgb(145, 86, 145)',
-                                                          'font-size': 'large'
-                                                        }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'',
-                                                itemid:'labsmicrobiologyresult',
-                                                style:{
-                                                    'margin-left':'50px',
-                                                    'font-size':'small'
-                                                }
-                                            },
-                                            {
-                                                xtype:'label',
-                                                html:'Serology',
-                                                style:{
-                                                         'margin-top': '12px',
-                                                         'margin-left': '20px',
-                                                         'font-weight': '900',
-                                                          'color': 'rgb(145, 86, 145)',
-                                                          'font-size': 'large'
-                                                        }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'',
-                                                itemid:'labsserologyresult',
-                                                style:{
-                                                    'margin-left':'50px',
-                                                    'font-size':'small'
-                                                }
-                                            },
-                                            {
-                                                xtype:'label',
-                                                html:'Aterial Blood Gas',
-                                                style:{
-                                                         'margin-top': '12px',
-                                                         'margin-left': '20px',
-                                                         'font-weight': '900',
-                                                          'color': 'rgb(145, 86, 145)',
-                                                          'font-size': 'large'
-                                                        }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'',
-                                                itemid:'labsabgresult',
-                                                style:{
-                                                    'margin-left':'50px',
-                                                    'font-size':'small'
-                                                }
-                                            }// end of display results
+                                            // end of display results
                                         ]
                             }//end of lab detail box
                         ]
