@@ -129,7 +129,7 @@ Ext.define('MVF.view.microbiologyview', {
                                                     {text: 'Aterial Blood Gas',  value: 'absview'},
                                                  ],
                                         style:{
-                                                'margin-left':'44%',
+                                                'margin-left':'49%',
                                                 'margin-top':'2%',
                                                 'fontFamily':'openSansRegular',
                                                 'font-size':'small'
@@ -138,8 +138,9 @@ Ext.define('MVF.view.microbiologyview', {
                                  },
                                  {
                                     xtype:'button',
-                                    text:'BACK',
-                                    itemid:'back',
+                                    ui: 'plain',
+                                    itemid:'patientsummarybutton',
+                                    html: '<div style="text-align: center; border: 1px solid black; padding: 5px">PATIENT SUMMARY</div>',
                                     width:'170px',
                                     height:'30px',
                                     style:{

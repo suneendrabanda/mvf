@@ -134,7 +134,8 @@ Ext.define('MVF.view.LabsMainView', {
                             },
                             {
                                     xtype:'button',
-                                    text:'PATIENT SUMMARY',
+                                    ui: 'plain',
+                                    html: '<div style="text-align: center; border: 1px solid black; padding: 5px">PATIENT SUMMARY</div>',
                                     itemid:'patientsummarybuttonid',
                                     id:'patientsummarybuttonid',
                                     width:'170px',

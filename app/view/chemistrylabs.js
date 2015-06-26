@@ -140,12 +140,13 @@ Ext.define('MVF.view.chemistrylabs', {
                                  },
                                  {
                                     xtype:'button',
-                                    text:'BACK',
-                                    itemid:'back',
+                                    ui: 'plain',
+                                    itemid:'patientsummarybutton',
+                                    html: '<div style="text-align: center; border: 1px solid black; padding: 5px">PATIENT SUMMARY</div>',
                                     width:'170px',
                                     height:'30px',
                                     style:{
-                                       'margin-left':'4%',
+                                       'margin-left':'5%',
                                        'margin-top':'2%',
                                        'font-size':'12px'
                                     }

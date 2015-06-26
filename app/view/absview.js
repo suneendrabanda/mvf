@@ -118,8 +118,9 @@ Ext.define('MVF.view.absview', {
                                  },
                                  {
                                     xtype:'button',
-                                    text:'BACK',
-                                    itemid:'back',
+                                    ui: 'plain',
+                                    itemid:'patientsummarybutton',
+                                    html: '<div style="text-align: center; border: 1px solid black; padding: 5px">PATIENT SUMMARY</div>',
                                     width:'170px',
                                     height:'30px',
                                     style:{
@@ -433,7 +434,8 @@ Ext.define('MVF.view.absview', {
                                                     },
                                                     {
                                                         xtype:'button',
-                                                        text:'NEW NOTES',
+                                                        html: '<div style="text-align: center; border: 1px solid black; padding: 5px">New Notes</div>',
+                                                        ui:'plain',
                                                         itemid:'absAddNewNotes',
                                                         width:'120px',
                                                         height:'30px',

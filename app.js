@@ -140,7 +140,7 @@ controllers: [
         Ext.fly('appLoadingIndicator').destroy();
         
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('MVF.view.Main'));
+        Ext.Viewport.add(Ext.create('MVF.view.LabsMainView'));
     },
      'LabPageCount':'0',
      

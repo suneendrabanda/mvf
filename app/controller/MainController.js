@@ -321,24 +321,17 @@ Ext.define("MVF.controller.MainController", {
                                           xtype: 'selectfield',
                                           width:'100%',
                                           height:'40px',
+                                          store: 'IOPageIntakeStore',
                                           itemid:'intakenameedit',
                                            name:'intakenameedit',
-                                           
-                                           options: [
-                                                   {text: 'PO',  value: 'PO'},
-                                                   {text: 'IV',  value: 'IV'},
-                                                   {text: 'Blood', value: 'Blood'},
-                                                   {text: 'IVPB',  value: 'IVPB'},
-                                                   {text: 'Tube Fdg',  value: 'Tube Fdg'},
-                                                   {text: 'TPN',  value: 'TPN'},
-                                                   {text: 'Lipids',  value: 'Lipids'},
-                                                   {text: 'Breast Feed',  value: 'Breast Feed'},
-                                                   {text: 'Total In',  value: 'Total In'},
-                                                   {text: 'Others',  value: 'Others'}
-                                               ],
-                                               style:{
+                                           valueField:'value',
+                                           displayField:'name',
+                                           style:{
                                                    'border-width':'2px',
-                                                   'border-color':'black'
+                                                   'border-color':'black',
+                                                   'margin-top':'10px',
+                                                   'fontFamily':'openSansRegular',
+                                                   'font-size':'small'
                                                }
                                            
                                      },
@@ -347,19 +340,54 @@ Ext.define("MVF.controller.MainController", {
                                          itemid:'intakedateedit',
                                          width:'100%',
                                          name:'intakedate',
-                                         value: new Date()
+                                         value: new Date(),
+                                         style:{
+                                             'margin-top':'10px'
+                                         }
                                      },
+                                     
                                      {
-                                         xtype:'textfield',
+                                         xtype:'selectfield',
                                          name:'intaketimeedit',
                                          itemid:'intaketimeedit',
-                                         placeHolder:'Enter Time like "1000" for 10:00 AM'
+                                         options: [
+                                                   {text: '0100',  value: '0100'},
+                                                   {text: '0200',  value: '0200'},
+                                                   {text: '0300',  value: '0300'},
+                                                   {text: '0400',  value: '0400'},
+                                                   {text: '0500',  value: '0500'},
+                                                   {text: '0600',  value: '0600'},
+                                                   {text: '0700',  value: '0700'},
+                                                   {text: '0800',  value: '0800'},
+                                                   {text: '0900',  value: '0900'},
+                                                   {text: '1000',  value: '1000'},
+                                                   {text: '1100',  value: '1100'},
+                                                   {text: '1200',  value: '1200'},
+                                                   {text: '1300',  value: '1300'},
+                                                   {text: '1400',  value: '1400'},
+                                                   {text: '1500',  value: '1500'},
+                                                   {text: '1600',  value: '1600'},
+                                                   {text: '1700',  value: '1700'},
+                                                   {text: '1800',  value: '1800'},
+                                                   {text: '1900',  value: '1900'},
+                                                   {text: '2000',  value: '2000'},
+                                                   {text: '2100',  value: '2100'},
+                                                   {text: '2200',  value: '2200'},
+                                                   {text: '2300',  value: '2300'},
+                                                   {text: '2400',  value: '2400'}
+                                               ],
+                                         style:{
+                                             'margin-top':'10px'
+                                         }
                                      },
                                      {
                                          xtype:'textfield',
                                          name:'intakeresultedit',
                                          itemid:'intakeresultedit',
-                                         placeHolder:'Enter Result'
+                                         placeHolder:'Enter Result',
+                                         style:{
+                                             'margin-top':'10px'
+                                         }
                                      },
                                       {
 				    xtype: 'button',
@@ -367,7 +395,10 @@ Ext.define("MVF.controller.MainController", {
                                     itemid:'intakeupdatebutton',
 				    ui: 'action',
 				    //margin: 1,
-				    text: 'Update'
+				    text: 'Update',
+                                    style:{
+                                             'margin-top':'20px'
+                                         }
 			    }
                            
 			   
@@ -404,60 +435,84 @@ Ext.define("MVF.controller.MainController", {
                                           width:'100%',
                                           height:'40px',
                                           itemid:'outputname',
-                                           name:'outputname',
-                                           
-                                           options: [
-                                                   {text: 'Urine',  value: 'Urine'},
-                                                   {text: 'Emesis',  value: 'Emesis'},
-                                                   {text: 'Drains', value: 'Drains'},
-                                                   {text: 'Stool',  value: 'Stool'},
-                                                   {text: 'Ostomy',  value: 'Ostomy'},
-                                                   {text: 'Unmeasured',  value: 'Unmeasured'},
-                                                   {text: 'Incontinent',  value: 'Incontinent'},
-                                                   {text: 'Blood',  value: 'Blood'},
-                                                   {text: 'CRRT',  value: 'CRRT'},
-                                                   {text: 'Other',  value: 'Other'},
-                                                   {text: 'Total Out',  value: 'Total Out'}
-                                               ],
-                                               style:{
+                                          name:'outputname',
+                                          store: 'IOPageOutputStore', 
+                                          valueField:'value',
+                                          displayField:'name',
+                                          style:{
                                                    'border-width':'2px',
-                                                   'border-color':'black'
+                                                   'border-color':'black',
+                                                   'margin-top':'10px',
+                                                   'fontFamily':'openSansRegular',
+                                                   'font-size':'small'
                                                }
                                            
                                      },
                                      {
                                          xtype:'datepickerfield',
                                          itemid:'outputdate',
-                                          width:'100%',
-                                            name:'outputdate',
-                                            //height:'px',
-                                            
-                                           // border:2,
-                                            //style: 'border-color: black; border-style: solid;',
-                                            value: new Date()
+                                         width:'100%',
+                                         name:'outputdate',
+                                         value: new Date(),
+                                         style:{
+                                             'margin-top':'10px'
+                                         }
                                      },
                                      {
-                                         xtype:'textfield',
+                                         xtype:'selectfield',
                                          name:'outputtime',
                                          itemid:'outputtime',
-                                         placeHolder:'Enter Time like "1000" for 10:00 AM'
+                                         options: [
+                                                   {text: '0100',  value: '0100'},
+                                                   {text: '0200',  value: '0200'},
+                                                   {text: '0300',  value: '0300'},
+                                                   {text: '0400',  value: '0400'},
+                                                   {text: '0500',  value: '0500'},
+                                                   {text: '0600',  value: '0600'},
+                                                   {text: '0700',  value: '0700'},
+                                                   {text: '0800',  value: '0800'},
+                                                   {text: '0900',  value: '0900'},
+                                                   {text: '1000',  value: '1000'},
+                                                   {text: '1100',  value: '1100'},
+                                                   {text: '1200',  value: '1200'},
+                                                   {text: '1300',  value: '1300'},
+                                                   {text: '1400',  value: '1400'},
+                                                   {text: '1500',  value: '1500'},
+                                                   {text: '1600',  value: '1600'},
+                                                   {text: '1700',  value: '1700'},
+                                                   {text: '1800',  value: '1800'},
+                                                   {text: '1900',  value: '1900'},
+                                                   {text: '2000',  value: '2000'},
+                                                   {text: '2100',  value: '2100'},
+                                                   {text: '2200',  value: '2200'},
+                                                   {text: '2300',  value: '2300'},
+                                                   {text: '2400',  value: '2400'}
+                                               ],
+                                         style:{
+                                             'margin-top':'10px'
+                                         }
                                      },
                                      {
                                          xtype:'textfield',
                                          name:'outputresult',
                                          itemid:'outputresult',
-                                         
-                                         placeHolder:'Enter Result'
+                                         placeHolder:'Enter Result',
+                                         style:{
+                                             'margin-top':'10px'
+                                         }
                                      },
                                       {
-				    xtype: 'button',
-				    //id: 'SaveButton',
-                                    itemid:'outputupdatebutton',
-				    ui: 'action',
-				    //margin: ,
-				    text: 'Update',
-                                    
-			    }
+                                            xtype: 'button',
+                                            //id: 'SaveButton',
+                                            itemid:'outputupdatebutton',
+                                            ui: 'action',
+                                            //margin: ,
+                                            text: 'Update',
+                                            style:{
+                                              'margin-top':'20px'
+                                            }
+
+                                    }
                            
 			   
 	    ],
