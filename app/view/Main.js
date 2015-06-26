@@ -499,13 +499,14 @@ Ext.define('MVF.view.Main', {
                                           name:'tablevitalname',
                                            options: [
                                                    {text: 'All',  value: 'all'},
-                                                   {text: 'Pulse',  value: 'pulse'},
-                                                   {text: 'BP', value: 'bp'},
-                                                   {text: 'Resp',  value: 'resp'},
-                                                   {text: 'Temp',  value: 'temp'},
-                                                   {text: 'SaO2',  value: 'sao2'},
-                                                   {text: 'Pain',  value: 'pain'},
-                                                   {text: 'Weight',  value: 'weight'}
+                                                   {text: 'Pulse',  value: 'Pulse'},
+                                                   {text: 'BP', value: 'BP'},
+                                                   {text: 'Resp',  value: 'Resp'},
+                                                   {text: 'Temp',  value: 'Temp'},
+                                                   {text: 'SaO2',  value: 'SaO2'},
+                                                   {text: 'Pain',  value: 'Pain'},
+                                                   {text: 'Weight',  value: 'Weight'},
+                                                   {text: 'Height',  value: 'Height'}
                                                ],
                                         style:{
                                             'margin-left':'40px',
@@ -606,21 +607,12 @@ Ext.define('MVF.view.Main', {
                                                 itemid:'vitaltablepanel',
                                                 id:'vitaltablepanel',
                                                 name:'vitaltablepanel',
-                                                html:'<table>'+'<tr style="border-bottom:1px solid #a5a399">'+
-                                                        '<td style=" padding:0 0px 0 0px">'+'Date'+'</td>'+
-                                                        '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+'Time'+'</td>'+
-                                                        '<td style=" padding:0 30px 0 15px">'+'BP'+'</td>'+
-                                                        '<td style=" padding:0 30px 0 15px">'+'Temperature'+'</td>'+
-                                                        '<td style=" padding:0 30px 0 15px">'+'Pulse'+'</td>'+
-                                                        '<td style=" padding:0 30px 0 15px">'+'Resperation'+'</td>'+
-                                                        '<td style=" padding:0 30px 0 15px">'+'SaO2'+'</td>'+
-                                                        '<td style=" padding:0 30px 0 15px">'+'Pain'+'</td>'+
-                                                        '<td style=" padding:0 30px 0 15px">'+'Weight'+'</td>'+'</tr>',
+                                                html:'',
                                                  style:{
                                                         'margin-left':'28px',
                                                         'margin-top':'20px',
                                                         'fontFamily':'openSansRegular',
-                                                         'font-size':'medium'
+                                                         'font-size':'14px'
 
                                                     }
                                             }

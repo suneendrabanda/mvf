@@ -8,15 +8,12 @@ Ext.define("MVF.controller.MainController", {
             vital:'[itemid=vitalname]',
             onupdatevital:'[itemid=updatebutton]',
             shiftselect:'[itemid=shiftname]',
-//          startdayselect:'[itemid=startdate]',
-//          enddayselect:'[itemid=enddate]',
             edittable:'[itemid=edittableicon]',
             vitaltable:'[itemid=tablevitalname]',
             vitaltablepanel:'[itemid=vitaltablepanel]',
             patientsummarybutton:'[itemid=patientsummarybutton]',
             returntovspage:'[itemid=cancelbutton]',
             backtovsiopage:'[itemid=back]',
-            OnTableVitalChange:'[itemid=tablevitalname]',
             gotopage:'[itemid=pageid]',
             editintake:'[itemid=editintakeicon]',
             editoutput:'[itemid=editoutputicon]',
@@ -71,7 +68,7 @@ Ext.define("MVF.controller.MainController", {
               //  tap:'edittable'
             //},
             patientsummarybutton:{
-                tap:'gotopatientsummary'
+                tap:'OnVSAndIOpageLoad'
             },
             returntovspage:{
                 tap:'returntovspage'
@@ -158,7 +155,6 @@ Ext.define("MVF.controller.MainController", {
             //Ext.ComponentQuery.query('#linechartid')[0].show();
             //Ext.Msg.alert('vitalval');
     },
-    
     loadtabledata:function(){
         var vitalvalue=Ext.ComponentQuery.query('#tablevitalname')[0].getValue();
         var tablestartdate=Ext.ComponentQuery.query('#tablestartdate')[0].getFormattedValue();
@@ -176,56 +172,50 @@ Ext.define("MVF.controller.MainController", {
                      enddate:tableenddate
                       },
              scope:this,
-             
              callback:function(records,operation,success){
-                 no_of_records=store.getCount();
-                 var vitaltable='<table>';
-                 if(vitalvalue==='all'){
-                 for(var i=0;i<no_of_records;i++){
-                     if(i===0){
-                         vitaltable += '<tr style="border-bottom:1px solid #a5a399">'+
-                                       '<td style=" padding:0 0px 0 0px">'+records[i].data.date+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t1+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t6+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t3+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t4+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t5+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t2+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t7+'</td>'+'</tr>';
-                     }
-                     else{
+                 var no_of_records=store.getCount();
+                 var vitaltable='<table><thead>';
+                 
+                    if(vitalvalue==='all'){
+                        vitaltable += '<tr style="border-bottom:1px solid #a5a399">'+
+                                          '<td style=" padding:0 0px 0 0px">'+'Date'+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+'Time'+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+'BP'+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+'Height'+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+'Pain'+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+'Pulse'+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+'Resp'+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+'SaO2'+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+'Temperature'+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+'Weight'+'</td>'+'</tr>';
+                    for(var i=0;i<no_of_records;i++){
+                               vitaltable += '<tr>'+
+                                          '<td style=" padding:0 0px 0 0px">'+records[i].data.date+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+records[i].data.BP+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+records[i].data.Height+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+records[i].data.Pain+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+records[i].data.Pulse+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+records[i].data.Resp+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+records[i].data.SaO2+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+records[i].data.Temp+'</td>'+
+                                          '<td style=" padding:0 30px 0 15px">'+records[i].data.Weight+'</td>'+'</tr>';
+                    }
+                }
+                else{
+                    vitaltable += '<tr style="border-bottom:1px solid #a5a399">'+
+                                          '<td style=" padding:0 30px 0 18px">'+'Date'+'</td>'+
+                                          '<td style=" padding:0 30px 0 18px;border-right:1px solid #a5a399">'+'Time'+'</td>'+
+                                          '<td style=" padding:0 30px 0 18px">'+vitalvalue+'</td>'+'</tr>';
+                     for(var i=0;i<no_of_records;i++){
                          vitaltable += '<tr>'+
-                                       '<td style=" padding:0 0px 0 0px">'+records[i].data.date+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t1+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t6+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t3+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t4+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t5+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t2+'</td>'+
-                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.t7+'</td>'+'</tr>';
-                     }
-                 }
-             }
-             else{
-                  for(var i=0;i<no_of_records;i++){
-                      if(i===0){
-                              vitaltable += '<tr style="border-bottom:1px solid #a5a399">'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.date+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t1+'</td>'+'</tr>';
-                      }
-                      else{
-                          vitaltable += '<tr>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.date+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
-                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.t1+'</td>'+'</tr>';
-                      }
-                  }
-             }
-                  vitaltablepanel.setHtml(vitaltable);
-             }
+                                          '<td style=" padding:0 30px 0 18px">'+records[i].data.date+'</td>'+
+                                          '<td style=" padding:0 30px 0 18px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
+                                          '<td style=" padding:0 30px 0 18px">'+store.getAt(i).get(vitalvalue)+'</td>'+'</tr>';
+                         }
+                }
+                     vitaltablepanel.setHtml(vitaltable);
+                }
              });
        
         
@@ -239,22 +229,20 @@ Ext.define("MVF.controller.MainController", {
             modal: true,
             hideOnMaskTap: true,
 	    centered: true,           
-	    width:  Ext.os.deviceType =='Phone' ? 560 : 400,//'500px',
+	    width:  Ext.os.deviceType =='Phone' ? 490 : 400,//'500px',
 	    height: Ext.os.deviceType =='Phone' ? 400 : 400,
+            zIndex:5,
+            
 	    styleHtmlContent: true,
 	    // Make it hidden by default
             hidden: true,
-	    style:{
-                'z-index':'10'
-            },
+	    
 	    items: [
                             {
 				    xtype: 'EditTable',
 				    width: '98%',
 				    height: '98%',
-                                    style:{
-                                        'z-index':'10'
-                                    }
+                                    
                                     
 			    },
 			   
@@ -267,6 +255,7 @@ Ext.define("MVF.controller.MainController", {
             tap: function(button) {
                 // When you tap on the button, we want to show the overlay by the button we just tapped.
                 overlay.showBy(button);
+                
 		//console.log('yes button');
             }
         });
@@ -275,22 +264,7 @@ Ext.define("MVF.controller.MainController", {
         
        
     },
-    gotopatientsummary:function(){
-        console.log(this);
-        this.getMain().push({
-          xtype:'chemistrylabs',
-          title:'chemistryLabs'
-      });
-    },
-    returntovspage:function(button, e, eOpts){
-         
-	this.getMain().pop();
-    
-   },
-    returntovsiopage:function(button, e, eOpts){
-       this.getMain().pop();
-   },
-   editvitalvaluefunction:function(button, e, eOpts){
+    editvitalvaluefunction:function(button, e, eOpts){
        var editvitalvalue=Ext.ComponentQuery.query('[itemid=editvitalnameid]')[0].getValue();
        var editdatevalue=Ext.ComponentQuery.query('[itemid=editdatevalue]')[0].getFormattedValue();
        var edittimevalue=Ext.ComponentQuery.query('[itemid=edittimevalue]')[0].getValue();
@@ -308,10 +282,7 @@ Ext.define("MVF.controller.MainController", {
                         },
                    scope:this,
                    callback:function(records,operation,success){
-//                       console.log(records[0].data.information);
-//                       console.log(records[0].data.vitalsign);
-//                       console.log(records[0].data.date);
-//                       console.log(records[0].data.time); console.log(records[0].data.result);
+
                         Ext.Msg.alert(records[0].data.information);
                        
                    }
@@ -555,6 +526,65 @@ Ext.define("MVF.controller.MainController", {
              }
                   });
    },
-   
+   OnVSAndIOpageLoad:function(){
+       var vitalvalue=Ext.ComponentQuery.query('#tablevitalname')[0].getValue();
+       var tablestartdate=Ext.ComponentQuery.query('#tablestartdate')[0].getFormattedValue();
+       var tableenddate=Ext.ComponentQuery.query('#tableenddate')[0].getFormattedValue();
+       var shiftvalue=Ext.ComponentQuery.query('#shiftname')[0].getValue();
+       var vitaltablepanel= this.getVitaltablepanel();
+       var store = Ext.StoreMgr.get('vitaltablestore');
+       Ext.getStore('vitaltablestore').load({
+            params:{ vitalvalue: vitalvalue,
+                     shiftvalue: shiftvalue,
+                     startdate:tablestartdate,
+                     enddate:tableenddate
+                      },
+             scope:this,
+             callback:function(records,operation,success){
+                 var no_of_records=store.getCount();
+                 var vitaltable='<table><thead>';
+                 
+                 if(vitalvalue==='all'){
+                     vitaltable += '<tr style="border-bottom:1px solid #a5a399">'+
+                                       '<td style=" padding:0 0px 0 0px">'+'Date'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+'Time'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'BP'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'Height'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'Pain'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'Pulse'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'Resp'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'SaO2'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'Temperature'+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+'Weight'+'</td>'+'</tr>';
+                 for(var i=0;i<no_of_records;i++){
+                            vitaltable += '<tr>'+
+                                       '<td style=" padding:0 0px 0 0px">'+records[i].data.date+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.BP+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.Height+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.Pain+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.Pulse+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.Resp+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.SaO2+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.Temp+'</td>'+
+                                       '<td style=" padding:0 30px 0 15px">'+records[i].data.Weight+'</td>'+'</tr>';
+                 }
+             }
+             else{
+                 vitaltable += '<tr style="border-bottom:1px solid #a5a399">'+
+                                       '<td style=" padding:0 30px 0 18px">'+'Date'+'</td>'+
+                                       '<td style=" padding:0 30px 0 18px;border-right:1px solid #a5a399">'+'Time'+'</td>'+
+                                       '<td style=" padding:0 30px 0 18px">'+vitalvalue+'</td>'+'</tr>';
+                  for(var i=0;i<no_of_records;i++){
+                      vitaltable += '<tr>'+
+                                       '<td style=" padding:0 30px 0 18px">'+records[i].data.date+'</td>'+
+                                       '<td style=" padding:0 30px 0 18px;border-right:1px solid #a5a399">'+records[i].data.time+'</td>'+
+                                       '<td style=" padding:0 30px 0 18px">'+store.getAt(i).get(vitalvalue)+'</td>'+'</tr>';
+                      }
+             }
+                  vitaltablepanel.setHtml(vitaltable);
+             }
+         });
+   }
    
 });

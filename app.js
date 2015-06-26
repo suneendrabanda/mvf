@@ -104,7 +104,8 @@ Ext.application({
         "IOPageIntakeStore",
         "IOPageOutputStore",
         "IntakeTableStore",
-        "OutputTableStore"
+        "OutputTableStore",
+        "VitalSignsDropDownStore"
 ],
 controllers: [
 	'MainController',
@@ -139,7 +140,7 @@ controllers: [
         Ext.fly('appLoadingIndicator').destroy();
         
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('MVF.view.LabsMainView'));
+        Ext.Viewport.add(Ext.create('MVF.view.Main'));
     },
      'LabPageCount':'0',
      

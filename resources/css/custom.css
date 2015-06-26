@@ -409,33 +409,15 @@ html,body{
 }
 
 /*pie chart call out hidden*/
-div#ext-element-1008{
-  width: 100%;
-  height: 100%;
-  position: relative;
-  visibility: hidden;
-}
-/*intake chart callouts*/
-canvas#ext-element-731 {
+canvas#ext-element-784{
     visibility: hidden;
 }
-canvas#ext-element-761 {
+canvas#ext-element-754{
     visibility: hidden;
 }
 canvas#ext-element-483{
-    visibility: hidden;
+    visibility: hidden
 }
 canvas#ext-element-453{
-    visibility: hidden;
-}
-//z index for output pie chart
-div#ext-outputpiechart-1-overlay-surface{
-      z-index: 0;
-}
-canvas#ext-element-327{
-    visibility: hidden;
-}
-
-canvas#ext-element-294{
     visibility: hidden;
 }

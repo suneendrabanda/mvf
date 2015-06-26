@@ -4,9 +4,6 @@ Ext.define("MVF.view.IOPageOutputChartView", {
         "Ext.chart.PolarChart",
         "Ext.chart.AbstractChart",
         "Ext.chart.series.Pie"
-        
-        
-        
     ],
     alias:"widget.IOPageOutputChartView",
     config:{
@@ -26,26 +23,13 @@ Ext.define("MVF.view.IOPageOutputChartView", {
             }
         },
         insetPadding:42,
-        highlight: {
-                  segment: {
-                    //margin: 20
-                  }
-                },
-                 label: {
-                    //field: 'outputname',
-//                    display: 'rotate',
-//                    contrast: true,
-//                    font: '0px Arial'
-                },
-                style:{
-                    
-                },
         series: [
                      {
                         type: 'pie',
                         labelField: 'outputname',
                         xField: 'result',
-                        donut: 50
+                        donut: 50,
+                        
                      }
                     ]
                     

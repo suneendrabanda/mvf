@@ -11,22 +11,20 @@ Ext.define('MVF.view.EditTable', {
                                           xtype: 'selectfield',
                                           itemid:'editvitalnameid',
                                           name:'vitalname',
-                                           options: [
-                                                   
-                                                   {text: 'Pulse',  value: 'Pulse'},
-                                                   {text: 'BP', value: 'BP'},
-                                                   {text: 'Resp',  value: 'Resp'},
-                                                   {text: 'Temp',  value: 'Temp'},
-                                                   {text: 'SaO2',  value: 'SaO2'},
-                                                   {text: 'Pain',  value: 'Pain'},
-                                                   {text: 'Weight',  value: 'Weight'}
-                                               ]
-                                          
-                                     },
+                                          store: 'VitalSignsDropDownStore',
+                                          valueField:'value',
+                                          displayField:'text',
+                                          style:{
+                                              'margin-top':'10px'
+                                          }
+                                        },
                                      {
                                           xtype: 'datepickerfield',
                                           itemid:'editdatevalue',
-                                          value: new Date()
+                                          value: new Date(),
+                                          style:{
+                                              'margin-top':'10px'
+                                          }
                                      },
                                      {
                                          xtype:'selectfield',
@@ -56,21 +54,30 @@ Ext.define('MVF.view.EditTable', {
                                                    {text: '2200',  value: '2200'},
                                                    {text: '2300',  value: '2300'},
                                                    {text: '2400',  value: '2400'}
-                                               ]
+                                               ],
+                                               style:{
+                                                   'margin-top':'10px'
+                                               }
                                         },
                                       {
                                           xtype:'textfield',
                                           itemid:'vitalsignvalue',
-                                          placeHolder:'Enter result here'
-                                          //id:'vitalsignvalue'
+                                          placeHolder:'Enter result here',
+                                          //id:'vitalsignvalue',
+                                          style:{
+                                              'margin-top':'10px'
+                                          }
                                                   
                                       },
                                            {
                                                     xtype:'button',
-                                                    width:'100px',
+                                                    width:'432px',
                                                     itemid:'updatebutton',
                                                     ui:'action',
                                                     text:'update',
+                                                    style:{
+                                                        'margin-top':'20px'
+                                                    }
                                                     
                                                 },
                       ]
