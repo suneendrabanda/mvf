@@ -1,6 +1,6 @@
 <?php
 // Create connection
-$con=mysqli_connect("localhost","root","suni","mvp");
+$con=mysqli_connect("localhost","root","suni","mvf");
 
 // Check connection
 if (mysqli_connect_errno()) {

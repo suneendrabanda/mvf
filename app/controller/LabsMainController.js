@@ -80,7 +80,8 @@ Ext.define("MVF.controller.LabsMainController", {
         var ChemistryResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 110px 0 0">Result</th><th style="padding: 0 80px 0 0">Time</th><th style="padding: 0 10px 0 0">Normal Range</th></tr></thead><tbody>';
         ChemistryStore.load({
             params:{
-                date:date
+                date:date,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
             callback:function(records,success){
@@ -147,7 +148,8 @@ Ext.define("MVF.controller.LabsMainController", {
         var HematologyResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 105px 0 0">Result</th><th style="padding: 0 80px 0 0">Time</th><th style="padding: 0 10px 0 0">Normal Range</th></tr></thead><tbody>';
         HematologyStore.load({
             params:{
-                date:date
+                date:date,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
             callback:function(records,success){
@@ -181,7 +183,8 @@ Ext.define("MVF.controller.LabsMainController", {
         var MicrobiologyResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 110px 0 0">Result</th><th style="padding: 0 80px 0 0">Time</th><th style="padding: 0 10px 0 0">Normal Range</th></tr></thead><tbody>';
         MicrobiologyStore.load({
             params:{
-                date:date
+                date:date,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
             callback:function(records,success){
@@ -215,7 +218,8 @@ Ext.define("MVF.controller.LabsMainController", {
         var ABGResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 110px 0 0">Result</th><th style="padding: 0 80px 0 0">Time</th><th style="padding: 0 10px 0 0">Normal Range</th></tr></thead><tbody>';
         ABGStore.load({
             params:{
-                date:date
+                date:date,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
             callback:function(records,success){
@@ -268,7 +272,8 @@ Ext.define("MVF.controller.LabsMainController", {
         var ChemistryStore=Ext.getStore('LabsMainChemistryResultsStore');
         ChemistryStore.load({
             params:{
-                date:date
+                date:date,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
             callback:function(records,success){
@@ -285,7 +290,8 @@ Ext.define("MVF.controller.LabsMainController", {
         var HematologyStore=Ext.getStore('LabsMainHematologyResultsStore');
         HematologyStore.load({
             params:{
-                date:date
+                date:date,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
             callback:function(records,success){
@@ -302,7 +308,8 @@ Ext.define("MVF.controller.LabsMainController", {
         var MicrobiologyStore=Ext.getStore('LabsMainMicrobiologyResultsStore');
         MicrobiologyStore.load({
             params:{
-                date:date
+                date:date,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
             callback:function(records,success){
@@ -319,7 +326,8 @@ Ext.define("MVF.controller.LabsMainController", {
         var ABGStore=Ext.getStore('LabsMainABGResultsStore');
         ABGStore.load({
             params:{
-                date:date
+                date:date,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
             callback:function(records,success){

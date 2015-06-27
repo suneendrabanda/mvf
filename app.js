@@ -50,7 +50,7 @@ Ext.application({
        "vitaltablemodel",
        "outputpiechartmodel",
        "intakepiechartmodel",
-       "chemistrydropdownmodel",
+       "DropDownmodel",
        "microbiologydropdownmodel",
        "chemistrychartmodel",
        "IOUpdateModel",
@@ -143,7 +143,7 @@ controllers: [
         Ext.Viewport.add(Ext.create('MVF.view.LabsMainView'));
     },
      'LabPageCount':'0',
-     
+     'patient_id':'71013',
      
     onUpdated: function() {
         Ext.Msg.confirm(

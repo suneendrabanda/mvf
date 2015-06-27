@@ -158,10 +158,7 @@ Ext.define('MVF.view.hematology', {
                         width: '950px',
                         height: '600px',
                         layout:'vbox',
-                        scrollable: {
-                                        direction: 'vertical',
-                                        directionLock: true
-                                    },
+                        
                         style: {
                                 'border': '1px #9E9D8B solid',
                                 'borderRightColor':'#9E9D8B',
@@ -304,148 +301,235 @@ Ext.define('MVF.view.hematology', {
                             },
                             {
                                 xtype:'container',
-                                 layout:'hbox',
-                                  
+                                width:'950px',
+                                height:'500px',
+                                scrollable: {
+                                        direction: 'vertical',
+                                        directionLock: true
+                                    },
                                  items:[
-                                     //text container
                                      {
                                         xtype:'container',
-                                        layout:'vbox',
-                                        items:[
-                                            //6 containers here
-                                            {
-                                                   xtype:'label',
-                                                    html:' Notes',
-                                                    style:{
-                                                          'margin-top': '6%',
-                                                           'margin-left': '25px',
-                                                           /* font-family: -webkit-pictograph; */
-                                                           'font-weight': '900',
-                                                           'color': 'rgb(145, 86, 145)',
-                                                           'font-size': 'larger'
-                                                         }
-                                            },
-                                            {
-                                                xtype:'label',
-                                                html:'VIEWING:',
-                                                style:{
-                                                   'margin-left': '25px',
-                                                    'margin-top': '10%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial',
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'',
-                                                itemid:'hematologyviewingitem',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500'
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'Alerts:',
-                                                style:{
-                                                     'margin-left': '25px',
-                                                    'margin-top': '10%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial'
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'',
-                                                itemid:'hematologyalertdate',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                    'margin-top': '12px',
-                                                    'font-size': '12px',
-                                                    'font-weight': '500'
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                itemid:'hematologyalertinfo',
-                                                html:'',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                    'margin-top': '12px',
-                                                    'font-size': 'initial',
-                                                    'font-weight': '500',
-                                                    'color':'red'
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                width:'300px',
-                                                html:'Notes',
-                                                style:{
-                                                   'margin-left': '25px',
-                                                    'margin-top': '8%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial'
-                                                   
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                width:'280px',
-                                                height:'100px',
-                                                html:'<p>The mean corpuscular volume, or MCV, is a measure of the average red blood cell volume (i.e. size)\n\
-                                                         that is reported as part of a standard complete blood count.\n\
-                                                            It can be calculated (in litres) by dividing the hematocrit by the red blood cell count (number of red blood cells per litre). The result is typically reported in femtolitres.</p>',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                    'margin-top':'4%',
-                                                    'font-weight':'normal',
-                                                    'font-size':'smaller'
-                                                }
-                                            }
-                                        ]
-                                        
-                                     },
-                                     {
-                                         //charts and box container
-                                         xtype:'container',
-                                         layout:'vbox',
-                                         items:[
-                                             {
-                                                 //chart contaianer
-                                                 xtype:'container',
-                                                 width: '580px',
-                                                 height: '300px',
-                                                 layout:'vbox',
-                                                 style: {
-                                                            'border': '1px #9E9D8B solid',
-                                                            'borderRightColor':'#9E9D8B',
-                                                            'borderTopColor': '#AC9C65',
-                                                            'borderTopWidth': '4px',
-                                                            'margin': 'auto',
-                                                            'margin-left': '5%',
-                                                            'margin-top': '',
-                                                            'background-color': '#FFFFFF'
+                                         layout:'hbox',
 
-                                                        },
+                                         items:[
+                                             //text container
+                                             {
+                                                xtype:'container',
+                                                layout:'vbox',
+                                                items:[
+                                                    //6 containers here
+                                                    {
+                                                           xtype:'label',
+                                                            html:' Notes',
+                                                            style:{
+                                                                  'margin-top': '6%',
+                                                                   'margin-left': '25px',
+                                                                   /* font-family: -webkit-pictograph; */
+                                                                   'font-weight': '900',
+                                                                   'color': 'rgb(145, 86, 145)',
+                                                                   'font-size': 'larger'
+                                                                 }
+                                                    },
+                                                    {
+                                                        xtype:'label',
+                                                        html:'VIEWING:',
+                                                        style:{
+                                                           'margin-left': '25px',
+                                                            'margin-top': '10%',
+                                                            'font-weight': '600',
+                                                            'font-size': 'initial',
+                                                        }
+                                                    },
+                                                    {
+                                                        xtype:'panel',
+                                                        html:'',
+                                                        itemid:'hematologyviewingitem',
+                                                        style:{
+                                                            'margin-left':'40px',
+                                                              'margin-top': '12px',
+                                                                'font-size': 'initial',
+                                                                'font-weight': '500'
+                                                        }
+                                                    },
+                                                    {
+                                                        xtype:'panel',
+                                                        html:'Alerts:',
+                                                        style:{
+                                                             'margin-left': '25px',
+                                                            'margin-top': '10%',
+                                                            'font-weight': '600',
+                                                            'font-size': 'initial'
+                                                        }
+                                                    },
+                                                    {
+                                                        xtype:'panel',
+                                                        html:'',
+                                                        itemid:'hematologyalertdate',
+                                                        style:{
+                                                            'margin-left':'40px',
+                                                            'margin-top': '12px',
+                                                            'font-size': '12px',
+                                                            'font-weight': '500'
+                                                        }
+                                                    },
+                                                    {
+                                                        xtype:'panel',
+                                                        itemid:'hematologyalertinfo',
+                                                        html:'',
+                                                        style:{
+                                                            'margin-left':'40px',
+                                                            'margin-top': '12px',
+                                                            'font-size': 'initial',
+                                                            'font-weight': '500',
+                                                            'color':'red'
+                                                        }
+                                                    },
+                                                    {
+                                                        xtype:'panel',
+                                                        width:'300px',
+                                                        html:'Notes',
+                                                        style:{
+                                                           'margin-left': '25px',
+                                                            'margin-top': '8%',
+                                                            'font-weight': '600',
+                                                            'font-size': 'initial'
+
+                                                        }
+                                                    },
+                                                    {
+                                                        xtype:'panel',
+                                                        width:'280px',
+                                                        height:'100px',
+                                                        html:'<p>The mean corpuscular volume, or MCV, is a measure of the average red blood cell volume (i.e. size)\n\
+                                                                 that is reported as part of a standard complete blood count.\n\
+                                                                    It can be calculated (in litres) by dividing the hematocrit by the red blood cell count (number of red blood cells per litre). The result is typically reported in femtolitres.</p>',
+                                                        style:{
+                                                            'margin-left':'40px',
+                                                            'margin-top':'4%',
+                                                            'font-weight':'normal',
+                                                            'font-size':'smaller'
+                                                        }
+                                                    }
+                                                ]
+
+                                             },
+                                             {
+                                                 //charts and box container
+                                                 xtype:'container',
+                                                 layout:'vbox',
                                                  items:[
-                                                     //items for box1 here
                                                      {
+                                                         //chart contaianer
                                                          xtype:'container',
-                                                         layout:'hbox',
+                                                         width: '580px',
+                                                         height: '300px',
+                                                         layout:'vbox',
+                                                         style: {
+                                                                    'border': '1px #9E9D8B solid',
+                                                                    'borderRightColor':'#9E9D8B',
+                                                                    'borderTopColor': '#AC9C65',
+                                                                    'borderTopWidth': '4px',
+                                                                    'margin': 'auto',
+                                                                    'margin-left': '5%',
+                                                                    'margin-top': '',
+                                                                    'background-color': '#FFFFFF'
+
+                                                                },
                                                          items:[
+                                                             //items for box1 here
                                                              {
                                                                  xtype:'container',
                                                                  layout:'hbox',
-                                                                 width:'400px',
-                                                                 height:'35px',
-                                                                 
+                                                                 items:[
+                                                                     {
+                                                                         xtype:'container',
+                                                                         layout:'hbox',
+                                                                         width:'400px',
+                                                                         height:'35px',
+
+                                                                         items:[
+                                                                             {
+                                                                                xtype:'label',
+                                                                                html:'Graph View - ',
+                                                                                  style:{
+                                                                                        'margin-top': '3%',
+                                                                                         'margin-left': '3%',
+                                                                                         /* font-family: -webkit-pictograph; */
+                                                                                         'font-weight': '800',
+                                                                                         'color': 'rgb(145, 86, 145)',
+                                                                                         'font-size': 'medium'
+                                                                                       }
+                                                                             },
+                                                                            {
+                                                                                xtype:'label',
+                                                                                html:'',
+                                                                                itemid:'hematologychartviewingid',
+                                                                                style:{
+                                                                                         'margin-top': '3%',
+                                                                                          'margin-left': '3%',
+                                                                                          /* font-family: -webkit-pictograph; */
+                                                                                          'font-weight': '800',
+                                                                                          'color': 'rgb(145, 86, 145)',
+                                                                                          'font-size': 'medium'
+                                                                                        }
+                                                                            },
+                                                                         ]
+                                                                     },
+                                                             {
+                                                                    xtype:'panel',
+                                                                    html:'Alerts()',
+                                                                    itemid:'hematologyChartAlertsCount',
+                                                                    style:{
+                                                                           'margin-left':'100px',
+                                                                           'margin-top':'3%',
+                                                                           'color':'red',
+                                                                           'font-size':'small'
+                                                                       }
+
+                                                                }
+                                                                 ]
+                                                             },//end of items above  hr in line chart
+
+                                                        {
+                                                            xtype:'HematologyChartView',
+                                                            style:{
+                                                                'margin-top':'2%'
+                                                            }
+                                                        }
+                                                        // chart item
+                                                         ]       
+
+                                                     },
+                                                     {
+                                                         //table container
+                                                          xtype:'container',
+                                                         width: '580px',
+                                                         height: '400px',
+                                                         layout:'vbox',
+                                                         style: {
+                                                                    'border': '1px #9E9D8B solid',
+                                                                    'borderRightColor':'#9E9D8B',
+                                                                    'borderTopColor': '#AC9C65',
+                                                                    'borderTopWidth': '4px',
+                                                                    'margin': 'auto',
+                                                                    'margin-left': '5%',
+                                                                    'margin-top': '17px',
+                                                                    'background-color': '#FFFFFF'
+
+                                                                },
+                                                            items:[
+                                                                //items in box2
+                                                                 {
+                                                                 xtype:'container',
+                                                                 layout:'hbox',
+                                                                 style:{
+                                                                     'margin-bottom':'15px'
+                                                                 },
                                                                  items:[
                                                                      {
                                                                         xtype:'label',
-                                                                        html:'Graph View - ',
+                                                                        html:'Table View - ',
                                                                           style:{
                                                                                 'margin-top': '3%',
                                                                                  'margin-left': '3%',
@@ -454,143 +538,68 @@ Ext.define('MVF.view.hematology', {
                                                                                  'color': 'rgb(145, 86, 145)',
                                                                                  'font-size': 'medium'
                                                                                }
-                                                                     },
-                                                                    {
-                                                                        xtype:'label',
-                                                                        html:'',
-                                                                        itemid:'hematologychartviewingid',
-                                                                        style:{
-                                                                                 'margin-top': '3%',
-                                                                                  'margin-left': '3%',
-                                                                                  /* font-family: -webkit-pictograph; */
-                                                                                  'font-weight': '800',
-                                                                                  'color': 'rgb(145, 86, 145)',
-                                                                                  'font-size': 'medium'
-                                                                                }
-                                                                    },
-                                                                 ]
                                                              },
-                                                     {
-                                                            xtype:'panel',
-                                                            html:'Alerts()',
-                                                            itemid:'hematologyChartAlertsCount',
-                                                            style:{
-                                                                   'margin-left':'100px',
-                                                                   'margin-top':'3%',
-                                                                   'color':'red',
-                                                                   'font-size':'small'
-                                                               }
-
-                                                        }
-                                                         ]
-                                                     },//end of items above  hr in line chart
-                                                     
-                                                {
-                                                    xtype:'HematologyChartView',
-                                                    style:{
-                                                        'margin-top':'2%'
-                                                    }
-                                                }
-                                                // chart item
-                                                 ]       
-                                                 
-                                             },
-                                             {
-                                                 //table container
-                                                  xtype:'container',
-                                                 width: '580px',
-                                                 height: '400px',
-                                                 layout:'vbox',
-                                                 style: {
-                                                            'border': '1px #9E9D8B solid',
-                                                            'borderRightColor':'#9E9D8B',
-                                                            'borderTopColor': '#AC9C65',
-                                                            'borderTopWidth': '4px',
-                                                            'margin': 'auto',
-                                                            'margin-left': '5%',
-                                                            'margin-top': '17px',
-                                                            'background-color': '#FFFFFF'
-
-                                                        },
-                                                    items:[
-                                                        //items in box2
-                                                         {
-                                                         xtype:'container',
-                                                         layout:'hbox',
-                                                         style:{
-                                                             'margin-bottom':'15px'
-                                                         },
-                                                         items:[
                                                              {
-                                                                xtype:'label',
-                                                                html:'Table View - ',
-                                                                  style:{
-                                                                        'margin-top': '3%',
-                                                                         'margin-left': '3%',
-                                                                         /* font-family: -webkit-pictograph; */
-                                                                         'font-weight': '800',
-                                                                         'color': 'rgb(145, 86, 145)',
-                                                                         'font-size': 'medium'
-                                                                       }
-                                                     },
-                                                     {
-                                                         xtype:'label',
-                                                         html:'ALL',
-                                                         itemid:'hematologytableviewingid',
-                                                         style:{
-                                                                  'margin-top': '3%',
-                                                                   'margin-left': '3%',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '800',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'medium'
+                                                                 xtype:'label',
+                                                                 html:'ALL',
+                                                                 itemid:'hematologytableviewingid',
+                                                                 style:{
+                                                                          'margin-top': '3%',
+                                                                           'margin-left': '3%',
+                                                                           /* font-family: -webkit-pictograph; */
+                                                                           'font-weight': '800',
+                                                                           'color': 'rgb(145, 86, 145)',
+                                                                           'font-size': 'medium'
+                                                                         }
+                                                             },
+                                                             {
+                                                                 xtype:'panel',
+                                                                 html:'Alert()',
+                                                                 itemid:'TablealertPanel',
+                                                                 style:{
+                                                                     'margin-left':'60%',
+                                                                      'margin-top':'3%',
+                                                                      'color':'red',
+                                                                      'font-size':'small'
                                                                  }
-                                                     },
-                                                     {
-                                                         xtype:'panel',
-                                                         html:'Alert()',
-                                                         itemid:'TablealertPanel',
-                                                         style:{
-                                                             'margin-left':'60%',
-                                                              'margin-top':'3%',
-                                                              'color':'red',
-                                                              'font-size':'small'
-                                                         }
+                                                             }
+
+                                                    ]
+                                                             },//end of items above  hr in line chart
+
+                                                        //table container
+                                                        {
+                                                            xtype:'container',
+                                                            width:'580px',
+                                                            height:'300px',
+                                                            layout:'hbox',
+
+                                                            scrollable: {
+                                                                        direction: 'both',
+                                                                        directionLock: true
+                                                                    },
+                                                                    items:[
+                                                                        //table goes here
+                                                                        {
+                                                                            xtype:'panel',
+                                                                            itemid:'HematologyResultsTable',
+                                                                            style:{
+                                                                                'fontFamily':'openSansRegular',
+                                                                                'font-size':'small',
+                                                                                'margin-left':'20px'
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                        }
+                                                            ]    
                                                      }
-                                                     
-                                            ]
-                                                     },//end of items above  hr in line chart
-                                                     
-                                                //table container
-                                                {
-                                                    xtype:'container',
-                                                    width:'580px',
-                                                    height:'300px',
-                                                    layout:'hbox',
-                                                    
-                                                    scrollable: {
-                                                                direction: 'both',
-                                                                directionLock: true
-                                                            },
-                                                            items:[
-                                                                //table goes here
-                                                                {
-                                                                    xtype:'panel',
-                                                                    itemid:'HematologyResultsTable',
-                                                                    style:{
-                                                                        'fontFamily':'openSansRegular',
-                                                                        'font-size':'small',
-                                                                        'margin-left':'20px'
-                                                                    }
-                                                                }
-                                                            ]
-                                                }
-                                                    ]    
+                                                 ]
                                              }
                                          ]
-                                     }
-                                 ]
-                            }
+                                    }
+                                 ]   
+                            },
+                            
                         ]    
                     },// end of content container
                     {

@@ -6,6 +6,9 @@ Ext.define("MVF.model.TableModel", {
             { name: "result", type: "string" },
             { name: "date", type: "srting" },
             { name: "time", type: "srting" },
+            { name: "min", type: "srting" },
+            { name: "max", type: "srting" },
+            { name: "exact", type: "srting" },
             { name: "range", type: "srting" },
         ]
     }

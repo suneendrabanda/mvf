@@ -160,10 +160,10 @@ Ext.define('MVF.view.chemistrylabs', {
                         width: '950px',
                         height: '600px',
                         layout:'vbox',
-                        scrollable: {
-                                                            direction: 'vertical',
-                                                            directionLock: true
-                                                        },
+//                        scrollable: {
+//                                                            direction: 'vertical',
+//                                                            directionLock: true
+//                                                        },
                         style: {
                                 'border': '1px #9E9D8B solid',
                                 'borderRightColor':'#9E9D8B',
@@ -296,267 +296,187 @@ Ext.define('MVF.view.chemistrylabs', {
                              },
                              {
                                  xtype:'container',
-                                 layout:'hbox',
-                                  
+                                 width:'950px',
+                                 height:'500px',
+                                 scrollable: {
+                                                direction: 'vertical',
+                                                directionLock: true
+                                            },
                                  items:[
-                                     //text container
-                                     {
+                                      {
                                         xtype:'container',
-                                        layout:'vbox',
+                                        layout:'hbox',
+
                                         items:[
-                                            //6 containers here
+                                            //text container
                                             {
-                                                   xtype:'label',
-                                                    html:' Notes',
-                                                    style:{
-                                                          'margin-top': '6%',
-                                                           'margin-left': '25px',
-                                                           /* font-family: -webkit-pictograph; */
-                                                           'font-weight': '900',
-                                                           'color': 'rgb(145, 86, 145)',
-                                                           'font-size': 'larger'
-                                                         }
-                                            },
-                                            {
-                                                xtype:'label',
-                                                html:'VIEWING:',
-                                                style:{
-                                                   'margin-left': '25px',
-                                                    'margin-top': '10%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial',
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'',
-                                                itemid:'viewingitem',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500'
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'Alerts:',
-                                                style:{
-                                                     'margin-left': '25px',
-                                                    'margin-top': '10%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial'
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'',
-                                                itemid:'chemistryalertinfo',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                     'margin-top': '12px',
-                                                     'font-size': '12px',
-                                                     'font-weight': '500',
-                                                     'color':'#ff0000'
-                                                }
-                                            },
-                                            
-                                            {
-                                                xtype:'panel',
-                                                width:'300px',
-                                                html:'Notes',
-                                                style:{
-                                                   'margin-left': '25px',
-                                                    'margin-top': '8%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial'
-                                                   
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                width:'280px',
-                                                height:'100px',
-                                                html:'<p>The mean corpuscular volume, or MCV, is a measure of the average red blood cell volume (i.e. size)\n\
-                                                         that is reported as part of a standard complete blood count.\n\
-                                                            It can be calculated (in litres) by dividing the hematocrit by the red blood cell count (number of red blood cells per litre). The result is typically reported in femtolitres.</p>',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                    'margin-top':'4%',
-                                                    'font-weight':'normal',
-                                                    'font-size':'smaller'
-                                                }
-                                            }
-                                        ]
-                                        
-                                     },
-                                     {
-                                         //charts and box container
-                                         xtype:'container',
-                                         layout:'vbox',
-                                         items:[
-                                             {
-                                                 //chart contaianer
-                                                 xtype:'container',
-                                                 width: '580px',
-                                                 height: '300px',
-                                                 layout:'vbox',
-                                                 style: {
-                                                            'border': '1px #9E9D8B solid',
-                                                            'borderRightColor':'#9E9D8B',
-                                                            'borderTopColor': '#AC9C65',
-                                                            'borderTopWidth': '4px',
-                                                            'margin': 'auto',
-                                                            'margin-left': '5%',
-                                                            'margin-top': '',
-                                                            'background-color': '#FFFFFF'
-
-                                                        },
-                                                 items:[
-                                                     //items for box1 here
-                                                     {
-                                                         xtype:'container',
-                                                         layout:'hbox',
-                                                         items:[
-                                                             {
-                                                                 xtype:'container',
-                                                                 width:'400px',
-                                                                 height:'35px',
-                                                                 layout:'hbox',
-                                                                 
-                                                                 items:[
-                                                                     {
-                                                                        xtype:'label',
-                                                                        html:'Graph View - ',
-                                                                          style:{
-                                                                                'margin-top': '3%',
-                                                                                 'margin-left': '3%',
-                                                                                 /* font-family: -webkit-pictograph; */
-                                                                                 'font-weight': '800',
-                                                                                 'color': 'rgb(145, 86, 145)',
-                                                                                 'font-size': 'medium'
-                                                                               }
-                                                                    },
-                                                                    {
-                                                                        xtype:'label',
-                                                                        html:'',
-                                                                        itemid:'chartviewingid',
-                                                                        style:{
-                                                                                 'margin-top': '3%',
-                                                                                  'margin-left': '3%',
-                                                                                  /* font-family: -webkit-pictograph; */
-                                                                                  'font-weight': '800',
-                                                                                  'color': 'rgb(145, 86, 145)',
-                                                                                  'font-size': 'medium'
-                                                                                }
-                                                                    }
-                                                                 ]
-                                                             },
-                                                        
-                                                        {
-                                                            xtype:'image',
-                                                            itemid:'chemistrychartzoomouticon',
-                                                            src:'resources/images/zoomout.png',
-                                                            height:'20px',
-                                                            width:'25px',
-                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                               style:{
-                                                                   'margin-left':'130px',
-                                                                   'margin-top':'3%'
-                                                               }
-
-                                                        }
-                                                         ]
-                                                     },//end of items above  hr in line chart
-                                                     {
-                                                    html:'<hr>',
+                                               xtype:'container',
+                                               layout:'vbox',
+                                               items:[
+                                                   //6 containers here
+                                                   {
+                                                          xtype:'label',
+                                                           html:' Notes',
+                                                           style:{
+                                                                 'margin-top': '6%',
+                                                                  'margin-left': '25px',
+                                                                  /* font-family: -webkit-pictograph; */
+                                                                  'font-weight': '900',
+                                                                  'color': 'rgb(145, 86, 145)',
+                                                                  'font-size': 'larger'
+                                                                }
+                                                   },
+                                                   {
+                                                       xtype:'label',
+                                                       html:'VIEWING:',
                                                        style:{
-                                                           'margin-left':'10px',
-                                                           'margin-right':'10px',
-                                                           'margin-top':''
+                                                          'margin-left': '25px',
+                                                           'margin-top': '10%',
+                                                           'font-weight': '600',
+                                                           'font-size': 'initial',
                                                        }
-                                                },
-                                                {
-                                                    xtype:'chemistrychartview',
-                                                    style:{
-                                                        'margin-top':'2%'
-                                                    }
-                                                }
-                                                // chart item
-                                                 ]       
-                                                 
-                                             },
-                                             {
-                                                 //table container
-                                                  xtype:'container',
-                                                 width: '580px',
-                                                 height: '400px',
-                                                 layout:'vbox',
-                                                 style: {
-                                                            'border': '1px #9E9D8B solid',
-                                                            'borderRightColor':'#9E9D8B',
-                                                            'borderTopColor': '#AC9C65',
-                                                            'borderTopWidth': '4px',
-                                                            'margin': 'auto',
-                                                            'margin-left': '5%',
-                                                            'margin-top': '17px',
-                                                            'background-color': '#FFFFFF'
+                                                   },
+                                                   {
+                                                       xtype:'panel',
+                                                       html:'',
+                                                       itemid:'viewingitem',
+                                                       style:{
+                                                           'margin-left':'40px',
+                                                             'margin-top': '12px',
+                                                               'font-size': 'initial',
+                                                               'font-weight': '500'
+                                                       }
+                                                   },
+                                                   {
+                                                       xtype:'panel',
+                                                       html:'Alerts:',
+                                                       style:{
+                                                            'margin-left': '25px',
+                                                           'margin-top': '10%',
+                                                           'font-weight': '600',
+                                                           'font-size': 'initial'
+                                                       }
+                                                   },
+                                                   {
+                                                       xtype:'panel',
+                                                       html:'',
+                                                       itemid:'chemistryalertinfo',
+                                                       style:{
+                                                           'margin-left':'40px',
+                                                            'margin-top': '12px',
+                                                            'font-size': '12px',
+                                                            'font-weight': '500',
+                                                            'color':'#ff0000'
+                                                       }
+                                                   },
 
-                                                        },
-                                                    items:[
-                                                        //items in box2
-                                                         {
-                                                         xtype:'container',
-                                                         layout:'hbox',
-                                                         items:[
-                                                             {
-                                                                 xtype:'container',
-                                                                 layout:'hbox',
-                                                                 height:'35px',
-                                                                 width:'400px',
-                                                                 items:[
-                                                                     {
-                                                                xtype:'label',
-                                                                html:'Table View - ',
-                                                                  style:{
-                                                                        'margin-top': '3%',
-                                                                         'margin-left': '3%',
-                                                                         /* font-family: -webkit-pictograph; */
-                                                                         'font-weight': '800',
-                                                                         'color': 'rgb(145, 86, 145)',
-                                                                         'font-size': 'medium'
-                                                                       }
-                                                                },
-                                                                {
-                                                                    xtype:'label',
-                                                                    html:'ALL',
-                                                                    itemid:'tableviewingid',
-                                                                    style:{
-                                                                             'margin-top': '3%',
-                                                                              'margin-left': '3%',
-                                                                              /* font-family: -webkit-pictograph; */
-                                                                              'font-weight': '800',
-                                                                              'color': 'rgb(145, 86, 145)',
-                                                                              'font-size': 'medium'
-                                                                            }
-                                                                },
-                                                                 ]
-                                                             },
-                                                             {
-                                                                xtype:'image',
-                                                                itemid:'chemistrychartzoomouticon',
-                                                                src:'resources/images/zoomout.png',
-                                                                height:'20px',
-                                                                width:'25px',
-                                                                  // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                                   style:{
-                                                                       'margin-left':'130px',
-                                                                       'margin-top':'3%'
-                                                                   }
+                                                   {
+                                                       xtype:'panel',
+                                                       width:'300px',
+                                                       html:'Notes',
+                                                       style:{
+                                                          'margin-left': '25px',
+                                                           'margin-top': '8%',
+                                                           'font-weight': '600',
+                                                           'font-size': 'initial'
 
-                                                            }
-                                                         ]
-                                                     },//end of items above  hr in line chart
+                                                       }
+                                                   },
+                                                   {
+                                                       xtype:'panel',
+                                                       width:'280px',
+                                                       height:'100px',
+                                                       html:'<p>The mean corpuscular volume, or MCV, is a measure of the average red blood cell volume (i.e. size)\n\
+                                                                that is reported as part of a standard complete blood count.\n\
+                                                                   It can be calculated (in litres) by dividing the hematocrit by the red blood cell count (number of red blood cells per litre). The result is typically reported in femtolitres.</p>',
+                                                       style:{
+                                                           'margin-left':'40px',
+                                                           'margin-top':'4%',
+                                                           'font-weight':'normal',
+                                                           'font-size':'smaller'
+                                                       }
+                                                   }
+                                               ]
+
+                                            },
+                                            {
+                                                //charts and box container
+                                                xtype:'container',
+                                                layout:'vbox',
+                                                items:[
+                                                    {
+                                                        //chart contaianer
+                                                        xtype:'container',
+                                                        width: '580px',
+                                                        height: '300px',
+                                                        layout:'vbox',
+                                                        style: {
+                                                                   'border': '1px #9E9D8B solid',
+                                                                   'borderRightColor':'#9E9D8B',
+                                                                   'borderTopColor': '#AC9C65',
+                                                                   'borderTopWidth': '4px',
+                                                                   'margin': 'auto',
+                                                                   'margin-left': '5%',
+                                                                   'margin-top': '',
+                                                                   'background-color': '#FFFFFF'
+
+                                                               },
+                                                        items:[
+                                                            //items for box1 here
+                                                            {
+                                                                xtype:'container',
+                                                                layout:'hbox',
+                                                                items:[
+                                                                    {
+                                                                        xtype:'container',
+                                                                        width:'400px',
+                                                                        height:'35px',
+                                                                        layout:'hbox',
+
+                                                                        items:[
+                                                                            {
+                                                                               xtype:'label',
+                                                                               html:'Graph View - ',
+                                                                                 style:{
+                                                                                       'margin-top': '3%',
+                                                                                        'margin-left': '3%',
+                                                                                        /* font-family: -webkit-pictograph; */
+                                                                                        'font-weight': '800',
+                                                                                        'color': 'rgb(145, 86, 145)',
+                                                                                        'font-size': 'medium'
+                                                                                      }
+                                                                           },
+                                                                           {
+                                                                               xtype:'label',
+                                                                               html:'',
+                                                                               itemid:'chartviewingid',
+                                                                               style:{
+                                                                                        'margin-top': '3%',
+                                                                                         'margin-left': '3%',
+                                                                                         /* font-family: -webkit-pictograph; */
+                                                                                         'font-weight': '800',
+                                                                                         'color': 'rgb(145, 86, 145)',
+                                                                                         'font-size': 'medium'
+                                                                                       }
+                                                                           }
+                                                                        ]
+                                                                    },
+
+                                                               {
+                                                                   xtype:'image',
+                                                                   itemid:'chemistrychartzoomouticon',
+                                                                   src:'resources/images/zoomout.png',
+                                                                   height:'20px',
+                                                                   width:'25px',
+                                                                     // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                                                      style:{
+                                                                          'margin-left':'130px',
+                                                                          'margin-top':'3%'
+                                                                      }
+
+                                                               }
+                                                                ]
+                                                            },//end of items above  hr in line chart
                                                             {
                                                            html:'<hr>',
                                                               style:{
@@ -565,36 +485,128 @@ Ext.define('MVF.view.chemistrylabs', {
                                                                   'margin-top':''
                                                               }
                                                        },
-                                                       //table container
                                                        {
-                                                           xtype:'container',
-                                                           width:'580px',
-                                                           height:'300px',
-                                                           //layout:'hbox',
-                                                           scrollable: {
-                                                                       direction: 'both',
-                                                                       directionLock: true
-                                                                   },
-                                                                   items:[
-                                                                       //table goes here
-                                                                       {
-                                                                                    xtype:'panel',
-                                                                                    itemid:'ChemistryResultsTable',
-                                                                                    style:{
-                                                                                        'fontFamily':'openSansRegular',
-                                                                                        'font-size':'small',
-                                                                                        'margin-left':'20px'
-                                                                                    }
-                                                                                }
-                                                                       
-                                                                   ]
+                                                           xtype:'chemistrychartview',
+                                                           style:{
+                                                               'margin-top':'2%'
+                                                           }
                                                        }
-                                                    ]    
-                                             }
-                                         ]
-                                     }
+                                                       // chart item
+                                                        ]       
+
+                                                    },
+                                                    {
+                                                        //table container
+                                                         xtype:'container',
+                                                        width: '580px',
+                                                        height: '400px',
+                                                        layout:'vbox',
+                                                        style: {
+                                                                   'border': '1px #9E9D8B solid',
+                                                                   'borderRightColor':'#9E9D8B',
+                                                                   'borderTopColor': '#AC9C65',
+                                                                   'borderTopWidth': '4px',
+                                                                   'margin': 'auto',
+                                                                   'margin-left': '5%',
+                                                                   'margin-top': '17px',
+                                                                   'background-color': '#FFFFFF'
+
+                                                               },
+                                                           items:[
+                                                               //items in box2
+                                                                {
+                                                                xtype:'container',
+                                                                layout:'hbox',
+                                                                items:[
+                                                                    {
+                                                                        xtype:'container',
+                                                                        layout:'hbox',
+                                                                        height:'35px',
+                                                                        width:'400px',
+                                                                        items:[
+                                                                            {
+                                                                       xtype:'label',
+                                                                       html:'Table View - ',
+                                                                         style:{
+                                                                               'margin-top': '3%',
+                                                                                'margin-left': '3%',
+                                                                                /* font-family: -webkit-pictograph; */
+                                                                                'font-weight': '800',
+                                                                                'color': 'rgb(145, 86, 145)',
+                                                                                'font-size': 'medium'
+                                                                              }
+                                                                       },
+                                                                       {
+                                                                           xtype:'label',
+                                                                           html:'ALL',
+                                                                           itemid:'tableviewingid',
+                                                                           style:{
+                                                                                    'margin-top': '3%',
+                                                                                     'margin-left': '3%',
+                                                                                     /* font-family: -webkit-pictograph; */
+                                                                                     'font-weight': '800',
+                                                                                     'color': 'rgb(145, 86, 145)',
+                                                                                     'font-size': 'medium'
+                                                                                   }
+                                                                       },
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                       xtype:'image',
+                                                                       itemid:'chemistrychartzoomouticon',
+                                                                       src:'resources/images/zoomout.png',
+                                                                       height:'20px',
+                                                                       width:'25px',
+                                                                         // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                                                          style:{
+                                                                              'margin-left':'130px',
+                                                                              'margin-top':'3%'
+                                                                          }
+
+                                                                   }
+                                                                ]
+                                                            },//end of items above  hr in line chart
+                                                                   {
+                                                                  html:'<hr>',
+                                                                     style:{
+                                                                         'margin-left':'10px',
+                                                                         'margin-right':'10px',
+                                                                         'margin-top':''
+                                                                     }
+                                                              },
+                                                              //table container
+                                                              {
+                                                                  xtype:'container',
+                                                                  width:'580px',
+                                                                  height:'300px',
+                                                                  //layout:'hbox',
+                                                                  scrollable: {
+                                                                              direction: 'both',
+                                                                              directionLock: true
+                                                                          },
+                                                                          items:[
+                                                                              //table goes here
+                                                                              {
+                                                                                           xtype:'panel',
+                                                                                           itemid:'ChemistryResultsTable',
+                                                                                           style:{
+                                                                                               'fontFamily':'openSansRegular',
+                                                                                               'font-size':'small',
+                                                                                               'margin-left':'20px'
+                                                                                           }
+                                                                                       }
+
+                                                                          ]
+                                                              }
+                                                           ]    
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
                                  ]
-                             }
+                             },
+                            
                              
                          ]   
                     },

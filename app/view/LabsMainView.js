@@ -243,21 +243,31 @@ Ext.define('MVF.view.LabsMainView', {
                                                 },
                                                 items:[
                                                     {
-                                                        xtype:'panel',
-                                                        html:'',
-                                                        itemid:'chemistrylastupdate',
+                                                        xtype:'container',
+                                                        width:'125px',
                                                         style:{
-                                                            'margin-left':'20px',
-                                                            'font-size':'12px'
-                                                        }
+                                                           'border':'1px'
+                                                        },
+                                                        items:[
+                                                            {
+                                                                xtype:'panel',
+                                                                html:'',
+                                                                itemid:'chemistrylastupdate',
+                                                                style:{
+                                                                    'margin-left':'20px',
+                                                                    'font-size':'12px'
+                                                                }
+                                                            },
+                                                        ]
                                                     },
+                                                    
                                                     {
                                                         xtype:'image',
                                                         src:'resources/images/buttons2.png',
                                                         width:'20px',
                                                         height:'30px',
                                                         style:{
-                                                            'margin-left':'65px',
+                                                            'margin-left':'22px',
                                                             'margin-top':'-3px'
                                                         }
                                                     },
@@ -376,21 +386,28 @@ Ext.define('MVF.view.LabsMainView', {
                                                 },
                                                 items:[
                                                     {
-                                                        xtype:'panel',
-                                                        html:'',
-                                                        itemid:'hematologylastupdate',
-                                                        style:{
-                                                            'margin-left':'20px',
-                                                            'font-size':'12px'
-                                                        }
+                                                        xtype:'container',
+                                                        width:'125px',
+                                                        items:[
+                                                            {
+                                                                xtype:'panel',
+                                                                html:'',
+                                                                itemid:'hematologylastupdate',
+                                                                style:{
+                                                                    'margin-left':'20px',
+                                                                    'font-size':'12px'
+                                                                }
+                                                            },
+                                                        ]
                                                     },
+                                                    
                                                     {
                                                         xtype:'image',
                                                         src:'resources/images/buttons2.png',
                                                         width:'20px',
                                                         height:'30px',
                                                         style:{
-                                                            'margin-left':'65px',
+                                                            'margin-left':'22px',
                                                             'margin-top':'-3px'
                                                         }
                                                     },
@@ -509,21 +526,28 @@ Ext.define('MVF.view.LabsMainView', {
                                                 },
                                                 items:[
                                                     {
-                                                        xtype:'panel',
-                                                        html:'',
-                                                        itemid:'microbiologylastupdate',
-                                                        style:{
-                                                            'margin-left':'20px',
-                                                            'font-size':'12px'
-                                                        }
+                                                        xtype:'container',
+                                                        width:'125px',
+                                                        items:[
+                                                            {
+                                                                xtype:'panel',
+                                                                html:'',
+                                                                itemid:'microbiologylastupdate',
+                                                                style:{
+                                                                    'margin-left':'20px',
+                                                                    'font-size':'12px'
+                                                                }
+                                                            },
+                                                        ]
                                                     },
+                                                    
                                                     {
                                                         xtype:'image',
                                                         src:'resources/images/buttons2.png',
                                                         width:'20px',
                                                         height:'30px',
                                                         style:{
-                                                            'margin-left':'65px',
+                                                            'margin-left':'22px',
                                                             'margin-top':'-3px'
                                                         }
                                                     },
@@ -641,21 +665,28 @@ Ext.define('MVF.view.LabsMainView', {
                                                 },
                                                 items:[
                                                     {
-                                                        xtype:'panel',
-                                                        html:'',
-                                                        itemid:'serologylastupdate',
-                                                        style:{
-                                                            'margin-left':'20px',
-                                                            'font-size':'12px'
-                                                        }
+                                                       xtype:'container',
+                                                       width:'125px',
+                                                       items:[
+                                                           {
+                                                                xtype:'panel',
+                                                                html:'',
+                                                                itemid:'serologylastupdate',
+                                                                style:{
+                                                                    'margin-left':'20px',
+                                                                    'font-size':'12px'
+                                                                }
+                                                            },
+                                                       ]
                                                     },
+                                                    
                                                     {
                                                         xtype:'image',
                                                         src:'resources/images/buttons2.png',
                                                         width:'20px',
                                                         height:'30px',
                                                         style:{
-                                                            'margin-left':'65px',
+                                                            'margin-left':'22px',
                                                             'margin-top':'-3px'
                                                         }
                                                     },
@@ -774,21 +805,28 @@ Ext.define('MVF.view.LabsMainView', {
                                                 },
                                                 items:[
                                                     {
-                                                        xtype:'panel',
-                                                        html:'',
-                                                        itemid:'abglastupdate',
-                                                        style:{
-                                                            'margin-left':'20px',
-                                                            'font-size':'12px'
-                                                        }
+                                                        xtype:'container',
+                                                        width:'125px',
+                                                        items:[
+                                                            {
+                                                                xtype:'panel',
+                                                                html:'',
+                                                                itemid:'abglastupdate',
+                                                                style:{
+                                                                    'margin-left':'20px',
+                                                                    'font-size':'12px'
+                                                                }
+                                                            },
+                                                        ]
                                                     },
+                                                    
                                                     {
                                                         xtype:'image',
                                                         src:'resources/images/buttons2.png',
                                                         width:'20px',
                                                         height:'30px',
                                                         style:{
-                                                            'margin-left':'65px',
+                                                            'margin-left':'22px',
                                                             'margin-top':'-3px'
                                                         }
                                                     },

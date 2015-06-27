@@ -50,52 +50,23 @@ Ext.define("MVF.controller.ChemistryLabsController", {
             var enddatevalue=Ext.ComponentQuery.query('[itemid=chemistryenddate]')[0].getFormattedValue();
             console.log(startdatevalue);
             console.log(enddatevalue);
-            var alertInfo='';
+            
             store.load({
                         params:{ chemistryvalue: chemistryvalue,
                                  startdate: startdatevalue,
-                                 enddate: enddatevalue},
+                                 enddate: enddatevalue,
+                                 patient_id:MVF.app.patient_id
+                                },
                                  scope:this,
-                        callback:function(records,success){
-                            console.log(records[0].data.date+' working');
-                            var No_of_Results=store.getCount();
-                            console.log(No_of_Results+' fetch');
-                            if(success){
-                                console.log('in sucee');
-                               for(var w=0;w<No_of_Results;w++){
-                                   if(records[w].data.result!=='null'){
-                                        if(records[w].data.exact ==='null'){
-                                            if(records[w].data.result>records[w].data.max){
-                                                alertInfo+= records[w].data.date+'<br>'+'High '+chemistryvalue+' count<br>';
-                                            }
-                                            else if(records[w].data.result<records[w].data.min){
-                                                alertInfo+= records[w].data.date+'<br>'+'Low '+chemistryvalue+' count<br>';
-                                            }
-                                        }
-                                        else{
-                                            if(records[w].data.min==='null'){
-                                                if(records[w].data.result>records[w].data.max){
-                                                    alertInfo+= records[w].data.date+'<br>'+'High '+chemistryvalue+' count<br>';
-                                                }
-                                            }
-                                            else if(records[w].data.max==='null'){
-                                                if(records[w].data.result<records[w].data.min){
-                                                   alertInfo+= records[w].data.date+'<br>'+'Low '+chemistryvalue+' count<br>'; 
-                                                }
-                                            }
-                                        }
-                                    }
-                               }
-                               chemistryalertinfo.setHtml(alertInfo);
-                               console.log(alertInfo);
-                            }
-                        }
+                        
                    });
                    var TableStore=  Ext.getStore('ChemistryTableStore');
                     TableStore.load({
                         params:{ 
                                 startdate: startdatevalue,
-                                enddate: enddatevalue},
+                                enddate: enddatevalue,
+                                patient_id:MVF.app.patient_id   
+                               },
                                scope:this,
                                 callback:function(records){
                                     var values=records;
@@ -145,30 +116,54 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                                          xtype:'selectfield',
                                          itemid:'Chemistryedittimevalue',
                                           options: [
-                                                   {text: '0100',  value: '0100'},
-                                                   {text: '0200',  value: '0200'},
-                                                   {text: '0300',  value: '0300'},
-                                                   {text: '0400',  value: '0400'},
-                                                   {text: '0500',  value: '0500'},
-                                                   {text: '0600',  value: '0600'},
-                                                   {text: '0700',  value: '0700'},
-                                                   {text: '0800',  value: '0800'},
-                                                   {text: '0900',  value: '0900'},
-                                                   {text: '1000',  value: '1000'},
-                                                   {text: '1100',  value: '1100'},
-                                                   {text: '1200',  value: '1200'},
-                                                   {text: '1300',  value: '1300'},
-                                                   {text: '1400',  value: '1400'},
-                                                   {text: '1500',  value: '1500'},
-                                                   {text: '1600',  value: '1600'},
-                                                   {text: '1700',  value: '1700'},
-                                                   {text: '1800',  value: '1800'},
-                                                   {text: '1900',  value: '1900'},
-                                                   {text: '2000',  value: '2000'},
-                                                   {text: '2100',  value: '2100'},
-                                                   {text: '2200',  value: '2200'},
-                                                   {text: '2300',  value: '2300'},
-                                                   {text: '2400',  value: '2400'}
+                                                   {text: '01:00',  value: '01:00'},
+                                                   {text: '01:30',  value: '01:30'},
+                                                   {text: '02:00',  value: '02:00'},
+                                                   {text: '02:30',  value: '02:30'},
+                                                   {text: '03:00',  value: '03:00'},
+                                                   {text: '03:30',  value: '03:30'},
+                                                   {text: '04:00',  value: '04:00'},
+                                                   {text: '04:30',  value: '04:30'},
+                                                   {text: '05:00',  value: '05:00'},
+                                                   {text: '05:30',  value: '05:30'},
+                                                   {text: '06:00',  value: '06:00'},
+                                                   {text: '06:30',  value: '06:30'},
+                                                   {text: '07:00',  value: '07:00'},
+                                                   {text: '07:30',  value: '07:30'},
+                                                   {text: '08:00',  value: '08:00'},
+                                                   {text: '08:30',  value: '08:30'},
+                                                   {text: '09:00',  value: '09:00'},
+                                                   {text: '09:30',  value: '09:30'},
+                                                   {text: '10:00',  value: '10:00'},
+                                                   {text: '10:30',  value: '10:30'},
+                                                   {text: '11:00',  value: '11:00'},
+                                                   {text: '11:30',  value: '11:30'},
+                                                   {text: '12:00',  value: '12:00'},
+                                                   {text: '12:30',  value: '12:30'},
+                                                   {text: '13:00',  value: '13:00'},
+                                                   {text: '13:30',  value: '13:30'},
+                                                   {text: '14:00',  value: '14:00'},
+                                                   {text: '14:30',  value: '14:30'},
+                                                   {text: '15:00',  value: '15:00'},
+                                                   {text: '15:30',  value: '15:30'},
+                                                   {text: '16:00',  value: '16:00'},
+                                                   {text: '16:30',  value: '16:30'},
+                                                   {text: '17:00',  value: '17:00'},
+                                                   {text: '17:30',  value: '17:30'},
+                                                   {text: '18:00',  value: '18:00'},
+                                                   {text: '18:30',  value: '18:30'},
+                                                   {text: '19:00',  value: '19:00'},
+                                                   {text: '19:30',  value: '19:30'},
+                                                   {text: '20:00',  value: '20:00'},
+                                                   {text: '20:30',  value: '20:30'},
+                                                   {text: '21:00',  value: '21:00'},
+                                                   {text: '21:30',  value: '21:30'},
+                                                   {text: '22:00',  value: '22:00'},
+                                                   {text: '22:30',  value: '22:30'},
+                                                   {text: '23:00',  value: '23:00'},
+                                                   {text: '23:30',  value: '23:30'},
+                                                   {text: '24:00',  value: '24:00'},
+                                                   {text: '24:30',  value: '24:30'}
                                                ],
                                                style:{
                                                     'margin-top':'10px'
@@ -218,12 +213,14 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                 chemistryname:ChemistryEditValue,
                 date:EditDate,
                 time:EditTime,
-                result:Result
+                result:Result,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
-            callback:function(records){
-                
-                alert(records[0].data.information);
+            callback:function(records,success){
+                if(success){
+                  alert(records[0].data.information);
+                }
                 
             }
         });
@@ -235,7 +232,8 @@ Ext.define("MVF.controller.ChemistryLabsController", {
         var No_of_Results_Fetch=TableStore.getCount();
         //console.log('No_of_Results_Fetch = '+No_of_Results_Fetch);
         var No_of_ChemistryItems=ItemStore.getCount();
-        var time= ['0100','0200','0300','0400','0500','0600','0700','0800','0900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400'];
+        var time= ['01:00','01:30','02:00','02:30','03:00','03:30','04:00','04:30','05:00','05:30','06:00','06:30','07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30',
+                   '15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30','24:00','24:30'];
         //console.log(No_of_ChemistryItems);       
         var TableValues='<table><thead>';
         var tablepanel=this.getChemistryTable();
@@ -256,7 +254,7 @@ Ext.define("MVF.controller.ChemistryLabsController", {
        // console.log(' for_date ='+ for_date);
         //console.log(' result date ='+values[value].data.date);
             for(var j=0;j<days;j++){// for loop to loop number of days select ie.. difference between start date and end date
-                  while(timeindex<24){// while loop to loop 24 hrs per day
+                  while(timeindex<48){// while loop to loop 24 hrs per day
                       for(var k=0;k<No_of_ChemistryItems+2;k++){// for loop for each row in the table, +2 to add date and time  
                           if(k===0){
 				TableValues+='<tr><td style="padding:0 10px 0 0">'+startdate+'</td>';
@@ -267,8 +265,8 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                           else{
                               if(r< No_of_Results_Fetch && values[r].data.date===startdate && values[r].data.time===time[timeindex]){
 					if(values[r].data.Name===ItemStore.getAt(k-2).get('text')){
-                                            if(ItemStore.getAt(k-2).get('exact')==='null'){
-                                                if(values[r].data.result>=ItemStore.getAt(k-2).get('max')||values[r].data.result<=ItemStore.getAt(k-2).get('min')){
+                                            if(values[r].data.exact==='null'){
+                                                if(values[r].data.result>=values[r].data.max||values[r].data.result<=values[r].data.min){
                                                     TableValues+='<td style="padding:0 10px 0 15px;color:#ff0000">'+values[r].data.result+'</td>';
                                                 }
                                                 else{

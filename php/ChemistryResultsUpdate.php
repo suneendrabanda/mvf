@@ -4,15 +4,16 @@ $testname=$_GET['chemistryname'];
 $date=$_GET['date'];
 $time=$_GET['time'];
 $result=$_GET['result'];
+$patient_id=$_GET['patient_id'];
 $formatted_date=  date("Y-m-d",strtotime($date));
 $flag=0; // to check if records already exist in the table or not
 $arr=array();
-//Get Chemistry desc from Item_test_Cat table
-$Item_desc_name=mysqli_query($con,"select * from test_item_cat where item_name='$testname' and Tst_Cat_ID='TCAT102'");
-while($Item_desc_row = mysqli_fetch_array($Item_desc_name)){
-    $testname=$Item_desc_row['Item_desc'];
-}
-$patient_visit_result=mysqli_query($con,"select * from patient_visit where patient_id='P1013'");
+////Get Chemistry desc from Item_test_Cat table
+//$Item_desc_name=mysqli_query($con,"select * from test_item_cat where item_name='$testname' and Tst_Cat_ID='TCAT102'");
+//while($Item_desc_row = mysqli_fetch_array($Item_desc_name)){
+//    $testname=$Item_desc_row['Item_desc'];
+//}
+$patient_visit_result=mysqli_query($con,"select * from patient_visit where patient_id='$patient_id'");
 while($patient_visit_row = mysqli_fetch_array($patient_visit_result) ){
     $visit_id= $patient_visit_row['Visit_ID'];
     $room_id= $patient_visit_row['Room_ID'];
