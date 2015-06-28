@@ -137,10 +137,10 @@ Ext.define('MVF.view.absview', {
                         width: '950px',
                         height: '600px',
                         layout:'vbox',
-                        scrollable: {
-                                        direction: 'vertical',
-                                        directionLock: true
-                                    },
+//                        scrollable: {
+//                                        direction: 'vertical',
+//                                        directionLock: true
+//                                    },
                         style: {
                                 'border': '1px #9E9D8B solid',
                                 'borderRightColor':'#9E9D8B',
@@ -306,8 +306,13 @@ Ext.define('MVF.view.absview', {
                             // start of content with in the box
                             {
                                 xtype:'container',
-                                 layout:'hbox',
-                                  
+                                layout:'hbox',
+                                height:'500px',
+                                width:'950px',
+                                scrollable: {
+                                        direction: 'vertical',
+                                        directionLock: true
+                                    },  
                                  items:[
                                      //text container
                                      {

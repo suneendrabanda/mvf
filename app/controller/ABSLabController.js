@@ -22,10 +22,7 @@ Ext.define("MVF.controller.ABSLabController", {
     },
     init:function(){
         this.EditABSValuesPopUp();
-        var shift=['1','2','3','4','5'];
-        for(var i=0;i<5;i++){
-            console.log('shift array working'+ shift[i]);
-        }
+        
     },
     ABGGoToPageSelect:function(){
         var pagename=Ext.ComponentQuery.query('[itemid=Abgpageid]')[0].getValue();
