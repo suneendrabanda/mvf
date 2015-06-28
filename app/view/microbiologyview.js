@@ -158,10 +158,6 @@ Ext.define('MVF.view.microbiologyview', {
                         width: '950px',
                         height: '600px',
                         layout:'vbox',
-                        scrollable: {
-                                                            direction: 'vertical',
-                                                            directionLock: true
-                                                        },
                         style: {
                                 'border': '1px #9E9D8B solid',
                                 'borderRightColor':'#9E9D8B',
@@ -295,287 +291,293 @@ Ext.define('MVF.view.microbiologyview', {
                              },
                              {
                                  xtype:'container',
-                                 layout:'hbox',
-                                  
-                                 items:[
-                                     //text container
-                                     {
-                                        xtype:'container',
-                                        layout:'vbox',
-                                        items:[
-                                            //6 containers here
-                                            {
-                                                   xtype:'label',
-                                                    html:' Notes',
-                                                    style:{
-                                                          'margin-top': '6%',
-                                                           'margin-left': '25px',
-                                                           /* font-family: -webkit-pictograph; */
-                                                           'font-weight': '900',
-                                                           'color': 'rgb(145, 86, 145)',
-                                                           'font-size': 'larger'
-                                                         }
-                                            },
-                                            {
-                                                xtype:'label',
-                                                html:'VIEWING:',
-                                                style:{
-                                                   'margin-left': '25px',
-                                                    'margin-top': '10%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial',
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'',
-                                                itemid:'mbviewingitem',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500'
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'Alerts:',
-                                                style:{
-                                                     'margin-left': '25px',
-                                                    'margin-top': '10%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial'
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                html:'',
-                                                itemid:'MBalertItems',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                      'margin-top': '12px',
-                                                        'font-size': 'initial',
-                                                        'font-weight': '500'
-                                                }
-                                            },
-                                            
-                                            {
-                                                xtype:'panel',
-                                                width:'300px',
-                                                html:'Notes',
-                                                style:{
-                                                   'margin-left': '25px',
-                                                    'margin-top': '8%',
-                                                    'font-weight': '600',
-                                                    'font-size': 'initial'
-                                                   
-                                                }
-                                            },
-                                            {
-                                                xtype:'panel',
-                                                width:'280px',
-                                                height:'100px',
-                                                html:'<p>The mean corpuscular volume, or MCV, is a measure of the average red blood cell volume (i.e. size)\n\
-                                                         that is reported as part of a standard complete blood count.\n\
-                                                            It can be calculated (in litres) by dividing the hematocrit by the red blood cell count (number of red blood cells per litre). The result is typically reported in femtolitres.</p>',
-                                                style:{
-                                                    'margin-left':'40px',
-                                                    'margin-top':'4%',
-                                                    'font-weight':'normal',
-                                                    'font-size':'smaller'
-                                                }
-                                            }
-                                        ]
-                                        
-                                     },
-                                     {
-                                         //charts and box container
-                                         xtype:'container',
-                                         layout:'vbox',
-                                         items:[
-                                             {
-                                                 //chart contaianer
-                                                 xtype:'container',
-                                                 width: '580px',
-                                                 height: '300px',
-                                                 layout:'vbox',
-                                                 style: {
+                                 width:'950px',
+                                 height:'500px',
+                                 scrollable: {
+                                        direction: 'vertical',
+                                        directionLock: true
+                                    },
+                                    items:[
+                                         {
+                                            xtype:'container',
+                                            layout:'hbox',
+
+                                            items:[
+                                                //notes text container
+                                                 {
+                                                        xtype:'container',
+                                                        layout:'vbox',
+                                                        width:'330px',
+                                                        height:'520px',
+                                                        style:{
                                                             'border': '1px #9E9D8B solid',
-                                                            'borderRightColor':'#9E9D8B',
-                                                            'borderTopColor': '#AC9C65',
-                                                            'borderTopWidth': '4px',
-                                                            'margin': 'auto',
-                                                            'margin-left': '5%',
-                                                            'margin-top': '',
-                                                            'background-color': '#FFFFFF'
-
+                                                             'borderRightColor':'#9E9D8B',
+                                                             'borderTopColor': '#AC9C65',
+                                                             'borderTopWidth': '4px',
+                                                             'margin-left': '10px',
+                                                             'margin-top': '',
+                                                             'background-color': '#FFFFFF'
                                                         },
-                                                 items:[
-                                                     //items for box1 here
-                                                     {
-                                                         xtype:'container',
-                                                         layout:'hbox',
-                                                         items:[
-                                                             {
-                                                          xtype:'label',
-                                                          html:'Graph View - ',
-                                                            style:{
-                                                                  'margin-top': '3%',
-                                                                   'margin-left': '3%',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '800',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'medium'
-                                                                 }
-                                                     },
-                                                     {
-                                                         xtype:'label',
-                                                         html:'',
-                                                         itemid:'mbchartviewingid',
-                                                         style:{
-                                                                  'margin-top': '3%',
-                                                                   'margin-left': '3%',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '800',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'medium'
-                                                                 }
-                                                     },
-//                                                     {
-//                                                            xtype:'image',
-//                                                            itemid:'chemistrychartedittableicon',
-//
-//                                                            src:'resources/images/edit.png',
-//                                                            height:'20px',
-//                                                            width:'25px',
-//                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-//                                                               style:{
-//                                                                   'margin-left':'300px',
-//                                                                   'margin-top':'3%'
-//                                                               }
-//
-//                                                        }
-                                                         ]
-                                                     },//end of items above  hr in line chart
-//                                                     {
-//                                                    html:'<hr>',
-//                                                       style:{
-//                                                           'margin-left':'10px',
-//                                                           'margin-right':'10px',
-//                                                           'margin-top':''
-//                                                       }
-//                                                },
-                                                {
-                                                    xtype:'MicrobiologyChartView',
-                                                    style:{
-                                                        'margin-top':'1%'
-                                                    }
-                                                }
-                                                // chart item
-                                                 ]       
-                                                 
-                                             },
-                                             {
-                                                 //table container
-                                                  xtype:'container',
-                                                 width: '580px',
-                                                 height: '400px',
-                                                 layout:'vbox',
-                                                 style: {
-                                                            'border': '1px #9E9D8B solid',
-                                                            'borderRightColor':'#9E9D8B',
-                                                            'borderTopColor': '#AC9C65',
-                                                            'borderTopWidth': '4px',
-                                                            'margin': 'auto',
-                                                            'margin-left': '5%',
-                                                            'margin-top': '17px',
-                                                            'background-color': '#FFFFFF'
-
-                                                        },
-                                                    items:[
-                                                        //items in box2
-                                                         {
-                                                         xtype:'container',
-                                                         layout:'hbox',
-                                                         items:[
-                                                             {
-                                                          xtype:'label',
-                                                          html:'Table View - ',
-                                                            style:{
-                                                                  'margin-top': '3%',
-                                                                   'margin-left': '3%',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '800',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'medium'
-                                                                 }
-                                                     },
-                                                     {
-                                                         xtype:'label',
-                                                         html:'ALL',
-                                                         itemid:'tableviewingid',
-                                                         style:{
-                                                                  'margin-top': '3%',
-                                                                   'margin-left': '3%',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '800',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'medium'
-                                                                 }
-                                                     },
-                                                     {
-                                                            xtype:'image',
-                                                            itemid:'chemistrytableedittableicon',
-
-                                                            src:'resources/images/edit.png',
-                                                            height:'20px',
-                                                            width:'25px',
-                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                               style:{
-                                                                   'margin-left':'66%',
-                                                                   'margin-top':'3%'
-                                                               }
-
-                                                        }
-                                                         ]
-                                                     },//end of items above  hr in line chart
-                                                     {
-                                                    html:'<hr>',
-                                                       style:{
-                                                           'margin-left':'10px',
-                                                           'margin-right':'10px',
-                                                           'margin-top':''
-                                                       }
-                                                },
-                                                //table container
-                                                {
-                                                    xtype:'container',
-                                                    width:'580px',
-                                                    height:'300px',
-                                                    layout:'hbox',
-                                                    scrollable: {
-                                                                direction: 'both',
-                                                                directionLock: true
-                                                            },
-                                                            items:[
-                                                                //table goes here
-                                                                {
-                                                                    xtype:'panel',
-                                                                    itemid:'MBResultsTable',
-                                                                    style:{
-                                                                        'fontFamily':'openSansRegular',
-                                                                        'font-size':'small',
-                                                                        'margin-left':'20px'
-                                                                    }
+                                                        items:[
+                                                            {
+                                                                xtype:'label',
+                                                                itemid:'MicrobiologyViewDefinition',
+                                                                html:'View Definition',
+                                                                style:{
+                                                                    'margin-top': '20px',
+                                                                    'margin-left': '10px',
+                                                                    'font-weight': '800',
+                                                                    'color': 'rgb(145, 86, 145)',
+                                                                    'font-size': 'medium'
                                                                 }
-                                                            ]
+                                                            },
+                                                            {
+                                                                html:'<hr>',
+
+                                                            },
+                                                            {
+                                                                xtype:'label',
+                                                                //itemid:'',
+                                                                html:'Notes',
+                                                                style:{
+                                                                    'margin-top': '4px',
+                                                                    'margin-left': '10px',
+                                                                    'font-weight': '800',
+                                                                    'color': 'rgb(145, 86, 145)',
+                                                                    'font-size': 'medium'
+                                                                }
+                                                            },
+                                                            {
+                                                                xtype:'container',
+                                                                layout:'hbox',
+                                                                style:{
+                                                                    'margin-top':'3px'
+                                                                },
+                                                                items:[
+                                                                    {
+                                                                         xtype:'selectfield',
+                                                                         width:'140px',
+                                                                         itemid:'Microbiologyfilternotesid',
+                                                                          name:'Microbiologyfilternotesid',
+                                                                          options:[
+                                                                              {text:'FILTER NOTES',value:'filternotes'}
+                                                                          ],
+                                                                          style:{
+                                                                              'fontFamily':'openSansRegular',
+                                                                              'font-size':'small',
+                                                                              'margin-left':'10px',
+                                                                              'margin-top':'2px'
+                                                                          }
+                                                                     },
+                                                                     {
+                                                                         xtype:'button',
+                                                                         html: '<div style="text-align: center; border: 1px solid black; padding: 5px">New Notes</div>',
+                                                                         ui:'plain',
+                                                                         itemid:'MicrobiologyAddNewNotes',
+                                                                         width:'120px',
+                                                                         height:'30px',
+                                                                         style:{
+                                                                             'font-size':'12px',
+                                                                             'margin-left':'14px',
+                                                                             'margin-top':'2px'
+                                                                         }
+                                                                     }
+                                                                ]
+                                                            }
+                                                         ]
+
+                                                     },
+                                                {
+                                                    //charts and box container
+                                                    xtype:'container',
+                                                    layout:'vbox',
+                                                    items:[
+                                                        {
+                                                            //chart contaianer
+                                                            xtype:'container',
+                                                            width: '580px',
+                                                            height: '300px',
+                                                            layout:'vbox',
+                                                            style: {
+                                                                       'border': '1px #9E9D8B solid',
+                                                                       'borderRightColor':'#9E9D8B',
+                                                                       'borderTopColor': '#AC9C65',
+                                                                       'borderTopWidth': '4px',
+                                                                       'margin': 'auto',
+                                                                       'margin-left': '2%',
+                                                                       'margin-top': '',
+                                                                       'background-color': '#FFFFFF'
+
+                                                                   },
+                                                            items:[
+                                                                //items for box1 here
+                                                                {
+                                                                    xtype:'container',
+                                                                    layout:'hbox',
+                                                                    items:[
+                                                                        {
+                                                                     xtype:'label',
+                                                                     html:'Graph View - ',
+                                                                       style:{
+                                                                             'margin-top': '3%',
+                                                                              'margin-left': '3%',
+                                                                              /* font-family: -webkit-pictograph; */
+                                                                              'font-weight': '800',
+                                                                              'color': 'rgb(145, 86, 145)',
+                                                                              'font-size': 'medium'
+                                                                            }
+                                                                },
+                                                                {
+                                                                    xtype:'label',
+                                                                    html:'',
+                                                                    itemid:'mbchartviewingid',
+                                                                    style:{
+                                                                             'margin-top': '3%',
+                                                                              'margin-left': '3%',
+                                                                              /* font-family: -webkit-pictograph; */
+                                                                              'font-weight': '800',
+                                                                              'color': 'rgb(145, 86, 145)',
+                                                                              'font-size': 'medium'
+                                                                            }
+                                                                },
+           //                                                     {
+           //                                                            xtype:'image',
+           //                                                            itemid:'chemistrychartedittableicon',
+           //
+           //                                                            src:'resources/images/edit.png',
+           //                                                            height:'20px',
+           //                                                            width:'25px',
+           //                                                              // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+           //                                                               style:{
+           //                                                                   'margin-left':'300px',
+           //                                                                   'margin-top':'3%'
+           //                                                               }
+           //
+           //                                                        }
+                                                                    ]
+                                                                },//end of items above  hr in line chart
+           //                                                     {
+           //                                                    html:'<hr>',
+           //                                                       style:{
+           //                                                           'margin-left':'10px',
+           //                                                           'margin-right':'10px',
+           //                                                           'margin-top':''
+           //                                                       }
+           //                                                },
+                                                           {
+                                                               xtype:'MicrobiologyChartView',
+                                                               style:{
+                                                                   'margin-top':'1%'
+                                                               }
+                                                           }
+                                                           // chart item
+                                                            ]       
+
+                                                        },
+                                                        {
+                                                            //table container
+                                                             xtype:'container',
+                                                            width: '580px',
+                                                            height: '400px',
+                                                            layout:'vbox',
+                                                            style: {
+                                                                       'border': '1px #9E9D8B solid',
+                                                                       'borderRightColor':'#9E9D8B',
+                                                                       'borderTopColor': '#AC9C65',
+                                                                       'borderTopWidth': '4px',
+                                                                       'margin': 'auto',
+                                                                       'margin-left': '2%',
+                                                                       'margin-top': '17px',
+                                                                       'background-color': '#FFFFFF'
+
+                                                                   },
+                                                               items:[
+                                                                   //items in box2
+                                                                    {
+                                                                    xtype:'container',
+                                                                    layout:'hbox',
+                                                                    items:[
+                                                                        {
+                                                                     xtype:'label',
+                                                                     html:'Table View - ',
+                                                                       style:{
+                                                                             'margin-top': '3%',
+                                                                              'margin-left': '3%',
+                                                                              /* font-family: -webkit-pictograph; */
+                                                                              'font-weight': '800',
+                                                                              'color': 'rgb(145, 86, 145)',
+                                                                              'font-size': 'medium'
+                                                                            }
+                                                                },
+                                                                {
+                                                                    xtype:'label',
+                                                                    html:'ALL',
+                                                                    itemid:'tableviewingid',
+                                                                    style:{
+                                                                             'margin-top': '3%',
+                                                                              'margin-left': '3%',
+                                                                              /* font-family: -webkit-pictograph; */
+                                                                              'font-weight': '800',
+                                                                              'color': 'rgb(145, 86, 145)',
+                                                                              'font-size': 'medium'
+                                                                            }
+                                                                },
+                                                                {
+                                                                       xtype:'image',
+                                                                       itemid:'chemistrytableedittableicon',
+
+                                                                       src:'resources/images/edit.png',
+                                                                       height:'20px',
+                                                                       width:'25px',
+                                                                         // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                                                          style:{
+                                                                              'margin-left':'66%',
+                                                                              'margin-top':'3%'
+                                                                          }
+
+                                                                   }
+                                                                    ]
+                                                                },//end of items above  hr in line chart
+                                                                {
+                                                               html:'<hr>',
+                                                                  style:{
+                                                                      'margin-left':'10px',
+                                                                      'margin-right':'10px',
+                                                                      'margin-top':''
+                                                                  }
+                                                           },
+                                                           //table container
+                                                           {
+                                                               xtype:'container',
+                                                               width:'580px',
+                                                               height:'300px',
+                                                               layout:'hbox',
+                                                               scrollable: {
+                                                                           direction: 'both',
+                                                                           directionLock: true
+                                                                       },
+                                                                       items:[
+                                                                           //table goes here
+                                                                           {
+                                                                               xtype:'panel',
+                                                                               itemid:'MBResultsTable',
+                                                                               style:{
+                                                                                   'fontFamily':'openSansRegular',
+                                                                                   'font-size':'small',
+                                                                                   'margin-left':'20px'
+                                                                               }
+                                                                           }
+                                                                       ]
+                                                           }
+                                                               ]    
+                                                        }
+                                                    ]
                                                 }
-                                                    ]    
-                                             }
-                                         ]
-                                     }
-                                 ]
-                             }
+                                            ]
+                                        }
+                                    ]
+                             },
+                            
                              
                          ]   
                     },

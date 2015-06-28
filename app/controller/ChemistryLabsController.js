@@ -5,9 +5,6 @@ Ext.define("MVF.controller.ChemistryLabsController", {
             chemistrylabs:'chemistrylabs',
             OnViewClick:'[itemid=chemistryviewbuttonid]',
             chemistrychartviewpanel:'[itemid=chartviewingid]',
-            viewingpanel:'[itemid=viewingitem]',
-           // chemistryalertdatepanel:'[itemid=chealertdate]',
-            chemistryalertinfo:'[itemid=chemistryalertinfo]',
             chemistrylabsPageId:'[itemid=chemistrypageid]',
             ChemistryUpdateButton:'[itemid=ChemistryUpdateButton]',
             ChemistryTable:'[itemid=ChemistryResultsTable]'
@@ -38,19 +35,14 @@ Ext.define("MVF.controller.ChemistryLabsController", {
     OnViewClickFunction:function(){
         //alert('controller working');
             var chemistryvalue=Ext.ComponentQuery.query('[itemid=chemisrtydropdownvalueid]')[0].getValue();
-            var viewingitem=this.getViewingpanel();
             var chartviewingpanel=this.getChemistrychartviewpanel();
-           // var chemistryalertdatepanel=this.getChemistryalertdatepanel();
-            var chemistryalertinfo=this.getChemistryalertinfo();
-            console.log(chemistryvalue);
-            viewingitem.setHtml(chemistryvalue);
+            //console.log(chemistryvalue);
             chartviewingpanel.setHtml(chemistryvalue);
             var store=Ext.getStore('chemistrychartstore');
             var startdatevalue=Ext.ComponentQuery.query('[itemid=chemistrystartdate]')[0].getFormattedValue();
             var enddatevalue=Ext.ComponentQuery.query('[itemid=chemistryenddate]')[0].getFormattedValue();
-            console.log(startdatevalue);
-            console.log(enddatevalue);
-            
+            //console.log(startdatevalue);
+            //console.log(enddatevalue);
             store.load({
                         params:{ chemistryvalue: chemistryvalue,
                                  startdate: startdatevalue,
@@ -58,6 +50,11 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                                  patient_id:MVF.app.patient_id
                                 },
                                  scope:this,
+                                 callback:function(records,success){
+                                    if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
+                                        alert('No records found');
+                                    }
+                                }
                         
                    });
                    var TableStore=  Ext.getStore('ChemistryTableStore');
@@ -75,7 +72,7 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                     });
     },
     EditChemistryValuesPopUp:function(){
-        console.log('in EditChemistryValuesPopUp function');
+        //console.log('in EditChemistryValuesPopUp function');
         var overlay = Ext.Viewport.add({
             xtype: 'panel',
 	    itemid: 'EditChemistryvaluesOverlay',
@@ -205,8 +202,8 @@ Ext.define("MVF.controller.ChemistryLabsController", {
         var EditDate=Ext.ComponentQuery.query('[itemid=Chemistrydateedit]')[0].getFormattedValue();
         var EditTime=Ext.ComponentQuery.query('[itemid=Chemistryedittimevalue]')[0].getValue();
         var Result=Ext.ComponentQuery.query('[itemid=Chemistryresultedit]')[0].getValue();
-        console.log(ChemistryEditValue); console.log(EditDate); console.log(EditTime);
-        console.log(Result);
+        //console.log(ChemistryEditValue); console.log(EditDate); console.log(EditTime);
+        //console.log(Result);
         var store=Ext.getStore('ChemistryResultsUpdateStore');
         store.load({
             params:{
@@ -226,7 +223,7 @@ Ext.define("MVF.controller.ChemistryLabsController", {
         });
     },
     DisplayChemistryResults:function(values,startdate,enddate){
-        console.log('In chemistry results display table');
+        //console.log('In chemistry results display table');
         var ItemStore=Ext.getStore('chemistrydropdownstore');
         var TableStore=Ext.getStore('ChemistryTableStore');
         var No_of_Results_Fetch=TableStore.getCount();

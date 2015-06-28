@@ -4,10 +4,11 @@ $testname=$_GET['MBEditValue'];//'pH';//
 $date=$_GET['date'];//'2014-04-03';//
 $time=$_GET['time'];//'0100';//
 $result=$_GET['result'];//'6.0';//
+$patient_id=$_GET['patient_id'];
 $formatted_date=  date("Y-m-d",strtotime($date));
 $flag=0; // to check if records already exist in the table or not
 $arr=array();
-$patient_visit_result=mysqli_query($con,"select * from patient_visit where patient_id='P1013'");
+$patient_visit_result=mysqli_query($con,"select * from patient_visit where patient_id='$patient_id'");
 while($patient_visit_row = mysqli_fetch_array($patient_visit_result) ){
     $visit_id= $patient_visit_row['Visit_ID'];
     $room_id= $patient_visit_row['Room_ID'];

@@ -1,4 +1,4 @@
-Ext.define("MVF.model.HematologyChartModel", {
+Ext.define("MVF.model.ChartModel", {
     extend: "Ext.data.Model",
     config: {
         fields: [

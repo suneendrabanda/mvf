@@ -75,8 +75,7 @@ if($NO_OF_ROWS_FETCH>0){
             array_push($arr, array('result'=>'null','exact'=>$exactValue,'min'=>'null','max'=>'null','date'=>$end_date));
         }
     }
- }
- function subval_sort($a,$subkey) {
+     function subval_sort($a,$subkey) {
 	foreach($a as $k=>$v) {
 		$b[$k] = strtolower($v[$subkey]);
 	}
@@ -85,6 +84,11 @@ if($NO_OF_ROWS_FETCH>0){
 		$c[] = $a[$key];
 	}
 	return $c;
-}
- $arr= subval_sort($arr, 'date');
+    }
+     $arr= subval_sort($arr, 'date');
+ }
+ else{
+     array_push($arr, array('result'=>'null','exact'=>'null','min'=>'null','max'=>'null','date'=>'null'));
+ }
+
  echo json_encode($arr);

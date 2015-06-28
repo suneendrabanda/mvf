@@ -1,7 +1,7 @@
 Ext.define("MVF.store.MicrobiologyTableStore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.MicrobiologyTableModel',
+         model: 'MVF.model.TableModel',
 	    storeId : 'MicrobiologyTableStore',
         proxy: {
             type: 'ajax',

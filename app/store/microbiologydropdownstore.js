@@ -1,7 +1,7 @@
 Ext.define("MVF.store.microbiologydropdownstore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.microbiologydropdownmodel',
+         model: 'MVF.model.DropDownmodel',
 	    storeId : 'microbiologydropdownstore',
         proxy: {
             type: 'ajax',

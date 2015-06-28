@@ -1,7 +1,7 @@
 Ext.define("MVF.store.HematologyChartStore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.HematologyChartModel',
+         model: 'MVF.model.ChartModel',
 	    storeId : 'HematologyChartStore',
         proxy: {
             type: 'ajax',

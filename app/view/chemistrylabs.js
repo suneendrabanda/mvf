@@ -160,10 +160,7 @@ Ext.define('MVF.view.chemistrylabs', {
                         width: '950px',
                         height: '600px',
                         layout:'vbox',
-//                        scrollable: {
-//                                                            direction: 'vertical',
-//                                                            directionLock: true
-//                                                        },
+
                         style: {
                                 'border': '1px #9E9D8B solid',
                                 'borderRightColor':'#9E9D8B',
@@ -312,91 +309,84 @@ Ext.define('MVF.view.chemistrylabs', {
                                             {
                                                xtype:'container',
                                                layout:'vbox',
+                                               width:'330px',
+                                               height:'520px',
+                                               style:{
+                                                   'border': '1px #9E9D8B solid',
+                                                    'borderRightColor':'#9E9D8B',
+                                                    'borderTopColor': '#AC9C65',
+                                                    'borderTopWidth': '4px',
+                                                    'margin-left': '10px',
+                                                    'margin-top': '',
+                                                    'background-color': '#FFFFFF'
+                                               },
                                                items:[
-                                                   //6 containers here
                                                    {
-                                                          xtype:'label',
-                                                           html:' Notes',
-                                                           style:{
-                                                                 'margin-top': '6%',
-                                                                  'margin-left': '25px',
-                                                                  /* font-family: -webkit-pictograph; */
-                                                                  'font-weight': '900',
-                                                                  'color': 'rgb(145, 86, 145)',
-                                                                  'font-size': 'larger'
-                                                                }
+                                                       xtype:'label',
+                                                       itemid:'ChemistryViewDefinition',
+                                                       html:'View Definition',
+                                                       style:{
+                                                           'margin-top': '20px',
+                                                           'margin-left': '10px',
+                                                           'font-weight': '800',
+                                                           'color': 'rgb(145, 86, 145)',
+                                                           'font-size': 'medium'
+                                                       }
+                                                   },
+                                                   {
+                                                       html:'<hr>',
+                                                       
                                                    },
                                                    {
                                                        xtype:'label',
-                                                       html:'VIEWING:',
-                                                       style:{
-                                                          'margin-left': '25px',
-                                                           'margin-top': '10%',
-                                                           'font-weight': '600',
-                                                           'font-size': 'initial',
-                                                       }
-                                                   },
-                                                   {
-                                                       xtype:'panel',
-                                                       html:'',
-                                                       itemid:'viewingitem',
-                                                       style:{
-                                                           'margin-left':'40px',
-                                                             'margin-top': '12px',
-                                                               'font-size': 'initial',
-                                                               'font-weight': '500'
-                                                       }
-                                                   },
-                                                   {
-                                                       xtype:'panel',
-                                                       html:'Alerts:',
-                                                       style:{
-                                                            'margin-left': '25px',
-                                                           'margin-top': '10%',
-                                                           'font-weight': '600',
-                                                           'font-size': 'initial'
-                                                       }
-                                                   },
-                                                   {
-                                                       xtype:'panel',
-                                                       html:'',
-                                                       itemid:'chemistryalertinfo',
-                                                       style:{
-                                                           'margin-left':'40px',
-                                                            'margin-top': '12px',
-                                                            'font-size': '12px',
-                                                            'font-weight': '500',
-                                                            'color':'#ff0000'
-                                                       }
-                                                   },
-
-                                                   {
-                                                       xtype:'panel',
-                                                       width:'300px',
+                                                       //itemid:'',
                                                        html:'Notes',
                                                        style:{
-                                                          'margin-left': '25px',
-                                                           'margin-top': '8%',
-                                                           'font-weight': '600',
-                                                           'font-size': 'initial'
-
+                                                           'margin-top': '4px',
+                                                           'margin-left': '10px',
+                                                           'font-weight': '800',
+                                                           'color': 'rgb(145, 86, 145)',
+                                                           'font-size': 'medium'
                                                        }
                                                    },
                                                    {
-                                                       xtype:'panel',
-                                                       width:'280px',
-                                                       height:'100px',
-                                                       html:'<p>The mean corpuscular volume, or MCV, is a measure of the average red blood cell volume (i.e. size)\n\
-                                                                that is reported as part of a standard complete blood count.\n\
-                                                                   It can be calculated (in litres) by dividing the hematocrit by the red blood cell count (number of red blood cells per litre). The result is typically reported in femtolitres.</p>',
+                                                       xtype:'container',
+                                                       layout:'hbox',
                                                        style:{
-                                                           'margin-left':'40px',
-                                                           'margin-top':'4%',
-                                                           'font-weight':'normal',
-                                                           'font-size':'smaller'
-                                                       }
+                                                           'margin-top':'3px'
+                                                       },
+                                                       items:[
+                                                           {
+                                                                xtype:'selectfield',
+                                                                width:'140px',
+                                                                itemid:'Chemistryfilternotesid',
+                                                                 name:'Chemistryfilternotesid',
+                                                                 options:[
+                                                                     {text:'FILTER NOTES',value:'filternotes'}
+                                                                 ],
+                                                                 style:{
+                                                                     'fontFamily':'openSansRegular',
+                                                                     'font-size':'small',
+                                                                     'margin-left':'10px',
+                                                                     'margin-top':'2px'
+                                                                 }
+                                                            },
+                                                            {
+                                                                xtype:'button',
+                                                                html: '<div style="text-align: center; border: 1px solid black; padding: 5px">New Notes</div>',
+                                                                ui:'plain',
+                                                                itemid:'ChemistryAddNewNotes',
+                                                                width:'120px',
+                                                                height:'30px',
+                                                                style:{
+                                                                    'font-size':'12px',
+                                                                    'margin-left':'14px',
+                                                                    'margin-top':'2px'
+                                                                }
+                                                            }
+                                                       ]
                                                    }
-                                               ]
+                                                ]
 
                                             },
                                             {
@@ -416,7 +406,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                                    'borderTopColor': '#AC9C65',
                                                                    'borderTopWidth': '4px',
                                                                    'margin': 'auto',
-                                                                   'margin-left': '5%',
+                                                                   'margin-left': '2%',
                                                                    'margin-top': '',
                                                                    'background-color': '#FFFFFF'
 
@@ -507,7 +497,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                                    'borderTopColor': '#AC9C65',
                                                                    'borderTopWidth': '4px',
                                                                    'margin': 'auto',
-                                                                   'margin-left': '5%',
+                                                                   'margin-left': '2%',
                                                                    'margin-top': '17px',
                                                                    'background-color': '#FFFFFF'
 

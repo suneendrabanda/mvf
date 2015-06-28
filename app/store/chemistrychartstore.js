@@ -1,7 +1,7 @@
 Ext.define("MVF.store.chemistrychartstore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.chemistrychartmodel',
+         model: 'MVF.model.ChartModel',
 	    storeId : 'chemistrychartstore',
         proxy: {
             type: 'ajax',

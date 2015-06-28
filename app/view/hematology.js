@@ -318,99 +318,89 @@ Ext.define('MVF.view.hematology', {
                                                 xtype:'container',
                                                 layout:'vbox',
                                                 items:[
-                                                    //6 containers here
                                                     {
-                                                           xtype:'label',
-                                                            html:' Notes',
-                                                            style:{
-                                                                  'margin-top': '6%',
-                                                                   'margin-left': '25px',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '900',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'larger'
-                                                                 }
-                                                    },
-                                                    {
-                                                        xtype:'label',
-                                                        html:'VIEWING:',
+                                                        xtype:'container',
+                                                        layout:'vbox',
+                                                        width:'330px',
+                                                        height:'520px',
                                                         style:{
-                                                           'margin-left': '25px',
-                                                            'margin-top': '10%',
-                                                            'font-weight': '600',
-                                                            'font-size': 'initial',
-                                                        }
-                                                    },
-                                                    {
-                                                        xtype:'panel',
-                                                        html:'',
-                                                        itemid:'hematologyviewingitem',
-                                                        style:{
-                                                            'margin-left':'40px',
-                                                              'margin-top': '12px',
-                                                                'font-size': 'initial',
-                                                                'font-weight': '500'
-                                                        }
-                                                    },
-                                                    {
-                                                        xtype:'panel',
-                                                        html:'Alerts:',
-                                                        style:{
-                                                             'margin-left': '25px',
-                                                            'margin-top': '10%',
-                                                            'font-weight': '600',
-                                                            'font-size': 'initial'
-                                                        }
-                                                    },
-                                                    {
-                                                        xtype:'panel',
-                                                        html:'',
-                                                        itemid:'hematologyalertdate',
-                                                        style:{
-                                                            'margin-left':'40px',
-                                                            'margin-top': '12px',
-                                                            'font-size': '12px',
-                                                            'font-weight': '500'
-                                                        }
-                                                    },
-                                                    {
-                                                        xtype:'panel',
-                                                        itemid:'hematologyalertinfo',
-                                                        html:'',
-                                                        style:{
-                                                            'margin-left':'40px',
-                                                            'margin-top': '12px',
-                                                            'font-size': 'initial',
-                                                            'font-weight': '500',
-                                                            'color':'red'
-                                                        }
-                                                    },
-                                                    {
-                                                        xtype:'panel',
-                                                        width:'300px',
-                                                        html:'Notes',
-                                                        style:{
-                                                           'margin-left': '25px',
-                                                            'margin-top': '8%',
-                                                            'font-weight': '600',
-                                                            'font-size': 'initial'
+                                                            'border': '1px #9E9D8B solid',
+                                                             'borderRightColor':'#9E9D8B',
+                                                             'borderTopColor': '#AC9C65',
+                                                             'borderTopWidth': '4px',
+                                                             'margin-left': '10px',
+                                                             'margin-top': '',
+                                                             'background-color': '#FFFFFF'
+                                                        },
+                                                        items:[
+                                                            {
+                                                                xtype:'label',
+                                                                itemid:'HematologyViewDefinition',
+                                                                html:'View Definition',
+                                                                style:{
+                                                                    'margin-top': '20px',
+                                                                    'margin-left': '10px',
+                                                                    'font-weight': '800',
+                                                                    'color': 'rgb(145, 86, 145)',
+                                                                    'font-size': 'medium'
+                                                                }
+                                                            },
+                                                            {
+                                                                html:'<hr>',
 
-                                                        }
-                                                    },
-                                                    {
-                                                        xtype:'panel',
-                                                        width:'280px',
-                                                        height:'100px',
-                                                        html:'<p>The mean corpuscular volume, or MCV, is a measure of the average red blood cell volume (i.e. size)\n\
-                                                                 that is reported as part of a standard complete blood count.\n\
-                                                                    It can be calculated (in litres) by dividing the hematocrit by the red blood cell count (number of red blood cells per litre). The result is typically reported in femtolitres.</p>',
-                                                        style:{
-                                                            'margin-left':'40px',
-                                                            'margin-top':'4%',
-                                                            'font-weight':'normal',
-                                                            'font-size':'smaller'
-                                                        }
-                                                    }
+                                                            },
+                                                            {
+                                                                xtype:'label',
+                                                                //itemid:'',
+                                                                html:'Notes',
+                                                                style:{
+                                                                    'margin-top': '4px',
+                                                                    'margin-left': '10px',
+                                                                    'font-weight': '800',
+                                                                    'color': 'rgb(145, 86, 145)',
+                                                                    'font-size': 'medium'
+                                                                }
+                                                            },
+                                                            {
+                                                                xtype:'container',
+                                                                layout:'hbox',
+                                                                style:{
+                                                                    'margin-top':'3px'
+                                                                },
+                                                                items:[
+                                                                    {
+                                                                         xtype:'selectfield',
+                                                                         width:'140px',
+                                                                         itemid:'Hematologyfilternotesid',
+                                                                          name:'Hematologyfilternotesid',
+                                                                          options:[
+                                                                              {text:'FILTER NOTES',value:'filternotes'}
+                                                                          ],
+                                                                          style:{
+                                                                              'fontFamily':'openSansRegular',
+                                                                              'font-size':'small',
+                                                                              'margin-left':'10px',
+                                                                              'margin-top':'2px'
+                                                                          }
+                                                                     },
+                                                                     {
+                                                                         xtype:'button',
+                                                                         html: '<div style="text-align: center; border: 1px solid black; padding: 5px">New Notes</div>',
+                                                                         ui:'plain',
+                                                                         itemid:'HematologyAddNewNotes',
+                                                                         width:'120px',
+                                                                         height:'30px',
+                                                                         style:{
+                                                                             'font-size':'12px',
+                                                                             'margin-left':'14px',
+                                                                             'margin-top':'2px'
+                                                                         }
+                                                                     }
+                                                                ]
+                                                            }
+                                                         ]
+
+                                                     },
                                                 ]
 
                                              },
@@ -419,6 +409,7 @@ Ext.define('MVF.view.hematology', {
                                                  xtype:'container',
                                                  layout:'vbox',
                                                  items:[
+                                                     
                                                      {
                                                          //chart contaianer
                                                          xtype:'container',
@@ -431,7 +422,7 @@ Ext.define('MVF.view.hematology', {
                                                                     'borderTopColor': '#AC9C65',
                                                                     'borderTopWidth': '4px',
                                                                     'margin': 'auto',
-                                                                    'margin-left': '5%',
+                                                                    'margin-left': '2%',
                                                                     'margin-top': '',
                                                                     'background-color': '#FFFFFF'
 
@@ -513,7 +504,7 @@ Ext.define('MVF.view.hematology', {
                                                                     'borderTopColor': '#AC9C65',
                                                                     'borderTopWidth': '4px',
                                                                     'margin': 'auto',
-                                                                    'margin-left': '5%',
+                                                                    'margin-left': '2%',
                                                                     'margin-top': '17px',
                                                                     'background-color': '#FFFFFF'
 

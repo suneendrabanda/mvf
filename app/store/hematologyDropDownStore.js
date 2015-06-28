@@ -1,7 +1,7 @@
 Ext.define("MVF.store.hematologyDropDownStore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.hematologyDropDownModel',
+         model: 'MVF.model.DropDownmodel',
 	    storeId : 'hematologyDropDownStore',
         proxy: {
             type: 'ajax',
