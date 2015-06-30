@@ -40,7 +40,8 @@ Ext.application({
     "IOPageIntakeChartView",
     "LabsMainView",
     "VitalsView",
-    "SerologyView"
+    "SerologyView",
+    "SerologyChartView"
     
 ],
    models:[
@@ -49,7 +50,7 @@ Ext.application({
        "bplinechartmodel",
        "vitaltablemodel",
        "outputpiechartmodel",
-       "intakepiechartmodel",
+       "piechartmodel",
        "DropDownmodel",
        "IOUpdateModel",
        "ABSChartModel",
@@ -59,13 +60,14 @@ Ext.application({
        "HematologyAlertModel",
        "TableModel",
        "ABSTableModel",
-       "ABSDropDownModel",
+       //"ABSDropDownModel",
        "ABGNotesModel",
        "LabsMainLabResultsModel",
        "IOPageDropDownModel"
 ],
     stores:[
 	'linechart',
+        'SerologyTableStore',
         'vitalsignupdatestore',
         "bplinechartstore",
         "vitaltablestore",
@@ -101,7 +103,9 @@ Ext.application({
         "IOPageOutputStore",
         "IntakeTableStore",
         "OutputTableStore",
-        "VitalSignsDropDownStore"
+        "VitalSignsDropDownStore",
+        "SerologyDropdownStore",
+        "SerologyChartStore"
 ],
 controllers: [
 	'MainController',
@@ -110,7 +114,8 @@ controllers: [
         'hematologyController',
         'MicrobiologyPageController',
         'IOPageController',
-        'LabsMainController'
+        'LabsMainController',
+        'SerologyController'
 ],
 
     icon: {
@@ -139,7 +144,7 @@ controllers: [
         Ext.Viewport.add(Ext.create('MVF.view.LabsMainView'));
     },
      'LabPageCount':'0',
-     'patient_id':'71013',
+     'patient_id':'71009',
      
     onUpdated: function() {
         Ext.Msg.confirm(

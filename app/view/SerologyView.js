@@ -121,6 +121,7 @@ Ext.define('MVF.view.SerologyView', {
                                        // itemid:'hematologypageid',//hematologypageid
                                         
                                         options: [
+                                            {text: 'Serology',  value: 'SerologyView'},
                                             {text: 'Hematology',  value: 'hematology'},
                                             {text: 'Labs-Main',  value: 'LabsMainView'},
                                             {text: 'Chemistry',  value: 'chemistrylabs'},
@@ -139,8 +140,10 @@ Ext.define('MVF.view.SerologyView', {
                                  },
                                  {
                                     xtype:'button',
-                                    text:'BACK',
-                                    //itemid:'back',
+                                    ui: 'plain',
+                                    html: '<div style="text-align: center; border: 1px solid black; padding: 5px">PATIENT SUMMARY</div>',
+                                    itemid:'patientsummarybuttonid',
+                                    //id:'patientsummarybuttonid',
                                     width:'170px',
                                     height:'30px',
                                     style:{
@@ -189,9 +192,9 @@ Ext.define('MVF.view.SerologyView', {
                                       {
                                           xtype: 'selectfield',
                                           width:'140px',
-//                                          store: 'hematologyDropDownStore',
-//                                          itemid:'hematologydropdownvalueid',
-//                                           name:'hematologydropdownvalueid',
+                                          store: 'SerologyDropdownStore',
+                                          itemid:'SerologyDropdownValueId',
+                                           name:'SerologyDropdownValueId',
                                            valueField:'value',
                                            displayField:'text',
                                         style:{
@@ -214,7 +217,7 @@ Ext.define('MVF.view.SerologyView', {
                                       {
                                           xtype: 'datepickerfield',
                                             label: '',
-                                            itemid:'hematologystartdate',
+                                            itemid:'Serologystartdate',
                                             width:'100px',
                                             value: new Date(),
                                             style:{
@@ -236,7 +239,7 @@ Ext.define('MVF.view.SerologyView', {
                                      {
                                           xtype: 'datepickerfield',
                                             label: '',
-                                            itemid:'hematologyenddate',
+                                            itemid:'Serologyenddate',
                                             width:'100px',
                                             value: new Date(),
                                              style:{
@@ -248,7 +251,7 @@ Ext.define('MVF.view.SerologyView', {
                                      },
                                       {
                                          xtype:'image',
-                                         itemid:'hematologyviewbuttonid',
+                                         itemid:'Serologyviewbuttonid',
                                          src:'resources/custom_images/buttons/view.png',
                                          height:'35px',
                                          width:'150px',
@@ -261,8 +264,8 @@ Ext.define('MVF.view.SerologyView', {
                                      },
                                      {
                                          xtype:'image',
-                                         itemid:'hematologyedittableicon',
-                                         id:'hematologyedittableicon',
+                                         itemid:'Serologyedittableicon',
+                                         id:'Serologyedittableicon',
                                          src:'resources/images/edit.png',
                                          height:'20px',
                                          width:'25px',
@@ -371,7 +374,7 @@ Ext.define('MVF.view.SerologyView', {
                                                                                 {
                                                                                     xtype:'label',
                                                                                     html:'',
-                                                                                    itemid:'hematologychartviewingid',
+                                                                                    itemid:'Serologychartviewingid',
                                                                                     style:{
                                                                                              'margin-top': '3%',
                                                                                               'margin-left': '3%',
@@ -386,7 +389,7 @@ Ext.define('MVF.view.SerologyView', {
                                                                  {
                                                                         xtype:'panel',
                                                                         html:'Alerts()',
-                                                                        itemid:'hematologyChartAlertsCount',
+                                                                        itemid:'SerologyChartAlertsCount',
                                                                         style:{
                                                                                'margin-left':'100px',
                                                                                'margin-top':'3%',
@@ -399,7 +402,7 @@ Ext.define('MVF.view.SerologyView', {
                                                                  },//end of items above  hr in line chart
 
                                                             {
-                                                                xtype:'HematologyChartView',
+                                                                xtype:'SerologyChartView',
                                                                 style:{
                                                                     'margin-top':'2%'
                                                                 }
@@ -449,7 +452,7 @@ Ext.define('MVF.view.SerologyView', {
                                                                  {
                                                                      xtype:'label',
                                                                      html:'ALL',
-                                                                     itemid:'hematologytableviewingid',
+                                                                     itemid:'Serologytableviewingid',
                                                                      style:{
                                                                               'margin-top': '3%',
                                                                                'margin-left': '3%',
@@ -489,7 +492,7 @@ Ext.define('MVF.view.SerologyView', {
                                                                             //table goes here
                                                                             {
                                                                                 xtype:'panel',
-                                                                                itemid:'HematologyResultsTable',
+                                                                                itemid:'SerologyResultsTable',
                                                                                 style:{
                                                                                     'fontFamily':'openSansRegular',
                                                                                     'font-size':'small',

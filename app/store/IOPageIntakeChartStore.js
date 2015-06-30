@@ -1,7 +1,7 @@
 Ext.define("MVF.store.IOPageIntakeChartStore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.intakepiechartmodel',
+         model: 'MVF.model.piechartmodel',
 	    storeId : 'IOPageIntakeChartStore',
         proxy: {
             type: 'ajax',

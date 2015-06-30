@@ -1,10 +1,12 @@
+
 <?php
 ini_set('memory_limit','1024M');
 include('connect.php');
 $vitalselected =  $_GET['vitalvalue']; //'all';  // 
-$shiftselected =$_GET['shiftvalue'];//'night'; // 
-$startdate=$_GET['startdate'];  // '2015-06-26';   // 
+$shiftselected = $_GET['shiftvalue'];//'evening'; //
+$startdate=$_GET['startdate'];  // '2013-01-12';   // 
 $enddate= $_GET['enddate']; //'2013-01-12';   // 
+$patient_id=$_GET['patient_id'];//'71013';//
 $arr=array();$value=array();$time=array();$date=array();$item_name=array();$final=array();$lab_name=array();
 //ini_set('memory_limit', '-1');
 $formatted_start_date=  date("Y-m-d",strtotime($startdate));
@@ -20,33 +22,39 @@ while($vital_list_row = mysqli_fetch_array($vital_list)){
     $lab_name[$q]=$vital_list_row['Name'];
     $q++;
 }
+//get patient visit id
+$visit_result= mysqli_query($con, "select * from patient_visit where Patient_ID=$patient_id");
+while($patient_visit_row=mysqli_fetch_array($visit_result)){
+    $visit_id=$patient_visit_row['Visit_ID'];
+}
 if($shiftselected=='day'){
-    $shift= array('0700','0800','0900','1000','1100','1200','1300','1400');
-}
-elseif($shiftselected=='evening'){
-    $shift= array('1500','1600','1700','1800','1900','2000','2100','2200');
-}
+      $shift= ['07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30'];
+   }
+else if($shiftselected==='evening'){
+      $shift= ['15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30'];
+   }
 else{
-    $shift= array('0100','0200','0300','0400','0500','0600','2300','2400',);
-}
+      $shift= ['01:00','01:30','02:00','02:30','03:00','03:30','04:00','04:30','05:00','05:30','06:00','06:30','23:00','23:30','24:00','24:30'];
+    }
 if($Today_date==$formatted_start_date){// This condition execute when page loaded
     //echo 'dates equal';
     $date_diff=1;
-    $result=mysqli_query($con,"select vs.Name,ve.Date,ve.Time,ve.Result,ve.`Visit_ID` from vs_exam ve join vital_signs vs on vs.VS_ID=ve.VS_ID where `Visit_ID`='V141' and ve.date=(select max(`Date`) from vs_exam where `Visit_ID`='V141') order by ve.date,ve.time,vs.Name");
+    $result=mysqli_query($con,"select vs.Name,ve.Date,ve.Time,ve.Result,ve.`Visit_ID` from vs_exam ve join vital_signs vs on vs.VS_ID=ve.VS_ID where `Visit_ID`='$visit_id' and ve.date=(select max(`Date`) from vs_exam where `Visit_ID`='$visit_id') order by ve.date,ve.time,vs.Name");
    
 }
 else{
     if($vitalselected=='all'){
-        $result=mysqli_query($con,"select vs.Name,ve.Date,ve.Time,ve.Result,ve.`Visit_ID` from vs_exam ve join vital_signs vs on vs.VS_ID=ve.VS_ID where `Visit_ID`='V141' and ve.date between '$formatted_start_date' and '$formatted_end_date' order by ve.date,ve.time,vs.Name");
+        $result=mysqli_query($con,"select vs.Name,ve.Date,ve.Time,ve.Result,ve.`Visit_ID` from vs_exam ve join vital_signs vs on vs.VS_ID=ve.VS_ID where `Visit_ID`='$visit_id' and ve.date between '$formatted_start_date' and '$formatted_end_date' order by ve.date,ve.time,vs.Name");
     }
     else{
-        $result=mysqli_query($con,"select vs.Name,ve.Date,ve.Time,ve.Result,ve.`Visit_ID`,ve.VS_ID from vs_exam ve join vital_signs vs on vs.VS_ID=ve.VS_ID where `Visit_ID`='V141' and ve.date between '$formatted_start_date' and '$formatted_end_date' and vs.Name='$vitalselected' order by ve.date,ve.time,vs.Name");
+        $result=mysqli_query($con,"select vs.Name,ve.Date,ve.Time,ve.Result,ve.`Visit_ID`,ve.VS_ID from vs_exam ve join vital_signs vs on vs.VS_ID=ve.VS_ID where `Visit_ID`='$visit_id' and ve.date between '$formatted_start_date' and '$formatted_end_date' and vs.Name='$vitalselected' order by ve.date,ve.time,vs.Name");
     }
 }
 if($shiftselected=='day'){
   $i=0;
   while($row = mysqli_fetch_array($result)) {
-      if($row['Time']>=0700 && $row['Time']<=1400){
+      $modified_time=(int)str_replace(":","",$row['Time']);
+      if($modified_time>=700 && $modified_time<1500){
         $item_name[$i]=$row['Name'];
         $value[$i]=$row['Result'];
         $time[$i]=$row['Time'];
@@ -67,7 +75,8 @@ elseif ($shiftselected=='evening') {
     $i=0;
   while($row = mysqli_fetch_array($result)) {
       //echo $row['Time'].'<br>';
-      if($row['Time']>1400 && $row['Time']<=2200){
+      $modified_time=(int)str_replace(":","",$row['Time']);
+      if($modified_time>=(int)1500 && $modified_time<2300){
         $item_name[$i]=$row['Name'];
         $value[$i]=$row['Result'];
         $time[$i]=$row['Time'];
@@ -86,7 +95,8 @@ elseif ($shiftselected=='evening') {
 else{
     $i=0;
   while($row = mysqli_fetch_array($result)) {
-      if($row['Time']>2200 || $row['Time']<=0700){
+      $modified_time=(int)str_replace(":","",$row['Time']);
+      if($modified_time>=2300 || $modified_time<700){
         $item_name[$i]=$row['Name'];
         $value[$i]=$row['Result'];
         $time[$i]=$row['Time'];
@@ -112,7 +122,7 @@ else{
   $timevalue=0;// variable for time 
   for($i=0;$i<$date_diff;$i++){//loop tp repeat dates
       //echo $startdate.'<br>';
-      while($timevalue<8){
+      while($timevalue<16){
           for($v=0;$v<11;$v++){//loop to repeat time based on shift  to enter row values
             if($v==0){
                 $final[$v]=$startdate;// enter date 
@@ -143,6 +153,7 @@ else{
             }
           }
        array_push($arr, array('date'=>$final[0],'time'=>$final[1],'BP'=>$final[2],'Height'=>$final[3],'Pain'=>$final[4],'Pulse'=>$final[5],'Resp'=>$final[6],'SaO2'=>$final[7],'Temp'=>$final[8],'Weight'=>$final[9]));
+       // array_push($arr, array('date'=>$final[0],'time'=>$final[1],'BP'=>$final[2],'Pain'=>$final[3],'Pulse'=>$final[4],'Resp'=>$final[4],'SaO2'=>$final[5],'Temp'=>$final[6]));
        $timevalue++;
        $v=0;
       }

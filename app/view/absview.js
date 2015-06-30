@@ -351,7 +351,7 @@ Ext.define('MVF.view.absview', {
                                                         height:'20px',
                                                         width:'20px',
                                                         style:{
-                                                                  'margin-left':'30px',
+                                                                  'margin-left':'90px',
                                                                    'margin-top':'20px'
                                                                }
 

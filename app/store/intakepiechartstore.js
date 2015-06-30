@@ -8,7 +8,7 @@
 Ext.define("MVF.store.intakepiechartstore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.intakepiechartmodel',
+         model: 'MVF.model.piechartmodel',
 	    storeId : 'intakepiechartstore',
         proxy: {
             type: 'ajax',

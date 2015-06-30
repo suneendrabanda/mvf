@@ -1,12 +1,13 @@
 <?php
 include('connect.php');
 $arr=array();
-
- $result=mysqli_query($con,"select X.Name, sum(X.result) as total, X.date, X.time from (select pr.fname, pr.lname, op.Name, oe.date, oe.time, oe.result from output op join output_Exam oe on op.output_ID = oe.output_ID join Patient_Visit pv on pv.Visit_ID = oe.Visit_ID join patient p on p.patient_ID = pv.patient_ID join person pr on pr.person_ID = p.person_ID) X  where X.fname = 'Sandra' group by X.Name");
+$patient_id=$_GET['patient_id'];
+ $result=mysqli_query($con,"select ie.date,ie.time,sum(ie.result) as result,pv.Patient_ID,it.Output_ID,it.Name from output_exam ie join patient_visit pv on pv.Visit_ID=ie.Visit_ID
+                            join output it on it.Output_ID=ie.Output_ID where pv.Patient_ID='$patient_id' group by it.Name");
   while($row = mysqli_fetch_array($result)) {
       
         $output=$row['Name'];
-        $outputresult=(int)$row['total'];
+        $outputresult=(int)$row['result'];
          //array_push($arr, array('outputname'=> $output, 'result'=> $outputresult));
        if($output=='Total Out'){
            // do nothing

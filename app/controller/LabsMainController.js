@@ -10,6 +10,7 @@ Ext.define("MVF.controller.LabsMainController", {
             GoToMicrobiologyPage:'[itemid=labmicrobiologypage]',
             GoToAbgPage:'[itemid=lababgpage]',
             GoTOPageDropDownSelect:'[itemid=labsPageId]',
+            GoToSerologyPage:'[itemid=SerologyPage]',
             DisplayChemistryResults:'[itemid=labschemistryresult]',
             DisplayHematologyResults:'[itemid=labshematologyresult]',
             DisplayMicrobiologyResults:'[itemid=labsmicrobiologyresult]',
@@ -24,6 +25,9 @@ Ext.define("MVF.controller.LabsMainController", {
         control:{
             GoToChemistryPage:{
                 tap:'GoToChemistryPage'
+            },
+            GoToSerologyPage:{
+                tap:'GoToSerologyPage'
             },
             GoToHematologyPage:{
                 tap:'GoToHematologyPage'
@@ -57,6 +61,11 @@ Ext.define("MVF.controller.LabsMainController", {
     GoToChemistryPage:function(){
         this.getLabsMain().push({
                  xtype:'chemistrylabs'
+          });
+    },
+    GoToSerologyPage:function(){
+        this.getLabsMain().push({
+                 xtype:'SerologyView'
           });
     },
     GoToHematologyPage:function(){

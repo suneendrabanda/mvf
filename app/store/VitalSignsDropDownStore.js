@@ -1,7 +1,7 @@
 Ext.define("MVF.store.VitalSignsDropDownStore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.ABSDropDownModel',
+         model: 'MVF.model.DropDownmodel',
 	    storeId : 'VitalSignsDropDownStore',
         proxy: {
             type: 'ajax',

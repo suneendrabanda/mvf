@@ -6,11 +6,12 @@ $vitalname=$_GET['vitalvalue']; //'Pulse';//
 $date=$_GET['datevalue']; //'2013-01-12';//
 $time=$_GET['timevalue']; //'0900';//
 $vitalresult=$_GET['vitalresult']; //'20';//
+$patient_id=$_GET['patient_id'];
 $formatted_date=  date("Y-m-d",strtotime($date));
 
 
 $flag=0;
-$patient_visit_result=mysqli_query($con,"select * from patient_visit where patient_id='P1013'");
+$patient_visit_result=mysqli_query($con,"select * from patient_visit where patient_id='$patient_id'");
 while($patient_visit_row = mysqli_fetch_array($patient_visit_result) ){
     $visit_id= $patient_visit_row['Visit_ID'];
     $room_id= $patient_visit_row['Room_ID'];

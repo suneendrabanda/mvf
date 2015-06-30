@@ -1,4 +1,4 @@
-Ext.define("MVF.model.intakepiechartmodel", {
+Ext.define("MVF.model.piechartmodel", {
     extend: "Ext.data.Model",
     config: {
         fields: [

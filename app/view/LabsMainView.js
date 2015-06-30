@@ -160,7 +160,7 @@ Ext.define('MVF.view.LabsMainView', {
                             {
                                 xtype:'container',
                                 width:'330px',
-                                height:'580px',
+                                height:'569px',
                                 scrollable: {
                                         direction: 'vertical',
                                         directionLock: true
@@ -619,6 +619,7 @@ Ext.define('MVF.view.LabsMainView', {
                                                     {
                                                         xtype:'image',
                                                         src:'resources/images/buttons9.png',
+                                                        itemid:'SerologyPage',
                                                         width:'80px',
                                                         height:'30px',
                                                         style:{

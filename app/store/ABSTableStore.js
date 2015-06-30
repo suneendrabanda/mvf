@@ -1,7 +1,7 @@
 Ext.define("MVF.store.ABSTableStore", {
     extend: "Ext.data.Store",
      config: {
-         model: 'MVF.model.ABSTableModel',
+         model: 'MVF.model.TableModel',
 	    storeId : 'ABSTableStore',
         proxy: {
             type: 'ajax',

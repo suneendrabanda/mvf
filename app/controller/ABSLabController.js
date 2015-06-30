@@ -38,29 +38,23 @@ Ext.define("MVF.controller.ABSLabController", {
         var AbsStartDate=Ext.ComponentQuery.query('[itemid=absstartdate]')[0].getFormattedValue();
         var AbsEndDate=Ext.ComponentQuery.query('[itemid=absenddate]')[0].getFormattedValue();
         var ShiftValue=Ext.ComponentQuery.query('[itemid=absshift]')[0].getValue();
-        console.log(absSelectedValue);console.log(AbsStartDate);console.log(AbsEndDate);
-        console.log(ShiftValue);
+//        console.log(absSelectedValue);console.log(AbsStartDate);console.log(AbsEndDate);
+//        console.log(ShiftValue);
         var store=Ext.getStore('ABSChartStore');
         store.load({
             params:{
                 absSelectedValue:absSelectedValue,
                 StartDate:AbsStartDate,
                 EndDate:AbsEndDate,
-                shiftvalue:ShiftValue
+                shiftvalue:ShiftValue,
+                patient_id:MVF.app.patient_id
                 },
                 scope:this,
                 callback:function(records,success){
-                    if(success){
-                    var values=records;
-                    var result=values[0].data.absvalue;
-                    var time=values[0].data.time;
-                    var min=values[0].data.minimunvalue;
-                    var max=values[0].data.maximumvalue;
-                    var date=values[0].data.date;
-                    console.log(result);
-                    console.log(time);
-                    console.log(min); console.log(max);console.log(date);
-                    }
+                    if(records[0].data.result==='null'&&records[0].data.time==='null'&&records[0].data.exact==='null'&&records[0].data.minimunvalue==='null'&&records[0].data.maximumvalue==='null'&&records[0].data.date==='null'){
+                            alert('No records found');
+                        }
+                    
                    
             }
         });
@@ -70,12 +64,13 @@ Ext.define("MVF.controller.ABSLabController", {
             params:{
                 startdate:AbsStartDate,
                 enddate:AbsEndDate,
-                shift:ShiftValue
+                shift:ShiftValue,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
             callback:function(records,success){
                 if(success){
-                     this.DisplayTable(records,AbsStartDate,AbsEndDate);
+                     this.DisplayTable(records,AbsStartDate,AbsEndDate,ShiftValue);
                 }
             }
         });
@@ -98,17 +93,11 @@ Ext.define("MVF.controller.ABSLabController", {
                                     {
                                         xtype: 'selectfield',
                                         width:'100%',
-                                        //store: 'absdropdownstore',
+                                        store: 'ABSDropDownStore',
                                         itemid:'AbsEditValueId',
                                         name:'AbsEditValueId',
-                                        options: [
-                                                {text: 'pH',  value: 'ABGs1'},
-                                                {text: 'PaCO2',  value: 'ABGs2'},
-                                                {text: 'Pao2',  value: 'ABGs3'},
-                                                {text: 'HCO3',  value: 'ABGs4'},
-                                                {text: 'BE',  value: 'ABGs5'},
-                                                {text: 'Oxygen Saturation',  value: 'ABGs6'}
-                                         ],
+                                        valueField:'value',
+                                        displayField:'text',
                                        style:{
                                                'fontFamily':'openSansRegular',
                                                'font-size':'small'
@@ -128,30 +117,54 @@ Ext.define("MVF.controller.ABSLabController", {
                                          xtype:'selectfield',
                                          itemid:'Absedittimevalue',
                                           options: [
-                                                   {text: '0100',  value: '0100'},
-                                                   {text: '0200',  value: '0200'},
-                                                   {text: '0300',  value: '0300'},
-                                                   {text: '0400',  value: '0400'},
-                                                   {text: '0500',  value: '0500'},
-                                                   {text: '0600',  value: '0600'},
-                                                   {text: '0700',  value: '0700'},
-                                                   {text: '0800',  value: '0800'},
-                                                   {text: '0900',  value: '0900'},
-                                                   {text: '1000',  value: '1000'},
-                                                   {text: '1100',  value: '1100'},
-                                                   {text: '1200',  value: '1200'},
-                                                   {text: '1300',  value: '1300'},
-                                                   {text: '1400',  value: '1400'},
-                                                   {text: '1500',  value: '1500'},
-                                                   {text: '1600',  value: '1600'},
-                                                   {text: '1700',  value: '1700'},
-                                                   {text: '1800',  value: '1800'},
-                                                   {text: '1900',  value: '1900'},
-                                                   {text: '2000',  value: '2000'},
-                                                   {text: '2100',  value: '2100'},
-                                                   {text: '2200',  value: '2200'},
-                                                   {text: '2300',  value: '2300'},
-                                                   {text: '2400',  value: '2400'}
+                                                   {text: '01:00',  value: '01:00'},
+                                                   {text: '01:30',  value: '01:30'},
+                                                   {text: '02:00',  value: '02:00'},
+                                                   {text: '02:30',  value: '02:30'},
+                                                   {text: '03:00',  value: '03:00'},
+                                                   {text: '03:30',  value: '03:30'},
+                                                   {text: '04:00',  value: '04:00'},
+                                                   {text: '04:30',  value: '04:30'},
+                                                   {text: '05:00',  value: '05:00'},
+                                                   {text: '05:30',  value: '05:30'},
+                                                   {text: '06:00',  value: '06:00'},
+                                                   {text: '06:30',  value: '06:30'},
+                                                   {text: '07:00',  value: '07:00'},
+                                                   {text: '07:30',  value: '07:30'},
+                                                   {text: '08:00',  value: '08:00'},
+                                                   {text: '08:30',  value: '08:30'},
+                                                   {text: '09:00',  value: '09:00'},
+                                                   {text: '09:30',  value: '09:30'},
+                                                   {text: '10:00',  value: '10:00'},
+                                                   {text: '10:30',  value: '10:30'},
+                                                   {text: '11:00',  value: '11:00'},
+                                                   {text: '11:30',  value: '11:30'},
+                                                   {text: '12:00',  value: '12:00'},
+                                                   {text: '12:30',  value: '12:30'},
+                                                   {text: '13:00',  value: '13:00'},
+                                                   {text: '13:30',  value: '13:30'},
+                                                   {text: '14:00',  value: '14:00'},
+                                                   {text: '14:30',  value: '14:30'},
+                                                   {text: '15:00',  value: '15:00'},
+                                                   {text: '15:30',  value: '15:30'},
+                                                   {text: '16:00',  value: '16:00'},
+                                                   {text: '16:30',  value: '16:30'},
+                                                   {text: '17:00',  value: '17:00'},
+                                                   {text: '17:30',  value: '17:30'},
+                                                   {text: '18:00',  value: '18:00'},
+                                                   {text: '18:30',  value: '18:30'},
+                                                   {text: '19:00',  value: '19:00'},
+                                                   {text: '19:30',  value: '19:30'},
+                                                   {text: '20:00',  value: '20:00'},
+                                                   {text: '20:30',  value: '20:30'},
+                                                   {text: '21:00',  value: '21:00'},
+                                                   {text: '21:30',  value: '21:30'},
+                                                   {text: '22:00',  value: '22:00'},
+                                                   {text: '22:30',  value: '22:30'},
+                                                   {text: '23:00',  value: '23:00'},
+                                                   {text: '23:30',  value: '23:30'},
+                                                   {text: '24:00',  value: '24:00'},
+                                                   {text: '24:30',  value: '24:30'}
                                                ],
                                                style:{
                                                     'margin-top':'10px'
@@ -199,81 +212,96 @@ Ext.define("MVF.controller.ABSLabController", {
                 ABSEditValue:ABSEditValue,
                 date:EditDate,
                 time:EditTime,
-                result:Result
+                result:Result,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
-            callback:function(records){
-                
-                alert(records[0].data.information);
+            callback:function(records,success){
+                if(success){
+                  alert(records[0].data.information);
+                }
                 
             }
         });
     },
-    DisplayTable:function(records,AbsStartDate,AbsEndDate){
-        var AbsRangeStore = Ext.getStore('ABSDropDownStore');
-        var NO_of_AbsCount = AbsRangeStore.getCount();
-        console.log(NO_of_AbsCount);
-        console.log('in aBS TABLE FUNTION');
-        Store=Ext.getStore('ABSTableStore');
+    DisplayTable:function(values,startdate,enddate,shift){
+        var ItemStore = Ext.getStore('ABSDropDownStore');
+        var NO_of_AbsCount = ItemStore.getCount();
+        if(shift==='day'){
+            var time= ['07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30'];
+        }
+        else if(shift==='evening'){
+            var time= ['15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30'];
+        }
+        else{
+            var time= ['01:00','01:30','02:00','02:30','03:00','03:30','04:00','04:30','05:00','05:30','06:00','06:30','23:00','23:30','24:00','24:30'];
+        }
+        var TableStore=Ext.getStore('ABSTableStore');
+        var No_of_Results_Fetch=TableStore.getCount();
         var TablePanel=this.getABSTablePanel();
-        var Tablevalues='';
-        console.log(records[0].data.hco3);
-        //console.log(AbsRangeStore.getAt(0).get('text'));
-        //console.log(AbsRangeStore.getAt(0).get('min')+'  '+AbsRangeStore.getAt(0).get('max'));
-        Tablevalues+='<table>'+'<tr style="border-bottom:1px solid #a5a399">'+
-                        '<td style=" padding:0 0px 0 40px"> Date</td>'+
-                        '<td style=" padding:0 30px 0 40px;border-right:1px solid #a5a399"> Time</td>'+
-                        '<td style=" padding:0 30px 0 15px">'+ 'BE'+'</td>'+
-                        '<td style=" padding:0 30px 0 15px">'+'HCO3'+'</td>'+
-                        '<td style=" padding:0 30px 0 15px">'+'OS'+'</td>'+
-                        '<td style=" padding:0 30px 0 15px">'+'PaCO3'+'</td>'+
-                        '<td style=" padding:0 30px 0 15px">'+'PaO2'+'</td>'+
-                        '<td style=" padding:0 30px 0 15px">'+'pH'+'</td>'+'</tr>';
-       var No_Of_records=Store.getCount();
-       console.log(No_Of_records+' no of records');
-       for(var i=0;i<No_Of_records;i++){
-          Tablevalues+='<tr>'+
-                        '<td style=" padding:0 0px 5px 0px">'+records[i].data.date+'</td>'+
-                        '<td style=" padding:0 30px 0 34px;border-right:1px solid #a5a399"> '+records[i].data.time+'</td>';
-                if(records[i].data.be!=='-' && (records[i].data.be > AbsRangeStore.getAt(0).get('max') || records[i].data.be < AbsRangeStore.getAt(0).get('min')) ){
-                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.be+'</td>';
+        var TableValues='<table><thead>';
+        var diff=Ext.Date.getElapsed(new Date(startdate),new Date(enddate));
+        var days=diff/(1000*60*60*24)+1;
+        TableValues+='<tr style="border-bottom:1px solid #a5a399">'+
+                      '<th style=" padding:0 30px 0 15px">Date</th>'+
+                      '<th style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Time</th>';
+              for(var i=0;i<NO_of_AbsCount;i++){
+                  TableValues+='<th style=" padding:0 30px 0 15px">'+ItemStore.getAt(i).get('text')+'</th>';
                 }
-                else{
-                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.be+'</td>';
-                }
-                if(records[i].data.hco3!=='-' && (records[i].data.hco3 > AbsRangeStore.getAt(1).get('max') || records[i].data.hco3 < AbsRangeStore.getAt(1).get('min')) ){
-                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.hco3+'</td>';
-                }
-                else{
-                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.hco3+'</td>';
-                }
-                if(records[i].data.OS!=='-' && (records[i].data.OS > AbsRangeStore.getAt(2).get('max') || records[i].data.OS < AbsRangeStore.getAt(2).get('min')) ){
-                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.OS+'</td>';
-                }
-                else{
-                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.OS+'</td>';
-                }
-                if(records[i].data.paco3!=='-' && (records[i].data.paco3 > AbsRangeStore.getAt(3).get('max') || records[i].data.paco3 < AbsRangeStore.getAt(3).get('min')) ){
-                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.paco3+'</td>';
-                }
-                else{
-                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.paco3+'</td>';
-                }
-                if(records[i].data.pao2!=='-' && (records[i].data.pao2 > AbsRangeStore.getAt(4).get('max') || records[i].data.pao2 < AbsRangeStore.getAt(4).get('min')) ){
-                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.pao2+'</td>';
-                }
-                else{
-                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.pao2+'</td>';
-                }
-                if(records[i].data.ph!=='-' && (records[i].data.ph > AbsRangeStore.getAt(5).get('max') || records[i].data.ph < AbsRangeStore.getAt(5).get('min')) ){
-                    Tablevalues+='<td style=" padding:0 30px 0 34px;color:#ff0000">'+ records[i].data.ph+'</td>'+'</tr>';
-                }
-                else{
-                    Tablevalues+='<td style=" padding:0 30px 0 34px">'+ records[i].data.ph+'</td>'+'</tr>';
-                }
-                        
-       }
-       TablePanel.setHtml(Tablevalues);
+                TableValues+='</tr></thead><tbody>';
+        var r=0;// index for records fetch
+        var timeindex=0; //index to loop time array
+        for(var j=0;j<days;j++){// for loop to loop number of days select ie.. difference between start date and end date
+                  while(timeindex<16){// while loop to loop 24 hrs per day
+                      for(var k=0;k<NO_of_AbsCount+2;k++){// for loop for each row in the table, +2 to add date and time  
+                          if(k===0){
+				TableValues+='<tr><td style="padding:0 10px 0 0">'+startdate+'</td>';
+                          }
+                          else if(k===1){
+				TableValues+='<td style="padding:0 10px 0 15px;border-right:1px solid #a5a399">'+time[timeindex]+'</td>';
+                          }
+                          else{
+                               //console.log('values[r].data.date = '+values[r].data.date+' start date = '+startdate +'values[r].data.time =  '+values[r].data.time+' time = '+time[timeindex]);
+                              if(r< No_of_Results_Fetch && values[r].data.date===startdate && values[r].data.time===time[timeindex]){
+					if(values[r].data.Name===ItemStore.getAt(k-2).get('text')){
+                                            if(values[r].data.exact==='null'){
+                                                if(values[r].data.result>=values[r].data.max||values[r].data.result<=values[r].data.min){
+                                                    TableValues+='<td style="padding:0 10px 0 15px;color:#ff0000">'+values[r].data.result+'</td>';
+                                                }
+                                                else{
+                                                    TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
+                                                }
+                                            }
+                                            else{
+                                                if(values[r].data.result!==values[r].data.exact){
+                                                    TableValues+='<td style="padding:0 10px 0 15px;color:#ff0000">'+values[r].data.result+'</td>';
+                                                }
+                                                else{
+                                                   TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>'; 
+                                                }
+                                                
+                                            }
+					r++;
+                                                //console.log('hematology value inserted');
+					}
+					else{
+						TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
+                                                //console.log(' - inserted time and date are equal');
+					}
+				}
+				else{
+					TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
+                                        //console.log(' - inserted time and date not equal');
+				}
+                          }
+                      }
+                      TableValues+='</tr>';
+                      timeindex++;
+                  }
+                  startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
+                  timeindex=0;
+              }
+       TablePanel.setHtml(TableValues);
                 
                 
     }

@@ -373,7 +373,26 @@ Ext.define('MVF.view.Main', {
                                     layout:'fit',
                                     items:[
                                          {
-                                           xtype:'intakepiechart'
+                                           xtype:'intakepiechart',
+                                           itemid:'intakepiechart',
+                                           //hidden:'true'
+                                         },
+                                         {
+                                             xtype:'panel',
+                                             html:'No records',
+                                             itemid:'intakepiechartNOrecords',
+                                             id:'intakepiechartNOrecords',
+                                             hidden:'true',
+                                             style:{
+                                                 'margin-left':'44px',
+                                                 'margin-top':'40%',
+                                                 'text-align': '-webkit-center',
+                                                 'fontFamily':'openSansRegular',
+                                                 'font-size':'smaller',
+                                                 'border': '1px #9E9D8B solid',
+                                                 'height':'30px',
+                                                 'width':'130px'
+                                             }
                                          }
                                     ]
                                 }
@@ -452,9 +471,36 @@ Ext.define('MVF.view.Main', {
                                         'margin-right':'10px'
                                     }
                                 },
-                                 {
-                                    xtype:'outputpiechart'
+                                {
+                                    xtype:'container',
+                                    width:'222px',
+                                    height:'242px',
+                                    layout:'fit',
+                                    items:[
+                                        {
+                                        xtype:'outputpiechart',
+                                        itemid:'outputpiechart'
+                                      },
+                                    {
+                                        xtype:'panel',
+                                        html:'No records',
+                                        itemid:'outputpiechartNOrecords',
+                                        id:'outputpiechartNOrecords',
+                                        hidden:'true',
+                                        style:{
+                                                'margin-left':'44px',
+                                                'margin-top':'40%',
+                                                 'text-align': '-webkit-center',
+                                                 'fontFamily':'openSansRegular',
+                                                 'font-size':'smaller',
+                                                 'border': '1px #9E9D8B solid',
+                                                 'height':'30px',
+                                                  'width':'130px'
+                                                 }
+                                    }
+                                    ]
                                 }
+                                 
                         ]
                         },
                         {
@@ -595,7 +641,7 @@ Ext.define('MVF.view.Main', {
                                 {
                                     xtype:'container',
                                     width: '954px',
-                                    height: '300px',
+                                    height: '220px',
                                     layout:'vbox',
                                     scrollable: {
                                                             direction: 'vertical',

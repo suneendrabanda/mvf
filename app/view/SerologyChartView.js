@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-Ext.define("MVF.view.chemistrychartview", {
+Ext.define("MVF.view.SerologyChartView", {
     extend: "Ext.chart.CartesianChart",
     requires: [
         "Ext.TitleBar",
@@ -14,11 +14,11 @@ Ext.define("MVF.view.chemistrychartview", {
         "Ext.chart.axis.Category",
         "Ext.draw.sprite.Circle"
     ],
-    alias: "widget.chemistrychartview",
+    alias: "widget.SerologyChartView",
     config: {
         flex: 1,
         xtype: "chart",
-        store: "chemistrychartstore",
+        store: "SerologyChartStore",
         cls: "chart",
         innerPadding: 14,
         
@@ -29,11 +29,11 @@ Ext.define("MVF.view.chemistrychartview", {
                 xField: "date",
                 yField: "result",
                 title: "lab chart",
-                style: {
+                 style: {
                     stroke: "#DFD9CF",
                     lineWidth: 1.5
                 },
-                marker: {
+               marker: {
                     type: "circle",
                     stroke: "#AC9C65",
                     radius: 3,
@@ -46,7 +46,7 @@ Ext.define("MVF.view.chemistrychartview", {
                 yField: "min",
                 title: "lab chart",
                  style: {
-                    stroke: "#4D3462",
+                    stroke: "#59A3DB",
                     lineWidth: 1.5
                 },
                marker: {
@@ -62,7 +62,7 @@ Ext.define("MVF.view.chemistrychartview", {
                 yField: "max",
                 title: "lab chart",
                  style: {
-                    stroke: "#4D3462",
+                    stroke: "#59A3DB",
                     lineWidth: 1.5
                 },
                marker: {
@@ -87,15 +87,19 @@ Ext.define("MVF.view.chemistrychartview", {
                     radius: 3,
                     lineWidth: 2
                 }
-            }
+            },
+            
           ], 
-      axes: [
+        
+        axes: [
             {
                 type: "numeric",
+                //mininum:'40',
                 position: "left",
                 title: {
                     fontSize: 15
-                  },
+                   // text: "vital"   Y axis 
+                },
                 style:{
                     stroke:"#655c59"
                 },

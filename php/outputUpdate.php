@@ -4,11 +4,12 @@ $outputname = $_GET['outputnm']; //'Urine';//
 $outputdate =$_GET['outputdate']; //'2013-01-12';//// 
 $outputtime=$_GET['outputtime']; //'0800';//
 $outputresult=$_GET['outputresult']; //'120';//
+$patient_id=$_GET['patient_id'];
 $formatted_date=  date("Y-m-d",strtotime($outputdate));
 $arr=array();
 // flag to check wheather record exist in output_exam table or not
 $flag=0;
-$patient_visit_result=mysqli_query($con,"select * from patient_visit where patient_id='P1013'");
+$patient_visit_result=mysqli_query($con,"select * from patient_visit where patient_id='$patient_id'");
 while($patient_visit_row = mysqli_fetch_array($patient_visit_result) ){
     $visit_id= $patient_visit_row['Visit_ID'];
     $room_id= $patient_visit_row['Room_ID'];
