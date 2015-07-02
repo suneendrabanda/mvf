@@ -45,12 +45,6 @@ Ext.define("MVF.controller.MainController", {
                 onintakeupdatebuttonclick:{
                     tap:'intakeupdatebuttontap'
                 },
-//                editintake:{
-//                    tap:'editintakefunction'
-//                },
-//                editoutput:{
-//                    tap:'editoutputfunction'
-//                },
                 gotopage:{
                     change:'gotopagefunction'
                 },
@@ -283,9 +277,10 @@ Ext.define("MVF.controller.MainController", {
          this.getMain().push({
           xtype:pagename
           });
-          if(pagename==='hematology'){
-              this.getApplication().getController('hematologyController').CountNO_OFAlerts();
+          if(pagename==='IntakeAndOutputView'){
+               this.getApplication().getController('IOPageController').OnIOPageload();
           }
+          
           
     },
    editintakefunction:function(){

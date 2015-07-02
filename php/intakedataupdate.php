@@ -5,6 +5,7 @@ $intakedate =$_GET['itkdate']; //'2014-02-01';//
 $intaketime=$_GET['itktime']; //'0800'; //
 $intakeresult=$_GET['itkresult']; //'100';
 $patient_id=$_GET['patient_id'];
+//echo $patient_id;
 $formatted_date=  date("Y-m-d",strtotime($intakedate));
 $arr=array();
 //echo $formatted_date.'  '.$intakeresult;

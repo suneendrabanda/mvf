@@ -141,7 +141,7 @@ controllers: [
         Ext.fly('appLoadingIndicator').destroy();
         
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('MVF.view.LabsMainView'));
+        Ext.Viewport.add(Ext.create('MVF.view.Main'));
     },
      'LabPageCount':'0',
      'patient_id':'71009',

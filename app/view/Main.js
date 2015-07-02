@@ -144,8 +144,8 @@ Ext.define('MVF.view.Main', {
                                         itemid:'pageid',
                                         cls:'pageselect',
                                         options: [
-                                            {text: 'Main',  value: 'LabsMainView'},
-                                            {text: 'Vitals',  value: 'VitalsView'},
+                                            {text: 'Main',  value: 'Main'},
+                                            //{text: 'Vitals',  value: 'VitalsView'},
                                             {text: 'I&O',  value: 'IntakeAndOutputView'},
                                             
                                             

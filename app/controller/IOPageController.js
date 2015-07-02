@@ -8,7 +8,8 @@ Ext.define("MVF.controller.IOPageController", {
             OnOutputUpdateButtonTap:'[itemid=OutputUpdateButton]',
             IntakeResultsPanel:'[itemid=IntakeTablePanel]',
             OutputResultsPanel:'[itemid=OutputTablePanel]',
-            IntakeSelectFieldChange:'[itemid=IntakeSelectID]'
+            IntakeSelectFieldChange:'[itemid=IntakeSelectID]',
+            GoTOPage:'[itemid=IOpageid]'
         },
         control:{
             OnViewClick:{
@@ -25,6 +26,9 @@ Ext.define("MVF.controller.IOPageController", {
             },
             IntakeSelectFieldChange:{
                 change:'OnViewClickFunction'
+            },
+            GoTOPage:{
+                change:'GoTOPage'
             }
             
         }
@@ -44,6 +48,9 @@ Ext.define("MVF.controller.IOPageController", {
 //                         
 //                     });
     },
+    GoTOPage:function(){
+        this.getApplication().getController('MainController').getMain().pop();
+    },
     OnViewClickFunction:function(){
         //alert('IO contrller working');
         var shiftvalue=Ext.ComponentQuery.query('[itemid=IOshift]')[0].getValue();
@@ -58,7 +65,9 @@ Ext.define("MVF.controller.IOPageController", {
                 params:{ shiftvalue: shiftvalue,
                          startdate: StartDate,
                          enddate: EndDate,
-                         OutputValue:OutputSelectValue},
+                         OutputValue:OutputSelectValue,
+                         patient_id:MVF.app.patient_id
+                      },
                          scope:this,
                          callback:function(records){
                              var values=records;
@@ -73,7 +82,8 @@ Ext.define("MVF.controller.IOPageController", {
                         shiftvalue: shiftvalue,
                         startdate: StartDate,
                         enddate: EndDate,
-                        IntakeValue:IntakeSelectValue
+                        IntakeValue:IntakeSelectValue,
+                        patient_id:MVF.app.patient_id
                      }
         });
         // load Intake table             
@@ -83,6 +93,7 @@ Ext.define("MVF.controller.IOPageController", {
                 startdate:StartDate,
                 enddate:EndDate,
                 shift: shiftvalue,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
             callback:function(records){
@@ -96,6 +107,7 @@ Ext.define("MVF.controller.IOPageController", {
                 startdate:StartDate,
                 enddate:EndDate,
                 shift: shiftvalue,
+                patient_id:MVF.app.patient_id
             },
             scope:this,
             callback:function(records){
@@ -146,30 +158,54 @@ Ext.define("MVF.controller.IOPageController", {
                                          xtype:'selectfield',
                                          itemid:'Intaketimeedit',
                                           options: [
-                                                   {text: '0100',  value: '0100'},
-                                                   {text: '0200',  value: '0200'},
-                                                   {text: '0300',  value: '0300'},
-                                                   {text: '0400',  value: '0400'},
-                                                   {text: '0500',  value: '0500'},
-                                                   {text: '0600',  value: '0600'},
-                                                   {text: '0700',  value: '0700'},
-                                                   {text: '0800',  value: '0800'},
-                                                   {text: '0900',  value: '0900'},
-                                                   {text: '1000',  value: '1000'},
-                                                   {text: '1100',  value: '1100'},
-                                                   {text: '1200',  value: '1200'},
-                                                   {text: '1300',  value: '1300'},
-                                                   {text: '1400',  value: '1400'},
-                                                   {text: '1500',  value: '1500'},
-                                                   {text: '1600',  value: '1600'},
-                                                   {text: '1700',  value: '1700'},
-                                                   {text: '1800',  value: '1800'},
-                                                   {text: '1900',  value: '1900'},
-                                                   {text: '2000',  value: '2000'},
-                                                   {text: '2100',  value: '2100'},
-                                                   {text: '2200',  value: '2200'},
-                                                   {text: '2300',  value: '2300'},
-                                                   {text: '2400',  value: '2400'}
+                                                   {text: '01:00',  value: '01:00'},
+                                                   {text: '01:30',  value: '01:30'},
+                                                   {text: '02:00',  value: '02:00'},
+                                                   {text: '02:30',  value: '02:30'},
+                                                   {text: '03:00',  value: '03:00'},
+                                                   {text: '03:30',  value: '03:30'},
+                                                   {text: '04:00',  value: '04:00'},
+                                                   {text: '04:30',  value: '04:30'},
+                                                   {text: '05:00',  value: '05:00'},
+                                                   {text: '05:30',  value: '05:30'},
+                                                   {text: '06:00',  value: '06:00'},
+                                                   {text: '06:30',  value: '06:30'},
+                                                   {text: '07:00',  value: '07:00'},
+                                                   {text: '07:30',  value: '07:30'},
+                                                   {text: '08:00',  value: '08:00'},
+                                                   {text: '08:30',  value: '08:30'},
+                                                   {text: '09:00',  value: '09:00'},
+                                                   {text: '09:30',  value: '09:30'},
+                                                   {text: '10:00',  value: '10:00'},
+                                                   {text: '10:30',  value: '10:30'},
+                                                   {text: '11:00',  value: '11:00'},
+                                                   {text: '11:30',  value: '11:30'},
+                                                   {text: '12:00',  value: '12:00'},
+                                                   {text: '12:30',  value: '12:30'},
+                                                   {text: '13:00',  value: '13:00'},
+                                                   {text: '13:30',  value: '13:30'},
+                                                   {text: '14:00',  value: '14:00'},
+                                                   {text: '14:30',  value: '14:30'},
+                                                   {text: '15:00',  value: '15:00'},
+                                                   {text: '15:30',  value: '15:30'},
+                                                   {text: '16:00',  value: '16:00'},
+                                                   {text: '16:30',  value: '16:30'},
+                                                   {text: '17:00',  value: '17:00'},
+                                                   {text: '17:30',  value: '17:30'},
+                                                   {text: '18:00',  value: '18:00'},
+                                                   {text: '18:30',  value: '18:30'},
+                                                   {text: '19:00',  value: '19:00'},
+                                                   {text: '19:30',  value: '19:30'},
+                                                   {text: '20:00',  value: '20:00'},
+                                                   {text: '20:30',  value: '20:30'},
+                                                   {text: '21:00',  value: '21:00'},
+                                                   {text: '21:30',  value: '21:30'},
+                                                   {text: '22:00',  value: '22:00'},
+                                                   {text: '22:30',  value: '22:30'},
+                                                   {text: '23:00',  value: '23:00'},
+                                                   {text: '23:30',  value: '23:30'},
+                                                   {text: '24:00',  value: '24:00'},
+                                                   {text: '24:30',  value: '24:30'}
                                                ],
                                                style:{
                                                     'margin-top':'10px'
@@ -250,30 +286,54 @@ Ext.define("MVF.controller.IOPageController", {
                                          xtype:'selectfield',
                                          itemid:'Outputtimeedit',
                                           options: [
-                                                   {text: '0100',  value: '0100'},
-                                                   {text: '0200',  value: '0200'},
-                                                   {text: '0300',  value: '0300'},
-                                                   {text: '0400',  value: '0400'},
-                                                   {text: '0500',  value: '0500'},
-                                                   {text: '0600',  value: '0600'},
-                                                   {text: '0700',  value: '0700'},
-                                                   {text: '0800',  value: '0800'},
-                                                   {text: '0900',  value: '0900'},
-                                                   {text: '1000',  value: '1000'},
-                                                   {text: '1100',  value: '1100'},
-                                                   {text: '1200',  value: '1200'},
-                                                   {text: '1300',  value: '1300'},
-                                                   {text: '1400',  value: '1400'},
-                                                   {text: '1500',  value: '1500'},
-                                                   {text: '1600',  value: '1600'},
-                                                   {text: '1700',  value: '1700'},
-                                                   {text: '1800',  value: '1800'},
-                                                   {text: '1900',  value: '1900'},
-                                                   {text: '2000',  value: '2000'},
-                                                   {text: '2100',  value: '2100'},
-                                                   {text: '2200',  value: '2200'},
-                                                   {text: '2300',  value: '2300'},
-                                                   {text: '2400',  value: '2400'}
+                                                   {text: '01:00',  value: '01:00'},
+                                                   {text: '01:30',  value: '01:30'},
+                                                   {text: '02:00',  value: '02:00'},
+                                                   {text: '02:30',  value: '02:30'},
+                                                   {text: '03:00',  value: '03:00'},
+                                                   {text: '03:30',  value: '03:30'},
+                                                   {text: '04:00',  value: '04:00'},
+                                                   {text: '04:30',  value: '04:30'},
+                                                   {text: '05:00',  value: '05:00'},
+                                                   {text: '05:30',  value: '05:30'},
+                                                   {text: '06:00',  value: '06:00'},
+                                                   {text: '06:30',  value: '06:30'},
+                                                   {text: '07:00',  value: '07:00'},
+                                                   {text: '07:30',  value: '07:30'},
+                                                   {text: '08:00',  value: '08:00'},
+                                                   {text: '08:30',  value: '08:30'},
+                                                   {text: '09:00',  value: '09:00'},
+                                                   {text: '09:30',  value: '09:30'},
+                                                   {text: '10:00',  value: '10:00'},
+                                                   {text: '10:30',  value: '10:30'},
+                                                   {text: '11:00',  value: '11:00'},
+                                                   {text: '11:30',  value: '11:30'},
+                                                   {text: '12:00',  value: '12:00'},
+                                                   {text: '12:30',  value: '12:30'},
+                                                   {text: '13:00',  value: '13:00'},
+                                                   {text: '13:30',  value: '13:30'},
+                                                   {text: '14:00',  value: '14:00'},
+                                                   {text: '14:30',  value: '14:30'},
+                                                   {text: '15:00',  value: '15:00'},
+                                                   {text: '15:30',  value: '15:30'},
+                                                   {text: '16:00',  value: '16:00'},
+                                                   {text: '16:30',  value: '16:30'},
+                                                   {text: '17:00',  value: '17:00'},
+                                                   {text: '17:30',  value: '17:30'},
+                                                   {text: '18:00',  value: '18:00'},
+                                                   {text: '18:30',  value: '18:30'},
+                                                   {text: '19:00',  value: '19:00'},
+                                                   {text: '19:30',  value: '19:30'},
+                                                   {text: '20:00',  value: '20:00'},
+                                                   {text: '20:30',  value: '20:30'},
+                                                   {text: '21:00',  value: '21:00'},
+                                                   {text: '21:30',  value: '21:30'},
+                                                   {text: '22:00',  value: '22:00'},
+                                                   {text: '22:30',  value: '22:30'},
+                                                   {text: '23:00',  value: '23:00'},
+                                                   {text: '23:30',  value: '23:30'},
+                                                   {text: '24:00',  value: '24:00'},
+                                                   {text: '24:30',  value: '24:30'}
                                                ],
                                                style:{
                                                     'margin-top':'10px'
@@ -325,14 +385,15 @@ Ext.define("MVF.controller.IOPageController", {
             params:{ intakenm: intakename,
                      itkdate: intakedate,
                      itktime:intaketime,
-                     itkresult:intakeresult
+                     itkresult:intakeresult,
+                     patient_id:MVF.app.patient_id
                       },
                        scope:this,
              
              callback:function(records,operation,success){
                  if(success){
                      Ext.getStore('intakepiechartstore').load({});
-                     alert('records was successfully updated');
+                     alert(records[0].data.information);
                  }
                  //alert('Record for '+intakename+' was Updated');
              }
@@ -352,7 +413,8 @@ Ext.define("MVF.controller.IOPageController", {
             params:{ outputnm: outputname,
                      outputdate: outputdate,
                      outputtime:outputtime,
-                     outputresult:outputresult
+                     outputresult:outputresult,
+                     patient_id:MVF.app.patient_id
                       },
                        scope:this,
              
@@ -372,13 +434,13 @@ Ext.define("MVF.controller.IOPageController", {
         var No_of_Results_Fetch=TableStore.getCount();
         //console.log('table Store = '+No_of_Results_Fetch+' intake count = '+No_Of_Intake_Items);
         if(shift==='day'){
-            var time= ['0700','0800','0900','1000','1100','1200','1300','1400'];
+            var time= ['07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30'];
         }
         else if(shift==='evening'){
-            var time= ['1500','1600','1700','1800','1900','2000','2100','2200'];
+            var time= ['15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30'];
         }
         else{
-            var time= ['0100','0200','0300','0400','0500','0600','2300','2400'];
+            var time= ['01:00','01:30','02:00','02:30','03:00','03:30','04:00','04:30','05:00','05:30','06:00','06:30','23:00','23:30','24:00','24:30'];
         }
         
         var TableValues='<table><thead>';
@@ -399,7 +461,7 @@ Ext.define("MVF.controller.IOPageController", {
        // console.log(' result date ='+values[value].data.date);
             for(var j=0;j<days;j++){// for loop to loop number of days select ie.. difference between start date and end date
                 console.log('In days for loop');
-                  while(timeindex<8){// while loop to loop 24 hrs per day
+                  while(timeindex<16){// while loop to loop 24 hrs per day
                       for(var k=0;k<No_Of_Intake_Items+2;k++){// for loop for each row in the table, +2 to add date and time  
                           if(k===0){
 				TableValues+='<tr><td style="padding:0 10px 0 0">'+startdate+'</td>';
@@ -442,13 +504,13 @@ Ext.define("MVF.controller.IOPageController", {
         var No_of_Results_Fetch=TableStore.getCount();
         //console.log('table Store = '+No_of_Results_Fetch+' intake count = '+No_Of_Intake_Items);
         if(shift==='day'){
-            var time= ['0700','0800','0900','1000','1100','1200','1300','1400'];
+            var time= ['07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30'];
         }
         else if(shift==='evening'){
-            var time= ['1500','1600','1700','1800','1900','2000','2100','2200'];
+            var time= ['15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30'];
         }
         else{
-            var time= ['0100','0200','0300','0400','0500','0600','2300','2400'];
+            var time= ['01:00','01:30','02:00','02:30','03:00','03:30','04:00','04:30','05:00','05:30','06:00','06:30','23:00','23:30','24:00','24:30'];
         }
         
         var TableValues='<table><thead>';
@@ -468,7 +530,7 @@ Ext.define("MVF.controller.IOPageController", {
        // console.log(' for_date ='+ for_date);
         //console.log(' result date ='+values[value].data.date);
             for(var j=0;j<days;j++){// for loop to loop number of days select ie.. difference between start date and end date
-                  while(timeindex<8){// while loop to loop 24 hrs per day
+                  while(timeindex<16){// while loop to loop 24 hrs per day
                       for(var k=0;k<No_Of_Intake_Items+2;k++){// for loop for each row in the table, +2 to add date and time  
                           if(k===0){
 				TableValues+='<tr><td style="padding:0 10px 0 0">'+startdate+'</td>';
@@ -503,5 +565,67 @@ Ext.define("MVF.controller.IOPageController", {
               }
               TableValues+='</tbody></table>';
               tablepanel.setHtml(TableValues);
+    },
+    OnIOPageload:function(){
+        var shiftvalue=Ext.ComponentQuery.query('[itemid=IOshift]')[0].getValue();
+        var StartDate=Ext.ComponentQuery.query('[itemid=IOstartdate]')[0].getFormattedValue();
+        var EndDate=Ext.ComponentQuery.query('[itemid=IOenddate]')[0].getFormattedValue();
+        var OutputSelectValue=Ext.ComponentQuery.query('[itemid=OutputSelectID]')[0].getValue();
+        var IntakeSelectValue=Ext.ComponentQuery.query('[itemid=IntakeSelectID]')[0].getValue();
+        //load output chart store
+        var store=Ext.getStore('IOPageOutputChartStore');
+        store.load({
+                params:{ shiftvalue: shiftvalue,
+                         startdate: StartDate,
+                         enddate: EndDate,
+                         OutputValue:OutputSelectValue,
+                         patient_id:MVF.app.patient_id
+                      },
+                         scope:this,
+                         callback:function(records){
+                             var values=records;
+                             console.log(values[0].data.outputname);
+                             console.log(values[0].data.result);
+                         }
+                     });
+        //load Intake chart store
+        var IntakeChartStore=Ext.getStore('IOPageIntakeChartStore');
+        IntakeChartStore.load({
+            params:{
+                        shiftvalue: shiftvalue,
+                        startdate: StartDate,
+                        enddate: EndDate,
+                        IntakeValue:IntakeSelectValue,
+                        patient_id:MVF.app.patient_id
+                     }
+        });
+        // load Intake table             
+        var IntakeTableStore=Ext.getStore('IntakeTableStore');
+        IntakeTableStore.load({
+            params:{
+                startdate:StartDate,
+                enddate:EndDate,
+                shift: shiftvalue,
+                patient_id:MVF.app.patient_id
+            },
+            scope:this,
+            callback:function(records){
+                this.DisplayIntakeResult(records,StartDate,EndDate,shiftvalue);
+            }
+        });
+        // load Output Table
+        var OutputTableStore=Ext.getStore('OutputTableStore');
+        OutputTableStore.load({
+            params:{
+                startdate:StartDate,
+                enddate:EndDate,
+                shift: shiftvalue,
+                patient_id:MVF.app.patient_id
+            },
+            scope:this,
+            callback:function(records){
+                this.DisplayOutputResult(records,StartDate,EndDate,shiftvalue);
+            }
+        });
     }
     });

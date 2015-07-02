@@ -11,7 +11,8 @@ Ext.define("MVF.controller.hematologyController", {
             HematologyAlertPanel:'[itemid=HematologyAlertsCount]',
             HematologyTableAlerts:'[itemid=TablealertPanel]',
             HematologyChartAlertCount:'[itemid=hematologyChartAlertsCount]',
-            HematologyGoToPageDropDownSelect:'[itemid=hematologypageid]'
+            HematologyGoToPageDropDownSelect:'[itemid=hematologypageid]',
+            
         },
         control:{
             OnViewClick:{
@@ -22,11 +23,13 @@ Ext.define("MVF.controller.hematologyController", {
             },
             HematologyGoToPageDropDownSelect:{
                 change:'HematologyGoToPageDropDownSelect'
-            }
+            },
+            
         }
     },
     init:function(){
         this.editHematologyValuesfunction();
+        this.HematologyViewDefinition();
         //this.CountNO_OFAlerts();
     },
     HematologyGoToPageDropDownSelect:function(){
@@ -202,8 +205,8 @@ Ext.define("MVF.controller.hematologyController", {
             delegate: '#hematologyedittableicon',
             tap: function(button) {
                 // When you tap on the button, we want to show the overlay by the button we just tapped.
-                overlay.showBy(button);
-                
+                //overlay.showBy(button);
+                overlay.show();
 		//console.log('yes button editHematologyValuesfunction');
             }
         });
@@ -319,5 +322,57 @@ Ext.define("MVF.controller.hematologyController", {
         });
         
         
+    },
+    HematologyViewDefinition:function(){
+      var overlay = Ext.Viewport.add({
+            xtype: 'panel',
+	    itemid: 'Displaydefinition',
+            // Make it modal so you can click the mask to hide the overlay
+            modal: true,
+            hideOnMaskTap: true,
+	    centered: true,          
+	    width:  '560px',//Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
+	    height: '400px',//Ext.os.deviceType =='Phone' ? 400 : 400,
+	    styleHtmlContent: true,
+	    // Make it hidden by default
+            hidden: true,
+	    
+	    items: [
+                        {
+                            xtype:'container',
+                            layout:'hbox',
+                            width: '100%',
+                            height: '368px',
+                            items:[
+                                {
+                                    xtype: 'toolbar',
+                                    docked: 'top',
+                                    width: '100%',
+                                    height: '60px',
+                                    style: {
+                                        background: '#4D3462'
+                                    },
+                                    html: '<h1 style="color: white; font-size: 25px; padding: 7px 0 0 190px;">Definition</h1>',
+                                },
+                                {
+                                    xtype:'panel',
+                                    itemid:'definitionid',
+                                    html:''
+                                }
+                            ]
+                        }
+                   ]
+	    
+        });
+	
+	Ext.Viewport.on({
+            delegate: '#HematologyViewDefinition',
+            tap: function(button) {
+                // When you tap on the button, we want to show the overlay by the button we just tapped.
+                //overlay.showBy(button);
+                overlay.show();
+		//console.log('yes button editHematologyValuesfunction');
+            }
+        });
     }
     });

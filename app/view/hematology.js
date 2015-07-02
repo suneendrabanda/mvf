@@ -334,12 +334,15 @@ Ext.define('MVF.view.hematology', {
                                                         },
                                                         items:[
                                                             {
-                                                                xtype:'label',
+                                                                xtype:'button',
+                                                                ui:'plain',
+                                                                width:'140px',
                                                                 itemid:'HematologyViewDefinition',
+                                                                id:'HematologyViewDefinition',
                                                                 html:'View Definition',
                                                                 style:{
                                                                     'margin-top': '20px',
-                                                                    'margin-left': '10px',
+                                                                    'margin-left': '0px',
                                                                     'font-weight': '800',
                                                                     'color': 'rgb(145, 86, 145)',
                                                                     'font-size': 'medium'

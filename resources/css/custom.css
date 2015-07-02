@@ -409,7 +409,7 @@ html,body{
 }
 
 /*pie chart call out hidden*/
-canvas#ext-element-784{
+/*canvas#ext-element-784{
     visibility: hidden;
 }
 canvas#ext-element-754{
@@ -421,3 +421,9 @@ canvas#ext-element-483{
 canvas#ext-element-453{
     visibility: hidden;
 }
+canvas#ext-element-467{
+    visibility: hidden;
+}
+canvas#ext-element-497{
+    visibility: hidden;
+}*/

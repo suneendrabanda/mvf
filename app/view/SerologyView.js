@@ -484,10 +484,10 @@ Ext.define('MVF.view.SerologyView', {
                                                                 height:'300px',
                                                                 layout:'hbox',
 
-                                                                scrollable: {
-                                                                            direction: 'both',
-                                                                            directionLock: true
-                                                                        },
+//                                                                scrollable: {
+//                                                                            direction: 'both',
+//                                                                            directionLock: true
+//                                                                        },
                                                                         items:[
                                                                             //table goes here
                                                                             {

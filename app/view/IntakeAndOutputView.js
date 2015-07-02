@@ -92,12 +92,12 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                xtype: 'selectfield',
                                width:'120px',
                                border:'1 1 1 1',
-                               itemid:'pageid',
+                               itemid:'IOpageid',
                                         
                                 options: [
                                             {text: 'I&O',  value: 'IntakeAndOutputView'},
                                             {text: 'Main',  value: 'LabsMainView'},
-                                            {text: 'Vitals',  value: 'VitalsView'},
+                                            //{text: 'Vitals',  value: 'VitalsView'},
                                             
                                             
                                         ],
