@@ -15,6 +15,7 @@ Ext.define("MVF.controller.LabsMainController", {
             DisplayHematologyResults:'[itemid=labshematologyresult]',
             DisplayMicrobiologyResults:'[itemid=labsmicrobiologyresult]',
             DisplayABGResults:'[itemid=labsabgresult]',
+            DisplaySerologyResults:'[itemid=labsserologyresult]',
             OnLabsMainViewButtonTap:'[itemid=LabsMainviewbuttonid]',
             OnPatientSummaryButtonTap:'[itemid=patientsummarybuttonid]',
             ChemistrylastupdatePanel:'[itemid=chemistrylastupdate]',
@@ -62,6 +63,7 @@ Ext.define("MVF.controller.LabsMainController", {
         this.getLabsMain().push({
                  xtype:'chemistrylabs'
           });
+        this.getApplication().getController('ChemistryLabsController').OnChemistryPageLoad();
     },
     GoToSerologyPage:function(){
         this.getLabsMain().push({
@@ -72,16 +74,19 @@ Ext.define("MVF.controller.LabsMainController", {
         this.getLabsMain().push({
               xtype:'hematology'
         });
+        this.getApplication().getController('hematologyController').OnHematologyPageLoad();
     },
     GoToMicrobiologyPage:function(){
         this.getLabsMain().push({
               xtype:'microbiologyview'
         });
+        this.getApplication().getController('MicrobiologyPageController').OnMicrobiologyPageLoad();
     },
     GoToAbgPage:function(){
         this.getLabsMain().push({
               xtype:'absview'
         });
+        this.getApplication().getController('ABSLabController').OnABGPageLoad();
     },
     DisplayChemistryResultsFunction:function(date){
         var ChemistryStore=Ext.getStore('LabsMainChemistryResultsStore');
@@ -149,7 +154,19 @@ Ext.define("MVF.controller.LabsMainController", {
               xtype:pagename
               });
         }
-          //this.getLabsMain().destroy();
+        if(pagename==='hematology'){
+		this.getApplication().getController('hematologyController').OnHematologyPageLoad();
+            }
+          else if(pagename==='microbiologyview'){
+               this.getApplication().getController('MicrobiologyPageController').OnMicrobiologyPageLoad();
+          } 
+          else if(pagename==='absview'){
+              this.getApplication().getController('MicrobiologyPageController').OnABGPageLoad();
+          }
+          else if(pagename==='chemistrylabs'){
+              this.getApplication().getController('ChemistryLabsController').OnChemistryPageLoad();
+          }
+              //this.getLabsMain().destroy();
     },
     DisplayHemaotologyResultsFunction:function(date){
         var HematologyStore=Ext.getStore('LabsMainHematologyResultsStore');
@@ -258,6 +275,42 @@ Ext.define("MVF.controller.LabsMainController", {
         });
        
     },
+    DisplaySerologyResultsFunction:function(date){
+         var SerologyStore=Ext.getStore('LabsMainSerologyResultsStore');
+        var SerologyresultsPanel=this.getDisplaySerologyResults();
+        var SerologyResults='<table><thead><tr><th style="padding: 0 120px 0 0">Name</th><th style="padding: 0 110px 0 0">Result</th><th style="padding: 0 80px 0 0">Time</th><th style="padding: 0 10px 0 0">Normal Range</th></tr></thead><tbody>';
+        SerologyStore.load({
+            params:{
+                date:date,
+                patient_id:MVF.app.patient_id
+            },
+            scope:this,
+            callback:function(records,success){
+                var No_Of_Results=SerologyStore.getCount();
+                console.log('no of ABG results fetch'+No_Of_Results);
+                if(success){
+                    var i=0;
+                    for(i=0;i<No_Of_Results;i++){
+                        if(records[i].data.exact==='null'){
+                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                                SerologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
+                            }
+                            else{
+                                SerologyResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
+                            }
+                        }
+                        else{
+                            SerologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
+                        }
+                    }
+                    SerologyResults+='</tbody></table>';
+                    SerologyresultsPanel.setHtml(SerologyResults);
+                    
+                    //console.log(ABGResults);
+                }
+            }
+        });
+    },
     OnLabsMainViewButtonTap:function(){
         var date=Ext.ComponentQuery.query('[itemid=LabsMainDate]')[0].getFormattedValue();
         console.log(date);
@@ -265,6 +318,7 @@ Ext.define("MVF.controller.LabsMainController", {
         this.DisplayHemaotologyResultsFunction(date);
         this.DisplayMicrobiologyResultsFunction(date);
         this.DisplayABGResultsFunction(date);
+        this.DisplaySerologyResultsFunction(date);
         //console.log(this.DateFlag);
     },
     OnPatientSummaryButtonTap:function(){

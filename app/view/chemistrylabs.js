@@ -489,7 +489,7 @@ Ext.define('MVF.view.chemistrylabs', {
                                                         //table container
                                                          xtype:'container',
                                                         width: '580px',
-                                                        height: '400px',
+                                                        height: '368px',
                                                         layout:'vbox',
                                                         style: {
                                                                    'border': '1px #9E9D8B solid',

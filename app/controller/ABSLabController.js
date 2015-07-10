@@ -224,85 +224,90 @@ Ext.define("MVF.controller.ABSLabController", {
             }
         });
     },
-    DisplayTable:function(values,startdate,enddate,shift){
-        var ItemStore = Ext.getStore('ABSDropDownStore');
-        var NO_of_AbsCount = ItemStore.getCount();
-        if(shift==='day'){
-            var time= ['07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30'];
-        }
-        else if(shift==='evening'){
-            var time= ['15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30'];
-        }
-        else{
-            var time= ['01:00','01:30','02:00','02:30','03:00','03:30','04:00','04:30','05:00','05:30','06:00','06:30','23:00','23:30','24:00','24:30'];
-        }
+    DisplayTable:function(records,startdate,enddate,shift){
+       
         var TableStore=Ext.getStore('ABSTableStore');
         var No_of_Results_Fetch=TableStore.getCount();
         var TablePanel=this.getABSTablePanel();
-        var TableValues='<table><thead>';
-        var diff=Ext.Date.getElapsed(new Date(startdate),new Date(enddate));
-        var days=diff/(1000*60*60*24)+1;
-        TableValues+='<tr style="border-bottom:1px solid #a5a399">'+
-                      '<th style=" padding:0 30px 0 15px">Date</th>'+
-                      '<th style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Time</th>';
-              for(var i=0;i<NO_of_AbsCount;i++){
-                  TableValues+='<th style=" padding:0 30px 0 15px">'+ItemStore.getAt(i).get('text')+'</th>';
-                }
-                TableValues+='</tr></thead><tbody>';
-        var r=0;// index for records fetch
-        var timeindex=0; //index to loop time array
-        for(var j=0;j<days;j++){// for loop to loop number of days select ie.. difference between start date and end date
-                  while(timeindex<16){// while loop to loop 24 hrs per day
-                      for(var k=0;k<NO_of_AbsCount+2;k++){// for loop for each row in the table, +2 to add date and time  
-                          if(k===0){
-				TableValues+='<tr><td style="padding:0 10px 0 0">'+startdate+'</td>';
-                          }
-                          else if(k===1){
-				TableValues+='<td style="padding:0 10px 0 15px;border-right:1px solid #a5a399">'+time[timeindex]+'</td>';
-                          }
-                          else{
-                               //console.log('values[r].data.date = '+values[r].data.date+' start date = '+startdate +'values[r].data.time =  '+values[r].data.time+' time = '+time[timeindex]);
-                              if(r< No_of_Results_Fetch && values[r].data.date===startdate && values[r].data.time===time[timeindex]){
-					if(values[r].data.Name===ItemStore.getAt(k-2).get('text')){
-                                            if(values[r].data.exact==='null'){
-                                                if(values[r].data.result>=values[r].data.max||values[r].data.result<=values[r].data.min){
-                                                    TableValues+='<td style="padding:0 10px 0 15px;color:#ff0000">'+values[r].data.result+'</td>';
-                                                }
-                                                else{
-                                                    TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
-                                                }
-                                            }
-                                            else{
-                                                if(values[r].data.result!==values[r].data.exact){
-                                                    TableValues+='<td style="padding:0 10px 0 15px;color:#ff0000">'+values[r].data.result+'</td>';
-                                                }
-                                                else{
-                                                   TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>'; 
-                                                }
-                                                
-                                            }
-					r++;
-                                                //console.log('hematology value inserted');
-					}
-					else{
-						TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
-                                                //console.log(' - inserted time and date are equal');
-					}
-				}
-				else{
-					TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
-                                        //console.log(' - inserted time and date not equal');
-				}
-                          }
-                      }
-                      TableValues+='</tr>';
-                      timeindex++;
-                  }
-                  startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
-                  timeindex=0;
-              }
+        var TableValues='<table><thead><tr><th style="padding: 0 82px 8px 0">Date</th><th style="padding: 0 66px 8px 0">Time</th><th style="padding: 0 80px 8px 0">Name</th><th style="padding: 0 80px 8px 0">Result</th><th style="padding: 0 10px 8px 0">Normal Range</th></tr></thead><tbody>';
+        var i=0;
+                    for(i=0;i<No_of_Results_Fetch;i++){
+                        if(records[i].data.exact==='null'){
+                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                                TableValues+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                            }
+                            else{
+                                TableValues+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                            }
+                        }
+                        else{
+                            TableValues+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                        }
+                    }
+                    TableValues+='</tbody></table>';
        TablePanel.setHtml(TableValues);
                 
                 
+    },
+    OnABGPageLoad:function(){
+        var absSelectedValue=Ext.ComponentQuery.query('[itemid=absdropdownvalueid]')[0].getValue();
+        var AbsStartDate=Ext.ComponentQuery.query('[itemid=absstartdate]')[0].getFormattedValue();
+        var AbsEndDate=Ext.ComponentQuery.query('[itemid=absenddate]')[0].getFormattedValue();
+        var ShiftValue=Ext.ComponentQuery.query('[itemid=absshift]')[0].getValue();
+//        console.log(absSelectedValue);console.log(AbsStartDate);console.log(AbsEndDate);
+//        console.log(ShiftValue);
+        var store=Ext.getStore('ABSChartStore');
+        store.load({
+            params:{
+                absSelectedValue:absSelectedValue,
+                StartDate:AbsStartDate,
+                EndDate:AbsEndDate,
+                shiftvalue:ShiftValue,
+                patient_id:MVF.app.patient_id
+                },
+                scope:this,
+                callback:function(records,success){
+                    if(records[0].data.result==='null'&&records[0].data.time==='null'&&records[0].data.exact==='null'&&records[0].data.minimunvalue==='null'&&records[0].data.maximumvalue==='null'&&records[0].data.date==='null'){
+                            //alert('No records found');
+                        }
+                    
+                   
+            }
+        });
+        var ABGStore=Ext.getStore('LabsMainABGResultsStore');
+        var ABGresultsPanel=this.getABSTablePanel();
+        var ABGResults='<table><thead><tr><th style="padding: 0 82px 8px 0">Date</th><th style="padding: 0 66px 8px 0">Time</th><th style="padding: 0 80px 8px 0">Name</th><th style="padding: 0 80px 8px 0">Result</th><th style="padding: 0 10px 8px 0">Normal Range</th></tr></thead><tbody>';
+        ABGStore.load({
+            params:{
+                date:AbsStartDate,
+                patient_id:MVF.app.patient_id
+            },
+            scope:this,
+            callback:function(records,success){
+                var No_Of_Results=ABGStore.getCount();
+                console.log('no of ABG results fetch'+No_Of_Results);
+                if(success){
+                    var i=0;
+                    for(i=0;i<No_Of_Results;i++){
+                        if(records[i].data.exact==='null'){
+                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                                ABGResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                            }
+                            else{
+                                ABGResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                            }
+                        }
+                        else{
+                            ABGResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                        }
+                    }
+                    ABGResults+='</tbody></table>';
+                    ABGresultsPanel.setHtml(ABGResults);
+                    
+                    //console.log(ABGResults);
+                }
+            }
+        });
+       
     }
 });

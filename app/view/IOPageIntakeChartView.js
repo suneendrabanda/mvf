@@ -54,7 +54,7 @@ Ext.define("MVF.view.IOPageIntakeChartView", {
         animate:'true',
         innerpadding:'30',
         colors: ["#F0523F","#FFD779","#BBAF82","#72DAF1","#87B675","#cf27c1"],
-        insetPadding:42,
+        insetPadding:22,
         series: [
                      {
                         type: 'pie',
@@ -64,36 +64,12 @@ Ext.define("MVF.view.IOPageIntakeChartView", {
                         substyle:{
                             visibility:'hidden'
                         },
-//                        renderer: function(sprite, config, rendererData, index) {
-//                            var data = rendererData.store.getData().items[index].get('intakename');
-//                            console.log('data in intake pie chart '+data);
-//                            if(data==='Blood'){
-//                                console.log('if condition satisfied in if loop');
-//                                return{
-//                                    fillStyle:'#ed5757',
-//                                };
-//                            }
-//                            else if(data==='PO'){
-//                                return{
-//                                    fillStyle:'#87B675 ',
-//                                };
-//                            }
-//                            else if(data==='IV'){
-//                                return{
-//                                    fillStyle:'#BBAF82',
-//                                };
-//                            }
-//                            else if(data==='IVPB'){
-//                                return{
-//                                    fillStyle:'#72DAF1',
-//                                };
-//                            }
-//                        }
+
                      }
                     ],
                     legend:{
                             position:'right',
-                            width:'120px',
+                            width:'136px',
                             
                         },
                     

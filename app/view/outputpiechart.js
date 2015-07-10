@@ -17,7 +17,7 @@ Ext.define("MVF.view.outputpiechart", {
         animate:'true',
         
         innerpadding:'10',
-        colors: ["#115fa6", "#94ae0a", "#a61120", "#ff8809", "#ffd13e"],
+        colors: ["#115fa6", "#94ae0a", "#a61120", "#ff8809", "#ffd13e","#D44185"],
 //        legend:{
 //            position:'bottom'
 //        },

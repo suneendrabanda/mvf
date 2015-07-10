@@ -41,8 +41,9 @@ Ext.application({
     "LabsMainView",
     "VitalsView",
     "SerologyView",
-    "SerologyChartView"
-    
+    "SerologyChartView",
+    "IntakeEditView",
+    "OutputEditView"
 ],
    models:[
 	"linechart",
@@ -99,6 +100,7 @@ Ext.application({
         "LabsMainHematologyResultsStore",
         "LabsMainMicrobiologyResultsStore",
         "LabsMainABGResultsStore",
+        "LabsMainSerologyResultsStore",
         "IOPageIntakeStore",
         "IOPageOutputStore",
         "IntakeTableStore",
@@ -144,8 +146,9 @@ controllers: [
         Ext.Viewport.add(Ext.create('MVF.view.Main'));
     },
      'LabPageCount':'0',
-     'patient_id':'71009',
-     
+     'patient_id':'71013',
+     'vitaltextfieldflag':0,
+     'vitalsFlag':[0,0,0,0,0,0,0,0],
     onUpdated: function() {
         Ext.Msg.confirm(
             "Application Update",

@@ -18,19 +18,26 @@ Ext.define("MVF.controller.MainController", {
             editintake:'[itemid=editintakeicon]',
             editoutput:'[itemid=editoutputicon]',
             onoutputupdatebuttonclick:'[itemid=outputupdatebutton]',
-            onintakeupdatebuttonclick:'[itemid=intakeupdatebutton]',
-            //chemistrydropdownselect:'[itemid=chemisrtydropdownvalueid]',
             viewingpanel:'[itemid=viewingitem]',
             chemistrychartviewpanel:'[itemid=chartviewingid]',
             chemistryalertdatepanel:'[itemid=chealertdate]',
             chemistryalertinfo:'[itemid=chealertinfo]',
             gotoIntakeAndOutputpage:'[itemid=intakeExpand]',
-            gotoIntakeAndOutputpageOnOutput:'[itemid=outputExpand]'
-            
+            gotoIntakeAndOutputpageOnOutput:'[itemid=outputExpand]',
+            VitalChartdateChange:'[itemid=startdate]',
+            VitalSignsToEdit:'[itemid=vitalSigns]',
+            OnVitalsUpdateButton:'[itemid=saveVitalsbutton]',
+            OnIntakeSaveButtonTap:'[itemid=saveIntakebutton]',
+            IntakeListToEdit:'[itemid=IntakeValues]',
+            OnOutputSaveButtonTap:'[itemid=saveOutputbutton]',
+            OutputListToEdit:'[itemid=OutputValues]',
+            VitalsCheck:'[itemid=VitalsSelectAll]',
+            IntakeCheck:'[itemid=IntakeSelectAll]',
+            OutputCheck:'[itemid=OutputSelectAll]'
         },
         control: {
 
-            vital:{
+                vital:{
                     change:'OnVitalnameSelect'
                 },
                 gotoIntakeAndOutputpage:{
@@ -42,35 +49,49 @@ Ext.define("MVF.controller.MainController", {
                 onoutputupdatebuttonclick:{
                     tap:'outputupdatebuttontap'
                 },
-                onintakeupdatebuttonclick:{
-                    tap:'intakeupdatebuttontap'
-                },
                 gotopage:{
                     change:'gotopagefunction'
                 },
-            onupdatevital:{
+                onupdatevital:{
                 tap:'editvitalvaluefunction'
             },    
-            shiftselect:{
+                shiftselect:{
                     change:'OnVitalnameSelect'
                     
                 },
-            vitaltable:{
+                vitaltable:{
                     change:'loadtabledata'
             },
-            //edittable:{
-              //  tap:'edittable'
-            //},
-            patientsummarybutton:{
+               patientsummarybutton:{
                 tap:'OnVSAndIOpageLoad'
             },
-            returntovspage:{
+               returntovspage:{
                 tap:'returntovspage'
             },
-            backtovsiopage:{
+               backtovsiopage:{
                 tap:'returntovsiopage'
-            }
-            
+            },
+               OnVitalsUpdateButton:{
+                   tap:'OnVitalsUpdateButtonTap'
+               },
+               OnIntakeSaveButtonTap:{
+                   tap:'OnIntakeSaveButtonTap'
+               },
+               OnOutputSaveButtonTap:{
+                   tap:'OnOutputSaveButtonTap'
+               },
+               VitalsCheck:{
+                   check: 'selectAllinList',
+		   uncheck: 'selectAllinList'
+               },
+               IntakeCheck:{
+                   check: 'selectAllinList',
+		   uncheck: 'selectAllinList'
+               },
+               OutputCheck:{
+                   check: 'selectAllinList',
+		   uncheck: 'selectAllinList'
+               }
         }
     },
     init: function(){
@@ -84,6 +105,8 @@ Ext.define("MVF.controller.MainController", {
           xtype:'IntakeAndOutputView'
           
       });
+      this.getApplication().getController('IOPageController').OnIOPageload();
+      
     },
     OnVitalnameSelect: function(){
             var store=Ext.getStore('LineChart');
@@ -209,11 +232,10 @@ Ext.define("MVF.controller.MainController", {
             modal: true,
             hideOnMaskTap: true,
 	    centered: true,           
-	    width:  Ext.os.deviceType =='Phone' ? 490 : 400,//'500px',
-	    height: Ext.os.deviceType =='Phone' ? 400 : 400,
+	    width:  Ext.os.deviceType =='Phone' ? 850 : 850,//'500px',
+	    height: Ext.os.deviceType =='Phone' ? 545 : 545,
             zIndex:5,
-            
-	    styleHtmlContent: true,
+            styleHtmlContent: true,
 	    // Make it hidden by default
             hidden: true,
 	    
@@ -222,9 +244,7 @@ Ext.define("MVF.controller.MainController", {
 				    xtype: 'EditTable',
 				    width: '98%',
 				    height: '98%',
-                                    
-                                    
-			    },
+                            },
 			   
 	    ],
 	    
@@ -234,7 +254,7 @@ Ext.define("MVF.controller.MainController", {
             delegate: '#edittableicon',
             tap: function(button) {
                 // When you tap on the button, we want to show the overlay by the button we just tapped.
-                overlay.showBy(button);
+                overlay.show();
                 
 		//console.log('yes button');
             }
@@ -244,33 +264,6 @@ Ext.define("MVF.controller.MainController", {
         
        
     },
-    editvitalvaluefunction:function(button, e, eOpts){
-       var editvitalvalue=Ext.ComponentQuery.query('[itemid=editvitalnameid]')[0].getValue();
-       var editdatevalue=Ext.ComponentQuery.query('[itemid=editdatevalue]')[0].getFormattedValue();
-       var edittimevalue=Ext.ComponentQuery.query('[itemid=edittimevalue]')[0].getValue();
-       var editresultvalue=Ext.ComponentQuery.query('[itemid=vitalsignvalue]')[0].getValue();
-       console.log(editvitalvalue);
-       console.log(editdatevalue);
-       console.log(edittimevalue);
-       console.log(editresultvalue);
-      
-         Ext.getStore('vitalsignupdatestore').load({
-                   params:{ vitalvalue: editvitalvalue,
-                            datevalue: editdatevalue,
-                            timevalue: edittimevalue,
-                            vitalresult: editresultvalue,
-                            patient_id:MVF.app.patient_id
-                        },
-                   scope:this,
-                   callback:function(records,operation,success){
-
-                        alert(records[0].data.information);
-                       
-                   }
-                   });
-               
-                  
-   },
    gotopagefunction:function(){
         var pagename=Ext.ComponentQuery.query('[itemid=pageid]')[0].getValue();
         console.log(pagename);
@@ -292,123 +285,19 @@ Ext.define("MVF.controller.MainController", {
             modal: true,
             hideOnMaskTap: true,
 	    centered: true,          
-	    width:  '460px',//Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
-	    height: '400px',//Ext.os.deviceType =='Phone' ? 400 : 400,
+	    width:  '850px',//Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
+	    height: '545px',//Ext.os.deviceType =='Phone' ? 400 : 400,
 	    styleHtmlContent: true,
 	    // Make it hidden by default
             hidden: true,
 	    
 	    items: [
-                            {
-                                          xtype: 'selectfield',
-                                          width:'100%',
-                                          height:'40px',
-                                          store: 'IOPageIntakeStore',
-                                          itemid:'intakenameedit',
-                                           name:'intakenameedit',
-                                           valueField:'value',
-                                           displayField:'name',
-                                           style:{
-                                                   'border-width':'2px',
-                                                   'border-color':'black',
-                                                   'margin-top':'10px',
-                                                   'fontFamily':'openSansRegular',
-                                                   'font-size':'small'
-                                               }
-                                           
-                                     },
-                                     {
-                                         xtype:'datepickerfield',
-                                         itemid:'intakedateedit',
-                                         width:'100%',
-                                         name:'intakedate',
-                                         value: new Date(),
-                                         style:{
-                                             'margin-top':'10px'
-                                         }
-                                     },
-                                     
-                                     {
-                                         xtype:'selectfield',
-                                         name:'intaketimeedit',
-                                         itemid:'intaketimeedit',
-                                         options: [
-                                                   {text: '01:00',  value: '01:00'},
-                                                   {text: '01:30',  value: '01:30'},
-                                                   {text: '02:00',  value: '02:00'},
-                                                   {text: '02:30',  value: '02:30'},
-                                                   {text: '03:00',  value: '03:00'},
-                                                   {text: '03:30',  value: '03:30'},
-                                                   {text: '04:00',  value: '04:00'},
-                                                   {text: '04:30',  value: '04:30'},
-                                                   {text: '05:00',  value: '05:00'},
-                                                   {text: '05:30',  value: '05:30'},
-                                                   {text: '06:00',  value: '06:00'},
-                                                   {text: '06:30',  value: '06:30'},
-                                                   {text: '07:00',  value: '07:00'},
-                                                   {text: '07:30',  value: '07:30'},
-                                                   {text: '08:00',  value: '08:00'},
-                                                   {text: '08:30',  value: '08:30'},
-                                                   {text: '09:00',  value: '09:00'},
-                                                   {text: '09:30',  value: '09:30'},
-                                                   {text: '10:00',  value: '10:00'},
-                                                   {text: '10:30',  value: '10:30'},
-                                                   {text: '11:00',  value: '11:00'},
-                                                   {text: '11:30',  value: '11:30'},
-                                                   {text: '12:00',  value: '12:00'},
-                                                   {text: '12:30',  value: '12:30'},
-                                                   {text: '13:00',  value: '13:00'},
-                                                   {text: '13:30',  value: '13:30'},
-                                                   {text: '14:00',  value: '14:00'},
-                                                   {text: '14:30',  value: '14:30'},
-                                                   {text: '15:00',  value: '15:00'},
-                                                   {text: '15:30',  value: '15:30'},
-                                                   {text: '16:00',  value: '16:00'},
-                                                   {text: '16:30',  value: '16:30'},
-                                                   {text: '17:00',  value: '17:00'},
-                                                   {text: '17:30',  value: '17:30'},
-                                                   {text: '18:00',  value: '18:00'},
-                                                   {text: '18:30',  value: '18:30'},
-                                                   {text: '19:00',  value: '19:00'},
-                                                   {text: '19:30',  value: '19:30'},
-                                                   {text: '20:00',  value: '20:00'},
-                                                   {text: '20:30',  value: '20:30'},
-                                                   {text: '21:00',  value: '21:00'},
-                                                   {text: '21:30',  value: '21:30'},
-                                                   {text: '22:00',  value: '22:00'},
-                                                   {text: '22:30',  value: '22:30'},
-                                                   {text: '23:00',  value: '23:00'},
-                                                   {text: '23:30',  value: '23:30'},
-                                                   {text: '24:00',  value: '24:00'},
-                                                   {text: '24:30',  value: '24:30'}
-                                               ],
-                                         style:{
-                                             'margin-top':'10px'
-                                         }
-                                     },
-                                     {
-                                         xtype:'textfield',
-                                         name:'intakeresultedit',
-                                         itemid:'intakeresultedit',
-                                         placeHolder:'Enter Result',
-                                         style:{
-                                             'margin-top':'10px'
-                                         }
-                                     },
-                                      {
-				    xtype: 'button',
-				    //id: 'SaveButton',
-                                    itemid:'intakeupdatebutton',
-				    ui: 'action',
-				    //margin: 1,
-				    text: 'Update',
-                                    style:{
-                                             'margin-top':'20px'
-                                         }
-			    }
-                           
-			   
-	    ]
+                    {
+                        xtype: 'IntakeEditView',
+                        width: '98%',
+                        height: '98%',
+                    }
+                   ]
 	    
         });
 	
@@ -416,7 +305,7 @@ Ext.define("MVF.controller.MainController", {
             delegate: '#editintakeicon',
             tap: function(button) {
                 // When you tap on the button, we want to show the overlay by the button we just tapped.
-                overlay.showBy(button);
+                overlay.show();
 		//console.log('yes button');
             }
         });
@@ -429,123 +318,19 @@ Ext.define("MVF.controller.MainController", {
             modal: true,
             hideOnMaskTap: true,
 	    centered: true,          
-	    width:  '460px',//Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
-	    height: '400px',//Ext.os.deviceType =='Phone' ? 400 : 400,
+	    width:  '850px',//Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
+	    height: '545px',//Ext.os.deviceType =='Phone' ? 400 : 400,
 	    styleHtmlContent: true,
 	    // Make it hidden by default
             hidden: true,
 	    
 	    items: [
-                           {
-                                          xtype: 'selectfield',
-                                          width:'100%',
-                                          height:'40px',
-                                          itemid:'outputname',
-                                          name:'outputname',
-                                          store: 'IOPageOutputStore', 
-                                          valueField:'value',
-                                          displayField:'name',
-                                          style:{
-                                                   'border-width':'2px',
-                                                   'border-color':'black',
-                                                   'margin-top':'10px',
-                                                   'fontFamily':'openSansRegular',
-                                                   'font-size':'small'
-                                               }
-                                           
-                                     },
-                                     {
-                                         xtype:'datepickerfield',
-                                         itemid:'outputdate',
-                                         width:'100%',
-                                         name:'outputdate',
-                                         value: new Date(),
-                                         style:{
-                                             'margin-top':'10px'
-                                         }
-                                     },
-                                     {
-                                         xtype:'selectfield',
-                                         name:'outputtime',
-                                         itemid:'outputtime',
-                                         options: [
-                                                   {text: '01:00',  value: '01:00'},
-                                                   {text: '01:30',  value: '01:30'},
-                                                   {text: '02:00',  value: '02:00'},
-                                                   {text: '02:30',  value: '02:30'},
-                                                   {text: '03:00',  value: '03:00'},
-                                                   {text: '03:30',  value: '03:30'},
-                                                   {text: '04:00',  value: '04:00'},
-                                                   {text: '04:30',  value: '04:30'},
-                                                   {text: '05:00',  value: '05:00'},
-                                                   {text: '05:30',  value: '05:30'},
-                                                   {text: '06:00',  value: '06:00'},
-                                                   {text: '06:30',  value: '06:30'},
-                                                   {text: '07:00',  value: '07:00'},
-                                                   {text: '07:30',  value: '07:30'},
-                                                   {text: '08:00',  value: '08:00'},
-                                                   {text: '08:30',  value: '08:30'},
-                                                   {text: '09:00',  value: '09:00'},
-                                                   {text: '09:30',  value: '09:30'},
-                                                   {text: '10:00',  value: '10:00'},
-                                                   {text: '10:30',  value: '10:30'},
-                                                   {text: '11:00',  value: '11:00'},
-                                                   {text: '11:30',  value: '11:30'},
-                                                   {text: '12:00',  value: '12:00'},
-                                                   {text: '12:30',  value: '12:30'},
-                                                   {text: '13:00',  value: '13:00'},
-                                                   {text: '13:30',  value: '13:30'},
-                                                   {text: '14:00',  value: '14:00'},
-                                                   {text: '14:30',  value: '14:30'},
-                                                   {text: '15:00',  value: '15:00'},
-                                                   {text: '15:30',  value: '15:30'},
-                                                   {text: '16:00',  value: '16:00'},
-                                                   {text: '16:30',  value: '16:30'},
-                                                   {text: '17:00',  value: '17:00'},
-                                                   {text: '17:30',  value: '17:30'},
-                                                   {text: '18:00',  value: '18:00'},
-                                                   {text: '18:30',  value: '18:30'},
-                                                   {text: '19:00',  value: '19:00'},
-                                                   {text: '19:30',  value: '19:30'},
-                                                   {text: '20:00',  value: '20:00'},
-                                                   {text: '20:30',  value: '20:30'},
-                                                   {text: '21:00',  value: '21:00'},
-                                                   {text: '21:30',  value: '21:30'},
-                                                   {text: '22:00',  value: '22:00'},
-                                                   {text: '22:30',  value: '22:30'},
-                                                   {text: '23:00',  value: '23:00'},
-                                                   {text: '23:30',  value: '23:30'},
-                                                   {text: '24:00',  value: '24:00'},
-                                                   {text: '24:30',  value: '24:30'}
-                                               ],
-                                         style:{
-                                             'margin-top':'10px'
-                                         }
-                                     },
-                                     {
-                                         xtype:'textfield',
-                                         name:'outputresult',
-                                         itemid:'outputresult',
-                                         placeHolder:'Enter Result',
-                                         style:{
-                                             'margin-top':'10px'
-                                         }
-                                     },
-                                      {
-                                            xtype: 'button',
-                                            //id: 'SaveButton',
-                                            itemid:'outputupdatebutton',
-                                            ui: 'action',
-                                            //margin: ,
-                                            text: 'Update',
-                                            style:{
-                                              'margin-top':'20px'
-                                            }
-
-                                    }
-                           
-			   
-	    ],
+                    {
+                        xtype: 'OutputEditView',
+                        width: '98%',
+                        height: '98%',
+                    }
+            ],
 	    
         });
 	
@@ -553,7 +338,7 @@ Ext.define("MVF.controller.MainController", {
             delegate: '#editoutputicon',
             tap: function(button) {
                 // When you tap on the button, we want to show the overlay by the button we just tapped.
-                overlay.showBy(button);
+                overlay.show();
 		//console.log('yes button');
             }
         });
@@ -579,39 +364,16 @@ Ext.define("MVF.controller.MainController", {
              
              callback:function(records,operation,success){
                  if(success){
-                     Ext.getStore('outputpiechartstore').load({});
+                     Ext.getCmp('outputpiechartNOrecords').hide();
+                     Ext.getStore('outputpiechartstore').load({
+                         params:{
+                              patient_id:MVF.app.patient_id
+                         }
+                     });
                      alert(records[0].data.information);
                  }
              }
              
-                  });
-   },
-   intakeupdatebuttontap:function(){
-        var intakename=Ext.ComponentQuery.query('[itemid=intakenameedit]')[0].getValue();
-        var intakedate=Ext.ComponentQuery.query('[itemid=intakedateedit]')[0].getFormattedValue();
-        var intaketime=Ext.ComponentQuery.query('[itemid=intaketimeedit]')[0].getValue();
-        var intakeresult=Ext.ComponentQuery.query('[itemid=intakeresultedit]')[0].getValue();
-        console.log(intakename);
-        console.log(intakedate);
-        console.log(intaketime);
-        console.log(intakeresult);
-        var intakestore = Ext.StoreMgr.get('intakedataupdatestore');
-        Ext.getStore('intakedataupdatestore').load({
-            params:{ intakenm: intakename,
-                     itkdate: intakedate,
-                     itktime:intaketime,
-                     itkresult:intakeresult,
-                     patient_id:MVF.app.patient_id
-                      },
-                       scope:this,
-             
-             callback:function(records,operation,success){
-                 if(success){
-                     Ext.getStore('intakepiechartstore').load({});
-                     alert(records[0].data.information);
-                 }
-                 
-             }
                   });
    },
    OnVSAndIOpageLoad:function(){
@@ -701,6 +463,219 @@ Ext.define("MVF.controller.MainController", {
                }
            }
        });
+   },
+   OnVitalsUpdateButtonTap:function(){
+       console.log('On save button tp function');
+       var VitalsArray=this.getVitalSignsToEdit().getSelection();
+       var VitalsArrayCount=this.getVitalSignsToEdit().getSelectionCount();
+       var Date=Ext.ComponentQuery.query('[itemid=vitalseditDate]')[0].getFormattedValue();
+       var time=Ext.ComponentQuery.query('[itemid=Vitalstime]')[0].getValue();
+       //var vitalItem=VitalsArray.pop();
+       for(var i=0;i<VitalsArrayCount;i++){
+         var vitalName= VitalsArray[i].data.text;
+         if(vitalName==='BP'){
+              var vitalvalue=VitalsArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=VitalsEditBP]')[0].getValue();
+         }
+         else if(vitalName==='Height'){
+              var vitalvalue=VitalsArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=VitalsEditHeight]')[0].getValue();
+         }
+         else if(vitalName==='Pain'){
+              var vitalvalue=VitalsArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=VitalsEditPain]')[0].getValue();
+         }
+         else if(vitalName==='Pulse'){
+              var vitalvalue=VitalsArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=VitalsEditPulse]')[0].getValue();
+         }
+         else if(vitalName==='Resp'){
+              var vitalvalue=VitalsArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=VitalsEditResp]')[0].getValue();
+         }
+         else if(vitalName==='SaO2'){
+              var vitalvalue=VitalsArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=VitalsEditSaO2]')[0].getValue();
+         }
+         else if(vitalName==='Temp'){
+              var vitalvalue=VitalsArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=VitalsEditTemp]')[0].getValue();
+         }
+         else if(vitalName==='Weight'){
+              var vitalvalue=VitalsArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=VitalsEditWeight]')[0].getValue();
+         }
+           Ext.getStore('vitalsignupdatestore').load({
+                   params:{ vitalvalue: vitalvalue,
+                            datevalue: Date,
+                            timevalue: time,
+                            vitalresult: result,
+                            patient_id:MVF.app.patient_id
+                        },
+                   });
+       }
+       
+   },
+   OnIntakeSaveButtonTap:function(){
+       var intakedate=Ext.ComponentQuery.query('[itemid=IntakeeditDate]')[0].getFormattedValue();
+       var intaketime=Ext.ComponentQuery.query('[itemid=Intaketime]')[0].getValue();
+       var IntakeArray=this.getIntakeListToEdit().getSelection();
+       var IntakeArrayCount=this.getIntakeListToEdit().getSelectionCount();
+       for(var i=0;i<IntakeArrayCount;i++){
+           var IntakeName= IntakeArray[i].data.name;
+            if(IntakeName==='Blood'){
+              var IntakeValue=IntakeArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=IntakeEditBlood]')[0].getValue();
+            }
+            else if(IntakeName==='Breast Feed'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IntakeEditBreastFeed]')[0].getValue();
+            }
+            else if(IntakeName==='IV'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IntakeEditIV]')[0].getValue();
+            }
+            else if(IntakeName==='IVPB'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IntakeEditIVPB]')[0].getValue();
+            }
+            else if(IntakeName==='Lipids'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IntakeEditLipids]')[0].getValue();
+            }
+            else if(IntakeName==='Other'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IntakeEditOther]')[0].getValue();
+            }
+            else if(IntakeName==='PO'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IntakeEditPO]')[0].getValue();
+            }
+            else if(IntakeName==='TPN'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IntakeEditTPN]')[0].getValue();
+            }
+            else if(IntakeName==='Tube Fdg'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IntakeEditTubeFDG]')[0].getValue();
+            }
+            Ext.getStore('intakedataupdatestore').load({
+            params:{ intakenm: IntakeValue,
+                     itkdate: intakedate,
+                     itktime:intaketime,
+                     itkresult:result,
+                     patient_id:MVF.app.patient_id
+                   },
+                    scope:this,
+                    callback:function(records,operation,success){
+                        if(success){
+                            Ext.getCmp('intakepiechartNOrecords').hide();
+                            Ext.getStore('intakepiechartstore').load({
+                            params:{
+                                  patient_id:MVF.app.patient_id
+                             }
+                        });
+                     }
+                 }
+            });
+       }
+   },
+   OnOutputSaveButtonTap:function(){
+       var outputdate=Ext.ComponentQuery.query('[itemid=OutputeditDate]')[0].getFormattedValue();
+       var outputtime=Ext.ComponentQuery.query('[itemid=Outputtime]')[0].getValue();
+       var OutputArray=this.getOutputListToEdit().getSelection();
+       var OutputArrayCount=this.getOutputListToEdit().getSelectionCount();
+       for(var i=0;i<OutputArrayCount;i++){
+           var OutputName= OutputArray[i].data.name;
+           if(OutputName==='Blood'){
+              var OutputValue=OutputArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=OutputEditBlood]')[0].getValue();
+            }
+           else if(OutputName==='CRRT'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=OutputEditCRRT]')[0].getValue();
+            }
+           else if(OutputName==='Drains'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=OutputEditDrains]')[0].getValue();
+            }
+            else if(OutputName==='Emesis'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=OutputEditEmesis]')[0].getValue();
+            }
+            else if(OutputName==='Incontinent'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=OutputEditIncontinent]')[0].getValue();
+            }
+            else if(OutputName==='Ostomy'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=OutputEditOstomy]')[0].getValue();
+            }
+            else if(OutputName==='Other'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=OutputEditOther]')[0].getValue();
+            }
+            else if(OutputName==='Stool'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=OutputEditStool]')[0].getValue();
+            }
+            else if(OutputName==='Unmeasured'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=OutputEditUnmeasured]')[0].getValue();
+            }
+            else if(OutputName==='Urine'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=OutputEditUrine]')[0].getValue();
+            }
+            Ext.getStore('outputUpdateStore').load({
+            params:{ outputnm: OutputValue,
+                     outputdate: outputdate,
+                     outputtime:outputtime,
+                     outputresult:result,
+                     patient_id:MVF.app.patient_id
+                   },
+                   scope:this,
+                   callback:function(records,operation,success){
+                        if(success){
+                            console.log('result updated');
+                            Ext.getCmp('outputpiechartNOrecords').hide();
+                            Ext.getStore('outputpiechartstore').load({
+                                params:{
+                                     patient_id:MVF.app.patient_id
+                                }
+                            });
+                            
+                        }
+                    }
+             });
+       }
+   },
+   selectAllinList:function(checkbox, e, eOpts){
+       console.log(checkbox.getName());
+       if (checkbox.isChecked()) {
+           console.log('checked  '+checkbox.isChecked());
+           if (checkbox.getName() === 'VitalsCheck') {
+		this.getVitalSignsToEdit().selectAll(true);
+	    }
+           else if(checkbox.getName() === 'IntakeCheck'){
+               this.getIntakeListToEdit().selectAll(true);
+           }
+           else if(checkbox.getName() === 'OutputCheck'){
+               this.getOutputListToEdit().selectAll(true);
+           }
+           
+       }
+       else{
+           console.log('Unchecked  '+checkbox.isChecked());
+           if (checkbox.getName() === 'VitalsCheck') {
+		this.getVitalSignsToEdit().deselectAll(true);
+	    }
+           else if(checkbox.getName() === 'IntakeCheck'){
+               this.getIntakeListToEdit().deselectAll(true);
+           }
+           else if(checkbox.getName() === 'OutputCheck'){
+               this.getOutputListToEdit().deselectAll(true);
+           }
+       }
    }
-   
 });

@@ -131,10 +131,10 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                         width: '950px',
                         height: '100%',
                         layout:'vbox',
-                        scrollable: {
-                                        direction: 'vertical',
-                                        directionLock: true
-                                    },
+//                        scrollable: {
+//                                        direction: 'vertical',
+//                                        directionLock: true
+//                                    },
                         style: {
                                 'border': '1px #9E9D8B solid',
                                 'borderRightColor':'#9E9D8B',
@@ -265,374 +265,437 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                               'margin-bottom':'0.5%'
                                           }
                                   },
-                                  {// start of content with in the container
-                                     xtype:'container',
-                                     layout:'hbox',  
-                                     items:[
-                                         {// notes container
-                                               xtype:'container',
-                                                layout:'vbox',
-                                                width:'295px',
-                                                height:'500px',
-                                                style:{
-                                                    'border': '1px #9E9D8B solid',
-                                                    'margin-left': '10px',
-                                                    'borderRightColor':'#9E9D8B',
-                                                    'borderTopColor': '#AC9C65',
-                                                    'borderTopWidth': '4px'
-                                                },
+                                  {
+                                      xtype:'container',
+                                      width:'950px',
+                                      height:'637px',
+                                      layout:'vbox',
+                                        scrollable: {
+                                                        direction: 'vertical',
+                                                        directionLock: true
+                                                    },
+                                        items:[
+                                             {// start of content with in the container
+                                                xtype:'container',
+                                                layout:'hbox',  
                                                 items:[
-                                                    // content in the notes container here
+                                                    {// notes container
+                                                          xtype:'container',
+                                                           layout:'vbox',
+                                                           width:'295px',
+                                                           height:'500px',
+                                                           style:{
+                                                               'border': '1px #9E9D8B solid',
+                                                               'margin-left': '10px',
+                                                               'borderRightColor':'#9E9D8B',
+                                                               'borderTopColor': '#AC9C65',
+                                                               'borderTopWidth': '4px'
+                                                           },
+                                                           items:[
+                                                               // content in the notes container here
+                                                               {
+                                                                   xtype:'label',
+                                                                   html:'Notes',
+                                                                   style:{
+                                                                       'margin-top': '10px',
+                                                                       'margin-left': '20px',
+                                                                       'font-weight': '900',
+                                                                       'color': 'rgb(145, 86, 145)',
+                                                                       'font-size': 'large',
+                                                                       'fontFamily':'openSansRegular',
+                                                                   }
+                                                               },
+                                                               {
+                                                                   html:'<hr>',
+                                                                   style:{
+                                                                       'margin-top':'6px'
+                                                                   }
+                                                               }
+                                                           ]
+                                                    },// end of notes container
+                                                    {// charts and table contianer
+                                                        xtype:'container',
+                                                        layout:'vbox',
+                                                        height:'1210px',
+                                                        items:[
+                                                            {// start of chart container for hbox
+                                                                xtype:'container',
+                                                                layout:'hbox',
+                                                                items:[
+                                                                          {// INTAKE CHART  CONTAINER
+                                                                                  xtype:'container',
+                                                                                  width: '305px',
+                                                                                  height: '320px',
+                                                                                  layout:'vbox',
+                                                                                  style: {
+                                                                                             'border': '1px #9E9D8B solid',
+                                                                                             'borderRightColor':'#9E9D8B',
+                                                                                             'borderTopColor': '#AC9C65',
+                                                                                             'borderTopWidth': '4px',
+                                                                                             'margin-left':'2%',
+                                                                                             'background-color': '#FFFFFF'
 
-                                                ]
-                                         },// end of notes container
-                                         {// charts and table contianer
-                                             xtype:'container',
-                                             layout:'vbox',
-                                             height:'1210px',
-                                             items:[
-                                                 {// start of chart container for hbox
-                                                     xtype:'container',
-                                                     layout:'hbox',
-                                                     items:[
-                                                               {// INTAKE CHART  CONTAINER
-                                                                       xtype:'container',
-                                                                       width: '305px',
-                                                                       height: '320px',
-                                                                       layout:'vbox',
-                                                                       style: {
-                                                                                  'border': '1px #9E9D8B solid',
-                                                                                  'borderRightColor':'#9E9D8B',
-                                                                                  'borderTopColor': '#AC9C65',
-                                                                                  'borderTopWidth': '4px',
-                                                                                  'margin-left':'2%',
-                                                                                  'background-color': '#FFFFFF'
-
-                                                                              },
-                                                                              items:[
-                                                                                  {//start of container for Intake label and selectfield
-                                                                                      xtype:'container',
-                                                                                      layout:'hbox',
-                                                                                      items:[
-                                                                                          {
-                                                                                              xtype:'label',
-                                                                                              html:'Intake',
-                                                                                              style:{
-                                                                                                  'margin-left':'10px',
-                                                                                                  'margin-top':'5px',
-                                                                                                  'font-weight': '900',
-                                                                                                  'color': 'rgb(145, 86, 145)',
-                                                                                              }
-                                                                                          },
-                                                                                          {
-                                                                                              xtype:'selectfield',
-                                                                                              width:'120px',
-                                                                                              border:'1 1 1 1',
-                                                                                              itemid:'IntakeSelectID',
-                                                                                              name:'IntakeSelectID',
-                                                                                              options:[
-                                                                                                  {text: 'All',  value: 'all'},
-                                                                                                  {text: 'PO',  value: 'IN101'},
-                                                                                                  {text: 'IV',  value: 'IN102'},
-                                                                                                  {text: 'Blood',  value: 'IN103'},
-                                                                                                  {text: 'IVPB',  value: 'IN105'},
-                                                                                                  {text: 'Tube Fdg',  value: 'IN106'},
-                                                                                                  {text: 'TPN',  value: 'IN107'},
-                                                                                                  {text: 'Lipids',  value: 'IN108'},
-                                                                                                  {text: 'Breast Feed',  value: 'IN109'},
-                                                                                                  {text: 'Other',  value: 'IN104'},
-                                                                                                  {text: 'Total In',  value: 'IN110'},
-                                                                                              ],
-                                                                                              style:{
-                                                                                                             'margin-left':'30%',
-                                                                                                             'margin-top':'2%',
-                                                                                                             'fontFamily':'openSansRegular',
-                                                                                                             'font-size':'small'
-
+                                                                                         },
+                                                                                         items:[
+                                                                                             {//start of container for Intake label and selectfield
+                                                                                                 xtype:'container',
+                                                                                                 layout:'hbox',
+                                                                                                 items:[
+                                                                                                     {
+                                                                                                         xtype:'label',
+                                                                                                         html:'Intake',
+                                                                                                         style:{
+                                                                                                             'margin-left':'10px',
+                                                                                                             'margin-top':'5px',
+                                                                                                             'font-weight': '900',
+                                                                                                             'color': 'rgb(145, 86, 145)',
                                                                                                          }
-                                                                                          }
-                                                                                      ]
-                                                                                  },//end of container for Intake label and selectfield
-                                                                                  {
-                                                                                      html:'<hr>',
-                                                                                      style:{
-                                                                                                 'margin-left':'10px',
-                                                                                                 'margin-right':'10px'
-                                                                                      }
-                                                                                  },
-                                                                                  {
-                                                                                      xtype:'container',
-                                                                                      layout:'fit',
-                                                                                      width:'305px',
-                                                                                      height:'242px',
-                                                                                      style:{
-                                                                                          //'margin-left':'40px'
-                                                                                      },
-                                                                                      items:[
-                                                                                          {
-                                                                                              xtype:'IOPageIntakeChartView',
-                                                                                              
-                                                                                          }
-                                                                                      ]
-                                                                                  }
-                                                                              ]
-                                                                },// END OF INTAKE CHARTT CONTAINER
-                                                                {// OUTPUT CHART CONTAINER
-                                                                       xtype:'container',
-                                                                       width: '305px',
-                                                                       height: '320px',
-                                                                       layout:'vbox',
-                                                                       style: {
-                                                                                  'border': '1px #9E9D8B solid',
-                                                                                  'borderRightColor':'#9E9D8B',
-                                                                                  'borderTopColor': '#AC9C65',
-                                                                                  'borderTopWidth': '4px',
-                                                                                  'margin-left':'2%',
-                                                                                  'background-color': '#FFFFFF'
-
-                                                                              },
-                                                                              items:[
-                                                                                  {//START container of label and selectfiels
-                                                                                      xtype:'container',
-                                                                                      layout:'hbox',
-                                                                                      items:[
-                                                                                          {
-                                                                                              xtype:'label',
-                                                                                              html:'Output',
-                                                                                              style:{
-                                                                                                  'margin-left':'10px',
-                                                                                                  'margin-top':'5px',
-                                                                                                  'font-weight': '900',
-                                                                                                  'color': 'rgb(145, 86, 145)',
-                                                                                              }
-                                                                                          },
-                                                                                          {
-                                                                                              xtype:'selectfield',
-                                                                                              width:'120px',
-                                                                                              border:'1 1 1 1',
-                                                                                              itemid:'OutputSelectID',
-                                                                                              name:'OutputSelectID',
-                                                                                                 options: [
+                                                                                                     },
+                                                                                                     {
+                                                                                                         xtype:'selectfield',
+                                                                                                         width:'120px',
+                                                                                                         border:'1 1 1 1',
+                                                                                                         itemid:'IntakeSelectID',
+                                                                                                         name:'IntakeSelectID',
+                                                                                                         options:[
                                                                                                              {text: 'All',  value: 'all'},
-                                                                                                             {text: 'Urine',  value: 'OUT101'},
-                                                                                                             {text: 'Emesis',  value: 'OUT102'},
-                                                                                                             {text: 'Drains',  value: 'OUT103'},
-                                                                                                             {text: 'Stool',  value: 'OUT105'},
-                                                                                                             {text: 'Ostomy',  value: 'OUT106'},
-                                                                                                             {text: 'Unmeasured',  value: 'OUT107'},
-                                                                                                             {text: 'Incontinent',  value: 'OUT108'},
-                                                                                                             {text: 'Blood',  value: 'OUT109'},
-                                                                                                             {text: 'CRRT',  value: 'OUT110'},
-                                                                                                             {text: 'Other',  value: 'OUT104'},
-                                                                                                             {text: 'Total Out',  value: 'OUT111'},
+                                                                                                             {text: 'PO',  value: 'IN101'},
+                                                                                                             {text: 'IV',  value: 'IN102'},
+                                                                                                             {text: 'Blood',  value: 'IN103'},
+                                                                                                             {text: 'IVPB',  value: 'IN105'},
+                                                                                                             {text: 'Tube Fdg',  value: 'IN106'},
+                                                                                                             {text: 'TPN',  value: 'IN107'},
+                                                                                                             {text: 'Lipids',  value: 'IN108'},
+                                                                                                             {text: 'Breast Feed',  value: 'IN109'},
+                                                                                                             {text: 'Other',  value: 'IN104'},
+                                                                                                             {text: 'Total In',  value: 'Total_In'},
                                                                                                          ],
+                                                                                                         style:{
+                                                                                                                        'margin-left':'30%',
+                                                                                                                        'margin-top':'2%',
+                                                                                                                        'fontFamily':'openSansRegular',
+                                                                                                                        'font-size':'small'
 
-                                                                                                  style:{
-                                                                                                             'margin-left':'30%',
-                                                                                                             'margin-top':'2%',
-                                                                                                             'fontFamily':'openSansRegular',
-                                                                                                             'font-size':'small'
+                                                                                                                    }
+                                                                                                     }
+                                                                                                 ]
+                                                                                             },//end of container for Intake label and selectfield
+                                                                                             {
+                                                                                                 html:'<hr>',
+                                                                                                 style:{
+                                                                                                            'margin-left':'10px',
+                                                                                                            'margin-right':'10px'
+                                                                                                 }
+                                                                                             },
+                                                                                             {
+                                                                                                 xtype:'container',
+                                                                                                 layout:'fit',
+                                                                                                 width:'305px',
+                                                                                                 height:'242px',
+                                                                                                 style:{
+                                                                                                     //'margin-left':'40px'
+                                                                                                 },
+                                                                                                 items:[
+                                                                                                     {
+                                                                                                         xtype:'IOPageIntakeChartView',
+                                                                                                         itemid:'IOPageIntakeChartView'
+                                                                                                     },
+                                                                                                     {
+                                                                                                        xtype:'panel',
+                                                                                                        html:'No records',
+                                                                                                        itemid:'IOPageIntakechartNOrecords',
+                                                                                                        id:'IOPageIntakechartNOrecords',
+                                                                                                        hidden:'true',
+                                                                                                        style:{
+                                                                                                            'margin-left':'44px',
+                                                                                                            'margin-top':'40%',
+                                                                                                            'text-align': '-webkit-center',
+                                                                                                            'fontFamily':'openSansRegular',
+                                                                                                            'font-size':'smaller',
+                                                                                                            'border': '1px #9E9D8B solid',
+                                                                                                            'height':'30px',
+                                                                                                            'width':'130px'
+                                                                                                        }
+                                                                                                    }
+                                                                                                 ]
+                                                                                             }
+                                                                                         ]
+                                                                           },// END OF INTAKE CHARTT CONTAINER
+                                                                           {// OUTPUT CHART CONTAINER
+                                                                                  xtype:'container',
+                                                                                  width: '305px',
+                                                                                  height: '320px',
+                                                                                  layout:'vbox',
+                                                                                  style: {
+                                                                                             'border': '1px #9E9D8B solid',
+                                                                                             'borderRightColor':'#9E9D8B',
+                                                                                             'borderTopColor': '#AC9C65',
+                                                                                             'borderTopWidth': '4px',
+                                                                                             'margin-left':'2%',
+                                                                                             'background-color': '#FFFFFF'
 
+                                                                                         },
+                                                                                         items:[
+                                                                                             {//START container of label and selectfiels
+                                                                                                 xtype:'container',
+                                                                                                 layout:'hbox',
+                                                                                                 items:[
+                                                                                                     {
+                                                                                                         xtype:'label',
+                                                                                                         html:'Output',
+                                                                                                         style:{
+                                                                                                             'margin-left':'10px',
+                                                                                                             'margin-top':'5px',
+                                                                                                             'font-weight': '900',
+                                                                                                             'color': 'rgb(145, 86, 145)',
                                                                                                          }
-                                                                                              
-                                                                                          }
-                                                                                      ]
-                                                                                  },//END container of label and selectfiels
-                                                                                  {
-                                                                                      html:'<hr>',
+                                                                                                     },
+                                                                                                     {
+                                                                                                         xtype:'selectfield',
+                                                                                                         width:'120px',
+                                                                                                         border:'1 1 1 1',
+                                                                                                         cls:'border',
+                                                                                                         itemid:'OutputSelectID',
+                                                                                                         name:'OutputSelectID',
+                                                                                                            options: [
+                                                                                                                        {text: 'All',  value: 'all'},
+                                                                                                                        {text: 'Urine',  value: 'OUT101'},
+                                                                                                                        {text: 'Emesis',  value: 'OUT102'},
+                                                                                                                        {text: 'Drains',  value: 'OUT103'},
+                                                                                                                        {text: 'Stool',  value: 'OUT105'},
+                                                                                                                        {text: 'Ostomy',  value: 'OUT106'},
+                                                                                                                        {text: 'Unmeasured',  value: 'OUT107'},
+                                                                                                                        {text: 'Incontinent',  value: 'OUT108'},
+                                                                                                                        {text: 'Blood',  value: 'OUT109'},
+                                                                                                                        {text: 'CRRT',  value: 'OUT110'},
+                                                                                                                        {text: 'Other',  value: 'OUT104'},
+                                                                                                                        {text: 'Total Out',  value: 'Total_out'},
+                                                                                                                    ],
+
+                                                                                                             style:{
+                                                                                                                        'margin-left':'30%',
+                                                                                                                        'margin-top':'2%',
+                                                                                                                        'fontFamily':'openSansRegular',
+                                                                                                                        'font-size':'small'
+
+                                                                                                                    }
+
+                                                                                                     }
+                                                                                                 ]
+                                                                                             },//END container of label and selectfiels
+                                                                                             {
+                                                                                                 html:'<hr>',
+                                                                                                 style:{
+                                                                                                     'margin-left':'10px',
+                                                                                                     'margin-right':'10px'
+                                                                                                 }
+                                                                                             },
+                                                                                             {
+                                                                                                 xtype:'container',
+                                                                                                 layout:'fit',
+                                                                                                 width:'305px',
+                                                                                                 height:'242px',
+                                                                                                 cls:'IOPageOutputChart',
+                                                                                                 style:{
+                                                                                                     //'margin-left':'10px'
+                                                                                                 },
+                                                                                                 items:[
+                                                                                                     //Output pie chart
+                                                                                                     {
+                                                                                                         xtype:'IOPageOutputChartView',
+                                                                                                         itemid:'IOPageOutputChartView'
+                                                                                                     },
+                                                                                                     {
+                                                                                                        xtype:'panel',
+                                                                                                        html:'No records',
+                                                                                                        itemid:'IOPageOutputchartNOrecords',
+                                                                                                        id:'IOPageOutputchartNOrecords',
+                                                                                                        hidden:'true',
+                                                                                                        style:{
+                                                                                                            'margin-left':'44px',
+                                                                                                            'margin-top':'40%',
+                                                                                                            'text-align': '-webkit-center',
+                                                                                                            'fontFamily':'openSansRegular',
+                                                                                                            'font-size':'smaller',
+                                                                                                            'border': '1px #9E9D8B solid',
+                                                                                                            'height':'30px',
+                                                                                                            'width':'130px'
+                                                                                                        }
+                                                                                                    }
+                                                                                                 ]
+                                                                                             }
+                                                                                         ]
+                                                                           }// END OF OUTPUT CHART CONTIANER
+                                                                ]
+                                                            },// end of chart container
+                                                            {// start of intake table
+                                                                   xtype:'container',
+                                                                   width: '620px',
+                                                                   height: '360px',
+                                                                   layout:'vbox',
+                                                                   style: {   'border': '1px #9E9D8B solid',
+                                                                           'border ':'1px #9E9D8B solid',  
+                                                                           'borderRightColor':'#9E9D8B',
+                                                                           'borderTopColor': '#AC9C65',
+                                                                           'borderTopWidth': '4px',
+                                                                           'background-color': '#FFFFFF',
+                                                                           'margin-left':'2%',
+                                                                           'margin-top':'2%'
+                                                                          },  
+                                                                   items:[
+                                                                      //items for intake table 
+                                                                      {
+                                                                          xtype:'container',
+                                                                          layout:'hbox',
+                                                                          items:[
+                                                                              {
+                                                                                  xtype:'label',
+                                                                                  html:'Intake',
+                                                                                  style:{
+                                                                                           'margin-top': '10px',
+                                                                                           'margin-left': '20px',
+                                                                                           'font-weight': '900',
+                                                                                           'color': 'rgb(145, 86, 145)',
+                                                                                           'font-size': 'large'
+                                                                                         }
+                                                                              },
+                                                                              {
+                                                                                   xtype:'image',
+                                                                                   itemid:'IOPageIntakeEditID',
+                                                                                   id:'IOPageIntakeEditID',
+                                                                                   src:'resources/images/edit.png',
+                                                                                   height:'25px',
+                                                                                   width:'45px',
+                                                                                     // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
                                                                                       style:{
-                                                                                          'margin-left':'10px',
-                                                                                          'margin-right':'10px'
+                                                                                          'margin-left':'78%',
+                                                                                          'margin-top':'2%'
                                                                                       }
-                                                                                  },
-                                                                                  {
-                                                                                      xtype:'container',
-                                                                                      layout:'fit',
-                                                                                      width:'305px',
-                                                                                      height:'242px',
-                                                                                      cls:'IOPageOutputChart',
-                                                                                      style:{
-                                                                                          //'margin-left':'10px'
-                                                                                      },
-                                                                                      items:[
-                                                                                          //Output pie chart
-                                                                                          {
-                                                                                              xtype:'IOPageOutputChartView',
-                                                                                              style:{
-                                                                                                  
-                                                                                              }
+
+                                                                               },
+                                                                          ]
+                                                                      },
+                                                                      {
+                                                                          html:'<hr>',
+                                                                          style:{
+                                                                              padding:'10px',
+                                                                              'margin-top':'-10px'
+                                                                          }
+                                                                      },
+                                                                      {
+                                                                          xtype:'container',
+                                                                          width:'580px',
+                                                                          height:'280px',
+                                                                          style:{
+                                                                              'margin-left':'15px'
+                                                                          },
+                                                                           //layout:'hbox',
+                                                                          scrollable: {
+                                                                                       direction: 'vertical',
+                                                                                       directionLock: true
+                                                                                   },
+                                                                           items:[
+                                                                               {
+                                                                                   xtype:'panel',
+                                                                                   itemid:'IntakeTablePanel',
+                                                                                   style:{
+                                                                                               'fontFamily':'openSansRegular',
+                                                                                               'font-size':'small',
+                                                                                                'margin-left':'20px'
                                                                                           }
-                                                                                      ]
-                                                                                  }
-                                                                              ]
-                                                                }// END OF OUTPUT CHART CONTIANER
-                                                     ]
-                                                 },// end of chart container
-                                                 {// start of intake table
-                                                        xtype:'container',
-                                                        width: '620px',
-                                                        height: '360px',
-                                                        layout:'vbox',
-                                                        style: {                                                                       'border': '1px #9E9D8B solid',
-                                                                'border ':'1px #9E9D8B solid',  
-                                                                'borderRightColor':'#9E9D8B',
-                                                                'borderTopColor': '#AC9C65',
-                                                                'borderTopWidth': '4px',
-                                                                'background-color': '#FFFFFF',
-                                                                'margin-left':'2%',
-                                                                'margin-top':'2%'
-                                                               },  
-                                                        items:[
-                                                           //items for intake table 
-                                                           {
-                                                               xtype:'container',
-                                                               layout:'hbox',
-                                                               items:[
-                                                                   {
-                                                                       xtype:'label',
-                                                                       html:'Intake',
-                                                                       style:{
-                                                                                'margin-top': '10px',
-                                                                                'margin-left': '20px',
-                                                                                'font-weight': '900',
-                                                                                'color': 'rgb(145, 86, 145)',
-                                                                                'font-size': 'large'
-                                                                              }
-                                                                   },
-                                                                   {
-                                                                        xtype:'image',
-                                                                        itemid:'IOPageIntakeEditID',
-                                                                        id:'IOPageIntakeEditID',
-                                                                        src:'resources/images/edit.png',
-                                                                        height:'25px',
-                                                                        width:'45px',
-                                                                          // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                                           style:{
-                                                                               'margin-left':'78%',
-                                                                               'margin-top':'2%'
-                                                                           }
-
-                                                                    },
-                                                               ]
-                                                           },
-                                                           {
-                                                               html:'<hr>',
-                                                               style:{
-                                                                   padding:'10px',
-                                                                   'margin-top':'-10px'
-                                                               }
-                                                           },
-                                                           {
-                                                               xtype:'container',
-                                                               width:'580px',
-                                                               height:'280px',
-                                                               style:{
-                                                                   'margin-left':'15px'
-                                                               },
-                                                                //layout:'hbox',
-                                                               scrollable: {
-                                                                            direction: 'both',
-                                                                            directionLock: true
-                                                                        },
-                                                                items:[
-                                                                    {
-                                                                        xtype:'panel',
-                                                                        itemid:'IntakeTablePanel',
-                                                                        style:{
-                                                                                    'fontFamily':'openSansRegular',
-                                                                                    'font-size':'small',
-                                                                                     'margin-left':'20px'
                                                                                }
-                                                                    }
-                                                                ] 
-                                                            }
-                                                        ]
-                                                 },// end of intake table
-                                                 {//start of output table
-                                                        xtype:'container',
-                                                        width: '620px',
-                                                        height: '360px',
-                                                        layout:'vbox',
-                                                        style: {                                                                       'border': '1px #9E9D8B solid',
-                                                                    'border ':'1px #9E9D8B solid',  
-                                                                   'borderRightColor':'#9E9D8B',
-                                                                   'borderTopColor': '#AC9C65',
-                                                                   'borderTopWidth': '4px',
-                                                                   'background-color': '#FFFFFF',
-                                                                   'margin-left':'2%',
-                                                                   'margin-top':'2%'  
+                                                                           ] 
+                                                                       }
+                                                                   ]
+                                                            },// end of intake table
+                                                            {//start of output table
+                                                                   xtype:'container',
+                                                                   width: '620px',
+                                                                   height: '360px',
+                                                                   layout:'vbox',
+                                                                   style: {                                                                       'border': '1px #9E9D8B solid',
+                                                                               'border ':'1px #9E9D8B solid',  
+                                                                              'borderRightColor':'#9E9D8B',
+                                                                              'borderTopColor': '#AC9C65',
+                                                                              'borderTopWidth': '4px',
+                                                                              'background-color': '#FFFFFF',
+                                                                              'margin-left':'2%',
+                                                                              'margin-top':'2%'  
 
-                                                                  },  
-                                                        items:[
-                                                           //items for output table 
-                                                           {
-                                                               xtype:'container',
-                                                               layout:'hbox',
-                                                               items:[
-                                                                   {
-                                                                       xtype:'label',
-                                                                       html:'Output',
-                                                                       style:{
-                                                                                'margin-top': '10px',
-                                                                                'margin-left': '20px',
-                                                                                'font-weight': '900',
-                                                                                'color': 'rgb(145, 86, 145)',
-                                                                                'font-size': 'large'
-                                                                              }
-                                                                   },
-                                                                   {
-                                                                        xtype:'image',
-                                                                        itemid:'IOPageOutputEditID',
-                                                                        id:'IOPageOutputEditID',
-                                                                        src:'resources/images/edit.png',
-                                                                        height:'25px',
-                                                                        width:'45px',
-                                                                          // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
-                                                                           style:{
-                                                                               'margin-left':'78%',
-                                                                               'margin-top':'2%'
-                                                                           }
+                                                                             },  
+                                                                   items:[
+                                                                      //items for output table 
+                                                                      {
+                                                                          xtype:'container',
+                                                                          layout:'hbox',
+                                                                          items:[
+                                                                              {
+                                                                                  xtype:'label',
+                                                                                  html:'Output',
+                                                                                  style:{
+                                                                                           'margin-top': '10px',
+                                                                                           'margin-left': '20px',
+                                                                                           'font-weight': '900',
+                                                                                           'color': 'rgb(145, 86, 145)',
+                                                                                           'font-size': 'large'
+                                                                                         }
+                                                                              },
+                                                                              {
+                                                                                   xtype:'image',
+                                                                                   itemid:'IOPageOutputEditID',
+                                                                                   id:'IOPageOutputEditID',
+                                                                                   src:'resources/images/edit.png',
+                                                                                   height:'25px',
+                                                                                   width:'45px',
+                                                                                     // html:'<img src="resources/images/edit.png" height="25px", width="25px">',
+                                                                                      style:{
+                                                                                          'margin-left':'78%',
+                                                                                          'margin-top':'2%'
+                                                                                      }
 
-                                                                    },
-                                                               ]
-                                                           },
-                                                           {
-                                                               html:'<hr>',
-                                                               style:{
-                                                                   padding:'10px',
-                                                                   'margin-top':'-10px'
-                                                               }
-                                                           },
-                                                           {
-                                                               xtype:'container',
-                                                               width:'580px',
-                                                               height:'280px',
-                                                               style:{
-                                                                   'margin-left':'15px'
-                                                               },
-                                                                //layout:'hbox',
-                                                               scrollable: {
-                                                                            direction: 'both',
-                                                                            directionLock: true
-                                                                        },
-                                                                items:[
-                                                                    {
-                                                                        xtype:'panel',
-                                                                        itemid:'OutputTablePanel',
-                                                                        style:{
-                                                                                    'fontFamily':'openSansRegular',
-                                                                                    'font-size':'small',
-                                                                                     'margin-left':'20px'
+                                                                               },
+                                                                          ]
+                                                                      },
+                                                                      {
+                                                                          html:'<hr>',
+                                                                          style:{
+                                                                              padding:'10px',
+                                                                              'margin-top':'-10px'
+                                                                          }
+                                                                      },
+                                                                      {
+                                                                          xtype:'container',
+                                                                          width:'580px',
+                                                                          height:'280px',
+                                                                          style:{
+                                                                              'margin-left':'15px'
+                                                                          },
+                                                                           //layout:'hbox',
+                                                                          scrollable: {
+                                                                                       direction: 'vertical',
+                                                                                       directionLock: true
+                                                                                   },
+                                                                           items:[
+                                                                               {
+                                                                                   xtype:'panel',
+                                                                                   itemid:'OutputTablePanel',
+                                                                                   style:{
+                                                                                               'fontFamily':'openSansRegular',
+                                                                                               'font-size':'small',
+                                                                                                'margin-left':'20px'
+                                                                                          }
                                                                                }
-                                                                    }
-                                                                ] 
-                                                            }
+                                                                           ] 
+                                                                       }
+                                                                   ]
+                                                            }// end of output table
                                                         ]
-                                                 }// end of output table
-                                             ]
-                                         }// end of charts and table container
-                                     ]
-                                  }// end of content with in the container
+                                                    }// end of charts and table container
+                                                ]
+                                             }// end of content with in the container
+                                        ]            
+                                  },
+                                 
                             ]
                     },// end of main container
                     {

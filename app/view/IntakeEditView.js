@@ -1,12 +1,12 @@
-Ext.define('MVF.view.EditTable', {
+Ext.define('MVF.view.IntakeEditView', {
     extend: 'Ext.Container',
 
-    xtype: 'EditTable',
+    xtype: 'IntakeEditView',
     config:{
               items:[
                   {
                       xtype:'label',
-                      html:'Edit Vital Signs values',
+                      html:'Edit Intake values',
                       style:{
                           'color':'#4D3462',
 			  'text-align':'left',
@@ -22,11 +22,11 @@ Ext.define('MVF.view.EditTable', {
                       items:[
                           {
                             xtype: 'checkboxfield',
-                            name : 'VitalsCheck',
+                            name : 'IntakeCheck',
                             label: 'Select All',
-                            itemid:'VitalsSelectAll',
+                            itemid:'IntakeSelectAll',
                             labelWidth:'80%',
-                            value: 'VitalsCheck',
+                            value: 'IntakeCheck',
                             width:'96px',
                             checked: false
                         },
@@ -38,16 +38,16 @@ Ext.define('MVF.view.EditTable', {
                       width:'100%',
                       height:'100%',
                       style:{
-                          'margin-top':'0%'
+                          'margin-top':''
                       },
                       items:[
                             {
                                 xtype:'list',
                                 title: 'Select items',
-                                store: 'VitalSignsDropDownStore',
+                                store: 'IOPageIntakeStore',
                                 cls:    'VitalSignsDropDownStore',
-                                itemid:'vitalSigns',
-                                itemTpl: '<div style="height:5px; margin-bottom:5px;">{text}</div>',
+                                itemid:'IntakeValues',
+                                itemTpl: '<div style="height:5px; margin-bottom:5px;">{name}</div>',
                                 styleHtmlContent: false,
                                 mode: 'MULTI',
                                 disableSelection: false,
@@ -63,12 +63,16 @@ Ext.define('MVF.view.EditTable', {
                                     'border':'1px #DDDDDD solid',
                                     'border-top': '5px #AC9C65 solid'
                                 },
-                             
+                              
                             },
                             {
                                 xtype:'container',
                                 width:'31%',
                                 height:'69%',
+                                scrollable: {
+                                        direction: 'vertical',
+                                        directionLock: true
+                                    },
                                 style:{
                                     'margin-top':'',
                                     'margin-left':'1%',
@@ -77,6 +81,7 @@ Ext.define('MVF.view.EditTable', {
 
                                 },
                                 items:[
+                                    //text fields
                                     {
                                         xtype:'container',
                                         width:'100%',
@@ -86,10 +91,10 @@ Ext.define('MVF.view.EditTable', {
                                                 xtype:'textfield',
                                                 width:'100%',
                                                 height:'41px',
-                                                itemid:'VitalsEditBP',
-                                                id:'VitalsEditBP',
+                                                itemid:'IntakeEditBlood',
+                                                //id:'IntakeEditBlood',
                                                 //hidden:'true',
-                                                placeHolder:'Enter BP result',
+                                                placeHolder:'Enter Blood result',
                                                 style:{
                                                     'border':'1px #DDDDDD solid',
                                                 },
@@ -105,10 +110,10 @@ Ext.define('MVF.view.EditTable', {
                                                 xtype:'textfield',
                                                 width:'100%',
                                                 height:'41px',
-                                                itemid:'VitalsEditHeight',
-                                                id:'VitalsEditHeight',
+                                                itemid:'IntakeEditBreastFeed',
+                                                //id:'IntakeEditBreastFeed',
                                                 //hidden:'true',
-                                                placeHolder:'Enter Height result',
+                                                placeHolder:'Enter Breast Feed result',
                                                 style:{
                                                     'border':'1px #DDDDDD solid',
                                                 },
@@ -124,10 +129,10 @@ Ext.define('MVF.view.EditTable', {
                                                 xtype:'textfield',
                                                 width:'100%',
                                                 height:'41px',
-                                                itemid:'VitalsEditPain',
-                                                id:'VitalsEditPain',
+                                                itemid:'IntakeEditIV',
+                                                //id:'IntakeEditIV',
                                                 //hidden:'true',
-                                                placeHolder:'Enter Pain result',
+                                                placeHolder:'Enter IV result',
                                                 style:{
                                                     'border':'1px #DDDDDD solid',
                                                 },
@@ -143,48 +148,10 @@ Ext.define('MVF.view.EditTable', {
                                                 xtype:'textfield',
                                                 width:'100%',
                                                 height:'41px',
-                                                itemid:'VitalsEditPulse',
-                                                id:'VitalsEditPulse',
-                                               // hidden:'true',
-                                                placeHolder:'Enter Pulse result',
-                                                style:{
-                                                    'border':'1px #DDDDDD solid',
-                                                },
-                                              },
-                                          ]
-                                    },
-                                    {
-                                        xtype:'container',
-                                        width:'100%',
-                                        height:'41px',
-                                        items:[
-                                              {
-                                                xtype:'textfield',
-                                                width:'100%',
-                                                height:'41px',
-                                                itemid:'VitalsEditResp',
-                                                id:'VitalsEditResp',
-                                               // hidden:'true',
-                                                placeHolder:'Enter Resp result',
-                                                style:{
-                                                    'border':'1px #DDDDDD solid',
-                                                },
-                                              },
-                                          ]
-                                    },
-                                    {
-                                        xtype:'container',
-                                        width:'100%',
-                                        height:'41px',
-                                        items:[
-                                              {
-                                                xtype:'textfield',
-                                                width:'100%',
-                                                height:'41px',
-                                                itemid:'VitalsEditSaO2',
-                                                id:'VitalsEditSaO2',
+                                                itemid:'IntakeEditIVPB',
+                                               // id:'IntakeEditIVPB',
                                                 //hidden:'true',
-                                                placeHolder:'Enter SaO2 result',
+                                                placeHolder:'Enter IVPB result',
                                                 style:{
                                                     'border':'1px #DDDDDD solid',
                                                 },
@@ -200,29 +167,86 @@ Ext.define('MVF.view.EditTable', {
                                                 xtype:'textfield',
                                                 width:'100%',
                                                 height:'41px',
-                                                itemid:'VitalsEditTemp',
-                                                id:'VitalsEditTemp',
-                                               // hidden:'true',
-                                                placeHolder:'Enter Temp result',
-                                                style:{
-                                                    'border':'1px #DDDDDD solid',
-                                                },
-                                              },
-                                          ]
-                                    },
-                                    {
-                                        xtype:'container',
-                                        width:'100%',
-                                        height:'41px',
-                                        items:[
-                                              {
-                                                xtype:'textfield',
-                                                width:'100%',
-                                                height:'41px',
-                                                itemid:'VitalsEditWeight',
-                                                id:'VitalsEditWeight',
+                                                itemid:'IntakeEditLipids',
+                                                //id:'IntakeEditLipids',
                                                 //hidden:'true',
-                                                placeHolder:'Enter weight result',
+                                                placeHolder:'Enter Lipids result',
+                                                style:{
+                                                    'border':'1px #DDDDDD solid',
+                                                },
+                                              },
+                                          ]
+                                    },
+                                    {
+                                        xtype:'container',
+                                        width:'100%',
+                                        height:'41px',
+                                        items:[
+                                              {
+                                                xtype:'textfield',
+                                                width:'100%',
+                                                height:'41px',
+                                                itemid:'IntakeEditOther',
+                                                //id:'IntakeEditOther',
+                                                //hidden:'true',
+                                                placeHolder:'Enter Others result',
+                                                style:{
+                                                    'border':'1px #DDDDDD solid',
+                                                },
+                                              },
+                                          ]
+                                    },
+                                    {
+                                        xtype:'container',
+                                        width:'100%',
+                                        height:'41px',
+                                        items:[
+                                              {
+                                                xtype:'textfield',
+                                                width:'100%',
+                                                height:'41px',
+                                                itemid:'IntakeEditPO',
+                                                //id:'IntakeEditPO',
+                                                //hidden:'true',
+                                                placeHolder:'Enter PO result',
+                                                style:{
+                                                    'border':'1px #DDDDDD solid',
+                                                },
+                                              },
+                                          ]
+                                    },
+                                    {
+                                        xtype:'container',
+                                        width:'100%',
+                                        height:'41px',
+                                        items:[
+                                              {
+                                                xtype:'textfield',
+                                                width:'100%',
+                                                height:'41px',
+                                                itemid:'IntakeEditTPN',
+                                                //id:'IntakeEditTPN',
+                                                //hidden:'true',
+                                                placeHolder:'Enter TPN result',
+                                                style:{
+                                                    'border':'1px #DDDDDD solid',
+                                                },
+                                              },
+                                          ]
+                                    },
+                                    {
+                                        xtype:'container',
+                                        width:'100%',
+                                        height:'41px',
+                                        items:[
+                                              {
+                                                xtype:'textfield',
+                                                width:'100%',
+                                                height:'41px',
+                                                itemid:'IntakeEditTubeFDG',
+                                                //id:'IntakeEditTubeFDG',
+                                                //hidden:'true',
+                                                placeHolder:'Enter Tube Fdg result',
                                                 style:{
                                                     'border':'1px #DDDDDD solid',
                                                 },
@@ -248,8 +272,7 @@ Ext.define('MVF.view.EditTable', {
                                                         xtype: 'datepickerfield',
                                                         label: 'Date:',
                                                         labelAlign:'left',
-                                                        itemid:'vitalseditDate',
-
+                                                        itemid:'IntakeeditDate',
                                                         name: 'Date',
                                                         picker: { yearFrom: new Date().getFullYear(), yearTo: new Date().getFullYear() + 5},
                                                         value : { day: new Date().getDate(), month: (new Date().getMonth()+1), year : new Date().getFullYear()}
@@ -259,7 +282,7 @@ Ext.define('MVF.view.EditTable', {
                                                      label: 'Time:',
                                                      labelAlign:'left',
                                                      name: 'Time',
-                                                     itemid:'Vitalstime',
+                                                     itemid:'Intaketime',
                                                       options: [
                                                                {text: '01:00',  value: '01:00'},
                                                                {text: '01:30',  value: '01:30'},
@@ -319,7 +342,7 @@ Ext.define('MVF.view.EditTable', {
                                         {
                                             xtype:'button',
                                             ui: 'plain',
-                                            itemid:'saveVitalsbutton',
+                                            itemid:'saveIntakebutton',
                                             //id:'patientsummarybutton',
                                             html: '<div style="text-align: center; border: 1px solid black; padding: 5px">SAVE</div>',
                                             width:'170px',

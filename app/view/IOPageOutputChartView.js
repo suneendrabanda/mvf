@@ -17,12 +17,12 @@ Ext.define("MVF.view.IOPageOutputChartView", {
         colors: ["#115fa6", "#94ae0a", "#a61120", "#ff8809", "#ffd13e"],
         legend:{
             position:'right',
-            width:'130px',
+            width:'142px',
             style:{
-                'margin-left':'-4px'
+                'margin-left':'0px'
             }
         },
-        insetPadding:42,
+        insetPadding:22,
         series: [
                      {
                         type: 'pie',

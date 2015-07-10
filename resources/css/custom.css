@@ -389,24 +389,24 @@ html,body{
     z-index: 0;
 }
 
-.x-spinner .x-input-el, .x-field-select .x-input-el {
+/*.x-spinner .x-input-el, .x-field-select .x-input-el {
   -webkit-text-fill-color: #000;
   -webkit-opacity: 1;
   border-width: thin;
   border-color: rgb(47, 32, 60);
   overflow: hidden;
-  /* border-style: solid; */
+   border-style: solid; 
 }
 
 .datepick{
     margin-top: 1%;
-}
+}*/
 
-.x-field .x-input-el {
+/*.x-field .x-input-el {
   width: 100%;
   border-color: black;
   border-width: thin;
-}
+}*/
 
 /*pie chart call out hidden*/
 /*canvas#ext-element-784{
@@ -426,4 +426,28 @@ canvas#ext-element-467{
 }
 canvas#ext-element-497{
     visibility: hidden;
+}*/
+canvas#ext-element-952{
+     visibility: hidden;
+}
+canvas#ext-element-984{
+    visibility: hidden;
+}
+canvas#ext-element-1421{
+    visibility: hidden;
+}
+canvas#ext-element-1457{
+    visibility: hidden;
+}
+canvas#ext-element-1220{
+    visibility: hidden;
+}
+canvas#ext-element-1251{
+    visibility: hidden;
+}
+/*.border{
+    border-width: thin;
+    border-color: rgb(47, 32, 60);
+    overflow: hidden;
+    border-style: solid; 
 }*/

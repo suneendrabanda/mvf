@@ -31,7 +31,7 @@ while($row = mysqli_fetch_array($result)) {
             array_push($arr,array('Name'=>$name,'result'=>$hematologylabresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>'null','range'=>$min . " - " . $max));
         }
         else{
-            array_push($arr,array('Name'=>$name,'result'=>$hematologylabresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>$exact,'range'=>$min . " - " . $max));
+            array_push($arr,array('Name'=>$name,'result'=>$hematologylabresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>$exact,'range'=>$exact));
         }
         
 }
