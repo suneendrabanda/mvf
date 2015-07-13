@@ -10,8 +10,12 @@ Ext.define("MVF.controller.IOPageController", {
             OutputResultsPanel:'[itemid=OutputTablePanel]',
             IntakeSelectFieldChange:'[itemid=IntakeSelectID]',
             GoTOPage:'[itemid=IOpageid]',
-            IntakeListToEdit:'[itemid=IntakeValues]',
-            
+            IOIntakeListToEdit:'[itemid=IOIntakeValues]',
+            IOIntakeCheck:'[itemid=IOIntakeSelectAll]',
+            IOOutputListToEdit:'[itemid=IOOutputValues]',
+            IOOutputCheck:'[itemid=IOOutputSelectAll]',
+            OnIOIntakeSaveButtonTap:'[itemid=IOsaveIntakebutton]',
+            OnIOOutputSaveButtonTap:'[itemid=IOsaveOutputbutton]'
         },
         control:{
             OnViewClick:{
@@ -32,8 +36,20 @@ Ext.define("MVF.controller.IOPageController", {
             GoTOPage:{
                 change:'GoTOPage'
             },
-            
-            
+            IOIntakeCheck:{
+                   check: 'IOselectAllinList',
+		   uncheck: 'IOselectAllinList'
+               },
+            IOOutputCheck:{
+                   check: 'IOselectAllinList',
+		   uncheck: 'IOselectAllinList'
+            },
+            OnIOIntakeSaveButtonTap:{
+                tap:'OnIOIntakeSaveButtonTap'
+            },
+            OnIOOutputSaveButtonTap:{
+                tap:'OnIOOutputSaveButtonTap'
+            }
         }
     },
     init:function(){
@@ -125,7 +141,7 @@ Ext.define("MVF.controller.IOPageController", {
 	    
 	    items: [
                             {
-				    xtype: 'IntakeEditView',
+				    xtype: 'IOPageIntakeEditView',
 				    width: '98%',
 				    height: '98%',
                             },
@@ -159,7 +175,7 @@ Ext.define("MVF.controller.IOPageController", {
 	    
 	    items: [
                     {
-                        xtype: 'OutputEditView',
+                        xtype: 'IOPageOutputEditView',
                         width: '98%',
                         height: '98%',
                     }
@@ -277,5 +293,168 @@ Ext.define("MVF.controller.IOPageController", {
             }
         });
     },
-    
+    IOselectAllinList:function(checkbox, e, eOpts){
+        console.log(checkbox.getName());
+       if (checkbox.isChecked()) {
+           console.log('checked  '+checkbox.isChecked());
+           if (checkbox.getName() === 'VitalsCheck') {
+		this.getVitalSignsToEdit().selectAll(true);
+	    }
+           else if(checkbox.getName() === 'IOIntakeCheck'){
+               console.log('test1234');
+               console.log(this.getIOIntakeListToEdit());
+               this.getIOIntakeListToEdit().selectAll(true);
+           }
+           else if(checkbox.getName() === 'IOOutputCheck'){
+               this.getIOOutputListToEdit().selectAll(true);
+           }
+           
+       }
+       else{
+           console.log('Unchecked  '+checkbox.isChecked());
+           if (checkbox.getName() === 'VitalsCheck') {
+		this.getVitalSignsToEdit().deselectAll(true);
+	    }
+           else if(checkbox.getName() === 'IOIntakeCheck'){
+               this.getIOIntakeListToEdit().deselectAll(true);
+           }
+           else if(checkbox.getName() === 'IOOutputCheck'){
+               this.getIOOutputListToEdit().deselectAll(true);
+           }
+       }
+    },
+    OnIOIntakeSaveButtonTap:function(){
+        var intakedate=Ext.ComponentQuery.query('[itemid=IOIntakeeditDate]')[0].getFormattedValue();
+       var intaketime=Ext.ComponentQuery.query('[itemid=IOIntaketime]')[0].getValue();
+       var IntakeArray=this.getIOIntakeListToEdit().getSelection();
+       var IntakeArrayCount=this.getIOIntakeListToEdit().getSelectionCount();
+       for(var i=0;i<IntakeArrayCount;i++){
+           var IntakeName= IntakeArray[i].data.name;
+            if(IntakeName==='Blood'){
+              var IntakeValue=IntakeArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=IOIntakeEditBlood]')[0].getValue();
+            }
+            else if(IntakeName==='Breast Feed'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOIntakeEditBreastFeed]')[0].getValue();
+            }
+            else if(IntakeName==='IV'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOIntakeEditIV]')[0].getValue();
+            }
+            else if(IntakeName==='IVPB'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOIntakeEditIVPB]')[0].getValue();
+            }
+            else if(IntakeName==='Lipids'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOIntakeEditLipids]')[0].getValue();
+            }
+            else if(IntakeName==='Other'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOIntakeEditOther]')[0].getValue();
+            }
+            else if(IntakeName==='PO'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOIntakeEditPO]')[0].getValue();
+            }
+            else if(IntakeName==='TPN'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOIntakeEditTPN]')[0].getValue();
+            }
+            else if(IntakeName==='Tube Fdg'){
+                 var IntakeValue=IntakeArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOIntakeEditTubeFDG]')[0].getValue();
+            }
+            Ext.getStore('intakedataupdatestore').load({
+            params:{ intakenm: IntakeValue,
+                     itkdate: intakedate,
+                     itktime:intaketime,
+                     itkresult:result,
+                     patient_id:MVF.app.patient_id
+                   },
+                    scope:this,
+                    callback:function(records,operation,success){
+                        if(success){
+                            Ext.getCmp('intakepiechartNOrecords').hide();
+                            Ext.getStore('intakepiechartstore').load({
+                            params:{
+                                  patient_id:MVF.app.patient_id
+                             }
+                        });
+                     }
+                 }
+            });
+       }
+    },
+    OnIOOutputSaveButtonTap:function(){
+        var outputdate=Ext.ComponentQuery.query('[itemid=IOOutputeditDate]')[0].getFormattedValue();
+       var outputtime=Ext.ComponentQuery.query('[itemid=IOOutputtime]')[0].getValue();
+       var OutputArray=this.getIOOutputListToEdit().getSelection();
+       var OutputArrayCount=this.getIOOutputListToEdit().getSelectionCount();
+       for(var i=0;i<OutputArrayCount;i++){
+           var OutputName= OutputArray[i].data.name;
+           if(OutputName==='Blood'){
+              var OutputValue=OutputArray[i].data.value;
+              var result=Ext.ComponentQuery.query('[itemid=IOOutputEditBlood]')[0].getValue();
+            }
+           else if(OutputName==='CRRT'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOOutputEditCRRT]')[0].getValue();
+            }
+           else if(OutputName==='Drains'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOOutputEditDrains]')[0].getValue();
+            }
+            else if(OutputName==='Emesis'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOOutputEditEmesis]')[0].getValue();
+            }
+            else if(OutputName==='Incontinent'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOOutputEditIncontinent]')[0].getValue();
+            }
+            else if(OutputName==='Ostomy'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOOutputEditOstomy]')[0].getValue();
+            }
+            else if(OutputName==='Other'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOOutputEditOther]')[0].getValue();
+            }
+            else if(OutputName==='Stool'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOOutputEditStool]')[0].getValue();
+            }
+            else if(OutputName==='Unmeasured'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOOutputEditUnmeasured]')[0].getValue();
+            }
+            else if(OutputName==='Urine'){
+                 var OutputValue=OutputArray[i].data.value;
+                 var result=Ext.ComponentQuery.query('[itemid=IOOutputEditUrine]')[0].getValue();
+            }
+            Ext.getStore('outputUpdateStore').load({
+            params:{ outputnm: OutputValue,
+                     outputdate: outputdate,
+                     outputtime:outputtime,
+                     outputresult:result,
+                     patient_id:MVF.app.patient_id
+                   },
+                   scope:this,
+                   callback:function(records,operation,success){
+                        if(success){
+                            console.log('result updated');
+                            Ext.getCmp('outputpiechartNOrecords').hide();
+                            Ext.getStore('outputpiechartstore').load({
+                                params:{
+                                     patient_id:MVF.app.patient_id
+                                }
+                            });
+                            
+                        }
+                    }
+             });
+       }
+    }
     });

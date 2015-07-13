@@ -29,6 +29,11 @@ Ext.define("MVF.view.intakepiechart", {
                         type: 'pie',
                         labelField: 'intakename',
                         labelOverflowPadding:'1px',
+//                        label:{
+//                            'display':'none',
+//                            'field ':[null,null,null,null,null,null,null,null,null,null],
+//                            'font ':'60px'
+//                        },
                         xField: 'result',
                         donut: 50,
                         height:25,

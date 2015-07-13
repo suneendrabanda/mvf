@@ -427,7 +427,7 @@ canvas#ext-element-467{
 canvas#ext-element-497{
     visibility: hidden;
 }*/
-canvas#ext-element-952{
+/*canvas#ext-element-952{
      visibility: hidden;
 }
 canvas#ext-element-984{
@@ -444,10 +444,16 @@ canvas#ext-element-1220{
 }
 canvas#ext-element-1251{
     visibility: hidden;
-}
+}*/
 /*.border{
     border-width: thin;
     border-color: rgb(47, 32, 60);
     overflow: hidden;
     border-style: solid; 
 }*/
+div#ext-IOPageIntakeChartView-1-overlay-surface{
+    visibility: hidden;
+}
+div#ext-IOPageOutputChartView-1-overlay-surface{
+    visibility: hidden;
+}

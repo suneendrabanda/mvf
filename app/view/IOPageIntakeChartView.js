@@ -59,6 +59,11 @@ Ext.define("MVF.view.IOPageIntakeChartView", {
                      {
                         type: 'pie',
                         labelField: 'intakename',
+                        labelOverflowPadding:'1px',
+//                        label:{
+//                            //'display':'none',
+//                            'field ':['intakename']
+//                        },
                         xField: 'result',
                         donut: 50,
                         substyle:{

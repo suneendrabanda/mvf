@@ -35,7 +35,7 @@ Ext.define('MVF.view.OutputEditView', {
                       xtype:'container',
                       layout:'hbox',
                       width:'100%',
-                      height:'100%',
+                      height:'88%',
                       style:{
                           'margin-top':''
                       },
@@ -54,7 +54,7 @@ Ext.define('MVF.view.OutputEditView', {
                                 margin: 0,
                                 padding: 0,
                                 width:'31%',
-                                height:'69%',
+                                height:'90%',
                                 style:{
                                     'margin-top':'2%',
                                     'margin-left':'2%',
@@ -66,7 +66,7 @@ Ext.define('MVF.view.OutputEditView', {
                             {
                                 xtype:'container',
                                 width:'31%',
-                                height:'69%',
+                                height:'90%',
                                 scrollable: {
                                         direction: 'vertical',
                                         directionLock: true
@@ -275,13 +275,13 @@ Ext.define('MVF.view.OutputEditView', {
                             {
                                 xtype:'container',
                                 layout:'vbox',
-                                width:'100%',
+                                width:'40%',
                                 height:'100%',
                                 items:[
                                         {
                                             xtype: 'fieldset',
                                             height:'95px',
-                                            width:'37%',
+                                            width:'97%',
                                             style:{
                                                 'margin-top':'1px'
                                             },
@@ -366,7 +366,7 @@ Ext.define('MVF.view.OutputEditView', {
                                             height:'30px',
                                             style:{
                                                    'margin-left':'131px',
-                                                   'margin-top':'24%',
+                                                   'margin-top':'74%',
                                                    'font-size':'12px'
                                                 }
                                         }

@@ -43,7 +43,9 @@ Ext.application({
     "SerologyView",
     "SerologyChartView",
     "IntakeEditView",
-    "OutputEditView"
+    "OutputEditView",
+    "IOPageIntakeEditView",
+    "IOPageOutputEditView"
 ],
    models:[
 	"linechart",

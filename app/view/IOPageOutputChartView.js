@@ -27,6 +27,9 @@ Ext.define("MVF.view.IOPageOutputChartView", {
                      {
                         type: 'pie',
                         labelField: 'outputname',
+//                        label:{
+//                            'display':'none'
+//                        },
                         xField: 'result',
                         donut: 50,
                         

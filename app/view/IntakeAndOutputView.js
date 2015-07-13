@@ -414,7 +414,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                                                             'font-size':'smaller',
                                                                                                             'border': '1px #9E9D8B solid',
                                                                                                             'height':'30px',
-                                                                                                            'width':'130px'
+                                                                                                            'width':'122px'
                                                                                                         }
                                                                                                     }
                                                                                                  ]
@@ -519,7 +519,7 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                                                             'font-size':'smaller',
                                                                                                             'border': '1px #9E9D8B solid',
                                                                                                             'height':'30px',
-                                                                                                            'width':'130px'
+                                                                                                            'width':'117px'
                                                                                                         }
                                                                                                     }
                                                                                                  ]

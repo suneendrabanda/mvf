@@ -28,12 +28,13 @@ Ext.define("MVF.controller.MainController", {
             VitalSignsToEdit:'[itemid=vitalSigns]',
             OnVitalsUpdateButton:'[itemid=saveVitalsbutton]',
             OnIntakeSaveButtonTap:'[itemid=saveIntakebutton]',
-            IntakeListToEdit:'[itemid=IntakeValues]',
+            IntakeListToEdit:'[itemId=IntakeValues]',
             OnOutputSaveButtonTap:'[itemid=saveOutputbutton]',
             OutputListToEdit:'[itemid=OutputValues]',
             VitalsCheck:'[itemid=VitalsSelectAll]',
             IntakeCheck:'[itemid=IntakeSelectAll]',
-            OutputCheck:'[itemid=OutputSelectAll]'
+            OutputCheck:'[itemid=OutputSelectAll]',
+            
         },
         control: {
 
@@ -91,7 +92,11 @@ Ext.define("MVF.controller.MainController", {
                OutputCheck:{
                    check: 'selectAllinList',
 		   uncheck: 'selectAllinList'
-               }
+               },
+               editIntakeButton:{
+                   tap:'editintakefunction'
+               },
+               
         }
     },
     init: function(){
@@ -277,8 +282,7 @@ Ext.define("MVF.controller.MainController", {
           
     },
    editintakefunction:function(){
-      // console.log('in function');
-      var overlay = Ext.Viewport.add({
+        var overlay = Ext.Viewport.add({
             xtype: 'panel',
 	    itemid: 'EditoutputvaluesOverlay',
             // Make it modal so you can click the mask to hide the overlay
@@ -512,9 +516,14 @@ Ext.define("MVF.controller.MainController", {
                             vitalresult: result,
                             patient_id:MVF.app.patient_id
                         },
+                      callback:function(success){
+                          if(success){
+                              
+                          }
+                      }  
                    });
        }
-       
+       this.loadtabledata();
    },
    OnIntakeSaveButtonTap:function(){
        var intakedate=Ext.ComponentQuery.query('[itemid=IntakeeditDate]')[0].getFormattedValue();
@@ -658,6 +667,7 @@ Ext.define("MVF.controller.MainController", {
 		this.getVitalSignsToEdit().selectAll(true);
 	    }
            else if(checkbox.getName() === 'IntakeCheck'){
+               console.log('test1234');
                this.getIntakeListToEdit().selectAll(true);
            }
            else if(checkbox.getName() === 'OutputCheck'){
