@@ -22,7 +22,7 @@ while($patient_visit_row = mysqli_fetch_array($patient_visit_result) ){
 }
 //echo $discharge_date;
 $arr= array();
-    if(!$discharge_date){
+    
            $result=mysqli_query($con,"select * from vs_exam");
                     while($row = mysqli_fetch_array($result)){
                         if($vitalname==$row['VS_ID'] && $formatted_date == $row['Date'] && $time==$row['Time'] && $row['Visit_ID']==$visit_id ){
@@ -43,12 +43,12 @@ $arr= array();
                    // echo 'entered if loop';
                     $info="result Updated";
                     array_push($arr, array('information'=>$info)); 
-            }
+            
 
-            else{
-                $info="You can't update vital Signs values because patient was already discharged on  $discharge_date";
-                array_push($arr, array('information'=>$info)); 
-              //  echo 'entered else loop';
-            }
+//            else{
+//                $info="You can't update vital Signs values because patient was already discharged on  $discharge_date";
+//                array_push($arr, array('information'=>$info)); 
+//              //  echo 'entered else loop';
+//            }
         
 echo json_encode($arr);

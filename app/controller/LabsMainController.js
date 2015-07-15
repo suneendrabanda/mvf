@@ -360,7 +360,7 @@ Ext.define("MVF.controller.LabsMainController", {
             callback:function(records,success){
                 var No_Of_Results=HematologyStore.getCount();
                 //console.log('no of Hematology results fetch'+No_Of_Results);
-                if(success){
+                if(No_Of_Results>0){
                     var LastUpdatedDate=records[0].data.date;
                     //console.log(LastUpdatedDate+' date in hematology');
                     var HematologylastUpdatepanel=this.getHematologylastUpdatepanel();

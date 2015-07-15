@@ -163,11 +163,12 @@ Ext.define("MVF.controller.MainController", {
             //Ext.Msg.alert('vitalval');
     },
     loadtabledata:function(){
+        console.log('load table invoked');
         var vitalvalue=Ext.ComponentQuery.query('#tablevitalname')[0].getValue();
         var tablestartdate=Ext.ComponentQuery.query('#tablestartdate')[0].getFormattedValue();
         var tableenddate=Ext.ComponentQuery.query('#tableenddate')[0].getFormattedValue();
         var shiftvalue=Ext.ComponentQuery.query('#shiftname')[0].getValue();
-
+        console.log(vitalvalue+tablestartdate+tableenddate+shiftvalue);
         //Ext.Msg.alert(vitalvalue);
         // Ext.Msg.alert(selecteddate);
         var vitaltablepanel= this.getVitaltablepanel();
@@ -474,6 +475,8 @@ Ext.define("MVF.controller.MainController", {
        var VitalsArrayCount=this.getVitalSignsToEdit().getSelectionCount();
        var Date=Ext.ComponentQuery.query('[itemid=vitalseditDate]')[0].getFormattedValue();
        var time=Ext.ComponentQuery.query('[itemid=Vitalstime]')[0].getValue();
+       var info='';
+       var flag=0;
        //var vitalItem=VitalsArray.pop();
        for(var i=0;i<VitalsArrayCount;i++){
          var vitalName= VitalsArray[i].data.text;
@@ -516,12 +519,22 @@ Ext.define("MVF.controller.MainController", {
                             vitalresult: result,
                             patient_id:MVF.app.patient_id
                         },
-                      callback:function(success){
+                      callback:function(success,records){
                           if(success){
                               
+                             
+                          }
+                          else{
+                              flag=1;
                           }
                       }  
                    });
+       }
+       if(flag===0){
+           alert('Results are updated');
+       }
+       else{
+           alert('Records are not updated.');
        }
        this.loadtabledata();
    },
