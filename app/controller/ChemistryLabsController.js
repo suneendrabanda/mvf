@@ -7,7 +7,9 @@ Ext.define("MVF.controller.ChemistryLabsController", {
             chemistrychartviewpanel:'[itemid=chartviewingid]',
             chemistrylabsPageId:'[itemid=chemistrypageid]',
             ChemistryUpdateButton:'[itemid=ChemistryUpdateButton]',
-            ChemistryTable:'[itemid=ChemistryResultsTable]'
+            ChemistryTable:'[itemid=ChemistryResultsTable]',
+            ChemistryStartDate:'[itemid=chemistrystartdate]',
+            Chemisrtydropdownvalueid:'[itemid=chemisrtydropdownvalueid]'
         },
         control:{
             OnViewClick:{
@@ -239,7 +241,7 @@ Ext.define("MVF.controller.ChemistryLabsController", {
         var i=0;
                     for(var i=0;i<No_of_Results_Fetch;i++){
                         if(records[i].data.exact==='null'){
-                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                            if(parseInt(records[i].data.result)<=parseInt(records[i].data.max) && parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
                                TableValues+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
@@ -249,7 +251,7 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                         }
                         else{
                             if(records[i].data.min==='null'){
-                                if(records[i].data.result<=records[i].data.max){
+                                if(parseInt(records[i].data.result)<=parseInt(records[i].data.max)){
                                     TableValues+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                                 else{
@@ -258,7 +260,7 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                                 }
                             }
                          else if(records[i].data.max==='null'){
-                             if(records[i].data.result>=records[i].data.min){
+                             if(parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
                                     TableValues+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                                 else{
@@ -272,29 +274,30 @@ Ext.define("MVF.controller.ChemistryLabsController", {
              // HematologyTableAlerts.setHtml('Alerts ('+Alert_count_between_dates+')');
     },
     OnChemistryPageLoad:function(){
-        var chemistryvalue=Ext.ComponentQuery.query('[itemid=chemisrtydropdownvalueid]')[0].getValue();
-            var chartviewingpanel=this.getChemistrychartviewpanel();
-            //console.log(chemistryvalue);
-            chartviewingpanel.setHtml(chemistryvalue);
-            var store=Ext.getStore('chemistrychartstore');
-            var startdatevalue=Ext.ComponentQuery.query('[itemid=chemistrystartdate]')[0].getFormattedValue();
-            var enddatevalue=Ext.ComponentQuery.query('[itemid=chemistryenddate]')[0].getFormattedValue();
-            //console.log(startdatevalue);
-            //console.log(enddatevalue);
-            store.load({
-                        params:{ chemistryvalue: chemistryvalue,
-                                 startdate: startdatevalue,
-                                 enddate: enddatevalue,
-                                 patient_id:MVF.app.patient_id
-                                },
-                                 scope:this,
-                                 callback:function(records,success){
-                                    if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
-                                        //alert('No records found');
-                                    }
-                                }
-                        
-                   });
+//        var chemistryvalue=Ext.ComponentQuery.query('[itemid=chemisrtydropdownvalueid]')[0].getValue();
+//            var chartviewingpanel=this.getChemistrychartviewpanel();
+//            //console.log(chemistryvalue);
+//            chartviewingpanel.setHtml(chemistryvalue);
+//            var store=Ext.getStore('chemistrychartstore');
+//            var startdatevalue=Ext.ComponentQuery.query('[itemid=chemistrystartdate]')[0].getFormattedValue();
+//            var enddatevalue=Ext.ComponentQuery.query('[itemid=chemistryenddate]')[0].getFormattedValue();
+//            //console.log(startdatevalue);
+//            //console.log(enddatevalue);
+//            store.load({
+//                        params:{ chemistryvalue: chemistryvalue,
+//                                 startdate: startdatevalue,
+//                                 enddate: enddatevalue,
+//                                 patient_id:MVF.app.patient_id
+//                                },
+//                                 scope:this,
+//                                 callback:function(records,success){
+//                                    if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
+//                                        //alert('No records found');
+//                                    }
+//                                }
+//                                //startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
+//                        
+//                   });
         //load table on page load
         var ChemistryStore=Ext.getStore('LabsMainChemistryResultsStore');
         var ChemistryResultsPanel=this.getChemistryTable();
@@ -308,12 +311,16 @@ Ext.define("MVF.controller.ChemistryLabsController", {
             scope:this,
             callback:function(records,success){
                 var No_Of_ResultsFetch=ChemistryStore.getCount();
+                var LabViewingName=this.getChemistrychartviewpanel();
                 console.log('no of che fetch'+No_Of_ResultsFetch);
                 if(success){
                     var i=0;
+                    var date=this.getChemistryStartDate().setValueField(records[0].data.date);
+                    console.log('date'+records[0].data.date);
+                    console.log('working'+date);
                     for(var i=0;i<No_Of_ResultsFetch;i++){
                         if(records[i].data.exact==='null'){
-                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                            if(parseInt(records[i].data.result)<=parseInt(records[i].data.max) && parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
                                ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
@@ -323,7 +330,7 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                         }
                         else{
                             if(records[i].data.min==='null'){
-                                if(records[i].data.result<=records[i].data.max){
+                                if(parseInt(records[i].data.result)<=parseInt(records[i].data.max)){
                                     ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                                 else{
@@ -332,7 +339,7 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                                 }
                             }
                          else if(records[i].data.max==='null'){
-                             if(records[i].data.result>=records[i].data.min){
+                             if(parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
                                     ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                                 else{
@@ -346,6 +353,26 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                     ChemistryResultsPanel.setHtml(ChemistryResults);
                     //console.log(ChemistryResults);
                 }
+                // display chart
+                var store=Ext.getStore('chemistrychartstore');
+                var enddatevalue=Ext.Date.format(Ext.Date.add(new Date(records[0].data.date),Ext.Date.DAY,7),'m/d/Y');
+                LabViewingName.setHtml(records[0].data.name);
+                var selectLab=this.getChemisrtydropdownvalueid().setName(records[0].data.name);
+                store.load({
+                        params:{ chemistryvalue: records[0].data.name,
+                                 startdate: records[0].data.date,
+                                 enddate: enddatevalue,
+                                 patient_id:MVF.app.patient_id
+                                },
+                                 scope:this,
+                                 callback:function(records,success){
+                                     
+                                    if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
+                                        //alert('No records found');
+                                    }
+                                }
+                        
+                   });
             }
         });
     }

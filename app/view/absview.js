@@ -505,17 +505,30 @@ Ext.define('MVF.view.absview', {
                                                          layout:'hbox',
                                                          items:[
                                                              {
-                                                          xtype:'label',
-                                                          html:'Graph View',
-                                                            style:{
-                                                                  'margin-top': '3%',
-                                                                   'margin-left': '3%',
-                                                                   /* font-family: -webkit-pictograph; */
-                                                                   'font-weight': '800',
-                                                                   'color': 'rgb(145, 86, 145)',
-                                                                   'font-size': 'medium'
-                                                                 }
-                                                     }
+                                                                xtype:'label',
+                                                                html:'Graph View-',
+                                                                  style:{
+                                                                        'margin-top': '3%',
+                                                                         'margin-left': '3%',
+                                                                         /* font-family: -webkit-pictograph; */
+                                                                         'font-weight': '800',
+                                                                         'color': 'rgb(145, 86, 145)',
+                                                                         'font-size': 'medium'
+                                                                       }
+                                                           },
+                                                           {
+                                                                xtype:'label',
+                                                                html:'',
+                                                                itemid:'ABSGraphViewId',
+                                                                  style:{
+                                                                        'margin-top': '3%',
+                                                                         'margin-left': '2%',
+                                                                         /* font-family: -webkit-pictograph; */
+                                                                         'font-weight': '800',
+                                                                         'color': 'rgb(145, 86, 145)',
+                                                                         'font-size': 'medium'
+                                                                       }
+                                                           }
                                                      
                                                     ]
                                                      },//end of items above  hr in line chart

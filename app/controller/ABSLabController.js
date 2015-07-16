@@ -6,7 +6,8 @@ Ext.define("MVF.controller.ABSLabController", {
             OnViewClick:'[itemid=absviewbuttonid]',
             ABSUpdateButton:'[itemid=AbsUpdateButton]',
             ABSTablePanel:'[itemid=ABSTablePanel]',
-            ABGGoToPageSelect:'[itemid=Abgpageid]'
+            ABGGoToPageSelect:'[itemid=Abgpageid]',
+            ABSGraphViewId:'[itemid=ABSGraphViewId]'
         },
         control:{
             OnViewClick:{
@@ -233,7 +234,7 @@ Ext.define("MVF.controller.ABSLabController", {
         var i=0;
                     for(i=0;i<No_of_Results_Fetch;i++){
                         if(records[i].data.exact==='null'){
-                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                            if(parseFloat(records[i].data.result)<=parseFloat(records[i].data.max) && parseFloat(records[i].data.result)>=parseFloat(records[i].data.min)){
                                 TableValues+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
@@ -250,32 +251,33 @@ Ext.define("MVF.controller.ABSLabController", {
                 
     },
     OnABGPageLoad:function(){
-        var absSelectedValue=Ext.ComponentQuery.query('[itemid=absdropdownvalueid]')[0].getValue();
-        var AbsStartDate=Ext.ComponentQuery.query('[itemid=absstartdate]')[0].getFormattedValue();
-        var AbsEndDate=Ext.ComponentQuery.query('[itemid=absenddate]')[0].getFormattedValue();
-        var ShiftValue=Ext.ComponentQuery.query('[itemid=absshift]')[0].getValue();
-//        console.log(absSelectedValue);console.log(AbsStartDate);console.log(AbsEndDate);
-//        console.log(ShiftValue);
-        var store=Ext.getStore('ABSChartStore');
-        store.load({
-            params:{
-                absSelectedValue:absSelectedValue,
-                StartDate:AbsStartDate,
-                EndDate:AbsEndDate,
-                shiftvalue:ShiftValue,
-                patient_id:MVF.app.patient_id
-                },
-                scope:this,
-                callback:function(records,success){
-                    if(records[0].data.result==='null'&&records[0].data.time==='null'&&records[0].data.exact==='null'&&records[0].data.minimunvalue==='null'&&records[0].data.maximumvalue==='null'&&records[0].data.date==='null'){
-                            //alert('No records found');
-                        }
-                    
-                   
-            }
-        });
+//        var absSelectedValue=Ext.ComponentQuery.query('[itemid=absdropdownvalueid]')[0].getValue();
+//        var AbsStartDate=Ext.ComponentQuery.query('[itemid=absstartdate]')[0].getFormattedValue();
+//        var AbsEndDate=Ext.ComponentQuery.query('[itemid=absenddate]')[0].getFormattedValue();
+//        var ShiftValue=Ext.ComponentQuery.query('[itemid=absshift]')[0].getValue();
+////        console.log(absSelectedValue);console.log(AbsStartDate);console.log(AbsEndDate);
+////        console.log(ShiftValue);
+//        var store=Ext.getStore('ABSChartStore');
+//        store.load({
+//            params:{
+//                absSelectedValue:absSelectedValue,
+//                StartDate:AbsStartDate,
+//                EndDate:AbsEndDate,
+//                shiftvalue:ShiftValue,
+//                patient_id:MVF.app.patient_id
+//                },
+//                scope:this,
+//                callback:function(records,success){
+//                    if(records[0].data.result==='null'&&records[0].data.time==='null'&&records[0].data.exact==='null'&&records[0].data.minimunvalue==='null'&&records[0].data.maximumvalue==='null'&&records[0].data.date==='null'){
+//                            //alert('No records found');
+//                        }
+//                    
+//                   
+//            }
+//        });
         var ABGStore=Ext.getStore('LabsMainABGResultsStore');
         var ABGresultsPanel=this.getABSTablePanel();
+        var AbsStartDate=Ext.ComponentQuery.query('[itemid=absstartdate]')[0].getFormattedValue();
         var ABGResults='<table><thead><tr><th style="padding: 0 82px 8px 0">Date</th><th style="padding: 0 66px 8px 0">Time</th><th style="padding: 0 80px 8px 0">Name</th><th style="padding: 0 80px 8px 0">Result</th><th style="padding: 0 10px 8px 0">Normal Range</th></tr></thead><tbody>';
         ABGStore.load({
             params:{
@@ -306,6 +308,37 @@ Ext.define("MVF.controller.ABSLabController", {
                     
                     //console.log(ABGResults);
                 }
+                //testing
+                var time=records[0].data.time.replace(":","");
+                if(parseInt(time)>700&& parseInt(time)<1500){
+                    var shift='day';
+                }
+                else if(parseInt(time)>=1500&& parseInt(time)<2300){
+                    var shift='evening';
+                }
+                else if(parseInt(time)>=2300 || parseInt(time)<700){
+                    var shift='night';
+                }
+                //console.log('shift = '+shift);
+                var store=Ext.getStore('ABSChartStore');
+                var AbsEndDate=Ext.Date.format(Ext.Date.add(new Date(records[0].data.date),Ext.Date.DAY,7),'m/d/Y');
+                var LabViewing=this.getABSGraphViewId();
+                LabViewing.setHtml(records[0].data.name);
+                store.load({
+                params:{
+                    absSelectedValue:records[0].data.name,
+                    StartDate:records[0].data.date,
+                    EndDate:AbsEndDate,
+                    shiftvalue:shift,
+                    patient_id:MVF.app.patient_id
+                    },
+                    scope:this,
+                    callback:function(records,success){
+                        if(records[0].data.result==='null'&&records[0].data.time==='null'&&records[0].data.exact==='null'&&records[0].data.minimunvalue==='null'&&records[0].data.maximumvalue==='null'&&records[0].data.date==='null'){
+                                //alert('No records found');
+                            }
+                        }
+            });
             }
         });
        

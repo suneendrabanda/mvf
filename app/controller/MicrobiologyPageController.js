@@ -220,7 +220,7 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
         var i=0;
                   for(i=0;i<No_of_Results_Fetch;i++){
                         if(records[i].data.exact==='null'){
-                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                            if(parseInt(records[i].data.result)<=parseInt(records[i].data.max) && parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
                                 TableValues+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
@@ -238,24 +238,25 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
                       
     },
     OnMicrobiologyPageLoad:function(){
-         var MBvalue=Ext.ComponentQuery.query('[itemid=mbdropdownvalueid]')[0].getValue();
-        var StartDate=Ext.ComponentQuery.query('[itemid=mbstartdate]')[0].getFormattedValue();
-        var EndDate=Ext.ComponentQuery.query('[itemid=mbenddate]')[0].getFormattedValue();
-        console.log(MBvalue);console.log(StartDate);console.log(EndDate);
-        var store=Ext.getStore('MicrobiologyChartStore');
-        store.load({
-                params:{ MBvalue: MBvalue,
-                         startdate: StartDate,
-                         enddate: EndDate,
-                         patient_id:MVF.app.patient_id},
-                         scope:this,
-                         callback:function(records,success){
-                                    if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
-                                        //alert('No records found');
-                                    }
-                            }
-                     });
+//         var MBvalue=Ext.ComponentQuery.query('[itemid=mbdropdownvalueid]')[0].getValue();
+//           var StartDate=Ext.ComponentQuery.query('[itemid=mbstartdate]')[0].getFormattedValue();
+//        var EndDate=Ext.ComponentQuery.query('[itemid=mbenddate]')[0].getFormattedValue();
+//        console.log(MBvalue);console.log(StartDate);console.log(EndDate);
+//        var store=Ext.getStore('MicrobiologyChartStore');
+//        store.load({
+//                params:{ MBvalue: MBvalue,
+//                         startdate: StartDate,
+//                         enddate: EndDate,
+//                         patient_id:MVF.app.patient_id},
+//                         scope:this,
+//                         callback:function(records,success){
+//                                    if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
+//                                        //alert('No records found');
+//                                    }
+//                            }
+//                     });
         var MicrobiologyStore=Ext.getStore('LabsMainMicrobiologyResultsStore');
+        var StartDate=Ext.ComponentQuery.query('[itemid=mbstartdate]')[0].getFormattedValue();
         var MicrobiologyresultsPanel=this.getMicrobiologyTable();
         var MicrobiologyResults='<table><thead><tr><th style="padding: 0 82px 8px 0">Date</th><th style="padding: 0 66px 8px 0">Time</th><th style="padding: 0 80px 8px 0">Name</th><th style="padding: 0 80px 8px 0">Result</th><th style="padding: 0 10px 8px 0">Normal Range</th></tr></thead><tbody>';
         MicrobiologyStore.load({
@@ -286,6 +287,22 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
                     MicrobiologyresultsPanel.setHtml(MicrobiologyResults);
                    // console.log(MicrobiologyResults);
                 }
+                var store=Ext.getStore('MicrobiologyChartStore');
+                var EndDate=Ext.Date.format(Ext.Date.add(new Date(records[0].data.date),Ext.Date.DAY,7),'m/d/Y');
+                var MicrobiologychartViewingLab=this.getMicrobiologychartview();
+                MicrobiologychartViewingLab.setHtml(records[0].data.name);
+                store.load({
+                params:{ MBvalue: records[0].data.name,
+                         startdate: records[0].data.date,
+                         enddate: EndDate,
+                         patient_id:MVF.app.patient_id},
+                         scope:this,
+                         callback:function(records,success){
+                                    if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
+                                        //alert('No records found');
+                                    }
+                            }
+                     });
             }
         });
         

@@ -223,7 +223,7 @@ Ext.define("MVF.controller.hematologyController", {
                     var i=0;
                     for(i=0;i<No_of_Results_Fetch;i++){
                         if(records[i].data.exact==='null'){
-                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                            if(parseInt(records[i].data.result)<=parseInt(records[i].data.max) && parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
                                 TableValues+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
@@ -330,28 +330,29 @@ Ext.define("MVF.controller.hematologyController", {
         });
     },
     OnHematologyPageLoad:function(){
-            var hematologyvalue=Ext.ComponentQuery.query('[itemid=hematologydropdownvalueid]')[0].getValue();
-            var StartDate=Ext.ComponentQuery.query('[itemid=hematologystartdate]')[0].getFormattedValue();
-            var EndDate=Ext.ComponentQuery.query('[itemid=hematologyenddate]')[0].getFormattedValue();
-            var store=Ext.getStore('HematologyChartStore');
-            var HematologyChartViewingPanel=this.getHematologyChartViewingPanel();
-            HematologyChartViewingPanel.setHtml(hematologyvalue);
-            this.CountNO_OFAlerts();
-            store.load({
-                params:{ hematologyvalue: hematologyvalue,
-                         startdate: StartDate,
-                         enddate: EndDate,
-                        patient_id:MVF.app.patient_id
-                        },
-                     scope:this,
-                     callback:function(records,success){
-                         if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
-                             //alert('No records found');
-                         }
-                        }
-                         
-                     });
+//            var hematologyvalue=Ext.ComponentQuery.query('[itemid=hematologydropdownvalueid]')[0].getValue();
+//            var StartDate=Ext.ComponentQuery.query('[itemid=hematologystartdate]')[0].getFormattedValue();
+//            var EndDate=Ext.ComponentQuery.query('[itemid=hematologyenddate]')[0].getFormattedValue();
+//            var store=Ext.getStore('HematologyChartStore');
+//            var HematologyChartViewingPanel=this.getHematologyChartViewingPanel();
+//            HematologyChartViewingPanel.setHtml(hematologyvalue);
+//            this.CountNO_OFAlerts();
+//            store.load({
+//                params:{ hematologyvalue: hematologyvalue,
+//                         startdate: StartDate,
+//                         enddate: EndDate,
+//                        patient_id:MVF.app.patient_id
+//                        },
+//                     scope:this,
+//                     callback:function(records,success){
+//                         if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
+//                             //alert('No records found');
+//                         }
+//                        }
+//                         
+//                     });
         var HematologyStore=Ext.getStore('LabsMainHematologyResultsStore');
+        var StartDate=Ext.ComponentQuery.query('[itemid=hematologystartdate]')[0].getFormattedValue();
         var HematologyesultsPanel=this.getHematologyTable();
         var HematologyResults='<table><thead><tr><th style="padding: 0 82px 8px 0">Date</th><th style="padding: 0 66px 8px 0">Time</th><th style="padding: 0 80px 8px 0">Name</th><th style="padding: 0 80px 8px 0">Result</th><th style="padding: 0 10px 8px 0">Normal Range</th></tr></thead><tbody>';
         HematologyStore.load({
@@ -382,6 +383,26 @@ Ext.define("MVF.controller.hematologyController", {
                     HematologyesultsPanel.setHtml(HematologyResults);
                     //console.log(HematologyResults);
                 }
+                //display chart on page load
+                var store=Ext.getStore('HematologyChartStore');
+                var EndDate=Ext.Date.format(Ext.Date.add(new Date(records[0].data.date),Ext.Date.DAY,7),'m/d/Y');
+                var HematologyChartViewingPanel=this.getHematologyChartViewingPanel();
+                HematologyChartViewingPanel.setHtml(records[0].data.name);
+                store.load({
+                params:{ hematologyvalue: records[0].data.name,
+                         startdate: records[0].data.date,
+                         enddate: EndDate,
+                        patient_id:MVF.app.patient_id
+                        },
+                     scope:this,
+                     callback:function(records,success){
+                         if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
+                             //alert('No records found');
+                         }
+                        }
+                         
+                     });
+                
             }
         });            
              

@@ -206,9 +206,8 @@ Ext.define('MVF.view.Main', {
                                           id:'vitalname',
                                           name:'vitalname',
                                            options: [
-                                                   {text: '-select-',  value: ''},
-                                                   {text: 'Pulse',  value: 'pulse'},
                                                    {text: 'BP', value: 'bp'},
+                                                   {text: 'Pulse',  value: 'pulse'},
                                                    {text: 'Resp',  value: 'resp'},
                                                    {text: 'Temp',  value: 'temp'},
                                                    {text: 'SaO2',  value: 'sao2'},

@@ -30,10 +30,10 @@ while($row = mysqli_fetch_array($result)) {
             $first_CharIn_Exact=  substr($exact, 1, 1);
             $exactValue=substr($exact, 2);
             if($first_CharIn_Exact=='<'){
-                array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>'null','max'=>$exactValue,'exact'=>'$exact','range'=>$min . " - " . $max));
+                array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>'null','max'=>$exactValue,'exact'=>'$exact','range'=>$exact));
             }
             else{
-                array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>$exactValue,'max'=>'null','exact'=>'$exact','range'=>$min . " - " . $max));
+                array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>$exactValue,'max'=>'null','exact'=>'$exact','range'=>$exact));
             }
         }
         

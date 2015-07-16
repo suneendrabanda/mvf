@@ -426,7 +426,7 @@ Ext.define("MVF.controller.MainController", {
                                        '<td style=" padding:0 30px 0 15px">'+records[i].data.Weight+'</td>'+'</tr>';//records[i].data.Weight
                  }
              }
-             else{
+                 else{
                  vitaltable += '<tr style="border-bottom:1px solid #a5a399">'+
                                        '<td style=" padding:0 30px 0 18px">'+'Date'+'</td>'+
                                        '<td style=" padding:0 30px 0 18px;border-right:1px solid #a5a399">'+'Time'+'</td>'+
@@ -439,6 +439,45 @@ Ext.define("MVF.controller.MainController", {
                       }
              }
                   vitaltablepanel.setHtml(vitaltable);
+                  //try start
+                  var vitalname=Ext.ComponentQuery.query('[itemid=vitalname]')[0].getValue();
+                  var startdate=Ext.Date.format(Ext.Date.add(new Date(records[0].data.date),Ext.Date.DAY,-7),'m/d/Y');
+                  var enddate=Ext.Date.format(Ext.Date.add(new Date(records[0].data.date),Ext.Date.DAY,7),'m/d/Y');       
+                  var storeli=Ext.getStore('LineChart');
+                  var storebp=Ext.getStore('bpLineChart');
+                  if(vitalname==='bp'){
+                        storebp.load({
+                            params:{ vitalvalue: vitalname,
+                                     shiftvalue: shiftvalue,
+                                     startdate: startdate,
+                                     enddate: enddate,
+                                     patient_id:MVF.app.patient_id},
+                            scope:this,
+                            callback:function(records){
+
+                         }
+                        });
+                        Ext.ComponentQuery.query('#linechartid')[0].hide();
+                        Ext.ComponentQuery.query('#bplinechartid')[0].show();
+
+                    } 
+                  else{
+                    console.log(vitalvalue);
+                     storeli.load({
+                         params:{ vitalvalue: vitalname,
+                                  shiftvalue: shiftvalue,
+                                  startdate: startdate,
+                                  enddate: enddate,
+                                  patient_id:MVF.app.patient_id},
+                         scope:this,
+                         callback:function(records){
+
+                         }
+                     });
+                     Ext.ComponentQuery.query('#bplinechartid')[0].hide();
+                     Ext.ComponentQuery.query('#linechartid')[0].show();
+                 }
+                  //try end
              }
          });
        var intakeStore=Ext.StoreMgr.get('intakepiechartstore'); 

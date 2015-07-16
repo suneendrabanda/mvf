@@ -105,7 +105,7 @@ Ext.define("MVF.controller.LabsMainController", {
                     var i=0;
                     for(var i=0;i<No_Of_ResultsFetch;i++){
                         if(records[i].data.exact==='null'){
-                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                            if(parseInt(records[i].data.result)<=parseInt(records[i].data.max) && parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
                                ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
@@ -115,21 +115,26 @@ Ext.define("MVF.controller.LabsMainController", {
                         }
                         else{
                             if(records[i].data.min==='null'){
-                                if(records[i].data.result<=records[i].data.max){
+                                if(parseInt(records[i].data.result)<=parseInt(records[i].data.max)){
+                                    console.log('result = '+records[i].data.result+' max = '+records[i].data.max);
                                     ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                                 else{
                                     //red
+                                    console.log(' RED result = '+records[i].data.result+' max = '+records[i].data.max);
                                     ChemistryResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                             }
                          else if(records[i].data.max==='null'){
-                             if(records[i].data.result>=records[i].data.min){
+                             
+                             if(parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
+                                   console.log('result = '+records[i].data.result+' min = '+records[i].data.min);
                                     ChemistryResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                                 else{
                                     //red
-                                    ChemistryResults+='<tr style="color:#ff0000;padding: 10px 0 0 0><td>'+records[i].data.name+'</td><td>'+records[i].data.result+records[i].data.time+'</td><td>'+'</td><td>'+records[i].data.range+'</td></tr>';
+                                    console.log(' RED MIN result = '+records[i].data.result+' min = '+records[i].data.min);
+                                    ChemistryResults+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                                 }
                          }   
                         }
@@ -185,7 +190,7 @@ Ext.define("MVF.controller.LabsMainController", {
                     var i=0;
                     for(i=0;i<No_Of_Results;i++){
                         if(records[i].data.exact==='null'){
-                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                            if(parseInt(records[i].data.result)<=parseInt(records[i].data.max) && parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
                                 HematologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
@@ -220,7 +225,7 @@ Ext.define("MVF.controller.LabsMainController", {
                     var i=0;
                     for(i=0;i<No_Of_Results;i++){
                         if(records[i].data.exact==='null'){
-                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                            if(parseInt(records[i].data.result)<=parseInt(records[i].data.max) && parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
                                 MicrobiologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
@@ -255,7 +260,7 @@ Ext.define("MVF.controller.LabsMainController", {
                     var i=0;
                     for(i=0;i<No_Of_Results;i++){
                         if(records[i].data.exact==='null'){
-                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                            if(parseFloat(records[i].data.result)<=parseFloat(records[i].data.max) && parseFloat(records[i].data.result)>=parseFloat(records[i].data.min)){
                                 ABGResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
@@ -292,7 +297,7 @@ Ext.define("MVF.controller.LabsMainController", {
                     var i=0;
                     for(i=0;i<No_Of_Results;i++){
                         if(records[i].data.exact==='null'){
-                            if(records[i].data.result<=records[i].data.max && records[i].data.result>=records[i].data.min){
+                            if(parseInt(records[i].data.result<=records[i].data.max) && parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
                                 SerologyResults+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.range+'</td></tr>';
                             }
                             else{
