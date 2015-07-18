@@ -274,30 +274,30 @@ Ext.define("MVF.controller.ChemistryLabsController", {
              // HematologyTableAlerts.setHtml('Alerts ('+Alert_count_between_dates+')');
     },
     OnChemistryPageLoad:function(){
-//        var chemistryvalue=Ext.ComponentQuery.query('[itemid=chemisrtydropdownvalueid]')[0].getValue();
-//            var chartviewingpanel=this.getChemistrychartviewpanel();
-//            //console.log(chemistryvalue);
-//            chartviewingpanel.setHtml(chemistryvalue);
-//            var store=Ext.getStore('chemistrychartstore');
-//            var startdatevalue=Ext.ComponentQuery.query('[itemid=chemistrystartdate]')[0].getFormattedValue();
-//            var enddatevalue=Ext.ComponentQuery.query('[itemid=chemistryenddate]')[0].getFormattedValue();
-//            //console.log(startdatevalue);
-//            //console.log(enddatevalue);
-//            store.load({
-//                        params:{ chemistryvalue: chemistryvalue,
-//                                 startdate: startdatevalue,
-//                                 enddate: enddatevalue,
-//                                 patient_id:MVF.app.patient_id
-//                                },
-//                                 scope:this,
-//                                 callback:function(records,success){
-//                                    if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
-//                                        //alert('No records found');
-//                                    }
-//                                }
-//                                //startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
-//                        
-//                   });
+       /* var chemistryvalue=Ext.ComponentQuery.query('[itemid=chemisrtydropdownvalueid]')[0].getValue();
+            var chartviewingpanel=this.getChemistrychartviewpanel();
+            //console.log(chemistryvalue);
+            chartviewingpanel.setHtml(chemistryvalue);
+            var store=Ext.getStore('chemistrychartstore');
+            var startdatevalue=Ext.ComponentQuery.query('[itemid=chemistrystartdate]')[0].getFormattedValue();
+            var enddatevalue=Ext.ComponentQuery.query('[itemid=chemistryenddate]')[0].getFormattedValue();
+            //console.log(startdatevalue);
+            //console.log(enddatevalue);
+            store.load({
+                        params:{ chemistryvalue: chemistryvalue,
+                                 startdate: startdatevalue,
+                                 enddate: enddatevalue,
+                                 patient_id:MVF.app.patient_id
+                                },
+                                 scope:this,
+                                 callback:function(records,success){
+                                    if(records[0].data.result==='null'&&records[0].data.exact==='null'&&records[0].data.min==='null'&&records[0].data.max==='null'&&records[0].data.date==='null'){
+                                        //alert('No records found');
+                                    }
+                                }
+                                //startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
+                        
+                   });*/
         //load table on page load
         var ChemistryStore=Ext.getStore('LabsMainChemistryResultsStore');
         var ChemistryResultsPanel=this.getChemistryTable();
