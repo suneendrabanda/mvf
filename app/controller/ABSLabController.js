@@ -7,7 +7,8 @@ Ext.define("MVF.controller.ABSLabController", {
             ABSUpdateButton:'[itemid=AbsUpdateButton]',
             ABSTablePanel:'[itemid=ABSTablePanel]',
             ABGGoToPageSelect:'[itemid=Abgpageid]',
-            ABSGraphViewId:'[itemid=ABSGraphViewId]'
+            ABSGraphViewId:'[itemid=ABSGraphViewId]',
+            Absdropdownvalueid:'[itemid=absdropdownvalueid]'
         },
         control:{
             OnViewClick:{
@@ -323,6 +324,9 @@ Ext.define("MVF.controller.ABSLabController", {
                 var store=Ext.getStore('ABSChartStore');
                 var AbsEndDate=Ext.Date.format(Ext.Date.add(new Date(records[0].data.date),Ext.Date.DAY,7),'m/d/Y');
                 var LabViewing=this.getABSGraphViewId();
+                var SeletedLab=this.getAbsdropdownvalueid();
+                console.log(SeletedLab);
+                SeletedLab.setName(records[0].data.name);
                 LabViewing.setHtml(records[0].data.name);
                 store.load({
                 params:{
@@ -341,6 +345,12 @@ Ext.define("MVF.controller.ABSLabController", {
             });
             }
         });
-       
+         var ChemistryStore=Ext.getStore('ABGNotesStore');
+            ChemistryStore.load({
+                params:{
+                    patient_id:MVF.app.patient_id,
+                    Nurse_id:'S1019'
+                }
+            });
     }
 });

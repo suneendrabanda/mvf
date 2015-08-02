@@ -329,6 +329,24 @@ Ext.define('MVF.view.absview', {
                                         },
                                         items:[
                                             // content in the notes container here
+                                            {
+                                                xtype:'button',
+                                                ui:'plain',
+                                                width:'140px',
+                                                itemid:'AbgViewDefinition',
+                                                html:'View Definition',
+                                                style:{
+                                                         'margin-top': '20px',
+                                                         'margin-left': '0px',
+                                                         'font-weight': '800',
+                                                         'color': 'rgb(145, 86, 145)',
+                                                         'font-size': 'medium'
+                                                    }
+                                            },
+                                            {
+                                                html:'<hr>',
+
+                                            },
                                             {// start of notes label hbox
                                                 xtype:'container',
                                                 layout:'hbox',
@@ -441,7 +459,7 @@ Ext.define('MVF.view.absview', {
                                                         xtype:'button',
                                                         html: '<div style="text-align: center; border: 1px solid black; padding: 5px">New Notes</div>',
                                                         ui:'plain',
-                                                        itemid:'absAddNewNotes',
+                                                        itemid:'ChemistryAddNewNotes',
                                                         width:'120px',
                                                         height:'30px',
                                                         style:{
@@ -455,23 +473,29 @@ Ext.define('MVF.view.absview', {
                                             {
                                                 html:'<hr>'
                                             },
-//                                            {
-//                                                xtype:'accordionlist',
-//                                                store: Ext.create('MVF.store.ABGNotesStore'),
-//                                                flex: 1,
-//                                                height:'20px',
-//                                                width:'40px',
-//                                                indent: true,
-//                                                singleMode: true,
-//                                                animation: true,
-//                                                animationDuration: 500,
-//                                                listeners: {
-//                                                        initialize: function() {
-//                                                            this.load();
-//                                                        }
-//                                                    }
-//                                                
-//                                            }
+                                            {
+                                                xtype:'accordionlist',
+                                                store: Ext.create('MVF.store.ABGNotesStore'),
+                                                flex: 1,
+                                                height:'77%',
+                                                width:'99%',
+                                                indent: true,
+                                                singleMode: true,
+                                                headerItemTpl: [
+                                                        '<div style="margin-top:-8px;padding-bottom:4px;font-size:14px">{title}</div><div style="padding-bottom:0px;font-size:11px">{date}</div>'
+                                                    ].join(''),
+                                                contentItemTpl: [
+                                                        '<div style="height:100%; margin-bottom:15px; width:99%; font-size:14px;">{notes}</div>'
+                                                        ].join(''),
+                                                listeners: {
+                                                    initialize: function() {
+                                                        this.load();
+                                                    },
+                                                },
+                                                style:{
+                                                    'margin-left':'1px'
+                                                }
+                                            }
 //                                            
                                         ]
                                         

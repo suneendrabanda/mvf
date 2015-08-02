@@ -1,14 +1,15 @@
 <?php
 include('connect.php');
 $Notes=$_POST['Notes'];
-$Subject=$_POST['Subject'];
-$LabName=$_POST['LabName'];
-$patient_id=$_POST['patientId'];
-$Nurse_id=$_POST['NurseID'];
+$Subject=$_POST['Subject'];//'BNP';//
+$LabName=$_POST['LabName'];//'Chemistry';//
+$patient_id=$_POST['patientId'];//'71013';//
+$Nurse_id=$_POST['NurseID'];//'S1019';//
 //echo '$patient_id = '.$patient_id.'$Nurse_id = '.$Nurse_id;
 date_default_timezone_set("America/Chicago");
 $time=date('H:i');
 $date=date('Y-m-d');
+//echo $date;
 $Note_ID;
 //check if Patient_exam_notes table as records to assign notes_id
 $PE_Notes_id=mysqli_query($con,"select Note_ID as Note_ID from patient_exam_note order by Note_ID ASC");
@@ -17,7 +18,6 @@ $NO_OF_ROWS_FETCH=mysqli_num_rows($PE_Notes_id);
 if($NO_OF_ROWS_FETCH<=0){
     $Note_ID=1001;
  }
- 
 else{
     while($row = mysqli_fetch_array($PE_Notes_id)){
         $Note_ID=$row['Note_ID'];
@@ -41,3 +41,6 @@ if($updateresult==true){
 else{
     echo 'There is an error occurred while saving your notes.';
 }
+
+
+

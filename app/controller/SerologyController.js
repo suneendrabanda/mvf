@@ -48,72 +48,109 @@ Ext.define("MVF.controller.SerologyController", {
                          }
              });
     },
-    DisplaySerologyResults:function(values,startdate,enddate){
-        var ItemStore=Ext.getStore('SerologyDropdownStore');
-        var No_of_SerologyLabs=ItemStore.getCount();
+    DisplaySerologyResults:function(records,startdate,enddate){
         var TableStore=Ext.getStore('SerologyTableStore');
         var No_of_Results_Fetch=TableStore.getCount();
-        var time= ['01:00','01:30','02:00','02:30','03:00','03:30','04:00','04:30','05:00','05:30','06:00','06:30','07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30',
-                   '15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30','24:00','24:30'];
-        var TableValues='<div><table style="width:540px;height:290px"><thead>';
+        var TableValues='<table><thead><tr><th style="padding: 0 82px 8px 0">Date</th><th style="padding: 0 66px 8px 0">Time</th><th style="padding: 0 80px 8px 0">Name</th><th style="padding: 0 80px 8px 0">Result</th><th style="padding: 0 10px 8px 0">Normal Range</th></tr></thead><tbody>';
         var tablepanel=this.getSerologyResultsTable();
         var diff=Ext.Date.getElapsed(new Date(startdate),new Date(enddate));
-        var days=diff/(1000*60*60*24)+1;
-        //console.log('difference between start date and end date '+days);
-        TableValues+='<tr style="border-bottom:1px solid #a5a399">'+
-                      '<th style=" padding:0 30px 0 15px">Date</th>'+
-                      '<th style=" padding:0 30px 0 15px;border-right:1px solid #a5a399">Time</th>';
-              for(var i=0;i<No_of_SerologyLabs;i++){
-                  TableValues+='<th style=" padding:0 30px 0 15px">'+ItemStore.getAt(i).get('text')+'</th>';
+        var i=0;
+                    for(i=0;i<No_of_Results_Fetch;i++){
+                        if(records[i].data.exact==='null'){
+                            if(parseInt(records[i].data.result)<=parseInt(records[i].data.max) && parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
+                                TableValues+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                            }
+                            else{
+                                TableValues+='<tr style="color:#ff0000;padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                            }
+                        }
+                        else{
+                            TableValues+='<tr style="padding: 10px 0 0 0"><td>'+records[i].data.date+'</td><td>'+records[i].data.time+'</td><td>'+records[i].data.Name+'</td><td>'+records[i].data.result+'</td><td>'+records[i].data.range+'</td></tr>';
+                        }
+                    }
+       TableValues+='</tbody></table>';
+       tablepanel.setHtml(TableValues);
+    },
+    SerologyViewDefinition:function(){
+      var overlay = Ext.Viewport.add({
+            xtype: 'panel',
+	    modal: true,
+            hideOnMaskTap: true,
+	    centered: true,          
+	    width:  '717px',//Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
+	    height: '328px',//Ext.os.deviceType =='Phone' ? 400 : 400,
+	    styleHtmlContent: true,
+	    // Make it hidden by default
+            hidden: true,
+	    
+	    items: [
+                        {
+                            xtype:'container',
+                            layout:'vbox',
+                            width: '100%',
+                            height: '288px',
+                            scrollable: {
+                                        direction: 'vertical',
+                                        directionLock: true
+                                    },
+                            items:[
+                                {
+                                   html: '<h1 style="color: #4D3462; font-size: 25px; padding: 10px 0 0 0;">Definition</h1>',
+                                   style:{
+                                        'fontFamily':'openSansBold',
+                                        
+                                    }
+                                },
+                                {
+                                    xtype:'panel',
+                                    itemid:'MBDefinitionid',
+                                    html:'',
+                                    style:{
+                                        'fontFamily':'openSansRegular',
+                                        'font-size':'18px',
+                                        'text-align': 'justify'
+                                    }
+                                }
+                            ]
+                        }
+                   ]
+	    
+        });
+	
+	Ext.Viewport.on({
+            delegate: '[itemid=MicrobiologyViewDefinition]',
+            tap: function(button) {
+                // When you tap on the button, we want to show the overlay by the button we just tapped.
+                //overlay.showBy(button);
+                overlay.show();
+                
+		//console.log('yes button editHematologyValuesfunction');
+            }
+        });
+    },
+    SetDefinition:function(){
+        var labvalue=Ext.ComponentQuery.query('[itemid=mbdropdownvalueid]')[0].getValue();
+        var def=this.getLabDefinition();
+        var Store=Ext.getStore('microbiologydropdownstore');
+        var No_of_Results_Fetch=Store.getCount();
+        var definition='';
+        for(var i=0;i<No_of_Results_Fetch;i++){
+         // console.log("Store = "+Store.getAt(i).get('value')+" hematologyvalue = "+labvalue);
+            if(Store.getAt(i).get('value')===labvalue){
+                //console.log('in if');
+                if(Store.getAt(i).get('definition')===''){
+                    definition='No definition found';
                 }
-                TableValues+='</tr></thead><tbody>';
-        var r=0;// index for records fetch
-        var timeindex=0; //index to loop time array
-        for(var j=0;j<days;j++){// for loop to loop number of days select ie.. difference between start date and end date
-                  while(timeindex<48){// while loop to loop 24 hrs per day
-                      for(var k=0;k<No_of_SerologyLabs+2;k++){// for loop for each row in the table, +2 to add date and time  
-                          if(k===0){
-				TableValues+='<tr><td style="padding:0 10px 0 0">'+startdate+'</td>';
-                          }
-                          else if(k===1){
-				TableValues+='<td style="padding:0 10px 0 15px;border-right:1px solid #a5a399">'+time[timeindex]+'</td>';
-                          }
-                          else{
-                               //console.log('values[r].data.date = '+values[r].data.date+' start date = '+startdate +'values[r].data.time =  '+values[r].data.time+' time = '+time[timeindex]);
-                              if(r< No_of_Results_Fetch && values[r].data.date===startdate && values[r].data.time===time[timeindex]){
-					if(values[r].data.Name===ItemStore.getAt(k-2).get('text')){
-                                            if(values[r].data.exact==='null'){
-                                                if(values[r].data.result>=values[r].data.max||values[r].data.result<=values[r].data.min){
-                                                    TableValues+='<td style="padding:0 10px 0 15px;color:#ff0000">'+values[r].data.result+'</td>';
-                                                }
-                                                else{
-                                                    TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
-                                                }
-                                            }
-                                            else{
-                                                TableValues+='<td style="padding:0 10px 0 15px">'+values[r].data.result+'</td>';
-                                            }
-					r++;
-                                                //console.log('hematology value inserted');
-					}
-					else{
-						TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
-                                                //console.log(' - inserted time and date are equal');
-					}
-				}
-				else{
-					TableValues+='<td style="padding:0 10px 0 15px">'+'-'+'</td>';
-                                        //console.log(' - inserted time and date not equal');
-				}
-                          }
-                      }
-                      TableValues+='</tr>';
-                      timeindex++;
-                  }
-                  startdate=Ext.Date.format(Ext.Date.add(new Date(startdate),Ext.Date.DAY,1),'m/d/Y');
-                  timeindex=0;
-              }
-              TableValues+='</tbody></table></div>';
-              tablepanel.setHtml(TableValues);
-    }
+                else{
+                  definition=Store.getAt(i).get('definition');
+               }
+                break;
+            }
+            else{
+                //console.log('in else');
+                definition='No definition found';
+            }
+        }
+        def.setHtml(definition);
+    },
 });

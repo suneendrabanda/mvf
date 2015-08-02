@@ -322,15 +322,18 @@ Ext.define('MVF.view.chemistrylabs', {
                                                },
                                                items:[
                                                    {
-                                                       xtype:'label',
+                                                       xtype:'button',
+                                                       ui:'plain',
+                                                       width:'140px',
                                                        itemid:'ChemistryViewDefinition',
+                                                       id:'ChemistryViewDefinition',
                                                        html:'View Definition',
                                                        style:{
                                                            'margin-top': '20px',
-                                                           'margin-left': '10px',
-                                                           'font-weight': '800',
-                                                           'color': 'rgb(145, 86, 145)',
-                                                           'font-size': 'medium'
+                                                            'margin-left': '0px',
+                                                            'font-weight': '800',
+                                                            'color': 'rgb(145, 86, 145)',
+                                                             'font-size': 'medium'
                                                        }
                                                    },
                                                    {
@@ -376,16 +379,45 @@ Ext.define('MVF.view.chemistrylabs', {
                                                                 html: '<div style="text-align: center; border: 1px solid black; padding: 5px">New Notes</div>',
                                                                 ui:'plain',
                                                                 itemid:'ChemistryAddNewNotes',
+                                                               // id:'ChemistryAddNewNotes',
                                                                 width:'120px',
                                                                 height:'30px',
                                                                 style:{
                                                                     'font-size':'12px',
-                                                                    'margin-left':'14px',
+                                                                    'margin-left':'48px',
                                                                     'margin-top':'2px'
                                                                 }
                                                             }
+                                                            
                                                        ]
-                                                   }
+                                                   },
+                                                   {
+                                                         html:'<hr>'
+                                                      },
+                                                   // Accordion notes for chemistry labs
+                                                    {
+                                                                xtype:'accordionlist',
+                                                                store: Ext.create('MVF.store.ChemistryLabNotesStore'),
+                                                                flex: 1,
+                                                                height:'77%',
+                                                                width:'99%',
+                                                                indent: true,
+                                                                singleMode: true,
+                                                                headerItemTpl: [
+                                                                        '<div style="margin-top:-8px;padding-bottom:4px;font-size:14px">{title}</div><div style="padding-bottom:0px;font-size:11px">{date}</div>'
+                                                                    ].join(''),
+                                                                contentItemTpl: [
+                                                                        '<div style="height:100%; margin-bottom:15px; width:99%; font-size:14px; align:justify">{notes}</div>'
+                                                                        ].join(''),
+                                                                listeners: {
+                                                                    initialize: function() {
+                                                                        this.load();
+                                                                    },
+                                                                },
+                                                                style:{
+                                                                    'margin-left':'1px'
+                                                                }
+                                                            }
                                                 ]
 
                                             },

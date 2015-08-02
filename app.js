@@ -14,7 +14,8 @@ Ext.application({
     name: 'MVF',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'Ext.device.Camera'
     ],
 
    views: [
@@ -45,7 +46,11 @@ Ext.application({
     "IntakeEditView",
     "OutputEditView",
     "IOPageIntakeEditView",
-    "IOPageOutputEditView"
+    "IOPageOutputEditView",
+    "AddLabNotesView",
+    "ProviderOrder",
+    "RequestOrderView",
+    "CameraView"
 ],
    models:[
 	"linechart",
@@ -64,7 +69,7 @@ Ext.application({
        "TableModel",
        "ABSTableModel",
        //"ABSDropDownModel",
-       "ABGNotesModel",
+       "LabsNotesModel",
        "LabsMainLabResultsModel",
        "IOPageDropDownModel"
 ],
@@ -109,7 +114,13 @@ Ext.application({
         "OutputTableStore",
         "VitalSignsDropDownStore",
         "SerologyDropdownStore",
-        "SerologyChartStore"
+        "SerologyChartStore",
+        "ChemistryLabNotesStore",
+        "MIcrobiologyNotesStore",
+        "HematologyNotesStore",
+        "SerologyLabNotesStore",
+        "IONotesStore",
+        "ProviderOrdersStore"
 ],
 controllers: [
 	'MainController',
@@ -119,7 +130,9 @@ controllers: [
         'MicrobiologyPageController',
         'IOPageController',
         'LabsMainController',
-        'SerologyController'
+        'SerologyController',
+        'ProviderOrdersController',
+        'ToolBarController'
 ],
 
     icon: {
@@ -145,7 +158,7 @@ controllers: [
         Ext.fly('appLoadingIndicator').destroy();
         
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('MVF.view.LabsMainView'));
+        Ext.Viewport.add(Ext.create('MVF.view.ProviderOrder'));
     },
      'LabPageCount':'0',
      'patient_id':'71013',

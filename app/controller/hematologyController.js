@@ -12,7 +12,8 @@ Ext.define("MVF.controller.hematologyController", {
             HematologyTableAlerts:'[itemid=TablealertPanel]',
             HematologyChartAlertCount:'[itemid=hematologyChartAlertsCount]',
             HematologyGoToPageDropDownSelect:'[itemid=hematologypageid]',
-            
+            HematologyLabDefinition:'[itemid=definitionid]',
+            HematologyViewDefinition:'[itemid=HematologyViewDefinition]'
         },
         control:{
             OnViewClick:{
@@ -24,12 +25,16 @@ Ext.define("MVF.controller.hematologyController", {
             HematologyGoToPageDropDownSelect:{
                 change:'HematologyGoToPageDropDownSelect'
             },
+            HematologyViewDefinition:{
+                tap:'SetHematologyDefinition'
+            }
             
         }
     },
     init:function(){
         this.editHematologyValuesfunction();
         this.HematologyViewDefinition();
+        //this.AddHematologyOverlay();
         //this.CountNO_OFAlerts();
     },
     HematologyGoToPageDropDownSelect:function(){
@@ -285,8 +290,8 @@ Ext.define("MVF.controller.hematologyController", {
             modal: true,
             hideOnMaskTap: true,
 	    centered: true,          
-	    width:  '560px',//Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
-	    height: '400px',//Ext.os.deviceType =='Phone' ? 400 : 400,
+	    width:  '717px',//Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
+	    height: '328px',//Ext.os.deviceType =='Phone' ? 400 : 400,
 	    styleHtmlContent: true,
 	    // Make it hidden by default
             hidden: true,
@@ -294,24 +299,30 @@ Ext.define("MVF.controller.hematologyController", {
 	    items: [
                         {
                             xtype:'container',
-                            layout:'hbox',
+                            layout:'vbox',
                             width: '100%',
-                            height: '368px',
+                            height: '288px',
+                            scrollable: {
+                                        direction: 'vertical',
+                                        directionLock: true
+                                    },
                             items:[
                                 {
-                                    xtype: 'toolbar',
-                                    docked: 'top',
-                                    width: '100%',
-                                    height: '60px',
-                                    style: {
-                                        background: '#4D3462'
-                                    },
-                                    html: '<h1 style="color: white; font-size: 25px; padding: 7px 0 0 190px;">Definition</h1>',
+                                   html: '<h1 style="color: #4D3462; font-size: 25px; padding: 10px 0 0 0;">Definition</h1>',
+                                   style:{
+                                        'fontFamily':'openSansBold',
+                                        
+                                    }
                                 },
                                 {
                                     xtype:'panel',
                                     itemid:'definitionid',
-                                    html:''
+                                    html:'',
+                                    style:{
+                                        'fontFamily':'openSansRegular',
+                                        'font-size':'18px',
+                                        'text-align': 'justify'
+                                    }
                                 }
                             ]
                         }
@@ -325,9 +336,35 @@ Ext.define("MVF.controller.hematologyController", {
                 // When you tap on the button, we want to show the overlay by the button we just tapped.
                 //overlay.showBy(button);
                 overlay.show();
+                
 		//console.log('yes button editHematologyValuesfunction');
             }
         });
+    },
+    SetHematologyDefinition:function(){
+        var hematologyvalue=Ext.ComponentQuery.query('[itemid=hematologydropdownvalueid]')[0].getValue();
+        var def=this.getHematologyLabDefinition();
+        var Store=Ext.getStore('hematologyDropDownStore');
+        var No_of_Results_Fetch=Store.getCount();
+        var definition='';
+        for(var i=0;i<No_of_Results_Fetch;i++){
+            console.log("Store = "+Store.getAt(i).get('value')+" hematologyvalue = "+hematologyvalue);
+            if(Store.getAt(i).get('value')===hematologyvalue){
+                console.log('in if');
+                if(Store.getAt(i).get('definition')===''){
+                    definition='No definition found';
+                }
+                else{
+                  definition=Store.getAt(i).get('definition');
+               }
+                break;
+            }
+            else{
+                console.log('in else');
+                definition='No definition found';
+            }
+        }
+        def.setHtml(definition);
     },
     OnHematologyPageLoad:function(){
 //            var hematologyvalue=Ext.ComponentQuery.query('[itemid=hematologydropdownvalueid]')[0].getValue();
@@ -405,6 +442,54 @@ Ext.define("MVF.controller.hematologyController", {
                 
             }
         });            
-             
+        var ChemistryStore=Ext.getStore('HematologyNotesStore');
+            ChemistryStore.load({
+                params:{
+                    patient_id:MVF.app.patient_id,
+                    Nurse_id:'S1019'
+                }
+            });  
+    },
+    AddHematologyOverlay:function(){
+        var overlay = Ext.Viewport.add({
+            xtype: 'panel',
+	    modal: true,
+            hideOnMaskTap: true,
+	    centered: true,           
+	    width:  Ext.os.deviceType ==='Phone' ? 933 : 933,//'500px',
+	    height: Ext.os.deviceType ==='Phone' ? 580 : 580,
+            zIndex:5,
+            styleHtmlContent: true,
+	    hidden: true,
+	    items: [
+                        {
+                            xtype:'titlebar',
+                            docked:'top',
+                            height:'66px',
+                              html:'<div style="font-size:30px;float:left;padding:10px;color:white">Add Note to Labs</div>',
+                              style:{
+                                  'background-color': '#4D3462',
+                                  'font-family':'openSansLight'
+                              }
+                        },
+                            {
+				    xtype: 'AddLabNotesView',
+				    width: '100%',
+				    height: '100%',
+                            },
+			   
+	    ],
+	    
+        });
+	
+	Ext.Viewport.on({
+            delegate: '[itemid=HematologyAddNewNotes]',
+            tap: function(button) {
+                // When you tap on the button, we want to show the overlay by the button we just tapped.
+                overlay.show();
+                
+		//console.log('yes button');
+            }
+        });
     }
     });

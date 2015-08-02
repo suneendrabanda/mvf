@@ -1,11 +1,11 @@
 <?php
 include('connect.php');
-$shift = $_GET['shiftvalue']; //'day';//
+$shift ='evening';// $_GET['shiftvalue']; //
 //echo $shift.'in';
-$startdate=$_GET['startdate']; //'2013-01-10';//
-$enddate=$_GET['enddate'];  //'2013-01-13';//
-$OutputValue=$_GET['OutputValue']; //'all';//
-$patient_id=$_GET['patient_id'];
+$startdate='2013-01-12';//$_GET['startdate']; //
+$enddate='01/18/2013';//$_GET['enddate'];  //
+$OutputValue='all';//$_GET['OutputValue']; //
+$patient_id='71013';//$_GET['patient_id'];//
 $arr=array();
 $total_out=0;
 $formatted_start_date=  date("Y-m-d",strtotime($startdate));

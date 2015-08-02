@@ -7,7 +7,9 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
             microbiologychartview:'[itemid=mbchartviewingid]',
             MicrobiologyUpdateButton:'[itemid=MicrobiologyUpdateButton]',
             MicrobiologyTable:'[itemid=MBResultsTable]',
-            GoToPageDropDownSelect:'[itemid=MBlabsPageId]'
+            GoToPageDropDownSelect:'[itemid=MBlabsPageId]',
+            LabDefinition:'[itemid=MBDefinitionid]',
+            ViewDefinition:'[itemid=MicrobiologyViewDefinition]'
         },
         control:{
             OnViewClick:{
@@ -18,11 +20,15 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
             },
             GoToPageDropDownSelect:{
                 change:'GoToPageDropDownSelect'
+            },
+            ViewDefinition:{
+                tap:'SetDefinition'
             }
         }
     },
     init:function(){
         this.MicroBiologyEditFunction();
+        this.MicrobiologyViewDefinition();
     },
     GoToPageDropDownSelect:function(){
         var pagename=Ext.ComponentQuery.query('[itemid=MBlabsPageId]')[0].getValue();
@@ -305,6 +311,94 @@ Ext.define("MVF.controller.MicrobiologyPageController", {
                      });
             }
         });
-        
-    }
+        var ChemistryStore=Ext.getStore('MIcrobiologyNotesStore');
+            ChemistryStore.load({
+                params:{
+                    patient_id:MVF.app.patient_id,
+                    Nurse_id:'S1019'
+                }
+            });
+    },
+    MicrobiologyViewDefinition:function(){
+      var overlay = Ext.Viewport.add({
+            xtype: 'panel',
+	    modal: true,
+            hideOnMaskTap: true,
+	    centered: true,          
+	    width:  '717px',//Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
+	    height: '328px',//Ext.os.deviceType =='Phone' ? 400 : 400,
+	    styleHtmlContent: true,
+	    // Make it hidden by default
+            hidden: true,
+	    
+	    items: [
+                        {
+                            xtype:'container',
+                            layout:'vbox',
+                            width: '100%',
+                            height: '288px',
+                            scrollable: {
+                                        direction: 'vertical',
+                                        directionLock: true
+                                    },
+                            items:[
+                                {
+                                   html: '<h1 style="color: #4D3462; font-size: 25px; padding: 10px 0 0 0;">Definition</h1>',
+                                   style:{
+                                        'fontFamily':'openSansBold',
+                                        
+                                    }
+                                },
+                                {
+                                    xtype:'panel',
+                                    itemid:'MBDefinitionid',
+                                    html:'',
+                                    style:{
+                                        'fontFamily':'openSansRegular',
+                                        'font-size':'18px',
+                                        'text-align': 'justify'
+                                    }
+                                }
+                            ]
+                        }
+                   ]
+	    
+        });
+	
+	Ext.Viewport.on({
+            delegate: '[itemid=MicrobiologyViewDefinition]',
+            tap: function(button) {
+                // When you tap on the button, we want to show the overlay by the button we just tapped.
+                //overlay.showBy(button);
+                overlay.show();
+                
+		//console.log('yes button editHematologyValuesfunction');
+            }
+        });
+    },
+    SetDefinition:function(){
+        var labvalue=Ext.ComponentQuery.query('[itemid=mbdropdownvalueid]')[0].getValue();
+        var def=this.getLabDefinition();
+        var Store=Ext.getStore('microbiologydropdownstore');
+        var No_of_Results_Fetch=Store.getCount();
+        var definition='';
+        for(var i=0;i<No_of_Results_Fetch;i++){
+         // console.log("Store = "+Store.getAt(i).get('value')+" hematologyvalue = "+labvalue);
+            if(Store.getAt(i).get('value')===labvalue){
+                //console.log('in if');
+                if(Store.getAt(i).get('definition')===''){
+                    definition='No definition found';
+                }
+                else{
+                  definition=Store.getAt(i).get('definition');
+               }
+                break;
+            }
+            else{
+                //console.log('in else');
+                definition='No definition found';
+            }
+        }
+        def.setHtml(definition);
+    },
     });

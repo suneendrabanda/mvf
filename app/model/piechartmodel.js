@@ -3,8 +3,9 @@ Ext.define("MVF.model.piechartmodel", {
     config: {
         fields: [
             { name: "intakename", type: "string" },
-            { name: "result", type: "int" }
-          
+            { name: "result", type: "int" },
+            { name: "date", type: "string" },
+            { name: "time", type: "string" }
         ]
     }
 });

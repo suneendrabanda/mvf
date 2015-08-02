@@ -1,10 +1,11 @@
 <?php
 include('connect.php');
 $arr=array();
+$def='';
 $result=mysqli_query($con,"select * from test_item_cat where Tst_Cat_ID	='TCAT102' order by item_name");
 while($row = mysqli_fetch_array($result)){
     $item_name=$row['item_name'];
     $Item_desc=$row['Item_desc'];
-    array_push($arr, array('text'=>$item_name,'value'=>$Item_desc));
+    array_push($arr, array('text'=>$item_name,'value'=>$Item_desc,'definition'=>$def));
 }
 echo json_encode($arr);

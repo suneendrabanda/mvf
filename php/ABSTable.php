@@ -28,7 +28,7 @@ $result=mysqli_query($con,"select distinct pr.Person_ID, p.Patient_ID,  tc.Test_
                 array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>'null','range'=>$min . " - " . $max));
             }
             else{
-                array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>$exact,'range'=>$min . " - " . $max));
+                array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>$exact,'range'=>$exact));
             }
         }
         
@@ -49,7 +49,7 @@ $result=mysqli_query($con,"select distinct pr.Person_ID, p.Patient_ID,  tc.Test_
                 array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>'null','range'=>$min . " - " . $max));
             }
             else{
-                array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>$exact,'range'=>$min . " - " . $max));
+                array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>$exact,'range'=>$exact));
             }
         }
         
@@ -70,7 +70,7 @@ $result=mysqli_query($con,"select distinct pr.Person_ID, p.Patient_ID,  tc.Test_
                 array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>'null','range'=>$min . " - " . $max));
             }
             else{
-                array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>$exact,'range'=>$min . " - " . $max));
+                array_push($arr,array('Name'=>$name,'result'=>$labresult,'date'=>$Resultdate,'time'=>$time,'min'=>$min,'max'=>$max,'exact'=>$exact,'range'=>$exact));
             }
         }
         

@@ -9,7 +9,10 @@ Ext.define("MVF.controller.ChemistryLabsController", {
             ChemistryUpdateButton:'[itemid=ChemistryUpdateButton]',
             ChemistryTable:'[itemid=ChemistryResultsTable]',
             ChemistryStartDate:'[itemid=chemistrystartdate]',
-            Chemisrtydropdownvalueid:'[itemid=chemisrtydropdownvalueid]'
+            Chemisrtydropdownvalueid:'[itemid=chemisrtydropdownvalueid]',
+            OnLabNotesSave:'[itemid=LabNotesSave]',
+            LabDefinition:'[itemid=CheDefinitionid]',
+            ViewDefinition:'[itemid=ChemistryViewDefinition]'
         },
         control:{
             OnViewClick:{
@@ -20,12 +23,20 @@ Ext.define("MVF.controller.ChemistryLabsController", {
             },
             ChemistryUpdateButton:{
                 tap:'OnChemistryUpdateButtonTap'
+            },
+            OnLabNotesSave:{
+                tap:'OnLabNotesSaveTap'
+            },
+            ViewDefinition:{
+                tap:'SetDefinition'
             }
         }
     },
     init:function(){
         this.EditChemistryValuesPopUp();
-        console.log('in chemistry init function');
+        this.AddNotesOverlay();
+        this.ChemistryViewDefinition();
+        //console.log('in chemistry init function');
     },
     OnPageIdSelect:function(){
         var pagename=Ext.ComponentQuery.query('[itemid=chemistrypageid]')[0].getValue();
@@ -310,14 +321,15 @@ Ext.define("MVF.controller.ChemistryLabsController", {
             },
             scope:this,
             callback:function(records,success){
+                var ChemistryStore=Ext.getStore('LabsMainChemistryResultsStore');
                 var No_Of_ResultsFetch=ChemistryStore.getCount();
                 var LabViewingName=this.getChemistrychartviewpanel();
-                console.log('no of che fetch'+No_Of_ResultsFetch);
+                console.log('no of chemistry results j fetch'+No_Of_ResultsFetch);
                 if(success){
                     var i=0;
-                    var date=this.getChemistryStartDate().setValueField(records[0].data.date);
-                    console.log('date'+records[0].data.date);
-                    console.log('working'+date);
+                    //var date=this.getChemistryStartDate().setValueField(records[0].data.date);
+                    //console.log('date'+records[0].data.date);
+                    //console.log('working'+date);
                     for(var i=0;i<No_Of_ResultsFetch;i++){
                         if(records[i].data.exact==='null'){
                             if(parseInt(records[i].data.result)<=parseInt(records[i].data.max) && parseInt(records[i].data.result)>=parseInt(records[i].data.min)){
@@ -357,7 +369,8 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                 var store=Ext.getStore('chemistrychartstore');
                 var enddatevalue=Ext.Date.format(Ext.Date.add(new Date(records[0].data.date),Ext.Date.DAY,7),'m/d/Y');
                 LabViewingName.setHtml(records[0].data.name);
-                var selectLab=this.getChemisrtydropdownvalueid().setName(records[0].data.name);
+                var selectLab=this.getChemisrtydropdownvalueid();
+                selectLab.setData(records[0].data.name);
                 store.load({
                         params:{ chemistryvalue: records[0].data.name,
                                  startdate: records[0].data.date,
@@ -375,5 +388,220 @@ Ext.define("MVF.controller.ChemistryLabsController", {
                    });
             }
         });
-    }
+        //load notes store
+        var ChemistryStore=Ext.getStore('ChemistryLabNotesStore');
+            ChemistryStore.load({
+                params:{
+                    patient_id:MVF.app.patient_id,
+                    Nurse_id:'S1019',
+                }
+            });
+    },
+    AddNotesOverlay:function(){
+        var overlay = Ext.Viewport.add({
+            xtype: 'panel',
+	    //id: 'EditPersonalInfoOverlay',
+            // Make it modal so you can click the mask to hide the overlay
+            modal: true,
+            hideOnMaskTap: true,
+	    centered: true,           
+	    width:  Ext.os.deviceType ==='Phone' ? 933 : 933,//'500px',
+	    height: Ext.os.deviceType ==='Phone' ? 580 : 580,
+            zIndex:5,
+            styleHtmlContent: true,
+	    // Make it hidden by default
+            hidden: true,
+	    
+	    items: [
+                        {
+                            xtype:'titlebar',
+                            docked:'top',
+                            height:'66px',
+                              html:'<div style="font-size:30px;float:left;padding:10px;color:white">Add Note to Labs</div>',
+                              style:{
+                                  'background-color': '#4D3462',
+                                  'font-family':'openSansLight'
+                              }
+                        },
+                            {
+				    xtype: 'AddLabNotesView',
+				    width: '100%',
+				    height: '100%',
+                            },
+			   
+	    ],
+	    
+        });
+	
+	Ext.Viewport.on({
+            delegate: '[itemid=ChemistryAddNewNotes]',
+            tap: function(button) {
+                // When you tap on the button, we want to show the overlay by the button we just tapped.
+                overlay.show();
+                
+		//console.log('yes button');
+            }
+        });
+    },
+    OnLabNotesSaveTap:function(){
+       var Notes=Ext.ComponentQuery.query('[itemid=LabNotesId]')[0].getValue();
+       var Subject=Ext.ComponentQuery.query('[itemid=NotesSubject]')[0].getValue();
+       var LabName=Ext.ComponentQuery.query('[itemid=LabName]')[0].getValue();
+       Ext.Ajax.request({
+            url: 'php/SaveLabNotes.php',
+            method: 'post',
+            params: {
+                Notes: Notes,
+                Subject:Subject,
+                LabName:LabName,
+                patientId:MVF.app.patient_id,
+                NurseID:'S1019'
+            },
+            scope:this,
+            failure : function(response){
+		     Ext.Msg.alert('There is a problem with the server, please try again later or contact your administrator', 'Close', Ext.emptyFn);
+		},
+            success: function(response){
+                Ext.Msg.alert(response.responseText.trim());
+            }
+        });
+        //load chemistry notes Store
+        if(LabName==='Chemistry'){
+            console.log('in che if');
+            var ChemistryStore=Ext.getStore('ChemistryLabNotesStore');
+            ChemistryStore.load({
+                params:{
+                    patient_id:MVF.app.patient_id,
+                    Nurse_id:'S1019',
+                },
+                scope:this,
+                callback:function(success){
+                    if(success){
+                        console.log('loaded');
+                    }
+                    else{
+                        console.log('failed');
+                    }
+                }
+            });
+        }
+        else if(LabName==='Hematology'){
+            var ChemistryStore=Ext.getStore('HematologyNotesStore');
+            ChemistryStore.load({
+                params:{
+                    patient_id:MVF.app.patient_id,
+                    Nurse_id:'S1019'
+                }
+            });
+        }
+        else if(LabName==='Microbiology'){
+            var ChemistryStore=Ext.getStore('MIcrobiologyNotesStore');
+            ChemistryStore.load({
+                params:{
+                    patient_id:MVF.app.patient_id,
+                    Nurse_id:'S1019'
+                }
+            });
+        }
+        else if(LabName==='SEROLOGY'){
+            var ChemistryStore=Ext.getStore('SerologyLabNotesStore');
+            ChemistryStore.load({
+                params:{
+                    patient_id:MVF.app.patient_id,
+                    Nurse_id:'S1019'
+                }
+            });
+        }
+        else if(LabName==='Arterial Blood Gas'){
+            var ChemistryStore=Ext.getStore('ABGNotesStore');
+            ChemistryStore.load({
+                params:{
+                    patient_id:MVF.app.patient_id,
+                    Nurse_id:'S1019'
+                }
+            });
+        }
+    },
+    ChemistryViewDefinition:function(){
+      var overlay = Ext.Viewport.add({
+            xtype: 'panel',
+	    modal: true,
+            hideOnMaskTap: true,
+	    centered: true,          
+	    width:  '717px',//Ext.os.deviceType =='Phone' ? 460 : 400,//'500px',
+	    height: '328px',//Ext.os.deviceType =='Phone' ? 400 : 400,
+	    styleHtmlContent: true,
+	    // Make it hidden by default
+            hidden: true,
+	    
+	    items: [
+                        {
+                            xtype:'container',
+                            layout:'vbox',
+                            width: '100%',
+                            height: '288px',
+                            scrollable: {
+                                        direction: 'vertical',
+                                        directionLock: true
+                                    },
+                            items:[
+                                {
+                                   html: '<h1 style="color: #4D3462; font-size: 25px; padding: 10px 0 0 0;">Definition</h1>',
+                                   style:{
+                                        'fontFamily':'openSansBold',
+                                        
+                                    }
+                                },
+                                {
+                                    xtype:'panel',
+                                    itemid:'CheDefinitionid',
+                                    html:'',
+                                    style:{
+                                        'fontFamily':'openSansRegular',
+                                        'font-size':'18px',
+                                        'text-align': 'justify'
+                                    }
+                                }
+                            ]
+                        }
+                   ]
+	    
+        });
+	
+	Ext.Viewport.on({
+            delegate: '#ChemistryViewDefinition',
+            tap: function(button) {
+                // When you tap on the button, we want to show the overlay by the button we just tapped.
+                //overlay.showBy(button);
+                overlay.show();
+                
+		//console.log('yes button editHematologyValuesfunction');
+            }
+        });
+    },
+    SetDefinition:function(){
+        var labvalue=Ext.ComponentQuery.query('[itemid=chemisrtydropdownvalueid]')[0].getValue();
+        var def=this.getLabDefinition();
+        var Store=Ext.getStore('chemistrydropdownstore');
+        var No_of_Results_Fetch=Store.getCount();
+        var definition='';
+        for(var i=0;i<No_of_Results_Fetch;i++){
+         // console.log("Store = "+Store.getAt(i).get('value')+" hematologyvalue = "+labvalue);
+            if(Store.getAt(i).get('value')===labvalue){
+                //console.log('in if');
+                if(Store.getAt(i).get('definition')===''){
+                    definition='No definition found';
+                }
+                else{
+                  definition=Store.getAt(i).get('definition');
+               }
+                break;
+            }
+            else{
+                //console.log('in else');
+                definition='No definition found';
+            }
+        }
+        def.setHtml(definition);
+    },
     });

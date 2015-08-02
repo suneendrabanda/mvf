@@ -1,4 +1,4 @@
-Ext.define("MVF.controller.IOPageController", {
+Ext.define("MVP.controller.IOPageController", {
     extend: "Ext.app.Controller",
     config: {
         refs:{
@@ -76,7 +76,7 @@ Ext.define("MVF.controller.IOPageController", {
                          startdate: StartDate,
                          enddate: EndDate,
                          OutputValue:OutputSelectValue,
-                         patient_id:MVF.app.patient_id
+                         patient_id:MVP.app.patient.get('patient_id')
                       },
                          scope:this,
                          callback:function(records){
@@ -92,7 +92,7 @@ Ext.define("MVF.controller.IOPageController", {
                         startdate: StartDate,
                         enddate: EndDate,
                         IntakeValue:IntakeSelectValue,
-                        patient_id:MVF.app.patient_id
+                        patient_id:MVP.app.patient.get('patient_id')
                      }
         });
         // load Intake table             
@@ -102,7 +102,7 @@ Ext.define("MVF.controller.IOPageController", {
                 startdate:StartDate,
                 enddate:EndDate,
                 shift: shiftvalue,
-                patient_id:MVF.app.patient_id
+                patient_id:MVP.app.patient.get('patient_id')
             },
             scope:this,
             callback:function(records){
@@ -116,7 +116,7 @@ Ext.define("MVF.controller.IOPageController", {
                 startdate:StartDate,
                 enddate:EndDate,
                 shift: shiftvalue,
-                patient_id:MVF.app.patient_id
+                patient_id:MVP.app.patient.get('patient_id')
             },
             scope:this,
             callback:function(records){
@@ -237,13 +237,14 @@ Ext.define("MVF.controller.IOPageController", {
         var IntakeTableValues;
        outputStore.load({
            params:{
-               patient_id:MVF.app.patient_id
+               patient_id:MVP.app.patient.get('patient_id')
            },
            callback:function(records){
                var no_of_records=outputStore.getCount();
                if(no_of_records>0){
                   OuputLastUpdatedDate=records[0].data.date;
-                  time=records[0].data.time.replace(":","");
+                  console.log('OuputLastUpdatedDate = '+OuputLastUpdatedDate);
+                  time=records[0].data.time.replace(':','');
                   console.log('time ='+time);
                   //get output shift
                   if(parseInt(time)>=700&& parseInt(time)<1500){
@@ -261,12 +262,15 @@ Ext.define("MVF.controller.IOPageController", {
                     // load chart
                     var store=Ext.getStore('IOPageOutputChartStore');
                     var OPEndDate=Ext.Date.format(Ext.Date.add(new Date(OuputLastUpdatedDate),Ext.Date.DAY,7),'m/d/Y');
+                    console.log('shiftvalue = '+shift+'OuputLastUpdatedDate = '+OuputLastUpdatedDate);
+                    console.log('OPEndDate = '+OPEndDate+'OutputSelectValue = '+OutputSelectValue);
+                    console.log('patinent id = '+MVP.app.patient.get('patient_id'));
                     store.load({
                     params:{ shiftvalue: shift,
                              startdate: OuputLastUpdatedDate,
                              enddate: OPEndDate,
                              OutputValue:OutputSelectValue,
-                             patient_id:MVF.app.patient_id
+                             patient_id:MVP.app.patient.get('patient_id')
                           },
                              scope:this,
                              callback:function(records){
@@ -284,7 +288,7 @@ Ext.define("MVF.controller.IOPageController", {
                                 startdate:OuputLastUpdatedDate,
                                 enddate:OPEndDate,
                                 shift: shift,
-                                patient_id:MVF.app.patient_id
+                                patient_id:MVP.app.patient.get('patient_id')
                             },
                             scope:this,
                             callback:function(records){
@@ -317,7 +321,7 @@ Ext.define("MVF.controller.IOPageController", {
         var IntakeLastUpdateDate=StartDate;
        intakeStore.load({
            params:{ 
-                    patient_id:MVF.app.patient_id
+                    patient_id:MVP.app.patient.get('patient_id')
                   },
                   callback:function(records,success){
                       var no_of_records=intakeStore.getCount();
@@ -325,10 +329,11 @@ Ext.define("MVF.controller.IOPageController", {
                       var time;
                       if(no_of_records>0){
                          IntakeLastUpdateDate=records[0].data.date;
+                         console.log('IntakeLastUpdateDate  = '+IntakeLastUpdateDate);
                          time=records[0].data.time.replace(":","");
                         console.log('time ='+time);
                         //get output shift
-                        if(parseInt(time)>=700&& parseInt(time)<1500){
+                        if(parseInt(time)>700&& parseInt(time)<1500){
                             shift='day';
                             console.log(shift);
                           }
@@ -349,7 +354,7 @@ Ext.define("MVF.controller.IOPageController", {
                                         startdate: IntakeLastUpdateDate,
                                         enddate: EndDate,
                                         IntakeValue:IntakeSelectValue,
-                                        patient_id:MVF.app.patient_id
+                                        patient_id:MVP.app.patient.get('patient_id')
                                      },
                                      scope:this,
                                          callback:function(records){
@@ -367,8 +372,8 @@ Ext.define("MVF.controller.IOPageController", {
                             params:{
                                 startdate:IntakeLastUpdateDate,
                                 enddate:EndDate,
-                                shift: shiftvalue,
-                                patient_id:MVF.app.patient_id
+                                shift: shift,
+                                patient_id:MVP.app.patient.get('patient_id')
                             },
                             scope:this,
                             callback:function(records){
@@ -393,8 +398,6 @@ Ext.define("MVF.controller.IOPageController", {
                 var tablepanel=this.getIntakeResultsPanel();          
                 tablepanel.setHtml(IntakeTableValues);
             }, 1000, this);
-        
-
     },
     IOselectAllinList:function(checkbox, e, eOpts){
         console.log(checkbox.getName());
@@ -474,7 +477,7 @@ Ext.define("MVF.controller.IOPageController", {
                      itkdate: intakedate,
                      itktime:intaketime,
                      itkresult:result,
-                     patient_id:MVF.app.patient_id
+                     patient_id:MVP.app.patient.get('patient_id')
                    },
                     scope:this,
                     callback:function(records,operation,success){
@@ -482,7 +485,7 @@ Ext.define("MVF.controller.IOPageController", {
                             Ext.getCmp('intakepiechartNOrecords').hide();
                             Ext.getStore('intakepiechartstore').load({
                             params:{
-                                  patient_id:MVF.app.patient_id
+                                  patient_id:MVP.app.patient.get('patient_id')
                              }
                         });
                      }
@@ -542,7 +545,7 @@ Ext.define("MVF.controller.IOPageController", {
                      outputdate: outputdate,
                      outputtime:outputtime,
                      outputresult:result,
-                     patient_id:MVF.app.patient_id
+                     patient_id:MVP.app.patient.get('patient_id')
                    },
                    scope:this,
                    callback:function(records,operation,success){
@@ -551,7 +554,7 @@ Ext.define("MVF.controller.IOPageController", {
                             Ext.getCmp('outputpiechartNOrecords').hide();
                             Ext.getStore('outputpiechartstore').load({
                                 params:{
-                                     patient_id:MVF.app.patient_id
+                                     patient_id:MVP.app.patient.get('patient_id')
                                 }
                             });
                             

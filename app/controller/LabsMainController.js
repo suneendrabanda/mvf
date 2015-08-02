@@ -21,7 +21,8 @@ Ext.define("MVF.controller.LabsMainController", {
             ChemistrylastupdatePanel:'[itemid=chemistrylastupdate]',
             HematologylastUpdatepanel:'[itemid=hematologylastupdate]',
             MicrobiologylastUpdatePanel:'[itemid=microbiologylastupdate]',
-            AbgLastUpdatePanel:'[itemid=abglastupdate]'
+            AbgLastUpdatePanel:'[itemid=abglastupdate]',
+            SerologyLastUpdatePanel:'[itemid=serologylastupdate]'
         },
         control:{
             GoToChemistryPage:{
@@ -328,14 +329,16 @@ Ext.define("MVF.controller.LabsMainController", {
     },
     OnPatientSummaryButtonTap:function(){
         var date=Ext.ComponentQuery.query('[itemid=LabsMainDate]')[0].getFormattedValue();
-        //set Chemistry last date
+        //set Chemistry last last update3 result
         this.DisplayChemistryResultsFunction(date);
-        // set hematology last date
+        // set hematology last last update3 result
         this.DisplayHemaotologyResultsFunction(date);
-        //set MIcrobiology last date
+        //set MIcrobiology last last update3 result
         this.DisplayMicrobiologyResultsFunction(date);
-        //set Abg last date
+        //set Abg last last update3 result
         var datew=this.DisplayABGResultsFunction(date);
+        //set serology last update3 result
+        this.DisplaySerologyResultsFunction(date);
         console.log('abgd lst date'+datew);
         var ChemistryStore=Ext.getStore('LabsMainChemistryResultsStore');
         ChemistryStore.load({
@@ -406,6 +409,24 @@ Ext.define("MVF.controller.LabsMainController", {
                     //console.log(LastUpdatedDate+' date im ');
                     var AbgLastUpdatePanel=this.getAbgLastUpdatePanel();
                      AbgLastUpdatePanel.setHtml(LastUpdatedDate);
+                 }
+             }
+         });
+        var SerologyStore=Ext.getStore('LabsMainSerologyResultsStore');
+         SerologyStore.load({
+            params:{
+                date:date,
+                patient_id:MVF.app.patient_id
+            },
+            scope:this,
+            callback:function(records,success){
+                var No_Of_Results=SerologyStore.getCount();
+                console.log('no of ABG results fetch'+No_Of_Results);
+                if(No_Of_Results>0){
+                   var LastUpdatedDate=records[0].data.date;
+                    //console.log(LastUpdatedDate+' date im ');
+                    var SerologyLastUpdatePanel=this.getSerologyLastUpdatePanel();
+                     SerologyLastUpdatePanel.setHtml(LastUpdatedDate);
                  }
              }
          });

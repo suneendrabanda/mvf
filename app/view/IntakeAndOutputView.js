@@ -91,9 +91,10 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                            {
                                xtype: 'selectfield',
                                width:'120px',
+                               height:'35px',
                                border:'1 1 1 1',
                                itemid:'IOpageid',
-                                        
+                               cls:'borderstyle',        
                                 options: [
                                             {text: 'I&O',  value: 'IntakeAndOutputView'},
                                             {text: 'Main',  value: 'LabsMainView'},
@@ -178,7 +179,8 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                             width:'120px',
                                             border:'1 1 1 1',
                                             itemid:'IOshift',
-
+                                            height:'35px',
+                                            cls:'borderstyle',
                                             options: [
                                                 {text: 'day',  value: 'day'},
                                                 {text: 'evening',  value: 'evening'},
@@ -209,6 +211,9 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                label: '',
                                                itemid:'IOstartdate',
                                                width:'100px',
+                                               height:'35px',
+                                               border:'1 1 1 1',
+                                               cls:'borderstyle', 
                                                value: new Date(),
                                                style:{
                                                     'margin-top': '2%',
@@ -230,6 +235,9 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                             {
                                                  xtype: 'datepickerfield',
                                                    label: '',
+                                                   height:'35px',
+                                                 border:'1 1 1 1',
+                                                 cls:'borderstyle', 
                                                    itemid:'IOenddate',
                                                    width:'100px',
                                                    value: new Date(),
@@ -310,7 +318,30 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                    style:{
                                                                        'margin-top':'6px'
                                                                    }
-                                                               }
+                                                               },
+                                                               {
+                                                                xtype:'accordionlist',
+                                                                store: Ext.create('MVF.store.IONotesStore'),
+                                                                flex: 1,
+                                                                height:'77%',
+                                                                width:'99%',
+                                                                indent: true,
+                                                                singleMode: true,
+                                                                headerItemTpl: [
+                                                                        '<div style="margin-top:-8px;padding-bottom:4px;font-size:14px">{title}</div><div style="padding-bottom:0px;font-size:11px">{date}</div>'
+                                                                    ].join(''),
+                                                                contentItemTpl: [
+                                                                        '<div style="height:100%; margin-bottom:15px; width:99%; font-size:14px; align:justify">{notes}</div>'
+                                                                        ].join(''),
+                                                                listeners: {
+                                                                    initialize: function() {
+                                                                        this.load();
+                                                                    },
+                                                                },
+                                                                style:{
+                                                                    'margin-left':'1px'
+                                                                }
+                                                            }
                                                            ]
                                                     },// end of notes container
                                                     {// charts and table contianer
@@ -355,6 +386,8 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                                                          xtype:'selectfield',
                                                                                                          width:'120px',
                                                                                                          border:'1 1 1 1',
+                                                                                                         cls:'borderstyle',
+                                                                                                         height:'35px',
                                                                                                          itemid:'IntakeSelectID',
                                                                                                          name:'IntakeSelectID',
                                                                                                          options:[
@@ -453,8 +486,9 @@ Ext.define('MVF.view.IntakeAndOutputView', {
                                                                                                      {
                                                                                                          xtype:'selectfield',
                                                                                                          width:'120px',
+                                                                                                         height:'35px',
                                                                                                          border:'1 1 1 1',
-                                                                                                         cls:'border',
+                                                                                                         cls:'borderstyle',
                                                                                                          itemid:'OutputSelectID',
                                                                                                          name:'OutputSelectID',
                                                                                                             options: [

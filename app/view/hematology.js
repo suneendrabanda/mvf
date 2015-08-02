@@ -390,7 +390,8 @@ Ext.define('MVF.view.hematology', {
                                                                          xtype:'button',
                                                                          html: '<div style="text-align: center; border: 1px solid black; padding: 5px">New Notes</div>',
                                                                          ui:'plain',
-                                                                         itemid:'HematologyAddNewNotes',
+                                                                         //id:'HematologyAddNewNotes',
+                                                                         itemid:'ChemistryAddNewNotes',//HematologyAddNewNotes
                                                                          width:'120px',
                                                                          height:'30px',
                                                                          style:{
@@ -400,6 +401,33 @@ Ext.define('MVF.view.hematology', {
                                                                          }
                                                                      }
                                                                 ]
+                                                            },
+                                                            {
+                                                                html:'<hr>'
+                                                             },
+                                                      // Accordion notes for chemistry labs
+                                                            {
+                                                                xtype:'accordionlist',
+                                                                store: Ext.create('MVF.store.HematologyNotesStore'),
+                                                                flex: 1,
+                                                                height:'77%',
+                                                                width:'99%',
+                                                                indent: true,
+                                                                singleMode: true,
+                                                                headerItemTpl: [
+                                                                        '<div style="margin-top:-8px;padding-bottom:4px;font-size:14px">{title}</div><div style="padding-bottom:0px;font-size:11px">{date}</div>'
+                                                                    ].join(''),
+                                                                contentItemTpl: [
+                                                                        '<div style="height:100%; margin-bottom:15px; width:99%; font-size:14px; align:justify">{notes}</div>'
+                                                                        ].join(''),
+                                                                listeners: {
+                                                                    initialize: function() {
+                                                                        this.load();
+                                                                    },
+                                                                },
+                                                                style:{
+                                                                    'margin-left':'1px'
+                                                                }
                                                             }
                                                          ]
 
@@ -499,7 +527,7 @@ Ext.define('MVF.view.hematology', {
                                                          //table container
                                                           xtype:'container',
                                                          width: '580px',
-                                                         height: '368px',
+                                                         //height: '368px',
                                                          layout:'vbox',
                                                          style: {
                                                                     'border': '1px #9E9D8B solid',
@@ -565,16 +593,14 @@ Ext.define('MVF.view.hematology', {
                                                         {
                                                             xtype:'container',
                                                             width:'580px',
-                                                            height:'300px',
+                                                            //height:'100%',
                                                             layout:'hbox',
-
-                                                            scrollable: {
-                                                                        direction: 'both',
-                                                                        directionLock: true
-                                                                    },
-                                                                    items:[
+                                                            style:{
+                                                                'padding-bottom':'3%'
+                                                            },
+                                                                items:[
                                                                         //table goes here
-                                                                        {
+                                                                   {
                                                                             xtype:'panel',
                                                                             itemid:'HematologyResultsTable',
                                                                             style:{
@@ -582,7 +608,7 @@ Ext.define('MVF.view.hematology', {
                                                                                 'font-size':'small',
                                                                                 'margin-left':'20px'
                                                                             }
-                                                                        }
+                                                                        }     
                                                                     ]
                                                         }
                                                             ]    

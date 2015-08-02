@@ -1,13 +1,13 @@
-Ext.define('MVF.store.ABGNotesStore', {
+Ext.define('MVF.store.SerologyLabNotesStore', {
 	extend: 'Ext.data.TreeStore',
 	requires : ['MVF.model.LabsNotesModel'],      
     
     config: {
     	model: 'MVF.model.LabsNotesModel',
-        storeId : 'ABGNotesStore',
+        storeId : 'SerologyLabNotesStore',
         proxy: {
             type: 'ajax',
-            url: 'php/ABGNotes.php', //proxy url
+            url: 'php/SerologyLabNotes.php', //proxy url
             headers: { 'Content-Type': 'application/json' }, 
                 reader: Ext.create('Ext.data.reader.Json', {
                     type: 'json',

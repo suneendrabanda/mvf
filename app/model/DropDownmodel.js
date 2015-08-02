@@ -4,7 +4,7 @@ Ext.define("MVF.model.DropDownmodel", {
         fields: [
             { name: "text", type: "string" },
             { name: "value", type: "string" },
-            
+            { name: "definition", type:"string"}
         ]
     }
 });

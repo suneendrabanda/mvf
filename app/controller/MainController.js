@@ -491,6 +491,10 @@ Ext.define("MVF.controller.MainController", {
                           //console.log('in the loop');
                           Ext.getCmp('intakepiechartNOrecords').show();
                       }
+                      else{
+                          //console.log('in the loop');
+                          Ext.getCmp('intakepiechartNOrecords').hide();
+                      }
                   }
        });
        var outputStore=Ext.StoreMgr.get('outputpiechartstore');

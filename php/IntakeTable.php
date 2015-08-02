@@ -25,7 +25,7 @@ if($shift=='day'){
         $time=$row['time'];
         $modified_time=(int)str_replace(":","",$time);
         $value=$row['result'];
-        if($modified_time>700 && $modified_time<1500){
+        if($modified_time>=700 && $modified_time<1500){
             array_push($arr, array('Name'=>$name,'result'=>$value,'date'=>$date,'time'=>$time));
         }
     }

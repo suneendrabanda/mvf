@@ -457,3 +457,7 @@ div#ext-IOPageIntakeChartView-1-overlay-surface{
 div#ext-IOPageOutputChartView-1-overlay-surface{
     visibility: hidden;
 }
+.borderstyle{
+    border-color: black;
+    border-style: solid;
+}

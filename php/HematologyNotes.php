@@ -4,7 +4,7 @@ include('connect.php');
 $arr = array();
 $patient_id=$_GET['patient_id'];
 $Nurse_id=$_GET['Nurse_id'];
-$LabName='Arterial Blood Gas';
+$LabName='Hematology';
 //Get Lab id From tst_cat table
 $Lab_ID_Result=mysqli_query($con,"select * from test_cat where Test_Category='$LabName'");
 while ($row = mysqli_fetch_array($Lab_ID_Result)) {
